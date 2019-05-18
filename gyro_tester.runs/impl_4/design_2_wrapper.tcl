@@ -60,6 +60,8 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
+set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
@@ -69,25 +71,25 @@ set rc [catch {
   set_property board_part em.avnet.com:zed:part0:1.4 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir C:/Docs/initial_gyro_tester_experiments/tester/tester.cache/wt [current_project]
-  set_property parent.project_path C:/Docs/initial_gyro_tester_experiments/tester/tester.xpr [current_project]
+  set_property webtalk.parent_dir C:/Docs/gyro_tester/gyro_tester.cache/wt [current_project]
+  set_property parent.project_path C:/Docs/gyro_tester/gyro_tester.xpr [current_project]
   set_property ip_repo_paths {
   C:/Docs/initial_gyro_tester_experiments/ip_repo/BiDirChannels_1.0
-  C:/Docs/ip_repo/axis_stream_fifo_1.0
-  C:/Docs/ip_repo/axis_GYRO_Streaming_FIFO_1.0
-  C:/Docs/ip_repo/axi_gyro_hsi_1.0
-  C:/Docs/ip_repo/SPI_ip_1.0
-  C:/Docs/ip_repo/axi4_pl_interrupt_generator_1.0
+  C:/ip_repo/axis_stream_fifo_1.0
+  C:/ip_repo/axis_GYRO_Streaming_FIFO_1.0
+  C:/ip_repo/axi_gyro_hsi_1.0
+  C:/ip_repo/SPI_ip_1.0
+  C:/ip_repo/axi4_pl_interrupt_generator_1.0
 } [current_project]
-  set_property ip_output_repo C:/Docs/initial_gyro_tester_experiments/tester/tester.cache/ip [current_project]
+  set_property ip_output_repo C:/Docs/gyro_tester/gyro_tester.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  add_files -quiet C:/Docs/initial_gyro_tester_experiments/tester/tester.runs/synth_2/design_2_wrapper.dcp
+  add_files -quiet C:/Docs/gyro_tester/gyro_tester.runs/synth_2/design_2_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files C:/Docs/initial_gyro_tester_experiments/tester/tester.srcs/sources_1/bd/design_2/design_2.bd
+  add_files C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/design_2.bd
   set_param project.isImplRun false
-  read_xdc C:/Docs/initial_gyro_tester_experiments/tester/tester.srcs/constrs_2/new/gyro_constraints.xdc
+  read_xdc C:/Docs/gyro_tester/gyro_tester.srcs/constrs_2/new/gyro_constraints.xdc
   set_param project.isImplRun true
   link_design -top design_2_wrapper -part xc7z020clg484-1
   set_param project.isImplRun false

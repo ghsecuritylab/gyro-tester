@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Docs/initial_gyro_tester_experiments/tester/tester.srcs/constrs_2/new/gyro_constraints.xdc rfile:../../../tester.srcs/constrs_2/new/gyro_constraints.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Docs/gyro_tester/gyro_tester.srcs/constrs_2/new/gyro_constraints.xdc rfile:../../../gyro_tester.srcs/constrs_2/new/gyro_constraints.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:1 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN W12 [get_ports HSIA0]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]

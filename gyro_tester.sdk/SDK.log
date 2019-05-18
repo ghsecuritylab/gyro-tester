@@ -47491,3 +47491,317 @@ con
 ----------------End of Script----------------
 
 23:38:20 INFO  : Disconnected from the channel tcfchan#2.
+20:03:02 INFO  : Registering command handlers for SDK TCF services
+20:03:05 INFO  : Launching XSCT server: xsct.bat -interactive C:\Docs\gyro_tester\gyro_tester.sdk\temp_xsdb_launch_script.tcl
+20:03:17 INFO  : XSCT server has started successfully.
+20:03:27 INFO  : Successfully done setting XSCT server connection channel  
+20:03:27 INFO  : Processing command line option -hwspec C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf.
+20:03:27 INFO  : Successfully done setting SDK workspace  
+20:03:51 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1558145330976,  Project:1557984325498
+20:03:51 INFO  : Project design_2_wrapper_hw_platform_1's source hardware specification located at C:/Docs/initial_gyro_tester_experiments/tester/tester.sdk/design_2_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+20:05:19 INFO  : Copied contents of C:/Docs/initial_gyro_tester_experiments/tester/tester.sdk/design_2_wrapper.hdf into \design_2_wrapper_hw_platform_1\system.hdf.
+20:06:42 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+20:06:42 INFO  : Clearing existing target manager status.
+20:06:42 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+20:06:42 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+20:08:07 INFO  : Registering command handlers for SDK TCF services
+20:08:09 INFO  : Launching XSCT server: xsct.bat -interactive C:\Docs\gyro_tester\gyro_tester.sdk\temp_xsdb_launch_script.tcl
+20:08:16 INFO  : XSCT server has started successfully.
+20:08:17 INFO  : Successfully done setting XSCT server connection channel  
+20:08:17 INFO  : Processing command line option -hwspec C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf.
+20:08:17 INFO  : Checking for hwspec changes in the project design_2_wrapper_hw_platform_2.
+20:08:17 INFO  : Successfully done setting SDK workspace  
+20:09:55 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:09:56 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:09:59 INFO  : FPGA configured successfully with bitstream "C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper_hw_platform_2/design_2_wrapper.bit"
+20:10:23 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:10:23 INFO  : 'fpga -state' command is executed.
+20:10:23 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:10:24 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:10:24 INFO  : 'jtag frequency' command is executed.
+20:10:24 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/ps7_init.tcl' is done.
+20:10:24 INFO  : Context for 'APU' is selected.
+20:10:24 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+20:10:24 INFO  : 'configparams force-mem-access 1' command is executed.
+20:10:24 INFO  : Context for 'APU' is selected.
+20:10:25 INFO  : 'stop' command is executed.
+20:10:25 INFO  : 'ps7_init' command is executed.
+20:10:25 INFO  : 'ps7_post_config' command is executed.
+20:10:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:10:25 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:10:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:10:26 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:10:26 INFO  : 'configparams force-mem-access 0' command is executed.
+20:10:26 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:10:26 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:10:26 INFO  : 'con' command is executed.
+20:10:26 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:10:26 INFO  : Disconnected from the channel tcfchan#1.
+20:34:20 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1558150438413,  Project:1558147949085
+20:34:20 INFO  : Project design_2_wrapper_hw_platform_2's source hardware specification located at C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+20:34:27 INFO  : Copied contents of C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf into \design_2_wrapper_hw_platform_2\system.hdf.
+20:34:38 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+20:34:38 INFO  : Clearing existing target manager status.
+20:34:38 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+20:34:38 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+20:34:47 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:34:47 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:34:50 INFO  : FPGA configured successfully with bitstream "C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper_hw_platform_2/design_2_wrapper.bit"
+20:35:00 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:35:00 INFO  : 'fpga -state' command is executed.
+20:35:00 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:35:00 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:35:00 INFO  : 'jtag frequency' command is executed.
+20:35:00 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/ps7_init.tcl' is done.
+20:35:00 INFO  : Context for 'APU' is selected.
+20:35:00 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+20:35:01 INFO  : 'configparams force-mem-access 1' command is executed.
+20:35:01 INFO  : Context for 'APU' is selected.
+20:35:01 INFO  : 'stop' command is executed.
+20:35:01 INFO  : 'ps7_init' command is executed.
+20:35:01 INFO  : 'ps7_post_config' command is executed.
+20:35:01 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:35:01 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:35:01 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:35:02 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:35:02 INFO  : 'configparams force-mem-access 0' command is executed.
+20:35:02 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:35:02 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:35:02 INFO  : 'con' command is executed.
+20:35:02 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:35:02 INFO  : Disconnected from the channel tcfchan#2.
+20:39:13 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:39:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:39:17 INFO  : FPGA configured successfully with bitstream "C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper_hw_platform_2/design_2_wrapper.bit"
+20:39:37 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:39:37 INFO  : 'fpga -state' command is executed.
+20:39:37 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:39:38 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:39:38 INFO  : 'jtag frequency' command is executed.
+20:39:38 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl' is done.
+20:39:38 INFO  : Context for 'APU' is selected.
+20:39:38 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf'.
+20:39:38 INFO  : 'configparams force-mem-access 1' command is executed.
+20:39:38 INFO  : Context for 'APU' is selected.
+20:39:38 INFO  : 'stop' command is executed.
+20:39:39 INFO  : 'ps7_init' command is executed.
+20:39:39 INFO  : 'ps7_post_config' command is executed.
+20:39:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:39:39 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:39:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:39:39 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:39:39 INFO  : 'configparams force-mem-access 0' command is executed.
+20:39:39 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:39:40 INFO  : Memory regions updated for context APU
+20:39:40 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:39:41 INFO  : 'con' command is executed.
+20:39:41 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:39:41 INFO  : Launch script is exported to file 'C:\Docs\gyro_tester\gyro_tester.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_axi4_gyro_test_0.elf_on_local.tcl'
+20:39:56 INFO  : Disconnected from the channel tcfchan#3.
+20:40:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:40:14 INFO  : 'fpga -state' command is executed.
+20:40:14 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:40:15 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:40:15 INFO  : 'jtag frequency' command is executed.
+20:40:15 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl' is done.
+20:40:15 INFO  : Context for 'APU' is selected.
+20:40:24 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf'.
+20:40:24 INFO  : 'configparams force-mem-access 1' command is executed.
+20:40:24 INFO  : Context for 'APU' is selected.
+20:40:24 INFO  : 'stop' command is executed.
+20:40:25 INFO  : 'ps7_init' command is executed.
+20:40:25 INFO  : 'ps7_post_config' command is executed.
+20:40:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:40:25 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:40:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:40:25 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:40:25 INFO  : 'configparams force-mem-access 0' command is executed.
+20:40:25 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:40:25 INFO  : Memory regions updated for context APU
+20:40:26 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:40:26 INFO  : 'con' command is executed.
+20:40:26 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:40:26 INFO  : Launch script is exported to file 'C:\Docs\gyro_tester\gyro_tester.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_axi4_gyro_test_0.elf_on_local.tcl'
+20:56:40 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1558151785198,  Project:1558150438413
+20:56:40 INFO  : Project design_2_wrapper_hw_platform_2's source hardware specification located at C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+20:56:42 INFO  : Copied contents of C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf into \design_2_wrapper_hw_platform_2\system.hdf.
+20:58:17 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+20:58:25 INFO  : Clearing existing target manager status.
+20:58:25 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+20:58:25 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+20:58:51 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:58:51 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:58:54 INFO  : FPGA configured successfully with bitstream "C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper_hw_platform_2/design_2_wrapper.bit"
+20:59:10 INFO  : Disconnected from the channel tcfchan#4.
+20:59:12 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:59:12 INFO  : 'fpga -state' command is executed.
+20:59:12 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:59:12 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:59:12 INFO  : 'jtag frequency' command is executed.
+20:59:12 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl' is done.
+20:59:12 INFO  : Context for 'APU' is selected.
+20:59:12 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf'.
+20:59:12 INFO  : 'configparams force-mem-access 1' command is executed.
+20:59:13 INFO  : Context for 'APU' is selected.
+20:59:13 INFO  : 'stop' command is executed.
+20:59:13 INFO  : 'ps7_init' command is executed.
+20:59:13 INFO  : 'ps7_post_config' command is executed.
+20:59:13 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:13 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:59:13 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:14 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:59:14 INFO  : 'configparams force-mem-access 0' command is executed.
+20:59:14 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:59:14 INFO  : Memory regions updated for context APU
+20:59:14 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:15 INFO  : 'con' command is executed.
+20:59:15 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:59:15 INFO  : Launch script is exported to file 'C:\Docs\gyro_tester\gyro_tester.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_axi4_gyro_test_0.elf_on_local.tcl'
+20:59:23 INFO  : Disconnected from the channel tcfchan#5.
+20:59:24 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248AA3C5B" && level==0} -index 1' command is executed.
+20:59:24 INFO  : 'fpga -state' command is executed.
+20:59:24 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:59:25 INFO  : Jtag cable 'Digilent Zed 210248AA3C5B' is selected.
+20:59:25 INFO  : 'jtag frequency' command is executed.
+20:59:25 INFO  : Sourcing of 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl' is done.
+20:59:25 INFO  : Context for 'APU' is selected.
+20:59:25 INFO  : Hardware design information is loaded from 'C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf'.
+20:59:25 INFO  : 'configparams force-mem-access 1' command is executed.
+20:59:25 INFO  : Context for 'APU' is selected.
+20:59:25 INFO  : 'stop' command is executed.
+20:59:26 INFO  : 'ps7_init' command is executed.
+20:59:26 INFO  : 'ps7_post_config' command is executed.
+20:59:26 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:26 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:59:26 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:26 INFO  : The application 'C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:59:26 INFO  : 'configparams force-mem-access 0' command is executed.
+20:59:26 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+loadhw -hw C:/Docs/gyro_tester/gyro_tester.sdk/design_1_wrapper_hw_platform_4/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:59:26 INFO  : Memory regions updated for context APU
+20:59:27 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:59:27 INFO  : 'con' command is executed.
+20:59:27 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
+con
+----------------End of Script----------------
+
+20:59:27 INFO  : Launch script is exported to file 'C:\Docs\gyro_tester\gyro_tester.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_axi4_gyro_test_0.elf_on_local.tcl'
