@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Fri May 17 20:47:04 2019
+-- Date        : Thu May 23 11:34:30 2019
 -- Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_BiDirChannels_0_0/design_2_BiDirChannels_0_0_sim_netlist.vhdl
@@ -1650,7 +1650,7 @@ entity design_2_BiDirChannels_0_0_counter48Cycles is
     out_start_stop_int : in STD_LOGIC;
     in_start_stop_int : in STD_LOGIC;
     Q_reg_0 : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \slv_reg0_reg[28]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     Q_reg_1 : in STD_LOGIC;
     \slv_reg0_reg[31]\ : in STD_LOGIC
   );
@@ -1681,7 +1681,7 @@ HS_Clock_INST_0: unisim.vcomponents.LUT5
       INIT => X"A956AAAA"
     )
         port map (
-      I0 => Q(0),
+      I0 => \slv_reg0_reg[28]\(0),
       I1 => count_pulses(5),
       I2 => count_pulses(3),
       I3 => count_pulses(4),
@@ -1889,7 +1889,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_2_BiDirChannels_0_0_dff_12 is
   port (
     \r_reg_reg[32]\ : out STD_LOGIC;
-    Q_reg_0 : in STD_LOGIC;
+    CLK : in STD_LOGIC;
     MCK : in STD_LOGIC;
     \slv_reg0_reg[31]\ : in STD_LOGIC
   );
@@ -1904,7 +1904,7 @@ Q_reg: unisim.vcomponents.FDCE
       C => MCK,
       CE => '1',
       CLR => \slv_reg0_reg[31]\,
-      D => Q_reg_0,
+      D => CLK,
       Q => \r_reg_reg[32]\
     );
 end STRUCTURE;
@@ -1915,7 +1915,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_2_BiDirChannels_0_0_dff_13 is
   port (
     MCK : out STD_LOGIC;
-    s00_axi_aclk : in STD_LOGIC;
+    Q : in STD_LOGIC;
     \slv_reg0_reg[31]\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -1923,16 +1923,52 @@ entity design_2_BiDirChannels_0_0_dff_13 is
 end design_2_BiDirChannels_0_0_dff_13;
 
 architecture STRUCTURE of design_2_BiDirChannels_0_0_dff_13 is
-  signal D0 : STD_LOGIC;
   signal \^mck\ : STD_LOGIC;
+  signal \Q_i_1__2_n_0\ : STD_LOGIC;
 begin
   MCK <= \^mck\;
-\Q_i_1__1\: unisim.vcomponents.LUT1
+\Q_i_1__2\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
       I0 => \^mck\,
+      O => \Q_i_1__2_n_0\
+    );
+Q_reg: unisim.vcomponents.FDCE
+     port map (
+      C => Q,
+      CE => '1',
+      CLR => \slv_reg0_reg[31]\,
+      D => \Q_i_1__2_n_0\,
+      Q => \^mck\
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity design_2_BiDirChannels_0_0_dff_14 is
+  port (
+    Q : out STD_LOGIC;
+    s00_axi_aclk : in STD_LOGIC;
+    \slv_reg0_reg[31]\ : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_dff_14 : entity is "dff";
+end design_2_BiDirChannels_0_0_dff_14;
+
+architecture STRUCTURE of design_2_BiDirChannels_0_0_dff_14 is
+  signal D0 : STD_LOGIC;
+  signal \^q\ : STD_LOGIC;
+begin
+  Q <= \^q\;
+\Q_i_1__1\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => \^q\,
       O => D0
     );
 Q_reg: unisim.vcomponents.FDCE
@@ -1941,33 +1977,7 @@ Q_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \slv_reg0_reg[31]\,
       D => D0,
-      Q => \^mck\
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity design_2_BiDirChannels_0_0_dff_2 is
-  port (
-    HS_DATA_IN_delayed : out STD_LOGIC;
-    HS_DataIn : in STD_LOGIC;
-    Q_reg_0 : in STD_LOGIC;
-    \slv_reg0_reg[31]\ : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_dff_2 : entity is "dff";
-end design_2_BiDirChannels_0_0_dff_2;
-
-architecture STRUCTURE of design_2_BiDirChannels_0_0_dff_2 is
-begin
-Q_reg: unisim.vcomponents.FDCE
-     port map (
-      C => Q_reg_0,
-      CE => '1',
-      CLR => \slv_reg0_reg[31]\,
-      D => HS_DataIn,
-      Q => HS_DATA_IN_delayed
+      Q => \^q\
     );
 end STRUCTURE;
 library IEEE;
@@ -3535,8 +3545,8 @@ entity design_2_BiDirChannels_0_0_outputShiftRegister32Bits is
     Q_reg_61 : in STD_LOGIC;
     Q_reg_62 : in STD_LOGIC;
     Q_reg_63 : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
-    HS_DATA_IN_delayed : in STD_LOGIC
+    \slv_reg0_reg[24]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    HS_DataIn : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_outputShiftRegister32Bits : entity is "outputShiftRegister32Bits";
@@ -3681,8 +3691,8 @@ begin
     )
         port map (
       I0 => \^hs_dataout\,
-      I1 => Q(0),
-      I2 => HS_DATA_IN_delayed,
+      I1 => \slv_reg0_reg[24]\(0),
+      I2 => HS_DataIn,
       O => D(0)
     );
 \r_reg[10]_C_i_1\: unisim.vcomponents.LUT3
@@ -6020,7 +6030,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_2_BiDirChannels_0_0_clock_divider_by_2 is
   port (
-    MCK : out STD_LOGIC;
+    Q : out STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
     \slv_reg0_reg[31]\ : in STD_LOGIC
   );
@@ -6030,9 +6040,9 @@ end design_2_BiDirChannels_0_0_clock_divider_by_2;
 
 architecture STRUCTURE of design_2_BiDirChannels_0_0_clock_divider_by_2 is
 begin
-ff0: entity work.design_2_BiDirChannels_0_0_dff_13
+ff0: entity work.design_2_BiDirChannels_0_0_dff_14
      port map (
-      MCK => MCK,
+      Q => Q,
       s00_axi_aclk => s00_axi_aclk,
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
@@ -6043,9 +6053,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_2_BiDirChannels_0_0_clock_divider_by_2_0 is
   port (
-    \r_reg_reg[32]\ : out STD_LOGIC;
-    Q_reg : in STD_LOGIC;
-    MCK : in STD_LOGIC;
+    MCK : out STD_LOGIC;
+    Q : in STD_LOGIC;
     \slv_reg0_reg[31]\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -6054,10 +6063,34 @@ end design_2_BiDirChannels_0_0_clock_divider_by_2_0;
 
 architecture STRUCTURE of design_2_BiDirChannels_0_0_clock_divider_by_2_0 is
 begin
-ff0: entity work.design_2_BiDirChannels_0_0_dff_12
+ff0: entity work.design_2_BiDirChannels_0_0_dff_13
      port map (
       MCK => MCK,
-      Q_reg_0 => Q_reg,
+      Q => Q,
+      \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity design_2_BiDirChannels_0_0_clock_divider_by_2_1 is
+  port (
+    \r_reg_reg[32]\ : out STD_LOGIC;
+    CLK : in STD_LOGIC;
+    MCK : in STD_LOGIC;
+    \slv_reg0_reg[31]\ : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_clock_divider_by_2_1 : entity is "clock_divider_by_2";
+end design_2_BiDirChannels_0_0_clock_divider_by_2_1;
+
+architecture STRUCTURE of design_2_BiDirChannels_0_0_clock_divider_by_2_1 is
+begin
+ff0: entity work.design_2_BiDirChannels_0_0_dff_12
+     port map (
+      CLK => CLK,
+      MCK => MCK,
       \r_reg_reg[32]\ => \r_reg_reg[32]\,
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
@@ -6279,7 +6312,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity design_2_BiDirChannels_0_0_syncReady_1 is
+entity design_2_BiDirChannels_0_0_syncReady_2 is
   port (
     m00_axis_tvalid : out STD_LOGIC;
     in_next_int : in STD_LOGIC;
@@ -6289,10 +6322,10 @@ entity design_2_BiDirChannels_0_0_syncReady_1 is
     \r_reg_reg[0]\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_syncReady_1 : entity is "syncReady";
-end design_2_BiDirChannels_0_0_syncReady_1;
+  attribute ORIG_REF_NAME of design_2_BiDirChannels_0_0_syncReady_2 : entity is "syncReady";
+end design_2_BiDirChannels_0_0_syncReady_2;
 
-architecture STRUCTURE of design_2_BiDirChannels_0_0_syncReady_1 is
+architecture STRUCTURE of design_2_BiDirChannels_0_0_syncReady_2 is
   signal a : STD_LOGIC;
   signal b : STD_LOGIC;
 begin
@@ -6336,10 +6369,10 @@ entity design_2_BiDirChannels_0_0_GyroInputOutputSerializer is
     \slv_reg1_reg[4]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \slv_reg0_reg[31]\ : in STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
-    Q_reg : in STD_LOGIC;
-    HS_DataIn : in STD_LOGIC;
+    CLK : in STD_LOGIC;
     clk0 : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \slv_reg0_reg[28]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    HS_DataIn : in STD_LOGIC;
     \slv_reg0_reg[31]_0\ : in STD_LOGIC;
     s00_axis_tvalid : in STD_LOGIC;
     s00_axis_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 )
@@ -6349,9 +6382,9 @@ entity design_2_BiDirChannels_0_0_GyroInputOutputSerializer is
 end design_2_BiDirChannels_0_0_GyroInputOutputSerializer;
 
 architecture STRUCTURE of design_2_BiDirChannels_0_0_GyroInputOutputSerializer is
-  signal HS_DATA_IN_delayed : STD_LOGIC;
   signal \^mck\ : STD_LOGIC;
   signal PULSE_CNTR_n_1 : STD_LOGIC;
+  signal Q : STD_LOGIC;
   signal X0_n_1 : STD_LOGIC;
   signal X0_n_10 : STD_LOGIC;
   signal X0_n_11 : STD_LOGIC;
@@ -6435,16 +6468,22 @@ begin
   m00_axis_tvalid <= \^m00_axis_tvalid\;
   \r_reg_reg[32]\ <= \^r_reg_reg[32]\;
   s00_axis_tready <= \^s00_axis_tready\;
-CLK_DIV2: entity work.design_2_BiDirChannels_0_0_clock_divider_by_2
+CLK_DIV0: entity work.design_2_BiDirChannels_0_0_clock_divider_by_2
      port map (
-      MCK => \^mck\,
+      Q => Q,
       s00_axi_aclk => s00_axi_aclk,
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
-CLK_DIV4: entity work.design_2_BiDirChannels_0_0_clock_divider_by_2_0
+CLK_DIV2: entity work.design_2_BiDirChannels_0_0_clock_divider_by_2_0
      port map (
       MCK => \^mck\,
-      Q_reg => Q_reg,
+      Q => Q,
+      \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
+    );
+CLK_DIV4: entity work.design_2_BiDirChannels_0_0_clock_divider_by_2_1
+     port map (
+      CLK => CLK,
+      MCK => \^mck\,
       \r_reg_reg[32]\ => \^r_reg_reg[32]\,
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
@@ -6484,9 +6523,8 @@ MASK_HSCK: entity work.design_2_BiDirChannels_0_0_maskHSCK
 OUT_SHIFT_REG: entity work.design_2_BiDirChannels_0_0_outputShiftRegister32Bits
      port map (
       D(0) => hs_data_in_int,
-      HS_DATA_IN_delayed => HS_DATA_IN_delayed,
+      HS_DataIn => HS_DataIn,
       HS_DataOut => HS_DataOut,
-      Q(0) => Q(0),
       Q_reg => X0_n_33,
       Q_reg_0 => X0_n_1,
       Q_reg_1 => X0_n_65,
@@ -6552,21 +6590,22 @@ OUT_SHIFT_REG: entity work.design_2_BiDirChannels_0_0_outputShiftRegister32Bits
       Q_reg_7 => X0_n_62,
       Q_reg_8 => X0_n_5,
       Q_reg_9 => X0_n_61,
-      outSR_shift => outSR_shift
+      outSR_shift => outSR_shift,
+      \slv_reg0_reg[24]\(0) => \slv_reg0_reg[28]\(0)
     );
 PULSE_CNTR: entity work.design_2_BiDirChannels_0_0_counter48Cycles
      port map (
       CLK => inSR_shift,
       HS_Clock => HS_Clock,
-      Q(0) => Q(1),
       Q_reg => PULSE_CNTR_n_1,
       Q_reg_0 => \^r_reg_reg[32]\,
-      Q_reg_1 => Q_reg,
+      Q_reg_1 => CLK,
       in_next_int => in_next_int,
       in_start_stop_int => in_start_stop_int,
       outSR_shift => outSR_shift,
       out_next_int => out_next_int,
       out_start_stop_int => out_start_stop_int,
+      \slv_reg0_reg[28]\(0) => \slv_reg0_reg[28]\(1),
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
 TX_DELAY_REG: entity work.design_2_BiDirChannels_0_0_register_32bits
@@ -6653,7 +6692,7 @@ X0: entity work.design_2_BiDirChannels_0_0_syncReady
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\,
       \slv_reg0_reg[31]_0\ => \slv_reg0_reg[31]_0\
     );
-X1: entity work.design_2_BiDirChannels_0_0_syncReady_1
+X1: entity work.design_2_BiDirChannels_0_0_syncReady_2
      port map (
       clk0 => clk0,
       in_next_int => in_next_int,
@@ -6667,13 +6706,6 @@ X10: entity work.design_2_BiDirChannels_0_0_dff
       m00_axis_tlast => m00_axis_tlast,
       rx_fifo_last_int => \rx_fifo_last_int__0\,
       s00_axi_aclk => s00_axi_aclk,
-      \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
-    );
-X11: entity work.design_2_BiDirChannels_0_0_dff_2
-     port map (
-      HS_DATA_IN_delayed => HS_DATA_IN_delayed,
-      HS_DataIn => HS_DataIn,
-      Q_reg_0 => Q_reg,
       \slv_reg0_reg[31]\ => \slv_reg0_reg[31]\
     );
 rx_fifo_last_int: unisim.vcomponents.LUT3
@@ -6704,14 +6736,14 @@ entity design_2_BiDirChannels_0_0_BiDirChannels_v1_0 is
     s00_axi_bvalid : out STD_LOGIC;
     s00_axi_rvalid : out STD_LOGIC;
     s00_axis_tready : out STD_LOGIC;
-    CLK : out STD_LOGIC;
+    m00_axis_tvalid : out STD_LOGIC;
     HS_Clock : out STD_LOGIC;
     s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m00_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     s00_axi_aclk : in STD_LOGIC;
-    Q_reg : in STD_LOGIC;
-    HS_DataIn : in STD_LOGIC;
+    CLK : in STD_LOGIC;
     clk0 : in STD_LOGIC;
+    HS_DataIn : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC;
     s00_axi_awvalid : in STD_LOGIC;
     s00_axi_wvalid : in STD_LOGIC;
@@ -6788,17 +6820,15 @@ OBUFDS_inst: unisim.vcomponents.OBUFDS
     );
 X1: entity work.design_2_BiDirChannels_0_0_GyroInputOutputSerializer
      port map (
+      CLK => CLK,
       HS_Clock => HS_Clock,
       HS_DataIn => HS_DataIn,
       HS_DataOut => HS_DataOut,
       MCK => MCK,
-      Q(1) => data_word_0(28),
-      Q(0) => data_word_0(24),
-      Q_reg => Q_reg,
       clk0 => clk0,
       m00_axis_tdata(31 downto 0) => m00_axis_tdata(31 downto 0),
       m00_axis_tlast => m00_axis_tlast,
-      m00_axis_tvalid => CLK,
+      m00_axis_tvalid => m00_axis_tvalid,
       \r_reg_reg[32]\ => clock_div_4,
       \r_reg_reg[7]\(7 downto 0) => \DBG/CNTR3/r_reg_reg__0\(7 downto 0),
       \r_reg_reg[7]_0\(7 downto 0) => \DBG/CNTR2/r_reg_reg__0\(7 downto 0),
@@ -6808,6 +6838,8 @@ X1: entity work.design_2_BiDirChannels_0_0_GyroInputOutputSerializer
       s00_axis_tdata(31 downto 0) => s00_axis_tdata(31 downto 0),
       s00_axis_tready => s00_axis_tready,
       s00_axis_tvalid => s00_axis_tvalid,
+      \slv_reg0_reg[28]\(1) => data_word_0(28),
+      \slv_reg0_reg[28]\(0) => data_word_0(24),
       \slv_reg0_reg[31]\ => BiDirChannels_v1_0_S00_AXI_inst_n_10,
       \slv_reg0_reg[31]_0\ => BiDirChannels_v1_0_S00_AXI_inst_n_5,
       \slv_reg1_reg[4]\(1) => D,
@@ -6958,17 +6990,17 @@ VCC: unisim.vcomponents.VCC
     );
 inst: entity work.design_2_BiDirChannels_0_0_BiDirChannels_v1_0
      port map (
-      CLK => m00_axis_tvalid,
+      CLK => Q_reg_i_1_n_0,
       HS_Clock => HS_Clock,
       HS_DataIn => HS_DataIn,
       HS_DataOut => HS_DataOut,
       MCK_N => MCK_N,
       MCK_P => MCK_P,
-      Q_reg => Q_reg_i_1_n_0,
       clk0 => clk0,
       clock_div_4 => \X1/clock_div_4\,
       m00_axis_tdata(31 downto 0) => m00_axis_tdata(31 downto 0),
       m00_axis_tlast => m00_axis_tlast,
+      m00_axis_tvalid => m00_axis_tvalid,
       s00_axi_aclk => s00_axi_aclk,
       s00_axi_araddr(1 downto 0) => s00_axi_araddr(3 downto 2),
       s00_axi_aresetn => s00_axi_aresetn,

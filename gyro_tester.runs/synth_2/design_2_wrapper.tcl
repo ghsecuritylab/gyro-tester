@@ -17,8 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -31,14 +29,7 @@ set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part em.avnet.com:zed:part0:1.4 [current_project]
-set_property ip_repo_paths {
-  c:/Docs/initial_gyro_tester_experiments/ip_repo/BiDirChannels_1.0
-  c:/ip_repo/axis_stream_fifo_1.0
-  c:/ip_repo/axis_GYRO_Streaming_FIFO_1.0
-  c:/ip_repo/axi_gyro_hsi_1.0
-  c:/ip_repo/SPI_ip_1.0
-  c:/ip_repo/axi4_pl_interrupt_generator_1.0
-} [current_project]
+set_property ip_repo_paths c:/Docs/ip_repo [current_project]
 set_property ip_output_repo c:/Docs/gyro_tester/gyro_tester.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/hdl/design_2_wrapper.v

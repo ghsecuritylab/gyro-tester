@@ -7,6 +7,7 @@
 #include "xuartps.h"
 #include "xuartps_hw.h"
 #include "xil_exception.h"
+#include "xttcps.h"
 
 //#define FAKE_IC		//used to send data back when no IC present
 #define FAKE_DATA	//used to create an array of data for COM test
@@ -30,7 +31,6 @@ extern void xil_printf(const char *format, ...);
 
 
 /******************** Constant Definitions **********************************/
-#define INTC				XScuGic
 #define UARTPS_DEVICE_ID	XPAR_XUARTPS_0_DEVICE_ID
 #define INTC_DEVICE_ID		XPAR_SCUGIC_SINGLE_DEVICE_ID
 #define UART_INT_IRQ_ID		XPAR_XUARTPS_1_INTR
@@ -48,6 +48,8 @@ extern void xil_printf(const char *format, ...);
 #define CMD_LOAD_SAWTOOTH_DOWN_DATA	0x63	// load test data1(sawtooth down) into TxData array
 #define CMD_READ_ADDRESS			0x41	// read 16-bit contents of gyro ic register
 #define CMD_WRITE_ADDRESS			0x42	// write 16-bit value to gyro ic register
+#define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
+
 
 
 
@@ -96,6 +98,19 @@ static void load_sawtooth_data(void);
 
 #define TEST_START_VALUE	0xC
 
+#define DELAY_TIMER_DEVICE_ID	XPAR_XTTCPS_0_DEVICE_ID
+#define DELAY_TIMER_INTERRUPT_ID	XPAR_XTTCPS_0_INTR
+#define	TICK_TIMER_FREQ_HZ	100000  /* Tick timer counter's output frequency */
+#define TICKS_PER_CHANGE_PERIOD	TICK_TIMER_FREQ_HZ /* Tick signals per update */
+
+
+typedef struct {
+	u32 OutputHz;	/* Output frequency */
+	XInterval Interval;	/* Interval value */
+	u8 Prescaler;	/* Prescaler value */
+	u16 Options;	/* Option settings */
+} TmrCntrSetup;
+
 // ---------------
 
 #define INTC_INTERRUPT_ID_0 63 // IRQ_F2P[2:2]
@@ -127,6 +142,11 @@ void isr0 (void *intc_inst_ptr);
 void isr1 (void *intc_inst_ptr);
 void isr2 (void *intc_inst_ptr);
 void nops(unsigned int num);
+
+static XTtcPs DelayTimer;		/* Timer counter instance */
+static u8 TimerErrorCount;		/* Errors seen at interrupt time */
+static volatile u8 timerRunning;
+
 
 /**************************** Type Definitions *******************************/
 /***************** Macros (Inline Functions) Definitions *********************/
@@ -161,16 +181,21 @@ static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
 
-static int 	SetupUartPs(INTC *IntcInstPtr, XUartPs *UartInstPtr,
+static int 	SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 					u16 DeviceId, u16 UartIntrId);
 static void UartPsISR(void *CallBackRef, u32 Event, unsigned int EventData);
-static int 	SetupUartInterruptSystem(INTC *IntcInstancePtr,
+static int 	SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 					XUartPs *UartInstancePtr,
 					u16 UartIntrId);
 static void read_uart_bytes(void);
 static unsigned int get_num_data_points(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
 
+static int InitializeDelayTimer(void);
+void SetTimerDuration(XInterval interval, u8 prescalar);
+static void DelayTimerInterruptHandler(void *CallBackRef);
+static void ProgramOTP(u32 otp32BitValue);
+static void ProgramOTP_chipID(u32 id);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -1068,7 +1093,7 @@ void nops(unsigned int num) {
 
 
 //------------------------------------------------------------
-int SetupUartPs(INTC *IntcInstPtr, XUartPs *UartInstPtr,
+int SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 			u16 DeviceId, u16 UartIntrId)
 {
 	int Status;
@@ -1199,7 +1224,7 @@ void UartPsISR(void *CallBackRef, u32 Event, unsigned int EventData)
 
 
 //------------------------------------------------------------
-static int SetupUartInterruptSystem(INTC *IntcInstancePtr,
+static int SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 				XUartPs *UartInstancePtr,
 				u16 UartIntrId)
 {
@@ -1306,6 +1331,16 @@ void read_uart_bytes(void)
 			regData = (UartRxData[2]<<8) | UartRxData[3];
 			writeSPI_non_blocking_orig(regAddr,regData);
 			break;
+
+		case (CMD_PROG_OTP_CHIP_ADDR):
+			//verify 3 bytes for chipID received after command byte
+			if (numBytesReceived<4)
+			{
+				return;
+			}
+			ProgramOTP_chipID( (UartRxData[1]<<16) | (UartRxData[2]<<8) |
+					UartRxData[3]);
+			break;
 	}
 
 }
@@ -1392,19 +1427,198 @@ void send_Tx_data_over_UART(unsigned int num_points_to_send)
 
 
 
-// -------------------------------------------------------------------
-int main() {
-	//int err;
-    init_platform();
+//------------------------------------------------------------
+int InitializeDelayTimer(void)
+{
+	int Status;
+	XTtcPs_Config *Config;
 
-    Status = SetupUartPs(&interrupt_controller, &UartPs,
-    				UARTPS_DEVICE_ID, UART_INT_IRQ_ID);
-	if (Status != XST_SUCCESS) {
-		xil_printf("Failed to set up UartPs\r\n");
+	/*
+	 * Look up the configuration based on the device identifier
+	 */
+	Config = XTtcPs_LookupConfig(DELAY_TIMER_DEVICE_ID);
+	if (NULL == Config) {
 		return XST_FAILURE;
 	}
 
-	xil_printf("waiting for received UART data...\n");
+	/*
+	 * Initialize the device
+	 */
+	Status = XTtcPs_CfgInitialize(&DelayTimer, Config, Config->BaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Set up appropriate options for Ticker: interval mode without
+	 * waveform output.
+	 */
+	u16 TimerOptions = (XTTCPS_OPTION_INTERVAL_MODE |
+						  XTTCPS_OPTION_WAVE_DISABLE);
+
+	/*
+	 * Set the options
+	 */
+	XTtcPs_SetOptions(&DelayTimer, TimerOptions);
+	XTtcPs_SetInterval(&DelayTimer, 1000);
+	XTtcPs_SetPrescaler(&DelayTimer, 2);
+
+	/*
+	 * Connect to the interrupt controller
+	 */
+	Status = XScuGic_Connect(&interrupt_controller, DELAY_TIMER_INTERRUPT_ID,
+		(Xil_InterruptHandler)DelayTimerInterruptHandler, (void *)&DelayTimer);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Enable interrupts for the ttc in global interrupt controller
+	 */
+	XScuGic_Enable(&interrupt_controller, DELAY_TIMER_INTERRUPT_ID);
+
+	/*
+	 * Enable the interval timeout interrupt in this ttc instance
+	 */
+	XTtcPs_EnableInterrupts(&DelayTimer, XTTCPS_IXR_INTERVAL_MASK);
+
+	return Status;
+}
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+void SetTimerDuration(XInterval num10nsecCounts, u8 prescalar)
+{
+	/*
+	 * Set the interval and prescaler
+	 */
+	XTtcPs_SetInterval(&DelayTimer, num10nsecCounts);
+
+	if (prescalar == 1)
+	{
+		prescalar = XTTCPS_CLK_CNTRL_PS_DISABLE;
+	}
+	XTtcPs_SetPrescaler(&DelayTimer, prescalar);
+}
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+void DelayTimerInterruptHandler(void *CallBackRef)
+{
+	u32 StatusEvent;
+
+	/*
+	 * Read the interrupt status, then write it back to clear the interrupt.
+	 */
+	StatusEvent = XTtcPs_GetInterruptStatus((XTtcPs *)CallBackRef);
+	XTtcPs_ClearInterruptStatus((XTtcPs *)CallBackRef, StatusEvent);
+
+	if (0 != (XTTCPS_IXR_INTERVAL_MASK & StatusEvent)) {
+
+		timerRunning = FALSE;
+	}
+	else {
+		/*
+		 * The Interval event should be the only one enabled. If it is
+		 * not it is an error
+		 */
+		TimerErrorCount++;
+	}
+	XTtcPs_Stop(&DelayTimer);
+}
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+void ProgramOTP_chipID(u32 id)
+{
+	u32 otp32register;
+
+	//mask bits 25-31 if set in chip id
+
+
+	//shift ID over to bits 31:8 of the 32 bit OTP register
+	otp32register = id << 8;
+	ProgramOTP(otp32register);
+}
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+void ProgramOTP(u32 otp32BitValue)
+{
+	int i;
+	u32 x = 1;
+
+	// setup the timer for use later
+	SetTimerDuration(2500, 1);
+
+	// loop through all 32 bits in otp register to clear out any 1s
+	for(i=0;i<32;i++)
+	{
+		writeSPI_non_blocking_orig(2,0x0010);		//CLKM=1
+		writeSPI_non_blocking_orig(2,0x0000);		//CLKM=0
+		writeSPI_non_blocking_orig(2,0x0020);		//CLKS=1
+		writeSPI_non_blocking_orig(2,0x0000);		//CLKS=0
+
+	}
+
+	// shift a 1 into bit position 0
+	writeSPI_non_blocking_orig(2,0x8000);		//DIN=1,CLKM=0,CLKS=0
+	writeSPI_non_blocking_orig(2,0x8010);		//DIN=1,CLKM=1,CLKS=0
+	writeSPI_non_blocking_orig(2,0x8000);		//DIN=1,CLKM=0,CLKS=0
+	writeSPI_non_blocking_orig(2,0x8020);		//DIN=1,CLKM=0,CLKS=1
+	writeSPI_non_blocking_orig(2,0x8000);		//DIN=1,CLKM=0,CLKS=0
+	writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
+
+	// check each bit position to see if it should be programmed
+	// to a '1', then shift bit to next position
+	for(i=0;i<32;i++)
+	{
+		// check if this bit should be programmed
+		if (otp32BitValue & (x << i) )
+		{
+			writeSPI_non_blocking_orig(2,0x4000);	//SHORTEN=1,IZAPEN=0,WE=0
+			writeSPI_non_blocking_orig(2,0x6000);	//SHORTEN=1,IZAPEN=1,WE=0
+			// wait 1<t<10us, ensure spi transfer time takes care of this
+			// if no delay is used
+			writeSPI_non_blocking_orig(2,0x7000);	//SHORTEN=1,IZAPEN=1,WE=1
+			writeSPI_non_blocking_orig(2,0x3000);	//SHORTEN=0,IZAPEN=1,WE=1
+
+			//delay 25usec for zap time
+/*			timerRunning = 1;
+			XTtcPs_Start(&DelayTimer);
+			while(timerRunning);
+*/
+			writeSPI_non_blocking_orig(2,0x7000);	//SHORTEN=1,IZAPEN=1,WE=1
+			writeSPI_non_blocking_orig(2,0x6000);	//SHORTEN=1,IZAPEN=1,WE=0
+			writeSPI_non_blocking_orig(2,0x4000);	//SHORTEN=1,IZAPEN=0,WE=0
+			writeSPI_non_blocking_orig(2,0x0000);	//SHORTEN=0,IZAPEN=0,WE=0
+		}
+
+		//shift bit to next position in register
+		writeSPI_non_blocking_orig(2,0x0010);		//DIN=0,CLKM=1,CLKS=0
+		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
+		writeSPI_non_blocking_orig(2,0x0020);		//DIN=0,CLKM=0,CLKS=1
+		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
+	}
+
+}
+//------------------------------------------------------------
+
+
+
+
+
+// -------------------------------------------------------------------
+int main() {
+    init_platform();
 
     unsigned int readVal, writeVal;
 
@@ -1433,7 +1647,7 @@ int main() {
 
     // clear SPI registers
     initSPI();
-    setSPIClockDivision(7);
+    setSPIClockDivision(1);
     readSPIStatus();
 
     // set interrupt_0/1 of AXI PL interrupt generator to 0
@@ -1554,6 +1768,8 @@ int main() {
 
 
 
+
+
     //#################################################################
     //#################################################################
     // code below here is merged from zedboard project used to develop
@@ -1571,11 +1787,13 @@ int main() {
 
 	xil_printf("  waiting for received UART data...\n");
 
+	InitializeDelayTimer();
+
 	while(looping){// loop here and let interrupts drive further actions
 
 
 		//-------------------------------------------------------------------
-		// uart received data so read command
+		// uart received data so retrieve command
 		if (state & SERVICE_UART){
 
 			read_uart_bytes();
@@ -1585,8 +1803,6 @@ int main() {
 
 
 	}
-
-
 	// end of code for UART interrupts
 	//#################################################################
 	//#################################################################

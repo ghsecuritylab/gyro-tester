@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Fri May 17 20:47:04 2019
+// Date        : Thu May 23 11:34:30 2019
 // Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_BiDirChannels_0_0/design_2_BiDirChannels_0_0_sim_netlist.v
@@ -153,17 +153,17 @@ module design_2_BiDirChannels_0_0
   VCC VCC
        (.P(\<const1> ));
   design_2_BiDirChannels_0_0_BiDirChannels_v1_0 inst
-       (.CLK(m00_axis_tvalid),
+       (.CLK(Q_reg_i_1_n_0),
         .HS_Clock(HS_Clock),
         .HS_DataIn(HS_DataIn),
         .HS_DataOut(HS_DataOut),
         .MCK_N(MCK_N),
         .MCK_P(MCK_P),
-        .Q_reg(Q_reg_i_1_n_0),
         .clk0(clk0),
         .clock_div_4(\X1/clock_div_4 ),
         .m00_axis_tdata(m00_axis_tdata),
         .m00_axis_tlast(m00_axis_tlast),
+        .m00_axis_tvalid(m00_axis_tvalid),
         .s00_axi_aclk(s00_axi_aclk),
         .s00_axi_araddr(s00_axi_araddr[3:2]),
         .s00_axi_aresetn(s00_axi_aresetn),
@@ -199,14 +199,14 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
     s00_axi_bvalid,
     s00_axi_rvalid,
     s00_axis_tready,
-    CLK,
+    m00_axis_tvalid,
     HS_Clock,
     s00_axi_rdata,
     m00_axis_tdata,
     s00_axi_aclk,
-    Q_reg,
-    HS_DataIn,
+    CLK,
     clk0,
+    HS_DataIn,
     s00_axi_aresetn,
     s00_axi_awvalid,
     s00_axi_wvalid,
@@ -230,14 +230,14 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   output s00_axi_bvalid;
   output s00_axi_rvalid;
   output s00_axis_tready;
-  output CLK;
+  output m00_axis_tvalid;
   output HS_Clock;
   output [31:0]s00_axi_rdata;
   output [31:0]m00_axis_tdata;
   input s00_axi_aclk;
-  input Q_reg;
-  input HS_DataIn;
+  input CLK;
   input clk0;
+  input HS_DataIn;
   input s00_axi_aresetn;
   input s00_axi_awvalid;
   input s00_axi_wvalid;
@@ -266,12 +266,12 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   wire MCK;
   wire MCK_N;
   wire MCK_P;
-  wire Q_reg;
   wire clk0;
   wire clock_div_4;
   wire [28:24]data_word_0;
   wire [31:0]m00_axis_tdata;
   wire m00_axis_tlast;
+  wire m00_axis_tvalid;
   wire s00_axi_aclk;
   wire [1:0]s00_axi_araddr;
   wire s00_axi_aresetn;
@@ -329,16 +329,15 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
         .O(MCK_P),
         .OB(MCK_N));
   design_2_BiDirChannels_0_0_GyroInputOutputSerializer X1
-       (.HS_Clock(HS_Clock),
+       (.CLK(CLK),
+        .HS_Clock(HS_Clock),
         .HS_DataIn(HS_DataIn),
         .HS_DataOut(HS_DataOut),
         .MCK(MCK),
-        .Q({data_word_0[28],data_word_0[24]}),
-        .Q_reg(Q_reg),
         .clk0(clk0),
         .m00_axis_tdata(m00_axis_tdata),
         .m00_axis_tlast(m00_axis_tlast),
-        .m00_axis_tvalid(CLK),
+        .m00_axis_tvalid(m00_axis_tvalid),
         .\r_reg_reg[32] (clock_div_4),
         .\r_reg_reg[7] (\DBG/CNTR3/r_reg_reg__0 ),
         .\r_reg_reg[7]_0 (\DBG/CNTR2/r_reg_reg__0 ),
@@ -348,6 +347,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
         .s00_axis_tdata(s00_axis_tdata),
         .s00_axis_tready(s00_axis_tready),
         .s00_axis_tvalid(s00_axis_tvalid),
+        .\slv_reg0_reg[28] ({data_word_0[28],data_word_0[24]}),
         .\slv_reg0_reg[31] (BiDirChannels_v1_0_S00_AXI_inst_n_10),
         .\slv_reg0_reg[31]_0 (BiDirChannels_v1_0_S00_AXI_inst_n_5),
         .\slv_reg1_reg[4] ({D,BiDirChannels_v1_0_S00_AXI_inst_n_9}));
@@ -1694,10 +1694,10 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
     \slv_reg1_reg[4] ,
     \slv_reg0_reg[31] ,
     s00_axi_aclk,
-    Q_reg,
-    HS_DataIn,
+    CLK,
     clk0,
-    Q,
+    \slv_reg0_reg[28] ,
+    HS_DataIn,
     \slv_reg0_reg[31]_0 ,
     s00_axis_tvalid,
     s00_axis_tdata);
@@ -1716,22 +1716,21 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
   input [1:0]\slv_reg1_reg[4] ;
   input \slv_reg0_reg[31] ;
   input s00_axi_aclk;
-  input Q_reg;
-  input HS_DataIn;
+  input CLK;
   input clk0;
-  input [1:0]Q;
+  input [1:0]\slv_reg0_reg[28] ;
+  input HS_DataIn;
   input \slv_reg0_reg[31]_0 ;
   input s00_axis_tvalid;
   input [31:0]s00_axis_tdata;
 
+  wire CLK;
   wire HS_Clock;
-  wire HS_DATA_IN_delayed;
   wire HS_DataIn;
   wire HS_DataOut;
   wire MCK;
   wire PULSE_CNTR_n_1;
-  wire [1:0]Q;
-  wire Q_reg;
+  wire Q;
   wire X0_n_1;
   wire X0_n_10;
   wire X0_n_11;
@@ -1820,17 +1819,22 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
   wire [31:0]s00_axis_tdata;
   wire s00_axis_tready;
   wire s00_axis_tvalid;
+  wire [1:0]\slv_reg0_reg[28] ;
   wire \slv_reg0_reg[31] ;
   wire \slv_reg0_reg[31]_0 ;
   wire [1:0]\slv_reg1_reg[4] ;
 
-  design_2_BiDirChannels_0_0_clock_divider_by_2 CLK_DIV2
-       (.MCK(MCK),
+  design_2_BiDirChannels_0_0_clock_divider_by_2 CLK_DIV0
+       (.Q(Q),
         .s00_axi_aclk(s00_axi_aclk),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
-  design_2_BiDirChannels_0_0_clock_divider_by_2_0 CLK_DIV4
+  design_2_BiDirChannels_0_0_clock_divider_by_2_0 CLK_DIV2
        (.MCK(MCK),
-        .Q_reg(Q_reg),
+        .Q(Q),
+        .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
+  design_2_BiDirChannels_0_0_clock_divider_by_2_1 CLK_DIV4
+       (.CLK(CLK),
+        .MCK(MCK),
         .\r_reg_reg[32] (\r_reg_reg[32] ),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
   design_2_BiDirChannels_0_0_GyroChannelDebugger DBG
@@ -1860,9 +1864,8 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .\slv_reg1_reg[4] (\slv_reg1_reg[4] ));
   design_2_BiDirChannels_0_0_outputShiftRegister32Bits OUT_SHIFT_REG
        (.D(hs_data_in_int),
-        .HS_DATA_IN_delayed(HS_DATA_IN_delayed),
+        .HS_DataIn(HS_DataIn),
         .HS_DataOut(HS_DataOut),
-        .Q(Q[0]),
         .Q_reg(X0_n_33),
         .Q_reg_0(X0_n_1),
         .Q_reg_1(X0_n_65),
@@ -1928,19 +1931,20 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .Q_reg_7(X0_n_62),
         .Q_reg_8(X0_n_5),
         .Q_reg_9(X0_n_61),
-        .outSR_shift(outSR_shift));
+        .outSR_shift(outSR_shift),
+        .\slv_reg0_reg[24] (\slv_reg0_reg[28] [0]));
   design_2_BiDirChannels_0_0_counter48Cycles PULSE_CNTR
        (.CLK(inSR_shift),
         .HS_Clock(HS_Clock),
-        .Q(Q[1]),
         .Q_reg(PULSE_CNTR_n_1),
         .Q_reg_0(\r_reg_reg[32] ),
-        .Q_reg_1(Q_reg),
+        .Q_reg_1(CLK),
         .in_next_int(in_next_int),
         .in_start_stop_int(in_start_stop_int),
         .outSR_shift(outSR_shift),
         .out_next_int(out_next_int),
         .out_start_stop_int(out_start_stop_int),
+        .\slv_reg0_reg[28] (\slv_reg0_reg[28] [1]),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
   design_2_BiDirChannels_0_0_register_32bits TX_DELAY_REG
        (.Q(data_out),
@@ -2022,7 +2026,7 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .s00_axis_tvalid(s00_axis_tvalid),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ),
         .\slv_reg0_reg[31]_0 (\slv_reg0_reg[31]_0 ));
-  design_2_BiDirChannels_0_0_syncReady_1 X1
+  design_2_BiDirChannels_0_0_syncReady_2 X1
        (.clk0(clk0),
         .in_next_int(in_next_int),
         .in_start_stop_int(in_start_stop_int),
@@ -2033,11 +2037,6 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
        (.m00_axis_tlast(m00_axis_tlast),
         .rx_fifo_last_int(rx_fifo_last_int__0),
         .s00_axi_aclk(s00_axi_aclk),
-        .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
-  design_2_BiDirChannels_0_0_dff_2 X11
-       (.HS_DATA_IN_delayed(HS_DATA_IN_delayed),
-        .HS_DataIn(HS_DataIn),
-        .Q_reg_0(Q_reg),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
   LUT3 #(
     .INIT(8'h80)) 
@@ -2050,42 +2049,61 @@ endmodule
 
 (* ORIG_REF_NAME = "clock_divider_by_2" *) 
 module design_2_BiDirChannels_0_0_clock_divider_by_2
-   (MCK,
+   (Q,
     s00_axi_aclk,
     \slv_reg0_reg[31] );
-  output MCK;
+  output Q;
   input s00_axi_aclk;
   input \slv_reg0_reg[31] ;
 
-  wire MCK;
+  wire Q;
   wire s00_axi_aclk;
   wire \slv_reg0_reg[31] ;
 
-  design_2_BiDirChannels_0_0_dff_13 ff0
-       (.MCK(MCK),
+  design_2_BiDirChannels_0_0_dff_14 ff0
+       (.Q(Q),
         .s00_axi_aclk(s00_axi_aclk),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
 endmodule
 
 (* ORIG_REF_NAME = "clock_divider_by_2" *) 
 module design_2_BiDirChannels_0_0_clock_divider_by_2_0
-   (\r_reg_reg[32] ,
-    Q_reg,
-    MCK,
+   (MCK,
+    Q,
     \slv_reg0_reg[31] );
-  output \r_reg_reg[32] ;
-  input Q_reg;
-  input MCK;
+  output MCK;
+  input Q;
   input \slv_reg0_reg[31] ;
 
   wire MCK;
-  wire Q_reg;
+  wire Q;
+  wire \slv_reg0_reg[31] ;
+
+  design_2_BiDirChannels_0_0_dff_13 ff0
+       (.MCK(MCK),
+        .Q(Q),
+        .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
+endmodule
+
+(* ORIG_REF_NAME = "clock_divider_by_2" *) 
+module design_2_BiDirChannels_0_0_clock_divider_by_2_1
+   (\r_reg_reg[32] ,
+    CLK,
+    MCK,
+    \slv_reg0_reg[31] );
+  output \r_reg_reg[32] ;
+  input CLK;
+  input MCK;
+  input \slv_reg0_reg[31] ;
+
+  wire CLK;
+  wire MCK;
   wire \r_reg_reg[32] ;
   wire \slv_reg0_reg[31] ;
 
   design_2_BiDirChannels_0_0_dff_12 ff0
-       (.MCK(MCK),
-        .Q_reg_0(Q_reg),
+       (.CLK(CLK),
+        .MCK(MCK),
         .\r_reg_reg[32] (\r_reg_reg[32] ),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
 endmodule
@@ -2101,7 +2119,7 @@ module design_2_BiDirChannels_0_0_counter48Cycles
     out_start_stop_int,
     in_start_stop_int,
     Q_reg_0,
-    Q,
+    \slv_reg0_reg[28] ,
     Q_reg_1,
     \slv_reg0_reg[31] );
   output out_next_int;
@@ -2113,13 +2131,12 @@ module design_2_BiDirChannels_0_0_counter48Cycles
   input out_start_stop_int;
   input in_start_stop_int;
   input Q_reg_0;
-  input [0:0]Q;
+  input [0:0]\slv_reg0_reg[28] ;
   input Q_reg_1;
   input \slv_reg0_reg[31] ;
 
   wire CLK;
   wire HS_Clock;
-  wire [0:0]Q;
   wire Q_reg;
   wire Q_reg_0;
   wire Q_reg_1;
@@ -2135,12 +2152,13 @@ module design_2_BiDirChannels_0_0_counter48Cycles
   wire \r_reg[3]_i_1__3_n_0 ;
   wire \r_reg[4]_i_1__3_n_0 ;
   wire \r_reg[5]_i_1__3_n_0 ;
+  wire [0:0]\slv_reg0_reg[28] ;
   wire \slv_reg0_reg[31] ;
 
   LUT5 #(
     .INIT(32'hA956AAAA)) 
     HS_Clock_INST_0
-       (.I0(Q),
+       (.I0(\slv_reg0_reg[28] ),
         .I1(count_pulses[5]),
         .I2(count_pulses[3]),
         .I3(count_pulses[4]),
@@ -2303,16 +2321,16 @@ endmodule
 (* ORIG_REF_NAME = "dff" *) 
 module design_2_BiDirChannels_0_0_dff_12
    (\r_reg_reg[32] ,
-    Q_reg_0,
+    CLK,
     MCK,
     \slv_reg0_reg[31] );
   output \r_reg_reg[32] ;
-  input Q_reg_0;
+  input CLK;
   input MCK;
   input \slv_reg0_reg[31] ;
 
+  wire CLK;
   wire MCK;
-  wire Q_reg_0;
   wire \r_reg_reg[32] ;
   wire \slv_reg0_reg[31] ;
 
@@ -2320,59 +2338,62 @@ module design_2_BiDirChannels_0_0_dff_12
        (.C(MCK),
         .CE(1'b1),
         .CLR(\slv_reg0_reg[31] ),
-        .D(Q_reg_0),
+        .D(CLK),
         .Q(\r_reg_reg[32] ));
 endmodule
 
 (* ORIG_REF_NAME = "dff" *) 
 module design_2_BiDirChannels_0_0_dff_13
    (MCK,
-    s00_axi_aclk,
+    Q,
     \slv_reg0_reg[31] );
   output MCK;
+  input Q;
+  input \slv_reg0_reg[31] ;
+
+  wire MCK;
+  wire Q;
+  wire Q_i_1__2_n_0;
+  wire \slv_reg0_reg[31] ;
+
+  LUT1 #(
+    .INIT(2'h1)) 
+    Q_i_1__2
+       (.I0(MCK),
+        .O(Q_i_1__2_n_0));
+  FDCE Q_reg
+       (.C(Q),
+        .CE(1'b1),
+        .CLR(\slv_reg0_reg[31] ),
+        .D(Q_i_1__2_n_0),
+        .Q(MCK));
+endmodule
+
+(* ORIG_REF_NAME = "dff" *) 
+module design_2_BiDirChannels_0_0_dff_14
+   (Q,
+    s00_axi_aclk,
+    \slv_reg0_reg[31] );
+  output Q;
   input s00_axi_aclk;
   input \slv_reg0_reg[31] ;
 
   wire D0;
-  wire MCK;
+  wire Q;
   wire s00_axi_aclk;
   wire \slv_reg0_reg[31] ;
 
   LUT1 #(
     .INIT(2'h1)) 
     Q_i_1__1
-       (.I0(MCK),
+       (.I0(Q),
         .O(D0));
   FDCE Q_reg
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .CLR(\slv_reg0_reg[31] ),
         .D(D0),
-        .Q(MCK));
-endmodule
-
-(* ORIG_REF_NAME = "dff" *) 
-module design_2_BiDirChannels_0_0_dff_2
-   (HS_DATA_IN_delayed,
-    HS_DataIn,
-    Q_reg_0,
-    \slv_reg0_reg[31] );
-  output HS_DATA_IN_delayed;
-  input HS_DataIn;
-  input Q_reg_0;
-  input \slv_reg0_reg[31] ;
-
-  wire HS_DATA_IN_delayed;
-  wire HS_DataIn;
-  wire Q_reg_0;
-  wire \slv_reg0_reg[31] ;
-
-  FDCE Q_reg
-       (.C(Q_reg_0),
-        .CE(1'b1),
-        .CLR(\slv_reg0_reg[31] ),
-        .D(HS_DataIn),
-        .Q(HS_DATA_IN_delayed));
+        .Q(Q));
 endmodule
 
 (* ORIG_REF_NAME = "dff" *) 
@@ -3807,8 +3828,8 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
     Q_reg_61,
     Q_reg_62,
     Q_reg_63,
-    Q,
-    HS_DATA_IN_delayed);
+    \slv_reg0_reg[24] ,
+    HS_DataIn);
   output HS_DataOut;
   output [0:0]D;
   input outSR_shift;
@@ -3877,13 +3898,12 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
   input Q_reg_61;
   input Q_reg_62;
   input Q_reg_63;
-  input [0:0]Q;
-  input HS_DATA_IN_delayed;
+  input [0:0]\slv_reg0_reg[24] ;
+  input HS_DataIn;
 
   wire [0:0]D;
-  wire HS_DATA_IN_delayed;
+  wire HS_DataIn;
   wire HS_DataOut;
-  wire [0:0]Q;
   wire Q_reg;
   wire Q_reg_0;
   wire Q_reg_1;
@@ -4046,13 +4066,14 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
   wire \r_reg_reg[9]_C_n_0 ;
   wire \r_reg_reg[9]_LDC_n_0 ;
   wire \r_reg_reg[9]_P_n_0 ;
+  wire [0:0]\slv_reg0_reg[24] ;
 
   LUT3 #(
     .INIT(8'hB8)) 
     \r_reg[0]_i_1 
        (.I0(HS_DataOut),
-        .I1(Q),
-        .I2(HS_DATA_IN_delayed),
+        .I1(\slv_reg0_reg[24] ),
+        .I2(HS_DataIn),
         .O(D));
   LUT3 #(
     .INIT(8'hB8)) 
@@ -5478,7 +5499,7 @@ module design_2_BiDirChannels_0_0_syncReady
 endmodule
 
 (* ORIG_REF_NAME = "syncReady" *) 
-module design_2_BiDirChannels_0_0_syncReady_1
+module design_2_BiDirChannels_0_0_syncReady_2
    (m00_axis_tvalid,
     in_next_int,
     clk0,

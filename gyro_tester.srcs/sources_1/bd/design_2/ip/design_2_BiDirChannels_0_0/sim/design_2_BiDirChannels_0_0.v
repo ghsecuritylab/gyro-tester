@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:user:BiDirChannels:1.0
-// IP Revision: 75
+// IP Revision: 77
 
 `timescale 1ns/1ps
 

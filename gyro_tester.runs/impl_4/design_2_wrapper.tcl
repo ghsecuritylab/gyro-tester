@@ -60,8 +60,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
@@ -73,14 +71,7 @@ set rc [catch {
   set_param project.singleFileAddWarning.threshold 0
   set_property webtalk.parent_dir C:/Docs/gyro_tester/gyro_tester.cache/wt [current_project]
   set_property parent.project_path C:/Docs/gyro_tester/gyro_tester.xpr [current_project]
-  set_property ip_repo_paths {
-  C:/Docs/initial_gyro_tester_experiments/ip_repo/BiDirChannels_1.0
-  C:/ip_repo/axis_stream_fifo_1.0
-  C:/ip_repo/axis_GYRO_Streaming_FIFO_1.0
-  C:/ip_repo/axi_gyro_hsi_1.0
-  C:/ip_repo/SPI_ip_1.0
-  C:/ip_repo/axi4_pl_interrupt_generator_1.0
-} [current_project]
+  set_property ip_repo_paths C:/Docs/ip_repo [current_project]
   set_property ip_output_repo C:/Docs/gyro_tester/gyro_tester.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
