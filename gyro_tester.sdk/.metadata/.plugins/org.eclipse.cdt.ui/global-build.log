@@ -1444,3 +1444,605 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+01:07:23 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:81:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'send_byte_over_UART':
+../src/helloworld.c:198:12: error: storage class specified for parameter 'InitializeDelayTimer'
+ static int InitializeDelayTimer(void);
+            ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:200:13: error: storage class specified for parameter 'DelayTimerInterruptHandler'
+ static void DelayTimerInterruptHandler(void *CallBackRef);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:201:15: error: storage class specified for parameter 'ProgramOTP'
+ static Xuint8 ProgramOTP(u32 otp32BitValue);
+               ^~~~~~~~~~
+../src/helloworld.c:202:15: error: storage class specified for parameter 'ProgramOTP_chipID'
+ static Xuint8 ProgramOTP_chipID(u32 id);
+               ^~~~~~~~~~~~~~~~~
+../src/helloworld.c:203:12: error: storage class specified for parameter 'readOTP32bits'
+ static u32 readOTP32bits(void);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:213:1: error: parameter 'Packet' is initialized
+ u32 *Packet = (u32 *) TX_BUFFER_BASE;
+ ^~~
+../src/helloworld.c:216:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int initGyroChannel(){
+                      ^
+../src/helloworld.c:227:29: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void readGyroChannelStatus(){
+                             ^
+../src/helloworld.c:235:48: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int setGyroChannelConfiguration(unsigned int v){
+                                                ^
+../src/helloworld.c:244:42: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int setGyroChannelControl(unsigned int v){
+                                          ^
+../src/helloworld.c:252:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int readGyroChannelDebugData(){
+                               ^
+../src/helloworld.c:259:30: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int readGyroRxFIFODebugData(){
+                              ^
+../src/helloworld.c:268:30: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int readGyroTxFIFODebugData(){
+                              ^
+../src/helloworld.c:278:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int resetGyroTxFIFO(){
+                      ^
+../src/helloworld.c:285:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int resetGyroRxFIFO(){
+                      ^
+../src/helloworld.c:294:14: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int initSPI(){
+              ^
+../src/helloworld.c:304:21: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void readSPIStatus(){
+                     ^
+../src/helloworld.c:312:30: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void setSPIControl(Xuint32 v){
+                              ^
+../src/helloworld.c:317:42: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  void setSPIClockDivision(unsigned int v){
+                                          ^
+../src/helloworld.c:325:29: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   int readSPIClockDivision(){
+                             ^
+../src/helloworld.c:332:63: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int writeSPI_blocking(unsigned int address, unsigned int data){
+                                                               ^
+../src/helloworld.c:356:68: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  int writeSPI_non_blocking(unsigned int address, unsigned int data){
+                                                                    ^
+../src/helloworld.c:386:72: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int writeSPI_non_blocking_orig(unsigned int address, unsigned int data){
+                                                                        ^
+../src/helloworld.c:414:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int readSPI(unsigned int *data, unsigned int address){
+                                                      ^
+../src/helloworld.c:450:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:478:33: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void isr0 (void *intc_inst_ptr) {
+                                 ^
+../src/helloworld.c:484:33: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void isr1 (void *intc_inst_ptr) {
+                                 ^
+../src/helloworld.c:490:33: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void isr2 (void *intc_inst_ptr) {
+                                 ^
+../src/helloworld.c:498:30: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int setup_interrupt_system() {
+                              ^
+../src/helloworld.c:604:44: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ static int RxSetup(XAxiDma * AxiDmaInstPtr){
+                                            ^
+../src/helloworld.c:721:44: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ static int TxSetup(XAxiDma * AxiDmaInstPtr){
+                                            ^
+../src/helloworld.c:783:55: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ static int SendPacket(XAxiDma * AxiDmaInstPtr, int id){
+                                                       ^
+../src/helloworld.c:879:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:927:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:994:56: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int test_DMA_loopback( int num_packets, int debug_mode){
+                                                        ^
+../src/helloworld.c:1088:29: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ void nops(unsigned int num) {
+                             ^
+../src/helloworld.c:1102:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1180:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1234:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1286:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1361:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1380:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1403:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1423:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1440:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1457:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1471:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1532:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1550:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1578:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1594:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1688:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ {
+ ^
+../src/helloworld.c:1715:12: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ int main() {
+            ^
+../src/helloworld.c:197:13: error: old-style parameter declarations in prototyped function definition
+ static void send_byte_over_UART(Xuint8 byteToSend)
+             ^~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1911:1: error: expected '{' at end of input
+ }
+ ^
+../src/helloworld.c: At top level:
+../src/helloworld.c:58:13: warning: 'load_sawtooth_up_data' declared 'static' but never defined [-Wunused-function]
+ static void load_sawtooth_up_data(void);
+             ^~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:59:13: warning: 'load_sawtooth_down_data' declared 'static' but never defined [-Wunused-function]
+ static void load_sawtooth_down_data(void);
+             ^~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:60:13: warning: 'load_sawtooth_data' declared 'static' but never defined [-Wunused-function]
+ static void load_sawtooth_data(void);
+             ^~~~~~~~~~~~~~~~~~
+../src/helloworld.c:162:13: warning: 'initSPI' declared 'static' but never defined [-Wunused-function]
+ static int  initSPI();
+             ^~~~~~~
+../src/helloworld.c:163:13: warning: 'readSPIStatus' declared 'static' but never defined [-Wunused-function]
+ static void readSPIStatus();
+             ^~~~~~~~~~~~~
+../src/helloworld.c:164:13: warning: 'setSPIControl' declared 'static' but never defined [-Wunused-function]
+ static void setSPIControl(Xuint32 v);
+             ^~~~~~~~~~~~~
+../src/helloworld.c:168:12: warning: 'RxSetup' declared 'static' but never defined [-Wunused-function]
+ static int RxSetup(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~
+../src/helloworld.c:169:12: warning: 'TxSetup' declared 'static' but never defined [-Wunused-function]
+ static int TxSetup(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~
+../src/helloworld.c:170:12: warning: 'SendPacket' declared 'static' but never defined [-Wunused-function]
+ static int SendPacket(XAxiDma * AxiDmaInstPtr, int id);
+            ^~~~~~~~~~
+../src/helloworld.c:171:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:172:12: warning: 'CheckData' declared 'static' but never defined [-Wunused-function]
+ static int CheckData(int debug_mode);
+            ^~~~~~~~~
+../src/helloworld.c:173:12: warning: 'CheckDmaResult' declared 'static' but never defined [-Wunused-function]
+ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip);
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:175:12: warning: 'readGyroTxFIFODebugData' declared 'static' but never defined [-Wunused-function]
+ static int readGyroTxFIFODebugData();
+            ^~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:176:12: warning: 'readGyroRxFIFODebugData' declared 'static' but never defined [-Wunused-function]
+ static int readGyroRxFIFODebugData();
+            ^~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:178:12: warning: 'resetGyroTxFIFO' declared 'static' but never defined [-Wunused-function]
+ static int resetGyroTxFIFO();
+            ^~~~~~~~~~~~~~~
+../src/helloworld.c:179:12: warning: 'resetGyroRxFIFO' declared 'static' but never defined [-Wunused-function]
+ static int resetGyroRxFIFO();
+            ^~~~~~~~~~~~~~~
+../src/helloworld.c:181:13: warning: 'initGyroChannel' declared 'static' but never defined [-Wunused-function]
+ static int  initGyroChannel();
+             ^~~~~~~~~~~~~~~
+../src/helloworld.c:182:13: warning: 'readGyroChannelStatus' declared 'static' but never defined [-Wunused-function]
+ static void readGyroChannelStatus();
+             ^~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:183:13: warning: 'readGyroChannelDebugData' declared 'static' but never defined [-Wunused-function]
+ static int  readGyroChannelDebugData();
+             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:184:13: warning: 'setGyroChannelConfiguration' declared 'static' but never defined [-Wunused-function]
+ static int  setGyroChannelConfiguration(unsigned int v);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:185:13: warning: 'setGyroChannelControl' declared 'static' but never defined [-Wunused-function]
+ static int  setGyroChannelControl(unsigned int v);
+             ^~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:187:13: warning: 'SetupUartPs' declared 'static' but never defined [-Wunused-function]
+ static int  SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
+             ^~~~~~~~~~~
+../src/helloworld.c:189:13: warning: 'UartPsISR' declared 'static' but never defined [-Wunused-function]
+ static void UartPsISR(void *CallBackRef, u32 Event, unsigned int EventData);
+             ^~~~~~~~~
+../src/helloworld.c:190:13: warning: 'SetupUartInterruptSystem' declared 'static' but never defined [-Wunused-function]
+ static int  SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
+             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:193:13: warning: 'read_uart_bytes' declared 'static' but never defined [-Wunused-function]
+ static void read_uart_bytes(void);
+             ^~~~~~~~~~~~~~~
+../src/helloworld.c:194:21: warning: 'get_num_data_points' declared 'static' but never defined [-Wunused-function]
+ static unsigned int get_num_data_points(u8 *RxData);
+                     ^~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:195:13: warning: 'send_Tx_data_over_UART' declared 'static' but never defined [-Wunused-function]
+ static void send_Tx_data_over_UART(unsigned int num_points_to_send);
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:196:13: warning: 'send_packet_data_over_UART' declared 'static' but never defined [-Wunused-function]
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:197:13: warning: 'send_byte_over_UART' defined but not used [-Wunused-function]
+ static void send_byte_over_UART(Xuint8 byteToSend)
+             ^~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:150:11: warning: 'TimerErrorCount' defined but not used [-Wunused-variable]
+ static u8 TimerErrorCount;  /* Errors seen at interrupt time */
+           ^~~~~~~~~~~~~~~
+../src/helloworld.c:149:15: warning: 'DelayTimer' defined but not used [-Wunused-variable]
+ static XTtcPs DelayTimer;  /* Timer counter instance */
+               ^~~~~~~~~~
+../src/helloworld.c:141:11: warning: 'UartTxData' defined but not used [-Wunused-variable]
+ static u8 UartTxData[TX_BUFFER_SIZE]; // Buffer for Transmitting Data
+           ^~~~~~~~~~
+../src/helloworld.c:140:11: warning: 'UartRxData' defined but not used [-Wunused-variable]
+ static u8 UartRxData[RX_BUFFER_SIZE]; // Buffer for Receiving Data
+           ^~~~~~~~~~
+../src/helloworld.c:137:16: warning: 'interrupt_controller' defined but not used [-Wunused-variable]
+ static XScuGic interrupt_controller; //instance of the interrupt controller
+                ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:124:16: warning: 'intc' defined but not used [-Wunused-variable]
+ static XScuGic intc;
+                ^~~~
+make: *** [src/helloworld.o] Error 1
+01:07:37 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:81:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:883:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1308:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:196:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1327:14: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+    char *c = &regData;
+              ^
+../src/helloworld.c: In function 'ProgramOTP':
+../src/helloworld.c:1599:6: warning: unused variable 'otpReadResult' [-Wunused-variable]
+  u32 otpReadResult;
+      ^~~~~~~~~~~~~
+../src/helloworld.c:1598:24: warning: unused variable 'regReadResult' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+                        ^~~~~~~~~~~~~
+../src/helloworld.c:1598:6: warning: unused variable 'reg3originalValue' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+      ^~~~~~~~~~~~~~~~~
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:1718:27: warning: unused variable 'writeVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                           ^~~~~~~~
+../src/helloworld.c:1718:18: warning: unused variable 'readVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                  ^~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:60:13: warning: 'load_sawtooth_data' declared 'static' but never defined [-Wunused-function]
+ static void load_sawtooth_data(void);
+             ^~~~~~~~~~~~~~~~~~
+../src/helloworld.c:171:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:312:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  58784	   3936	  26728	  89448	  15d68	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:08:11 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:80:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:882:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1307:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:195:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1326:14: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+    char *c = &regData;
+              ^
+../src/helloworld.c: In function 'ProgramOTP':
+../src/helloworld.c:1598:6: warning: unused variable 'otpReadResult' [-Wunused-variable]
+  u32 otpReadResult;
+      ^~~~~~~~~~~~~
+../src/helloworld.c:1597:24: warning: unused variable 'regReadResult' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+                        ^~~~~~~~~~~~~
+../src/helloworld.c:1597:6: warning: unused variable 'reg3originalValue' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+      ^~~~~~~~~~~~~~~~~
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:1717:27: warning: unused variable 'writeVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                           ^~~~~~~~
+../src/helloworld.c:1717:18: warning: unused variable 'readVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                  ^~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:170:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:311:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  58784	   3936	  26728	  89448	  15d68	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:10:16 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:80:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:882:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1307:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:195:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c: In function 'ProgramOTP':
+../src/helloworld.c:1598:6: warning: unused variable 'otpReadResult' [-Wunused-variable]
+  u32 otpReadResult;
+      ^~~~~~~~~~~~~
+../src/helloworld.c:1597:24: warning: unused variable 'regReadResult' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+                        ^~~~~~~~~~~~~
+../src/helloworld.c:1597:6: warning: unused variable 'reg3originalValue' [-Wunused-variable]
+  u16 reg3originalValue,regReadResult;
+      ^~~~~~~~~~~~~~~~~
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:1717:27: warning: unused variable 'writeVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                           ^~~~~~~~
+../src/helloworld.c:1717:18: warning: unused variable 'readVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                  ^~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:170:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:311:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  58784	   3936	  26728	  89448	  15d68	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:11:15 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:80:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:882:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1307:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:195:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:1717:27: warning: unused variable 'writeVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                           ^~~~~~~~
+../src/helloworld.c:1717:18: warning: unused variable 'readVal' [-Wunused-variable]
+     unsigned int readVal, writeVal;
+                  ^~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:170:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:311:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  58784	   3936	  26728	  89448	  15d68	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:12:33 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:80:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:882:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1307:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:195:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:170:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:311:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  58784	   3936	  26728	  89448	  15d68	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:12:58 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.

@@ -57,6 +57,7 @@ extern void xil_printf(const char *format, ...);
 #ifdef FAKE_DATA
 static void load_sawtooth_up_data(void);
 static void load_sawtooth_down_data(void);
+static void load_sawtooth_data(void);
 #define SAWTOOTH_MAX_VALUE 100
 #define SAWTOOTH_STEP_VALUE 1
 #endif
@@ -193,7 +194,7 @@ static void read_uart_bytes(void);
 static unsigned int get_num_data_points(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
 static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
-static void send_byte_over_UART(Xuint8 byteToSend);
+static void send_byte_over_UART(Xuint8 byteToSend)
 static int InitializeDelayTimer(void);
 void SetTimerDuration(XInterval interval, u8 prescalar);
 static void DelayTimerInterruptHandler(void *CallBackRef);
@@ -1323,7 +1324,7 @@ void read_uart_bytes(void)
 			}
 			regAddr = (unsigned int)UartRxData[1];
 			readSPI(&regData,regAddr);
-			char *c = (char*)&regData;
+			char *c = &regData;
 			xil_printf("%c%c",*(c+1),*c); //send high byte first
 			//xil_printf("%04x",regData);
 			break;
@@ -1594,8 +1595,8 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 	int i;
 	Xuint8 numReadErrors = 0;
 	u32 x = 1;
-//	u16 reg3originalValue,regReadResult;
-//	u32 otpReadResult;
+	u16 reg3originalValue,regReadResult;
+	u32 otpReadResult;
 
 	// setup the timer for 25usec delay to use later
 	SetTimerDuration(2500, 1);
@@ -1714,7 +1715,7 @@ u32 readOTP32bits(void)
 int main() {
     init_platform();
 
-//    unsigned int readVal, writeVal;
+    unsigned int readVal, writeVal;
 
     xil_printf("\n\r=====================\n\r");
     xil_printf("== START version 26 ==\n\r");

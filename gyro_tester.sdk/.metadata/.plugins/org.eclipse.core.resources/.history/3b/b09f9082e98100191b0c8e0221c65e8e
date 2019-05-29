@@ -1714,7 +1714,7 @@ u32 readOTP32bits(void)
 int main() {
     init_platform();
 
-//    unsigned int readVal, writeVal;
+    unsigned int readVal, writeVal;
 
     xil_printf("\n\r=====================\n\r");
     xil_printf("== START version 26 ==\n\r");

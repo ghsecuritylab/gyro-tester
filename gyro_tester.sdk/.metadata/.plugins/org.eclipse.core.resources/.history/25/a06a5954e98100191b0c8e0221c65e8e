@@ -1594,8 +1594,8 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 	int i;
 	Xuint8 numReadErrors = 0;
 	u32 x = 1;
-//	u16 reg3originalValue,regReadResult;
-//	u32 otpReadResult;
+	u16 reg3originalValue,regReadResult;
+	u32 otpReadResult;
 
 	// setup the timer for 25usec delay to use later
 	SetTimerDuration(2500, 1);
@@ -1714,7 +1714,7 @@ u32 readOTP32bits(void)
 int main() {
     init_platform();
 
-//    unsigned int readVal, writeVal;
+    unsigned int readVal, writeVal;
 
     xil_printf("\n\r=====================\n\r");
     xil_printf("== START version 26 ==\n\r");

@@ -51250,3 +51250,7 @@ configparams force-mem-access 0
 10:54:38 INFO  : Project design_2_wrapper_hw_platform_2's source hardware specification located at C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf is now different from the local copy.
 		 The local copy will be replaced with the source specification and your workspace will be updated.
 10:55:06 INFO  : Copied contents of C:/Docs/gyro_tester/gyro_tester.sdk/design_2_wrapper.hdf into \design_2_wrapper_hw_platform_2\system.hdf.
+10:55:18 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+10:55:18 INFO  : Clearing existing target manager status.
+10:55:18 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+10:55:18 WARN  : Linker script will not be updated automatically. Users need to update it manually.
