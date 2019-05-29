@@ -46,9 +46,10 @@ extern void xil_printf(const char *format, ...);
 											// sent (msbyte first)
 #define CMD_LOAD_SAWTOOTH_UP_DATA	0x62	// load test data1(sawtooth up) into TxData array
 #define CMD_LOAD_SAWTOOTH_DOWN_DATA	0x63	// load test data1(sawtooth down) into TxData array
-#define CMD_READ_ADDRESS			0x41	// read 16-bit contents of gyro ic register
-#define CMD_WRITE_ADDRESS			0x42	// write 16-bit value to gyro ic register
+#define CMD_READ_REGISTER			0x41	// read 16-bit contents of gyro ic register
+#define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
 #define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
+#define CMD_READ_PACKETS			0x45	// read packet data
 
 
 
@@ -93,7 +94,7 @@ static void load_sawtooth_data(void);
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN		0x20
+#define MAX_PKT_LEN		0x100
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -103,6 +104,8 @@ static void load_sawtooth_data(void);
 #define	TICK_TIMER_FREQ_HZ	100000  /* Tick timer counter's output frequency */
 #define TICKS_PER_CHANGE_PERIOD	TICK_TIMER_FREQ_HZ /* Tick signals per update */
 
+int numberDataSamples;
+Xuint32 outputDataBuffer[MAX_PKT_LEN];
 
 typedef struct {
 	u32 OutputHz;	/* Output frequency */
@@ -190,12 +193,13 @@ static int 	SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 static void read_uart_bytes(void);
 static unsigned int get_num_data_points(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
-
+static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
 static int InitializeDelayTimer(void);
 void SetTimerDuration(XInterval interval, u8 prescalar);
 static void DelayTimerInterruptHandler(void *CallBackRef);
-static void ProgramOTP(u32 otp32BitValue);
-static void ProgramOTP_chipID(u32 id);
+static int ProgramOTP(u32 otp32BitValue);
+static int ProgramOTP_chipID(u32 id);
+static u32 readOTP32bits(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -874,8 +878,9 @@ static int CheckData(int debug_mode)
 {
 	u8 *RxPacket;
 	int Index = 0;
+	int idx = 0;
 	u8 Value;
-
+	Xuint32 m0, m1, v0, v1;
 
 	RxPacket = (u8 *) RX_BUFFER_BASE;
 	Value = TEST_START_VALUE;
@@ -887,21 +892,19 @@ static int CheckData(int debug_mode)
 	Xil_DCacheInvalidateRange((UINTPTR)RxPacket, MAX_PKT_LEN);
 #endif
 
-	for(Index = 0; Index < MAX_PKT_LEN; Index++) {
-		xil_printf("Data received %d: %x\r\n",
-		    Index, (unsigned int)RxPacket[Index]);
-		/*
-		if (RxPacket[Index] != Value) {
-			xil_printf("Data error %d: %x/%x\r\n",
-			    Index, (unsigned int)RxPacket[Index],
-			    (unsigned int)Value);
-
-			return XST_FAILURE;
-		}
-		Value = (Value + 1) & 0xFF;
-		*/
+   idx = 0;
+	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
+		m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
+		m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
+		v0 = m0 >> 2;
+		v1 = m1 >> 2;
+		xil_printf("Sample: %d: %x\r\n",idx,v1);
+		xil_printf("Sample: %d: %x\r\n",idx+1,v0);
+		outputDataBuffer[idx++] = v1;
+		outputDataBuffer[idx++] = v0;
 	}
-
+	numberDataSamples = idx;
+	xil_printf("Number of Samples: %d:\r\n",idx);
 	return XST_SUCCESS;
 }
 
@@ -1300,6 +1303,10 @@ void read_uart_bytes(void)
 			send_Tx_data_over_UART(get_num_data_points(UartRxData));
 			break;
 
+		case (CMD_READ_PACKETS):
+		send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+			break;
+
 		case (CMD_LOAD_SAWTOOTH_UP_DATA):
 			load_sawtooth_up_data();
 			break;
@@ -1308,7 +1315,7 @@ void read_uart_bytes(void)
 			load_sawtooth_down_data();
 			break;
 
-		case (CMD_READ_ADDRESS):
+		case (CMD_READ_REGISTER):
 			//verify address byte was received after command byte
 			if (numBytesReceived<2)
 			{
@@ -1321,7 +1328,7 @@ void read_uart_bytes(void)
 			//xil_printf("%04x",regData);
 			break;
 
-		case (CMD_WRITE_ADDRESS):
+		case (CMD_WRITE_REGISTER):
 			//verify address byte, data bytes(2) received after command byte
 			if (numBytesReceived<4)
 			{
@@ -1341,6 +1348,7 @@ void read_uart_bytes(void)
 			ProgramOTP_chipID( (UartRxData[1]<<16) | (UartRxData[2]<<8) |
 					UartRxData[3]);
 			break;
+
 	}
 
 }
@@ -1421,6 +1429,23 @@ void send_Tx_data_over_UART(unsigned int num_points_to_send)
 		/* Write the byte into the TX FIFO */
 		XUartPs_WriteReg(XPAR_XUARTPS_0_BASEADDR, XUARTPS_FIFO_OFFSET,
 				UartTxData[i]);
+	}
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData)
+{
+	int i;
+	// send the data array to the transmit buffer as space is available
+	for (i = 0; i < num_points_to_send; i++) {
+		/* Wait until there is space in TX FIFO */
+		 while (XUartPs_IsTransmitFull(XPAR_XUARTPS_0_BASEADDR));
+
+		/* Write the byte into the TX FIFO */
+		XUartPs_WriteReg(XPAR_XUARTPS_0_BASEADDR, XUARTPS_FIFO_OFFSET,
+				packetData[i]);
 	}
 }
 //------------------------------------------------------------
@@ -1535,7 +1560,7 @@ void DelayTimerInterruptHandler(void *CallBackRef)
 
 
 //------------------------------------------------------------
-void ProgramOTP_chipID(u32 id)
+int ProgramOTP_chipID(u32 id)
 {
 	u32 otp32register;
 
@@ -1544,19 +1569,22 @@ void ProgramOTP_chipID(u32 id)
 
 	//shift ID over to bits 31:8 of the 32 bit OTP register
 	otp32register = id << 8;
-	ProgramOTP(otp32register);
+	return ProgramOTP(otp32register);
 }
 //------------------------------------------------------------
 
 
 
 //------------------------------------------------------------
-void ProgramOTP(u32 otp32BitValue)
+int ProgramOTP(u32 otp32ProgramValue)
 {
 	int i;
+	int numReadErrors = 0;
 	u32 x = 1;
+	u16 reg3originalValue,regReadResult;
+	u32 otpReadResult;
 
-	// setup the timer for use later
+	// setup the timer for 25usec delay to use later
 	SetTimerDuration(2500, 1);
 
 	// loop through all 32 bits in otp register to clear out any 1s
@@ -1582,7 +1610,7 @@ void ProgramOTP(u32 otp32BitValue)
 	for(i=0;i<32;i++)
 	{
 		// check if this bit should be programmed
-		if (otp32BitValue & (x << i) )
+		if (otp32ProgramValue & (x << i) )
 		{
 			writeSPI_non_blocking_orig(2,0x4000);	//SHORTEN=1,IZAPEN=0,WE=0
 			writeSPI_non_blocking_orig(2,0x6000);	//SHORTEN=1,IZAPEN=1,WE=0
@@ -1592,10 +1620,12 @@ void ProgramOTP(u32 otp32BitValue)
 			writeSPI_non_blocking_orig(2,0x3000);	//SHORTEN=0,IZAPEN=1,WE=1
 
 			//delay 25usec for zap time
-/*			timerRunning = 1;
+			/*timerRunning = 1;
 			XTtcPs_Start(&DelayTimer);
-			while(timerRunning);
-*/
+			while(timerRunning);*/
+			// delay above was not needed because delay
+			// between spi register transfers is ~25usec
+
 			writeSPI_non_blocking_orig(2,0x7000);	//SHORTEN=1,IZAPEN=1,WE=1
 			writeSPI_non_blocking_orig(2,0x6000);	//SHORTEN=1,IZAPEN=1,WE=0
 			writeSPI_non_blocking_orig(2,0x4000);	//SHORTEN=1,IZAPEN=0,WE=0
@@ -1609,10 +1639,61 @@ void ProgramOTP(u32 otp32BitValue)
 		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
 	}
 
+	//enable read operations
+	writeSPI_non_blocking_orig(2,0x0001);		//RSWEN=1
+	// wait min 4.5usec
+	writeSPI_non_blocking_orig(2,0x0003);		//BANK=1,RSWEN=1
+	writeSPI_non_blocking_orig(2,0x0007);		//READ=1,BANK=1,RSWEN=1
+
+	//test for correct value in NVM register
+	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+
+	//set fuse block in read mode (low current)
+	writeSPI_non_blocking_orig(2,0x0047);		//BIASL=1,READ=1,BANK=1,RSWEN=1
+	//test for correct value in NVM register
+	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+
+	//set fuse block in read mode (high current)
+	writeSPI_non_blocking_orig(2,0x000F);		//BIASH=1,READ=1,BANK=1,RSWEN=1
+	//test for correct value in NVM register
+	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+
+	//clear all bits in the OTP programming register
+	writeSPI_non_blocking_orig(2,0x0000);
+
+	return numReadErrors;
 }
 //------------------------------------------------------------
 
 
+//------------------------------------------------------------
+/*
+ * Reads the 32-bit value from the OTP memory block
+ */
+u32 readOTP32bits(void)
+{
+	unsigned int reg3originalValue,regReadResult;
+	u32 otp32bitResult;
+
+	// read value of register 3 to restore later
+	readSPI(&reg3originalValue,3);
+
+	// set 2 RBKSEL bits in order to read OTP register values
+	writeSPI_non_blocking_orig(3,(0x0300|reg3originalValue));
+
+	// read lower 16 bits of 32 bit result
+	readSPI(&regReadResult,2);
+	otp32bitResult = regReadResult;
+
+	// read upper 16 bits of 32 bit result
+	readSPI(&regReadResult,3);
+	otp32bitResult += (regReadResult << 16);
+
+	// restore register 3 original value
+	writeSPI_non_blocking_orig(3,reg3originalValue);
+
+	return otp32bitResult;
+}
 
 
 
@@ -1740,7 +1821,7 @@ int main() {
 
     // --- loopback mode, POL = 0, in and out channels = 00
     //setGyroChannelConfiguration(0x01000000);
-    setGyroChannelConfiguration(0x00000000);
+    setGyroChannelConfiguration(0x0030000); // bit 17:16 is to divide clock by 2/4/8.
     setGyroChannelControl(0x00000000);
 
     xil_printf(" - after initialization ==\n\r");
@@ -1758,6 +1839,8 @@ int main() {
 
 	//readGyroChannelStatus();
 	//readGyroChannelDebugData();
+
+
 	//readGyroTxFIFODebugData();
 	//readGyroRxFIFODebugData();
 

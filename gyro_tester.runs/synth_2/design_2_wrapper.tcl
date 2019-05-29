@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -37,7 +38,6 @@ add_files C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/design_2.bd
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_processing_system7_0_0/design_2_processing_system7_0_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_rst_ps7_0_100M_0/design_2_rst_ps7_0_100M_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_rst_ps7_0_100M_0/design_2_rst_ps7_0_100M_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_rst_ps7_0_100M_0/design_2_rst_ps7_0_100M_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_dma_0_0/design_2_axi_dma_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_dma_0_0/design_2_axi_dma_0_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_dma_0_0/design_2_axi_dma_0_0_clocks.xdc]
@@ -68,7 +68,6 @@ set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gy
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_xbar_0/design_2_xbar_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_auto_pc_0/design_2_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/design_2_ooc.xdc]
 

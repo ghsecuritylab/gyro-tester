@@ -2,12 +2,12 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Tue Apr  2 18:43:54 2019
-# Process ID: 9324
-# Current directory: C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1
+# Start of session at: Fri May 24 19:11:05 2019
+# Process ID: 12496
+# Current directory: C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1
 # Command line: vivado.exe -log design_2_axi_smc_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_2_axi_smc_0.tcl
-# Log file: C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.vds
-# Journal file: C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1\vivado.jou
+# Log file: C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.vds
+# Journal file: C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1\vivado.jou
 #-----------------------------------------------------------
 source design_2_axi_smc_0.tcl -notrace
 Command: synth_design -top design_2_axi_smc_0 -part xc7z020clg484-1 -mode out_of_context
@@ -15,20 +15,20 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 1680 
+INFO: Helper process launched with PID 12512 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:17 . Memory (MB): peak = 437.262 ; gain = 112.844
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:19 . Memory (MB): peak = 417.895 ; gain = 111.223
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'design_2_axi_smc_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/synth/design_2_axi_smc_0.v:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:10]
-INFO: [Synth 8-6157] synthesizing module 'clk_map_imp_1WDPOJN' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1392]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_one_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_0/synth/bd_ebcc_one_0.v:57]
-INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_5_xlconstant' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f1c3/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6157] synthesizing module 'design_2_axi_smc_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/synth/design_2_axi_smc_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:10]
+INFO: [Synth 8-6157] synthesizing module 'clk_map_imp_1WDPOJN' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1392]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_one_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_0/synth/bd_ebcc_one_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_5_xlconstant' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f1c3/hdl/xlconstant_v1_1_vl_rfs.v:23]
 	Parameter CONST_VAL bound to: 1 - type: integer 
 	Parameter CONST_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_5_xlconstant' (1#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f1c3/hdl/xlconstant_v1_1_vl_rfs.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_one_0' (2#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_0/synth/bd_ebcc_one_0.v:57]
-INFO: [Synth 8-638] synthesizing module 'bd_ebcc_psr_aclk_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:74]
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_5_xlconstant' (1#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f1c3/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_one_0' (2#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_0/synth/bd_ebcc_one_0.v:57]
+INFO: [Synth 8-638] synthesizing module 'bd_ebcc_psr_aclk_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:74]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
 	Parameter C_AUX_RST_WIDTH bound to: 1 - type: integer 
@@ -38,8 +38,8 @@ INFO: [Synth 8-638] synthesizing module 'bd_ebcc_psr_aclk_0' [c:/Xilinx_Projects
 	Parameter C_NUM_PERP_RST bound to: 1 - type: integer 
 	Parameter C_NUM_INTERCONNECT_ARESETN bound to: 1 - type: integer 
 	Parameter C_NUM_PERP_ARESETN bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'proc_sys_reset' declared at 'c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1264' bound to instance 'U0' of component 'proc_sys_reset' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:129]
-INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+INFO: [Synth 8-3491] module 'proc_sys_reset' declared at 'c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1264' bound to instance 'U0' of component 'proc_sys_reset' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:129]
+INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
 	Parameter C_AUX_RST_WIDTH bound to: 1 - type: integer 
@@ -53,37 +53,37 @@ INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [c:/Xilinx_Projects/gyr
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FDRE_inst' to cell 'FDRE' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1392]
+INFO: [Synth 8-113] binding component instance 'FDRE_inst' to cell 'FDRE' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1392]
 	Parameter INIT bound to: 1'b1 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FDRE_BSR' to cell 'FDRE' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1408]
+INFO: [Synth 8-113] binding component instance 'FDRE_BSR' to cell 'FDRE' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1408]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FDRE_BSR_N' to cell 'FDRE' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1434]
+INFO: [Synth 8-113] binding component instance 'FDRE_BSR_N' to cell 'FDRE' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1434]
 	Parameter INIT bound to: 1'b1 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FDRE_PER' to cell 'FDRE' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1457]
+INFO: [Synth 8-113] binding component instance 'FDRE_PER' to cell 'FDRE' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1457]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FDRE_PER_N' to cell 'FDRE' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1481]
-INFO: [Synth 8-638] synthesizing module 'lpf' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-113] binding component instance 'FDRE_PER_N' to cell 'FDRE' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1481]
+INFO: [Synth 8-638] synthesizing module 'lpf' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
 	Parameter C_AUX_RST_WIDTH bound to: 1 - type: integer 
 	Parameter C_EXT_RESET_HIGH bound to: 1'b0 
 	Parameter C_AUX_RESET_HIGH bound to: 1'b0 
-INFO: [Synth 8-3491] module 'SRL16' declared at 'C:/Xilinx/Vivado/2018.2/scripts/rt/data/unisim_comp.v:50695' bound to instance 'POR_SRL_I' of component 'SRL16' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:868]
+INFO: [Synth 8-3491] module 'SRL16' declared at 'C:/Xilinx/Vivado/2018.2/scripts/rt/data/unisim_comp.v:50695' bound to instance 'POR_SRL_I' of component 'SRL16' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:868]
 INFO: [Synth 8-6157] synthesizing module 'SRL16' [C:/Xilinx/Vivado/2018.2/scripts/rt/data/unisim_comp.v:50695]
 	Parameter INIT bound to: 16'b0000000000000000 
 INFO: [Synth 8-6155] done synthesizing module 'SRL16' (3#1) [C:/Xilinx/Vivado/2018.2/scripts/rt/data/unisim_comp.v:50695]
-INFO: [Synth 8-638] synthesizing module 'cdc_sync' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
 	Parameter C_CDC_TYPE bound to: 1 - type: integer 
 	Parameter C_RESET_STATE bound to: 0 - type: integer 
 	Parameter C_SINGLE_BIT bound to: 1 - type: integer 
@@ -91,35 +91,35 @@ INFO: [Synth 8-638] synthesizing module 'cdc_sync' [c:/Xilinx_Projects/gyro_proj
 	Parameter C_VECTOR_WIDTH bound to: 2 - type: integer 
 	Parameter C_MTBF_STAGES bound to: 4 - type: integer 
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:514]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:514]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:545]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:545]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:554]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:554]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:564]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:564]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:574]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:574]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:584]
-INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (4#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
-INFO: [Synth 8-256] done synthesizing module 'lpf' (5#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
-INFO: [Synth 8-638] synthesizing module 'sequence_psr' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
-INFO: [Synth 8-638] synthesizing module 'upcnt_n' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:584]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (4#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-256] done synthesizing module 'lpf' (5#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-638] synthesizing module 'sequence_psr' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-638] synthesizing module 'upcnt_n' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
 	Parameter C_SIZE bound to: 6 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'upcnt_n' (6#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
-INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (7#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
-INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (8#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
-INFO: [Synth 8-256] done synthesizing module 'bd_ebcc_psr_aclk_0' (9#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:74]
-WARNING: [Synth 8-350] instance 'psr_aclk' of module 'bd_ebcc_psr_aclk_0' requires 10 connections, but only 6 given [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1439]
-WARNING: [Synth 8-3848] Net aresetn_out in module/entity clk_map_imp_1WDPOJN does not have driver. [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1416]
-INFO: [Synth 8-6155] done synthesizing module 'clk_map_imp_1WDPOJN' (10#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1392]
-INFO: [Synth 8-6157] synthesizing module 'm00_exit_pipeline_imp_44FLG8' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1448]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00e_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_35/synth/bd_ebcc_m00e_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00e_0' (24#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_35/synth/bd_ebcc_m00e_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'm00_exit_pipeline_imp_44FLG8' (25#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1448]
-INFO: [Synth 8-6157] synthesizing module 'm00_nodes_imp_QC1J78' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1819]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00arn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_30/synth/bd_ebcc_m00arn_0.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'upcnt_n' (6#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (7#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (8#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+INFO: [Synth 8-256] done synthesizing module 'bd_ebcc_psr_aclk_0' (9#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/synth/bd_ebcc_psr_aclk_0.vhd:74]
+WARNING: [Synth 8-350] instance 'psr_aclk' of module 'bd_ebcc_psr_aclk_0' requires 10 connections, but only 6 given [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1439]
+WARNING: [Synth 8-3848] Net aresetn_out in module/entity clk_map_imp_1WDPOJN does not have driver. [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1416]
+INFO: [Synth 8-6155] done synthesizing module 'clk_map_imp_1WDPOJN' (10#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1392]
+INFO: [Synth 8-6157] synthesizing module 'm00_exit_pipeline_imp_44FLG8' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1448]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00e_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_35/synth/bd_ebcc_m00e_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00e_0' (24#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_35/synth/bd_ebcc_m00e_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'm00_exit_pipeline_imp_44FLG8' (25#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1448]
+INFO: [Synth 8-6157] synthesizing module 'm00_nodes_imp_QC1J78' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1819]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00arn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_30/synth/bd_ebcc_m00arn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -262,16 +262,16 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00arn_0' (41#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_30/synth/bd_ebcc_m00arn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00awn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_32/synth/bd_ebcc_m00awn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00arn_0' (41#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_30/synth/bd_ebcc_m00arn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00awn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_32/synth/bd_ebcc_m00awn_0.sv:58]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00awn_0' (42#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_32/synth/bd_ebcc_m00awn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00bn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_34/synth/bd_ebcc_m00bn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00awn_0' (42#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_32/synth/bd_ebcc_m00awn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00bn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_34/synth/bd_ebcc_m00bn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized1' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized1' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -414,8 +414,8 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00bn_0' (43#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_34/synth/bd_ebcc_m00bn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00rn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_31/synth/bd_ebcc_m00rn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00bn_0' (43#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_34/synth/bd_ebcc_m00bn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00rn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_31/synth/bd_ebcc_m00rn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized3' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized3' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -490,8 +490,8 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00rn_0' (44#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_31/synth/bd_ebcc_m00rn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00wn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_33/synth/bd_ebcc_m00wn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00rn_0' (44#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_31/synth/bd_ebcc_m00rn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00wn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_33/synth/bd_ebcc_m00wn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized4' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized4' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -646,7 +646,7 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00wn_0' (45#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_33/synth/bd_ebcc_m00wn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00wn_0' (45#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_33/synth/bd_ebcc_m00wn_0.sv:58]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -660,22 +660,22 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'm00_nodes_imp_QC1J78' (46#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1819]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00s2a_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_29/synth/bd_ebcc_m00s2a_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00s2a_0' (48#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_29/synth/bd_ebcc_m00s2a_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00a2s_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_10/synth/bd_ebcc_s00a2s_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00a2s_0' (50#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_10/synth/bd_ebcc_s00a2s_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 's00_entry_pipeline_imp_13E00UZ' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2124]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00mmu_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_7/synth/bd_ebcc_s00mmu_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00mmu_0' (54#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_7/synth/bd_ebcc_s00mmu_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00sic_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_9/synth/bd_ebcc_s00sic_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00sic_0' (57#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_9/synth/bd_ebcc_s00sic_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00tr_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_8/synth/bd_ebcc_s00tr_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00tr_0' (60#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_8/synth/bd_ebcc_s00tr_0.sv:58]
-WARNING: [Synth 8-350] instance 's00_transaction_regulator' of module 'bd_ebcc_s00tr_0' requires 82 connections, but only 78 given [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2648]
-INFO: [Synth 8-6155] done synthesizing module 's00_entry_pipeline_imp_13E00UZ' (61#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2124]
-INFO: [Synth 8-6157] synthesizing module 's00_nodes_imp_1699R9D' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2729]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sarn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_11/synth/bd_ebcc_sarn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'm00_nodes_imp_QC1J78' (46#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1819]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_m00s2a_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_29/synth/bd_ebcc_m00s2a_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_m00s2a_0' (48#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_29/synth/bd_ebcc_m00s2a_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00a2s_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_10/synth/bd_ebcc_s00a2s_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00a2s_0' (50#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_10/synth/bd_ebcc_s00a2s_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 's00_entry_pipeline_imp_13E00UZ' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2124]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00mmu_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_7/synth/bd_ebcc_s00mmu_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00mmu_0' (54#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_7/synth/bd_ebcc_s00mmu_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00sic_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_9/synth/bd_ebcc_s00sic_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00sic_0' (57#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_9/synth/bd_ebcc_s00sic_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s00tr_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_8/synth/bd_ebcc_s00tr_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s00tr_0' (60#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_8/synth/bd_ebcc_s00tr_0.sv:58]
+WARNING: [Synth 8-350] instance 's00_transaction_regulator' of module 'bd_ebcc_s00tr_0' requires 82 connections, but only 78 given [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2648]
+INFO: [Synth 8-6155] done synthesizing module 's00_entry_pipeline_imp_13E00UZ' (61#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2124]
+INFO: [Synth 8-6157] synthesizing module 's00_nodes_imp_1699R9D' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2729]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sarn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_11/synth/bd_ebcc_sarn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized6' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized6' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -813,10 +813,10 @@ INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_sdpram__parameterized7
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sarn_0' (62#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_11/synth/bd_ebcc_sarn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sawn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_13/synth/bd_ebcc_sawn_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sawn_0' (63#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_13/synth/bd_ebcc_sawn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sbn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_15/synth/bd_ebcc_sbn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sarn_0' (62#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_11/synth/bd_ebcc_sarn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sawn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_13/synth/bd_ebcc_sawn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sawn_0' (63#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_13/synth/bd_ebcc_sawn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sbn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_15/synth/bd_ebcc_sbn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized8' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized8' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -880,8 +880,8 @@ INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized8' [C:/X
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_base__parameterized8' (63#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_sdpram__parameterized8' (63#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sbn_0' (64#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_15/synth/bd_ebcc_sbn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_srn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_12/synth/bd_ebcc_srn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sbn_0' (64#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_15/synth/bd_ebcc_sbn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_srn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_12/synth/bd_ebcc_srn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized9' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized9' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -945,8 +945,8 @@ INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized9' [C:/X
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_base__parameterized9' (65#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_sdpram__parameterized9' (65#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_srn_0' (66#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_12/synth/bd_ebcc_srn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_swn_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_14/synth/bd_ebcc_swn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_srn_0' (66#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_12/synth/bd_ebcc_srn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_swn_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_14/synth/bd_ebcc_swn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized10' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized10' [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -1010,59 +1010,59 @@ INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized10' [C:/
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_base__parameterized10' (68#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_sdpram__parameterized10' (68#1) [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6888]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_swn_0' (69#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_14/synth/bd_ebcc_swn_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 's00_nodes_imp_1699R9D' (70#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2729]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01a2s_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_19/synth/bd_ebcc_s01a2s_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01a2s_0' (71#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_19/synth/bd_ebcc_s01a2s_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 's01_entry_pipeline_imp_68ZHQN' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3025]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01mmu_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_16/synth/bd_ebcc_s01mmu_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01mmu_0' (72#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_16/synth/bd_ebcc_s01mmu_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01sic_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_18/synth/bd_ebcc_s01sic_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01sic_0' (73#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_18/synth/bd_ebcc_s01sic_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01tr_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_17/synth/bd_ebcc_s01tr_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01tr_0' (74#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_17/synth/bd_ebcc_s01tr_0.sv:58]
-WARNING: [Synth 8-350] instance 's01_transaction_regulator' of module 'bd_ebcc_s01tr_0' requires 38 connections, but only 36 given [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3270]
-INFO: [Synth 8-6155] done synthesizing module 's01_entry_pipeline_imp_68ZHQN' (75#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3025]
-INFO: [Synth 8-6157] synthesizing module 's01_nodes_imp_1GKMD3' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3309]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sarn_1' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_20/synth/bd_ebcc_sarn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sarn_1' (76#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_20/synth/bd_ebcc_sarn_1.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_srn_1' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_21/synth/bd_ebcc_srn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_srn_1' (77#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_21/synth/bd_ebcc_srn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 's01_nodes_imp_1GKMD3' (78#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3309]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02a2s_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_25/synth/bd_ebcc_s02a2s_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02a2s_0' (79#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_25/synth/bd_ebcc_s02a2s_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 's02_entry_pipeline_imp_QQS8TU' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3440]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02mmu_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_22/synth/bd_ebcc_s02mmu_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02mmu_0' (80#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_22/synth/bd_ebcc_s02mmu_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02sic_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_24/synth/bd_ebcc_s02sic_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02sic_0' (81#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_24/synth/bd_ebcc_s02sic_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02tr_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_23/synth/bd_ebcc_s02tr_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02tr_0' (82#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_23/synth/bd_ebcc_s02tr_0.sv:58]
-WARNING: [Synth 8-350] instance 's02_transaction_regulator' of module 'bd_ebcc_s02tr_0' requires 46 connections, but only 44 given [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3736]
-INFO: [Synth 8-6155] done synthesizing module 's02_entry_pipeline_imp_QQS8TU' (83#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3440]
-INFO: [Synth 8-6157] synthesizing module 's02_nodes_imp_XLZ0TO' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3783]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sawn_1' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_26/synth/bd_ebcc_sawn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sawn_1' (84#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_26/synth/bd_ebcc_sawn_1.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sbn_1' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_28/synth/bd_ebcc_sbn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sbn_1' (85#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_28/synth/bd_ebcc_sbn_1.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_swn_1' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_27/synth/bd_ebcc_swn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_swn_1' (86#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_27/synth/bd_ebcc_swn_1.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 's02_nodes_imp_XLZ0TO' (87#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3783]
-INFO: [Synth 8-6157] synthesizing module 'switchboards_imp_1VMK311' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3969]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_arsw_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_2/synth/bd_ebcc_arsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_arsw_0' (90#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_2/synth/bd_ebcc_arsw_0.sv:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_awsw_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_4/synth/bd_ebcc_awsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_awsw_0' (91#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_4/synth/bd_ebcc_awsw_0.sv:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_bsw_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_6/synth/bd_ebcc_bsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_bsw_0' (92#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_6/synth/bd_ebcc_bsw_0.sv:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_rsw_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_3/synth/bd_ebcc_rsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_rsw_0' (93#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_3/synth/bd_ebcc_rsw_0.sv:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_wsw_0' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_5/synth/bd_ebcc_wsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_wsw_0' (94#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_5/synth/bd_ebcc_wsw_0.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'switchboards_imp_1VMK311' (95#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3969]
-WARNING: [Synth 8-350] instance 'switchboards' of module 'switchboards_imp_1VMK311' requires 102 connections, but only 91 given [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1298]
-INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc' (96#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:10]
-INFO: [Synth 8-6155] done synthesizing module 'design_2_axi_smc_0' (97#1) [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/synth/design_2_axi_smc_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_swn_0' (69#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_14/synth/bd_ebcc_swn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 's00_nodes_imp_1699R9D' (70#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:2729]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01a2s_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_19/synth/bd_ebcc_s01a2s_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01a2s_0' (71#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_19/synth/bd_ebcc_s01a2s_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 's01_entry_pipeline_imp_68ZHQN' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3025]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01mmu_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_16/synth/bd_ebcc_s01mmu_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01mmu_0' (72#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_16/synth/bd_ebcc_s01mmu_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01sic_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_18/synth/bd_ebcc_s01sic_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01sic_0' (73#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_18/synth/bd_ebcc_s01sic_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s01tr_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_17/synth/bd_ebcc_s01tr_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s01tr_0' (74#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_17/synth/bd_ebcc_s01tr_0.sv:58]
+WARNING: [Synth 8-350] instance 's01_transaction_regulator' of module 'bd_ebcc_s01tr_0' requires 38 connections, but only 36 given [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3270]
+INFO: [Synth 8-6155] done synthesizing module 's01_entry_pipeline_imp_68ZHQN' (75#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3025]
+INFO: [Synth 8-6157] synthesizing module 's01_nodes_imp_1GKMD3' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3309]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sarn_1' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_20/synth/bd_ebcc_sarn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sarn_1' (76#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_20/synth/bd_ebcc_sarn_1.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_srn_1' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_21/synth/bd_ebcc_srn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_srn_1' (77#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_21/synth/bd_ebcc_srn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 's01_nodes_imp_1GKMD3' (78#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3309]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02a2s_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_25/synth/bd_ebcc_s02a2s_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02a2s_0' (79#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_25/synth/bd_ebcc_s02a2s_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 's02_entry_pipeline_imp_QQS8TU' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3440]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02mmu_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_22/synth/bd_ebcc_s02mmu_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02mmu_0' (80#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_22/synth/bd_ebcc_s02mmu_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02sic_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_24/synth/bd_ebcc_s02sic_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02sic_0' (81#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_24/synth/bd_ebcc_s02sic_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_s02tr_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_23/synth/bd_ebcc_s02tr_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_s02tr_0' (82#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_23/synth/bd_ebcc_s02tr_0.sv:58]
+WARNING: [Synth 8-350] instance 's02_transaction_regulator' of module 'bd_ebcc_s02tr_0' requires 46 connections, but only 44 given [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3736]
+INFO: [Synth 8-6155] done synthesizing module 's02_entry_pipeline_imp_QQS8TU' (83#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3440]
+INFO: [Synth 8-6157] synthesizing module 's02_nodes_imp_XLZ0TO' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3783]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sawn_1' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_26/synth/bd_ebcc_sawn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sawn_1' (84#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_26/synth/bd_ebcc_sawn_1.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_sbn_1' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_28/synth/bd_ebcc_sbn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_sbn_1' (85#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_28/synth/bd_ebcc_sbn_1.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_swn_1' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_27/synth/bd_ebcc_swn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_swn_1' (86#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_27/synth/bd_ebcc_swn_1.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 's02_nodes_imp_XLZ0TO' (87#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3783]
+INFO: [Synth 8-6157] synthesizing module 'switchboards_imp_1VMK311' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3969]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_arsw_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_2/synth/bd_ebcc_arsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_arsw_0' (90#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_2/synth/bd_ebcc_arsw_0.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_awsw_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_4/synth/bd_ebcc_awsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_awsw_0' (91#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_4/synth/bd_ebcc_awsw_0.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_bsw_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_6/synth/bd_ebcc_bsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_bsw_0' (92#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_6/synth/bd_ebcc_bsw_0.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_rsw_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_3/synth/bd_ebcc_rsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_rsw_0' (93#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_3/synth/bd_ebcc_rsw_0.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_ebcc_wsw_0' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_5/synth/bd_ebcc_wsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc_wsw_0' (94#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_5/synth/bd_ebcc_wsw_0.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'switchboards_imp_1VMK311' (95#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:3969]
+WARNING: [Synth 8-350] instance 'switchboards' of module 'switchboards_imp_1VMK311' requires 102 connections, but only 91 given [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:1298]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebcc' (96#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/synth/bd_ebcc.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'design_2_axi_smc_0' (97#1) [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/synth/design_2_axi_smc_0.v:57]
 WARNING: [Synth 8-3331] design sc_util_v1_0_3_pipeline__parameterized10 has unconnected port aclk
 WARNING: [Synth 8-3331] design sc_util_v1_0_3_pipeline__parameterized10 has unconnected port aclken
 WARNING: [Synth 8-3331] design sc_util_v1_0_3_pipeline__parameterized10 has unconnected port areset
@@ -1165,7 +1165,7 @@ WARNING: [Synth 8-3331] design xpm_memory_base__parameterized10 has unconnected 
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized10 has unconnected port dinb[69]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:52 ; elapsed = 00:01:00 . Memory (MB): peak = 624.676 ; gain = 300.258
+Finished RTL Elaboration : Time (s): cpu = 00:00:42 ; elapsed = 00:00:59 . Memory (MB): peak = 607.137 ; gain = 300.465
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1178,10 +1178,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:01:04 . Memory (MB): peak = 624.676 ; gain = 300.258
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:01:03 . Memory (MB): peak = 607.137 ; gain = 300.465
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:56 ; elapsed = 00:01:04 . Memory (MB): peak = 624.676 ; gain = 300.258
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:45 ; elapsed = 00:01:03 . Memory (MB): peak = 607.137 ; gain = 300.465
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1190,14 +1190,14 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/ooc.xdc] for cell 'inst'
-Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0_board.xdc] for cell 'inst/clk_map/psr_aclk/U0'
-Finished Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0_board.xdc] for cell 'inst/clk_map/psr_aclk/U0'
-Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0.xdc] for cell 'inst/clk_map/psr_aclk/U0'
-Finished Parsing XDC File [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0.xdc] for cell 'inst/clk_map/psr_aclk/U0'
-Parsing XDC File [C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc]
+Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/ooc.xdc] for cell 'inst'
+Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0_board.xdc] for cell 'inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0_board.xdc] for cell 'inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0.xdc] for cell 'inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/bd_ebcc_psr_aclk_0.xdc] for cell 'inst/clk_map/psr_aclk/U0'
+Parsing XDC File [C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc]
 Sourcing Tcl File [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'inst/m00_nodes/m00_ar_node/inst/inst_mi_handler/gen_normal_area.gen_node_prog_full.inst_node_prog_full/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
 Finished Sourcing Tcl File [C:/Xilinx/Vivado/2018.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'inst/m00_nodes/m00_ar_node/inst/inst_mi_handler/gen_normal_area.gen_node_prog_full.inst_node_prog_full/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
@@ -1306,21 +1306,21 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDR => FDRE: 12 instances
   SRL16 => SRL16E: 1 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1724.766 ; gain = 0.703
+Constraint Validation Runtime : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1708.641 ; gain = 0.703
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:03:07 ; elapsed = 00:03:23 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Constraint Validation : Time (s): cpu = 00:02:39 ; elapsed = 00:03:27 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:03:07 ; elapsed = 00:03:23 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:39 ; elapsed = 00:03:27 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc, line 174).
+Applied set_property DONT_TOUCH = true for inst. (constraint file  C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/dont_touch.xdc, line 174).
 Applied set_property DONT_TOUCH = true for inst/m00_nodes/m00_ar_node/inst/inst_mi_handler/\gen_normal_area.gen_node_prog_full.inst_node_prog_full /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/m00_nodes/m00_aw_node/inst/inst_mi_handler/\gen_normal_area.gen_node_prog_full.inst_node_prog_full /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/m00_nodes/m00_w_node/inst/inst_mi_handler/\gen_normal_area.gen_node_prog_full.inst_node_prog_full /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
@@ -1355,10 +1355,10 @@ Applied set_property DONT_TOUCH = true for inst/s01_nodes/s01_r_node/inst/inst_m
 Applied set_property DONT_TOUCH = true for inst/s00_nodes/s00_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/s02_nodes/s02_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:03:08 ; elapsed = 00:03:23 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:39 ; elapsed = 00:03:28 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4471] merging register 'seq_cnt_en_reg' into 'from_sys_reg' [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:377]
-WARNING: [Synth 8-6014] Unused sequential element seq_cnt_en_reg was removed.  [c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:377]
+INFO: [Synth 8-4471] merging register 'seq_cnt_en_reg' into 'from_sys_reg' [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:377]
+WARNING: [Synth 8-6014] Unused sequential element seq_cnt_en_reg was removed.  [c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:377]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'gen_pipelined.state_reg' through user attribute
 INFO: [Synth 8-5546] ROM "gen_pipelined.next0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-4490] FSM extraction disabled for register 'gen_pipelined.state_reg' through user attribute
@@ -1425,7 +1425,7 @@ INFO: [Synth 8-5545] ROM "gen_w_ch.accum_reg[bytes][0][userdata]" won't be mappe
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_axi.gen_write.write_cs_reg' using encoding 'one-hot' in module 'sc_mmu_v1_0_6_decerr_slave'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:23 ; elapsed = 00:03:42 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:55 ; elapsed = 00:03:50 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4683,7 +4683,7 @@ WARNING: [Synth 8-3332] Sequential element (inst_mi_handler/gen_normal_area.inst
 WARNING: [Synth 8-3332] Sequential element (inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0]) is unused and will be removed from module sc_node_v1_0_9_top__parameterized8.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:07:41 ; elapsed = 00:08:08 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:41 ; elapsed = 00:08:25 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -4766,13 +4766,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:08:02 ; elapsed = 00:08:31 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:07:01 ; elapsed = 00:08:50 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:08:36 ; elapsed = 00:09:06 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Timing Optimization : Time (s): cpu = 00:07:34 ; elapsed = 00:09:30 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -4852,7 +4852,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:08:52 ; elapsed = 00:09:23 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Technology Mapping : Time (s): cpu = 00:07:51 ; elapsed = 00:09:52 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4909,7 +4909,7 @@ INFO: [Synth 8-5365] Flop inst_mi_handler/gen_normal_area.inst_fifo_node_payld/g
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:08:56 ; elapsed = 00:09:27 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished IO Insertion : Time (s): cpu = 00:07:56 ; elapsed = 00:09:57 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -4922,7 +4922,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:08:57 ; elapsed = 00:09:27 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Renaming Generated Instances : Time (s): cpu = 00:07:56 ; elapsed = 00:09:57 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4934,25 +4934,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:09:00 ; elapsed = 00:09:31 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:08:00 ; elapsed = 00:10:01 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:09:01 ; elapsed = 00:09:31 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Renaming Generated Ports : Time (s): cpu = 00:08:00 ; elapsed = 00:10:01 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:09:01 ; elapsed = 00:09:32 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Handling Custom Attributes : Time (s): cpu = 00:08:01 ; elapsed = 00:10:02 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:09:02 ; elapsed = 00:09:32 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Renaming Generated Nets : Time (s): cpu = 00:08:01 ; elapsed = 00:10:03 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -5498,14 +5498,14 @@ Report Instance Areas:
 |493   |          \gen_mi[0].inst_opipe_payld                                                           |sc_util_v1_0_3_pipeline__parameterized18                   |    88|
 +------+------------------------------------------------------------------------------------------------+-----------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:09:02 ; elapsed = 00:09:32 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Finished Writing Synthesis Report : Time (s): cpu = 00:08:01 ; elapsed = 00:10:03 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 2255 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:06:03 ; elapsed = 00:07:24 . Memory (MB): peak = 1724.766 ; gain = 300.258
-Synthesis Optimization Complete : Time (s): cpu = 00:09:02 ; elapsed = 00:09:32 . Memory (MB): peak = 1724.766 ; gain = 1400.348
+Synthesis Optimization Runtime : Time (s): cpu = 00:05:30 ; elapsed = 00:07:49 . Memory (MB): peak = 1708.641 ; gain = 300.465
+Synthesis Optimization Complete : Time (s): cpu = 00:08:01 ; elapsed = 00:10:03 . Memory (MB): peak = 1708.641 ; gain = 1401.969
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 318 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
@@ -5519,17 +5519,18 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 630 Infos, 240 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:09:19 ; elapsed = 00:09:53 . Memory (MB): peak = 1724.766 ; gain = 1411.816
+synth_design: Time (s): cpu = 00:08:16 ; elapsed = 00:10:27 . Memory (MB): peak = 1708.641 ; gain = 1413.441
 WARNING: [Constraints 18-5210] No constraint will be written out.
-INFO: [Common 17-1381] The checkpoint 'C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 1724.766 ; gain = 0.000
-write_vhdl: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1724.766 ; gain = 0.000
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP c:/Xilinx_Projects/gyro_project/tester/tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/design_2_axi_smc_0.xci
+INFO: [Common 17-1381] The checkpoint 'C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1708.641 ; gain = 0.000
+write_vhdl: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1708.641 ; gain = 0.000
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP c:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi_smc_0/design_2_axi_smc_0.xci
 INFO: [Coretcl 2-1174] Renamed 492 cell refs.
 WARNING: [Constraints 18-5210] No constraint will be written out.
-INFO: [Common 17-1381] The checkpoint 'C:/Xilinx_Projects/gyro_project/tester/tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 1724.766 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1/design_2_axi_smc_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1708.641 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file design_2_axi_smc_0_utilization_synth.rpt -pb design_2_axi_smc_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.577 . Memory (MB): peak = 1724.766 ; gain = 0.000
-write_vhdl: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1724.766 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  2 18:55:12 2019...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.467 . Memory (MB): peak = 1708.641 ; gain = 0.000
+write_verilog: Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1708.641 ; gain = 0.000
+write_vhdl: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1708.641 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Fri May 24 19:23:22 2019...

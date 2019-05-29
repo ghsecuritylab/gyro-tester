@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="design_2_processing_system7_0_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_processing_system7_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_axi_smc_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_smc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_RxFIFO_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_RxFIFO_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_TxFIFO_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_TxFIFO_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_rst_ps7_0_100M_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_rst_ps7_0_100M_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_axi4_pl_interrupt_ge_0_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi4_pl_interrupt_ge_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_SPI_ip_0_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_SPI_ip_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_axi_dma_0_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_axi_dma_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_BiDirChannels_0_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_xbar_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="design_2_auto_pc_0_synth_1" LaunchDir="C:/Docs/gyro_tester/gyro_tester.runs/design_2_auto_pc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+</Runs>
+
