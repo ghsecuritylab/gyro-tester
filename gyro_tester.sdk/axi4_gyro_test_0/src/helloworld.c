@@ -336,11 +336,11 @@ int writeSPI_blocking(unsigned int address, unsigned int data){
 	y = ((0x0000FFFF) & data);
 	v = 0x80000000 | (x | y);
     m = (Xuint32)v;
-    xil_printf("== m  0x%08x \n",m);
+//    xil_printf("== m  0x%08x \n",m);
 	*(baseaddr_spi+0) = m;
 	while(1){
 	  d = *(baseaddr_spi+1);
-	  xil_printf("== read d  0x%08x \n",d);
+//	  xil_printf("== read d  0x%08x \n",d);
 
 	  v = (unsigned int)d;
 	  if(v & 0x80000000){
@@ -420,7 +420,7 @@ int readSPI(unsigned int *data, unsigned int address){
 
   res = 1;
   *data = 0x00000000;           // clears result
-  x = ((address & 0x0000007F) << 16) | 0x00808043;	// DEBUG: the 8F51 is a test pattern
+  x = ((address & 0x0000007F) << 16) | 0x00800000;	// DEBUG: the 8F51 is a test pattern
   v = (0x80000000 | x);         // set the start bit
   m = (Xuint32)v;
   *(baseaddr_spi+0) = m;
@@ -898,13 +898,13 @@ static int CheckData(int debug_mode)
 		m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
 		v0 = m0 >> 2;
 		v1 = m1 >> 2;
-		xil_printf("Sample: %d: %x\r\n",idx,v1);
-		xil_printf("Sample: %d: %x\r\n",idx+1,v0);
-		outputDataBuffer[idx++] = v1;
-		outputDataBuffer[idx++] = v0;
+		//xil_printf("Sample: %d: %x%x\r\n",idx,v0,v1);
+		outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
+		xil_printf("Index: %d: %x\r\n",idx,outputDataBuffer[idx]);
+		idx++;
 	}
-	numberDataSamples = idx;
-	xil_printf("Number of Samples: %d:\r\n",idx);
+	numberDataSamples = idx*2;
+	xil_printf("Number of Samples: %d:\r\n",idx*2);
 	return XST_SUCCESS;
 }
 
@@ -1336,7 +1336,7 @@ void read_uart_bytes(void)
 			}
 			regAddr = (unsigned int)UartRxData[1];
 			regData = (UartRxData[2]<<8) | UartRxData[3];
-			writeSPI_non_blocking_orig(regAddr,regData);
+			writeSPI_non_blocking(regAddr,regData);
 			break;
 
 		case (CMD_PROG_OTP_CHIP_ADDR):

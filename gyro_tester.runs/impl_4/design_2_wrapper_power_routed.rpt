@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Sat May 25 02:22:48 2019
+| Date             : Wed May 29 22:24:57 2019
 | Host             : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 | Command          : report_power -file design_2_wrapper_power_routed.rpt -pb design_2_wrapper_power_summary_routed.pb -rpx design_2_wrapper_power_routed.rpx
 | Design           : design_2_wrapper
@@ -55,14 +55,14 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.029 |        3 |       --- |             --- |
 | Slice Logic              |     0.012 |    18346 |       --- |             --- |
-|   LUT as Logic           |     0.010 |     5478 |     53200 |           10.30 |
+|   LUT as Logic           |     0.010 |     5475 |     53200 |           10.29 |
 |   LUT as Distributed RAM |     0.001 |      632 |     17400 |            3.63 |
-|   Register               |    <0.001 |     9183 |    106400 |            8.63 |
+|   Register               |    <0.001 |     9182 |    106400 |            8.63 |
 |   CARRY4                 |    <0.001 |       93 |     13300 |            0.70 |
 |   LUT as Shift Register  |    <0.001 |      207 |     17400 |            1.19 |
 |   F7/F8 Muxes            |    <0.001 |       11 |     53200 |            0.02 |
 |   Others                 |     0.000 |      812 |       --- |             --- |
-| Signals                  |     0.014 |    12550 |       --- |             --- |
+| Signals                  |     0.014 |    12534 |       --- |             --- |
 | Block RAM                |     0.010 |        7 |       140 |            5.00 |
 | I/O                      |     0.055 |       15 |       200 |            7.50 |
 | PS7                      |     1.533 |        1 |       --- |             --- |
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.080 |       0.064 |      0.016 |
+| Vccint    |       1.000 |     0.080 |       0.065 |      0.016 |
 | Vccaux    |       1.800 |     0.016 |       0.000 |      0.016 |
 | Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
 | Vcco25    |       2.500 |     0.021 |       0.020 |      0.001 |
@@ -154,7 +154,7 @@ Table of Contents
 | Name                                                                                              | Power (W) |
 +---------------------------------------------------------------------------------------------------+-----------+
 | design_2_wrapper                                                                                  |     1.654 |
-|   design_2_i                                                                                      |     1.646 |
+|   design_2_i                                                                                      |     1.647 |
 |     BiDirChannels_0                                                                               |     0.050 |
 |       inst                                                                                        |     0.050 |
 |         BiDirChannels_v1_0_S00_AXI_inst                                                           |    <0.001 |
@@ -174,7 +174,7 @@ Table of Contents
 |           MASK_HSCK                                                                               |     0.000 |
 |             ff0                                                                                   |     0.000 |
 |             ff1                                                                                   |     0.000 |
-|           OUT_SHIFT_REG                                                                           |    <0.001 |
+|           OUT_SHIFT_REG                                                                           |     0.000 |
 |           PULSE_CNTR                                                                              |    <0.001 |
 |           TX_DELAY_REG                                                                            |    <0.001 |
 |           X0                                                                                      |    <0.001 |
@@ -251,7 +251,7 @@ Table of Contents
 |             I_FTCH_PNTR_MNGR                                                                      |    <0.001 |
 |             I_FTCH_SG                                                                             |    <0.001 |
 |           I_SG_FETCH_QUEUE                                                                        |     0.001 |
-|             GEN_QUEUE.FTCH_QUEUE_I                                                                |    <0.001 |
+|             GEN_QUEUE.FTCH_QUEUE_I                                                                |     0.001 |
 |         INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR                                            |    <0.001 |
 |           GEN_MM2S_DMA_CONTROL.GEN_SCATTER_GATHER_MODE.I_MM2S_SG_IF                               |    <0.001 |
 |             GEN_UPDT_FOR_QUEUE.GEN_NO_MICRO_DMA.XFERRED_BYTE_FIFO                                 |    <0.001 |
@@ -656,8 +656,8 @@ Table of Contents
 |                   gen_srls[6].srl_nx1                                                             |    <0.001 |
 |                   gen_srls[9].srl_nx1                                                             |    <0.001 |
 |         s00_nodes                                                                                 |     0.006 |
-|           s00_ar_node                                                                             |    <0.001 |
-|             inst                                                                                  |    <0.001 |
+|           s00_ar_node                                                                             |     0.001 |
+|             inst                                                                                  |     0.001 |
 |               inst_mi_handler                                                                     |    <0.001 |
 |                 gen_normal_area.gen_fifo_req.inst_fifo_req                                        |    <0.001 |
 |                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
@@ -948,8 +948,8 @@ Table of Contents
 |                   inst_pipeline_valid                                                             |    <0.001 |
 |               inst_si_handler                                                                     |    <0.001 |
 |                 inst_arb_stall_late                                                               |    <0.001 |
-|           s02_w_node                                                                              |    <0.001 |
-|             inst                                                                                  |    <0.001 |
+|           s02_w_node                                                                              |     0.001 |
+|             inst                                                                                  |     0.001 |
 |               inst_mi_handler                                                                     |    <0.001 |
 |                 gen_normal_area.gen_fi_regulator.inst_fi_regulator                                |    <0.001 |
 |                 gen_normal_area.gen_fifo_req.inst_fifo_req                                        |    <0.001 |
@@ -1006,7 +1006,7 @@ Table of Contents
 |               gen_mi[0].inst_opipe_payld                                                          |    <0.001 |
 |     processing_system7_0                                                                          |     1.534 |
 |       inst                                                                                        |     1.534 |
-|     ps7_0_axi_periph                                                                              |     0.005 |
+|     ps7_0_axi_periph                                                                              |     0.006 |
 |       s00_couplers                                                                                |     0.004 |
 |         auto_pc                                                                                   |     0.004 |
 |           inst                                                                                    |     0.004 |

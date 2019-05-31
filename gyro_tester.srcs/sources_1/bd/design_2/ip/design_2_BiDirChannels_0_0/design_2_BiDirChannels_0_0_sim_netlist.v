@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sat May 25 00:08:30 2019
+// Date        : Wed May 29 22:15:37 2019
 // Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_BiDirChannels_0_0/design_2_BiDirChannels_0_0_sim_netlist.v
@@ -195,12 +195,12 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
     s00_axi_arready,
     clock_div_4,
     m00_axis_tlast,
-    HS_DataOut,
     m00_axis_tvalid,
     s00_axi_bvalid,
     s00_axi_rvalid,
     s00_axis_tready,
     HS_Clock,
+    HS_DataOut,
     s00_axi_rdata,
     m00_axis_tdata,
     s00_axi_aclk,
@@ -226,12 +226,12 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   output s00_axi_arready;
   output clock_div_4;
   output m00_axis_tlast;
-  output HS_DataOut;
   output m00_axis_tvalid;
   output s00_axi_bvalid;
   output s00_axi_rvalid;
   output s00_axis_tready;
   output HS_Clock;
+  output HS_DataOut;
   output [31:0]s00_axi_rdata;
   output [31:0]m00_axis_tdata;
   input s00_axi_aclk;
@@ -252,8 +252,8 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   input [3:0]s00_axi_wstrb;
 
   wire BiDirChannels_v1_0_S00_AXI_inst_n_11;
-  wire BiDirChannels_v1_0_S00_AXI_inst_n_12;
-  wire BiDirChannels_v1_0_S00_AXI_inst_n_5;
+  wire BiDirChannels_v1_0_S00_AXI_inst_n_13;
+  wire BiDirChannels_v1_0_S00_AXI_inst_n_9;
   wire CLK;
   wire D;
   wire [7:0]\DBG/CNTR0/r_reg_reg__0 ;
@@ -269,6 +269,8 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   wire clk0;
   wire clock_div_4;
   wire [28:16]data_word_0;
+  wire hs_data_in_int;
+  wire hs_data_out_int;
   wire [31:0]m00_axis_tdata;
   wire m00_axis_tlast;
   wire m00_axis_tvalid;
@@ -294,10 +296,14 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
   wire s00_axis_tvalid;
 
   design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI BiDirChannels_v1_0_S00_AXI_inst
-       (.Q({data_word_0[28],data_word_0[24],data_word_0[17:16]}),
+       (.D(hs_data_in_int),
+        .HS_DataIn(HS_DataIn),
+        .HS_DataOut(HS_DataOut),
+        .Q({data_word_0[28],data_word_0[17:16]}),
         .Q_reg({D,BiDirChannels_v1_0_S00_AXI_inst_n_11}),
-        .Q_reg_0(BiDirChannels_v1_0_S00_AXI_inst_n_12),
-        .\r_reg_reg[31]_P (BiDirChannels_v1_0_S00_AXI_inst_n_5),
+        .Q_reg_0(BiDirChannels_v1_0_S00_AXI_inst_n_13),
+        .hs_data_out_int(hs_data_out_int),
+        .\r_reg_reg[31]_P (BiDirChannels_v1_0_S00_AXI_inst_n_9),
         .\r_reg_reg[7] (\DBG/CNTR3/r_reg_reg__0 ),
         .\r_reg_reg[7]_0 (\DBG/CNTR2/r_reg_reg__0 ),
         .\r_reg_reg[7]_1 (\DBG/CNTR1/r_reg_reg__0 ),
@@ -330,12 +336,12 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
         .OB(MCK_N));
   design_2_BiDirChannels_0_0_GyroInputOutputSerializer X1
        (.CLK(CLK),
+        .D(hs_data_in_int),
         .HS_Clock(HS_Clock),
-        .HS_DataIn(HS_DataIn),
-        .HS_DataOut(HS_DataOut),
         .MCK(MCK),
-        .Q({data_word_0[28],data_word_0[24],data_word_0[17:16]}),
+        .Q({data_word_0[28],data_word_0[17:16]}),
         .clk0(clk0),
+        .hs_data_out_int(hs_data_out_int),
         .m00_axis_tdata(m00_axis_tdata),
         .m00_axis_tlast(m00_axis_tlast),
         .m00_axis_tvalid(m00_axis_tvalid),
@@ -348,8 +354,8 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0
         .s00_axis_tdata(s00_axis_tdata),
         .s00_axis_tready(s00_axis_tready),
         .s00_axis_tvalid(s00_axis_tvalid),
-        .\slv_reg0_reg[31] (BiDirChannels_v1_0_S00_AXI_inst_n_12),
-        .\slv_reg0_reg[31]_0 (BiDirChannels_v1_0_S00_AXI_inst_n_5),
+        .\slv_reg0_reg[31] (BiDirChannels_v1_0_S00_AXI_inst_n_13),
+        .\slv_reg0_reg[31]_0 (BiDirChannels_v1_0_S00_AXI_inst_n_9),
         .\slv_reg1_reg[4] ({D,BiDirChannels_v1_0_S00_AXI_inst_n_11}));
 endmodule
 
@@ -360,12 +366,16 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
     s00_axi_arready,
     s00_axi_bvalid,
     s00_axi_rvalid,
-    \r_reg_reg[31]_P ,
+    D,
     Q,
+    \r_reg_reg[31]_P ,
     Q_reg,
+    HS_DataOut,
     Q_reg_0,
     s00_axi_rdata,
     s00_axi_aclk,
+    hs_data_out_int,
+    HS_DataIn,
     s00_axi_aresetn,
     \r_reg_reg[7] ,
     \r_reg_reg[7]_0 ,
@@ -385,12 +395,16 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   output s00_axi_arready;
   output s00_axi_bvalid;
   output s00_axi_rvalid;
+  output [0:0]D;
+  output [2:0]Q;
   output \r_reg_reg[31]_P ;
-  output [3:0]Q;
   output [1:0]Q_reg;
+  output HS_DataOut;
   output Q_reg_0;
   output [31:0]s00_axi_rdata;
   input s00_axi_aclk;
+  input hs_data_out_int;
+  input HS_DataIn;
   input s00_axi_aresetn;
   input [7:0]\r_reg_reg[7] ;
   input [7:0]\r_reg_reg[7]_0 ;
@@ -406,7 +420,10 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   input [1:0]s00_axi_araddr;
   input [3:0]s00_axi_wstrb;
 
-  wire [3:0]Q;
+  wire [0:0]D;
+  wire HS_DataIn;
+  wire HS_DataOut;
+  wire [2:0]Q;
   wire [1:0]Q_reg;
   wire Q_reg_0;
   wire aw_en_i_1_n_0;
@@ -422,9 +439,10 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   wire axi_bvalid_i_1_n_0;
   wire axi_rvalid_i_1_n_0;
   wire axi_wready0;
-  wire [31:31]data_word_0;
+  wire [31:0]data_word_0;
+  wire hs_data_out_int;
   wire [1:0]p_0_in;
-  wire [28:7]p_1_in;
+  wire [28:0]p_1_in;
   wire \r_reg_reg[31]_P ;
   wire [7:0]\r_reg_reg[7] ;
   wire [7:0]\r_reg_reg[7]_0 ;
@@ -448,7 +466,6 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   wire s00_axi_wready;
   wire [3:0]s00_axi_wstrb;
   wire s00_axi_wvalid;
-  wire \slv_reg0_reg_n_0_[0] ;
   wire \slv_reg0_reg_n_0_[10] ;
   wire \slv_reg0_reg_n_0_[11] ;
   wire \slv_reg0_reg_n_0_[12] ;
@@ -457,7 +474,6 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   wire \slv_reg0_reg_n_0_[15] ;
   wire \slv_reg0_reg_n_0_[18] ;
   wire \slv_reg0_reg_n_0_[19] ;
-  wire \slv_reg0_reg_n_0_[1] ;
   wire \slv_reg0_reg_n_0_[20] ;
   wire \slv_reg0_reg_n_0_[21] ;
   wire \slv_reg0_reg_n_0_[22] ;
@@ -469,8 +485,6 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   wire \slv_reg0_reg_n_0_[2] ;
   wire \slv_reg0_reg_n_0_[30] ;
   wire \slv_reg0_reg_n_0_[3] ;
-  wire \slv_reg0_reg_n_0_[4] ;
-  wire \slv_reg0_reg_n_0_[5] ;
   wire \slv_reg0_reg_n_0_[6] ;
   wire \slv_reg0_reg_n_0_[7] ;
   wire \slv_reg0_reg_n_0_[8] ;
@@ -512,6 +526,13 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
   wire slv_reg_rden__0;
   wire slv_reg_wren__0;
 
+  LUT3 #(
+    .INIT(8'h04)) 
+    HS_DataOut_INST_0
+       (.I0(data_word_0[1]),
+        .I1(hs_data_out_int),
+        .I2(data_word_0[0]),
+        .O(HS_DataOut));
   LUT6 #(
     .INIT(64'hF7FFC4CCC4CCC4CC)) 
     aw_en_i_1
@@ -528,6 +549,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .D(aw_en_i_1_n_0),
         .Q(aw_en_reg_n_0),
         .S(axi_awready_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'hFB08)) 
     \axi_araddr[2]_i_1 
@@ -644,7 +666,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7] [0]),
         .I3(axi_araddr[3]),
-        .I4(\slv_reg0_reg_n_0_[0] ),
+        .I4(data_word_0[0]),
         .O(reg_data_out[0]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -743,7 +765,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7] [1]),
         .I3(axi_araddr[3]),
-        .I4(\slv_reg0_reg_n_0_[1] ),
+        .I4(data_word_0[1]),
         .O(reg_data_out[1]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -788,7 +810,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7]_2 [0]),
         .I3(axi_araddr[3]),
-        .I4(Q[2]),
+        .I4(data_word_0[24]),
         .O(reg_data_out[24]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -824,7 +846,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7]_2 [4]),
         .I3(axi_araddr[3]),
-        .I4(Q[3]),
+        .I4(Q[2]),
         .O(reg_data_out[28]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -860,7 +882,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7]_2 [7]),
         .I3(axi_araddr[3]),
-        .I4(data_word_0),
+        .I4(data_word_0[31]),
         .O(reg_data_out[31]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -878,7 +900,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7] [4]),
         .I3(axi_araddr[3]),
-        .I4(\slv_reg0_reg_n_0_[4] ),
+        .I4(data_word_0[4]),
         .O(reg_data_out[4]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -887,7 +909,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(axi_araddr[2]),
         .I2(\r_reg_reg[7] [5]),
         .I3(axi_araddr[3]),
-        .I4(\slv_reg0_reg_n_0_[5] ),
+        .I4(data_word_0[5]),
         .O(reg_data_out[5]));
   LUT5 #(
     .INIT(32'h30BB3088)) 
@@ -1117,7 +1139,6 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .D(reg_data_out[9]),
         .Q(s00_axi_rdata[9]),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h08F8)) 
     axi_rvalid_i_1
@@ -1147,11 +1168,20 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .D(axi_wready0),
         .Q(s00_axi_wready),
         .R(axi_awready_i_1_n_0));
+  LUT5 #(
+    .INIT(32'h88888B88)) 
+    \r_reg[0]_i_1 
+       (.I0(hs_data_out_int),
+        .I1(data_word_0[24]),
+        .I2(data_word_0[4]),
+        .I3(HS_DataIn),
+        .I4(data_word_0[5]),
+        .O(D));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \r_reg[31]_i_2 
-       (.I0(data_word_0),
+       (.I0(data_word_0[31]),
         .I1(s00_axi_aresetn),
         .O(Q_reg_0));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -1159,7 +1189,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
     .INIT(4'h2)) 
     \r_reg[32]_i_4 
        (.I0(s00_axi_aresetn),
-        .I1(data_word_0),
+        .I1(data_word_0[31]),
         .O(\r_reg_reg[31]_P ));
   LUT4 #(
     .INIT(16'h0200)) 
@@ -1200,12 +1230,12 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .I1(p_0_in[1]),
         .I2(p_0_in[0]),
         .I3(s00_axi_wstrb[0]),
-        .O(p_1_in[7]));
+        .O(p_1_in[0]));
   FDRE \slv_reg0_reg[0] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[0]),
-        .Q(\slv_reg0_reg_n_0_[0] ),
+        .Q(data_word_0[0]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[10] 
        (.C(s00_axi_aclk),
@@ -1269,9 +1299,9 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[1] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[1]),
-        .Q(\slv_reg0_reg_n_0_[1] ),
+        .Q(data_word_0[1]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[20] 
        (.C(s00_axi_aclk),
@@ -1301,7 +1331,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(p_1_in[28]),
         .D(s00_axi_wdata[24]),
-        .Q(Q[2]),
+        .Q(data_word_0[24]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[25] 
        (.C(s00_axi_aclk),
@@ -1325,7 +1355,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(p_1_in[28]),
         .D(s00_axi_wdata[28]),
-        .Q(Q[3]),
+        .Q(Q[2]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[29] 
        (.C(s00_axi_aclk),
@@ -1335,7 +1365,7 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[2] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[2]),
         .Q(\slv_reg0_reg_n_0_[2] ),
         .R(axi_awready_i_1_n_0));
@@ -1349,35 +1379,35 @@ module design_2_BiDirChannels_0_0_BiDirChannels_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(p_1_in[28]),
         .D(s00_axi_wdata[31]),
-        .Q(data_word_0),
+        .Q(data_word_0[31]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[3] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[3]),
         .Q(\slv_reg0_reg_n_0_[3] ),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[4] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[4]),
-        .Q(\slv_reg0_reg_n_0_[4] ),
+        .Q(data_word_0[4]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[5] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[5]),
-        .Q(\slv_reg0_reg_n_0_[5] ),
+        .Q(data_word_0[5]),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[6] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[6]),
         .Q(\slv_reg0_reg_n_0_[6] ),
         .R(axi_awready_i_1_n_0));
   FDRE \slv_reg0_reg[7] 
        (.C(s00_axi_aclk),
-        .CE(p_1_in[7]),
+        .CE(p_1_in[0]),
         .D(s00_axi_wdata[7]),
         .Q(\slv_reg0_reg_n_0_[7] ),
         .R(axi_awready_i_1_n_0));
@@ -1680,7 +1710,7 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
    (MCK,
     \r_reg_reg[32] ,
     m00_axis_tlast,
-    HS_DataOut,
+    hs_data_out_int,
     m00_axis_tvalid,
     s00_axis_tready,
     HS_Clock,
@@ -1695,14 +1725,14 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
     s00_axi_aclk,
     clk0,
     Q,
-    HS_DataIn,
     \slv_reg0_reg[31]_0 ,
     s00_axis_tvalid,
+    D,
     s00_axis_tdata);
   output MCK;
   output \r_reg_reg[32] ;
   output m00_axis_tlast;
-  output HS_DataOut;
+  output hs_data_out_int;
   output m00_axis_tvalid;
   output s00_axis_tready;
   output HS_Clock;
@@ -1716,19 +1746,18 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
   input CLK;
   input s00_axi_aclk;
   input clk0;
-  input [3:0]Q;
-  input HS_DataIn;
+  input [2:0]Q;
   input \slv_reg0_reg[31]_0 ;
   input s00_axis_tvalid;
+  input [0:0]D;
   input [31:0]s00_axis_tdata;
 
   wire CLK;
+  wire [0:0]D;
   wire HS_Clock;
-  wire HS_DataIn;
-  wire HS_DataOut;
   wire MCK;
   wire PULSE_CNTR_n_1;
-  wire [3:0]Q;
+  wire [2:0]Q;
   wire X0_n_1;
   wire X0_n_10;
   wire X0_n_11;
@@ -1797,7 +1826,7 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
   wire clk0;
   wire clock_base;
   wire [31:0]data_out;
-  wire hs_data_in_int;
+  wire hs_data_out_int;
   wire inSR_shift;
   wire in_next_int;
   wire in_start_stop_int;
@@ -1847,7 +1876,7 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
   design_2_BiDirChannels_0_0_inputShiftRegister32Bits IN_SHIFT_REG
        (.CLK(inSR_shift),
-        .D(hs_data_in_int),
+        .D(D),
         .m00_axis_tdata(m00_axis_tdata),
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ));
   design_2_BiDirChannels_0_0_upCounter8Bits LAST_CNTR
@@ -1861,11 +1890,7 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .\slv_reg0_reg[31] (\slv_reg0_reg[31] ),
         .\slv_reg1_reg[4] (\slv_reg1_reg[4] ));
   design_2_BiDirChannels_0_0_outputShiftRegister32Bits OUT_SHIFT_REG
-       (.D(hs_data_in_int),
-        .HS_DataIn(HS_DataIn),
-        .HS_DataOut(HS_DataOut),
-        .Q(Q[2]),
-        .Q_reg(X0_n_33),
+       (.Q_reg(X0_n_33),
         .Q_reg_0(X0_n_1),
         .Q_reg_1(X0_n_65),
         .Q_reg_10(X0_n_6),
@@ -1930,11 +1955,12 @@ module design_2_BiDirChannels_0_0_GyroInputOutputSerializer
         .Q_reg_7(X0_n_62),
         .Q_reg_8(X0_n_5),
         .Q_reg_9(X0_n_61),
+        .hs_data_out_int(hs_data_out_int),
         .outSR_shift(outSR_shift));
   design_2_BiDirChannels_0_0_counter48Cycles PULSE_CNTR
        (.CLK(inSR_shift),
         .HS_Clock(HS_Clock),
-        .Q(Q[3]),
+        .Q(Q[2]),
         .Q_reg(PULSE_CNTR_n_1),
         .Q_reg_0(\r_reg_reg[32] ),
         .Q_reg_1(CLK),
@@ -3705,8 +3731,7 @@ endmodule
 
 (* ORIG_REF_NAME = "outputShiftRegister32Bits" *) 
 module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
-   (HS_DataOut,
-    D,
+   (hs_data_out_int,
     outSR_shift,
     Q_reg,
     Q_reg_0,
@@ -3772,11 +3797,8 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
     Q_reg_60,
     Q_reg_61,
     Q_reg_62,
-    Q_reg_63,
-    Q,
-    HS_DataIn);
-  output HS_DataOut;
-  output [0:0]D;
+    Q_reg_63);
+  output hs_data_out_int;
   input outSR_shift;
   input Q_reg;
   input Q_reg_0;
@@ -3843,13 +3865,7 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
   input Q_reg_61;
   input Q_reg_62;
   input Q_reg_63;
-  input [0:0]Q;
-  input HS_DataIn;
 
-  wire [0:0]D;
-  wire HS_DataIn;
-  wire HS_DataOut;
-  wire [0:0]Q;
   wire Q_reg;
   wire Q_reg_0;
   wire Q_reg_1;
@@ -3915,6 +3931,7 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
   wire Q_reg_7;
   wire Q_reg_8;
   wire Q_reg_9;
+  wire hs_data_out_int;
   wire outSR_shift;
   wire [31:0]r_reg;
   wire \r_reg_reg[0]_LDC_n_0 ;
@@ -4013,13 +4030,6 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
   wire \r_reg_reg[9]_LDC_n_0 ;
   wire \r_reg_reg[9]_P_n_0 ;
 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \r_reg[0]_i_1 
-       (.I0(HS_DataOut),
-        .I1(Q),
-        .I2(HS_DataIn),
-        .O(D));
   LUT3 #(
     .INIT(8'hB8)) 
     \r_reg[10]_C_i_1 
@@ -4767,7 +4777,7 @@ module design_2_BiDirChannels_0_0_outputShiftRegister32Bits
         .CE(1'b1),
         .CLR(Q_reg),
         .D(r_reg[31]),
-        .Q(HS_DataOut));
+        .Q(hs_data_out_int));
   FDCE \r_reg_reg[3]_C 
        (.C(outSR_shift),
         .CE(1'b1),

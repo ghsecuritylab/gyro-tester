@@ -174,12 +174,12 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/design_2/ip/design_2_axi_smc_0/sim/design_2_axi_smc_0.v" \
-  "../../../bd/design_2/ipshared/6cde/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
-  "../../../bd/design_2/ipshared/6cde/hdl/axis_stream_fifo_v1_0.v" \
+  "../../../bd/design_2/ipshared/a48d/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
+  "../../../bd/design_2/ipshared/a48d/hdl/axis_stream_fifo_v1_0.v" \
   "../../../bd/design_2/ip/design_2_RxFIFO_0/sim/design_2_RxFIFO_0.v" \
   "../../../bd/design_2/ip/design_2_TxFIFO_0/sim/design_2_TxFIFO_0.v" \
-  "../../../bd/design_2/ipshared/6add/hdl/BiDirChannels_v1_0_S00_AXI.v" \
-  "../../../bd/design_2/ipshared/6add/hdl/BiDirChannels_v1_0.v" \
+  "../../../bd/design_2/ipshared/46df/hdl/BiDirChannels_v1_0_S00_AXI.v" \
+  "../../../bd/design_2/ipshared/46df/hdl/BiDirChannels_v1_0.v" \
   "../../../bd/design_2/ip/design_2_BiDirChannels_0_0/sim/design_2_BiDirChannels_0_0.v" \
 -endlib
 -makelib xcelium_lib/generic_baseblocks_v2_1_0 \
