@@ -1028,11 +1028,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 30 05:08:22 UTC 2019</spirit:value>
+            <spirit:value>Sat Jun 01 02:57:39 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:2dccbd55</spirit:value>
+            <spirit:value>8:3a3f2279</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1048,11 +1048,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 30 05:08:22 UTC 2019</spirit:value>
+            <spirit:value>Sat Jun 01 02:57:39 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:2dccbd55</spirit:value>
+            <spirit:value>8:3a3f2279</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1068,11 +1068,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 30 05:08:22 UTC 2019</spirit:value>
+            <spirit:value>Sat Jun 01 02:57:39 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:12384798</spirit:value>
+            <spirit:value>8:81c41cef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1088,11 +1088,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 30 05:08:22 UTC 2019</spirit:value>
+            <spirit:value>Sat Jun 01 02:57:39 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:12384798</spirit:value>
+            <spirit:value>8:81c41cef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1106,11 +1106,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu May 30 05:11:06 UTC 2019</spirit:value>
+            <spirit:value>Sat Jun 01 03:00:42 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:2dccbd55</spirit:value>
+            <spirit:value>8:3a3f2279</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1669,11 +1669,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/a48d/hdl/axis_stream_fifo_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/c0a2/hdl/axis_stream_fifo_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a48d/hdl/axis_stream_fifo_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/c0a2/hdl/axis_stream_fifo_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1688,11 +1688,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/a48d/hdl/axis_stream_fifo_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/c0a2/hdl/axis_stream_fifo_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/a48d/hdl/axis_stream_fifo_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/c0a2/hdl/axis_stream_fifo_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1811,7 +1811,7 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>axis_stream_fifo_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>18</xilinx:coreRevision>
+      <xilinx:coreRevision>22</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:user:axis_stream_fifo:1.0_ARCHIVE_LOCATION">c:/Docs/ip_repo/axis_stream_fifo_1.0</xilinx:tag>
       </xilinx:tags>

@@ -93,7 +93,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN		0x100
+#define MAX_PKT_LEN		0x400
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -1741,7 +1741,7 @@ int main() {
 
     // clear SPI registers
     initSPI();
-    setSPIClockDivision(1);
+    setSPIClockDivision(5);
     readSPIStatus();
 
     // set interrupt_0/1 of AXI PL interrupt generator to 0
@@ -1834,7 +1834,16 @@ int main() {
 
     // --- loopback mode, POL = 0, in and out channels = 00
     //setGyroChannelConfiguration(0x01000000);
-    setGyroChannelConfiguration(0x0030000); // bit 17:16 is to divide clock by 2/4/8.
+
+    setGyroChannelConfiguration(0x00030000);
+
+    // bit 17:16 is to divide clock by 2/4/8.
+
+    // bits 13:12 are to select the packet size.
+    //  00 is 32 samples  (16 words)
+    //  01 is 64 samples  (32 words)
+    //  10 is 128 samples (64 words)
+    //  11 is 512 samples (256 words)
     setGyroChannelControl(0x00000000);
 
     xil_printf(" - after initialization ==\n\r");

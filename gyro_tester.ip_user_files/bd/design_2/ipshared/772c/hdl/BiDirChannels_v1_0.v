@@ -369,7 +369,21 @@ module GyroChannelDebugger(
   
 endmodule
 
+module packet_size_logic(
+  input [7:0] count,
+  output size0,
+  output size1,
+  output size2,
+  output size3
+);
 
+ assign size0 = (count[0] & count[1] & count[2] & count[3]);
+ assign size1 = (count[0] & count[1] & count[2] & count[3] & count[4]);
+ assign size2 = (count[0] & count[1] & count[2] & count[3] & count[4] & count[5]);
+ assign size3 = (count[0] & count[1] & count[2] & count[3] & count[4] & count[5] & count[6] & count[7]);
+
+
+endmodule
 // ----------------------------------------------------------------
 
 module GyroInputOutputSerializer (
@@ -380,6 +394,7 @@ module GyroInputOutputSerializer (
   input  out_start_stop,	// controls the out-bound channel
   input  [1:0] mode,		// 00: normal operation; 01: loopback
   input  [1:0] clock_div,   // 00: no division, 01: div by 2; 10: div by 4; 11: div by 8
+  input  [2:0] packet_sel,  // 
   input  [2:0] in_channel,
   input  [2:0] out_channel,
   input  HSCK_POL,		// 0: HSCK rest at 0, 1: HSCK rest at 1.
@@ -442,6 +457,13 @@ module GyroInputOutputSerializer (
   wire hs_data_out_1_int;
   wire hs_data_out_2_int;
   wire hs_data_out_3_int;
+  
+  wire size0_int;
+  wire size1_int;
+  wire size2_int;
+  wire size3_int;
+  
+  wire last_count_mux_int;
 
  upCounter3Bits CLk_DIV_CNTR(
       .clock(clock),
@@ -581,12 +603,28 @@ module GyroInputOutputSerializer (
       .debug_word_1(data_word_1)
     );
 
+ packet_size_logic PACKET_LOGIC(
+  .count(last_count_int),
+  .size0(size0_int),
+  .size1(size1_int),
+  .size2(size2_int),
+  .size3(size3_int)
+);
+
+mux_4x1_1bit PACKET_SIZE_MUX(
+   .in0(size0_int), 
+   .in1(size1_int),
+   .in2(size2_int),
+   .in3(size3_int),
+   .sel(packet_sel[1:0]),
+   .mux_out(last_count_mux_int)
+   );
+   
   assign HSCK           = (masked_hsck_int ^ HSCK_POL);
   assign HS_DATA_OUT    = hs_data_out_0_int;
   assign MCK            = clock_div_2;
 
-  assign rx_fifo_last_int = (last_count_int[0] & last_count_int[1] & last_count_int[2] & last_count_int[3] & last_count_int[4] & last_count_int[5]);
- // assign rx_fifo_last_int = (last_count_int[0] & last_count_int[1] & last_count_int[2] & last_count_int[3] & last_count_int[4] & last_count_int[5] & last_count_int[6] & last_count_int[7]);
+  assign rx_fifo_last_int = (last_count_int[0] & last_count_int[1] & last_count_int[2] & last_count_int[3] & last_count_int[4] & last_count_int[5] & last_count_int[6] & last_count_int[7]);
   assign tx_fifo_ready  = tx_fifo_ready_int;
   assign rx_fifo_valid  = rx_fifo_valid_int;
   assign rx_fifo_last   = rx_fifo_last_delayed;
@@ -747,6 +785,7 @@ endmodule
       .HSCK_POL(data_word_0[28]),
       .mode(data_word_0[25:24]),
       .clock_div(data_word_0[17:16]),
+      .packet_sel(data_word_0[14:12]),
       .in_channel(data_word_0[6:4]),
       .out_channel(data_word_0[2:0]),
       .in_start_stop(data_word_1[4]),

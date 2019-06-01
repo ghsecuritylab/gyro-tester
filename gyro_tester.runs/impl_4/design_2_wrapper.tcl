@@ -60,6 +60,7 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
@@ -120,7 +121,7 @@ set rc [catch {
   if { [llength [get_debug_cores -quiet] ] > 0 }  { 
     implement_debug_core 
   } 
-  place_design -directive RuntimeOptimized
+  place_design 
   write_checkpoint -force design_2_wrapper_placed.dcp
   create_report "impl_4_place_report_io_0" "report_io -file design_2_wrapper_io_placed.rpt"
   create_report "impl_4_place_report_utilization_0" "report_utilization -file design_2_wrapper_utilization_placed.rpt -pb design_2_wrapper_utilization_placed.pb"
