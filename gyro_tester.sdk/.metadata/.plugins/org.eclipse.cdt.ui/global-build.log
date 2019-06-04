@@ -76,3 +76,43 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+17:34:44 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:03:07 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:04:10 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:05:09 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:05:23 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:11:17 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:12:41 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:42:02 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.

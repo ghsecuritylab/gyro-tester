@@ -1028,11 +1028,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 01 03:23:20 UTC 2019</spirit:value>
+            <spirit:value>Tue Jun 04 00:20:26 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:48a4adb2</spirit:value>
+            <spirit:value>8:62b9a3ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1048,11 +1048,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 01 03:23:20 UTC 2019</spirit:value>
+            <spirit:value>Tue Jun 04 00:20:26 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:48a4adb2</spirit:value>
+            <spirit:value>8:62b9a3ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1068,11 +1068,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 01 03:23:20 UTC 2019</spirit:value>
+            <spirit:value>Tue Jun 04 00:20:26 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:6ce8a9ce</spirit:value>
+            <spirit:value>8:5eda4f92</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1088,11 +1088,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 01 03:23:20 UTC 2019</spirit:value>
+            <spirit:value>Tue Jun 04 00:20:26 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:6ce8a9ce</spirit:value>
+            <spirit:value>8:5eda4f92</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1106,11 +1106,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 01 03:26:16 UTC 2019</spirit:value>
+            <spirit:value>Tue Jun 04 00:21:59 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:48a4adb2</spirit:value>
+            <spirit:value>8:62b9a3ed</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1742,11 +1742,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/772c/hdl/BiDirChannels_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/1511/hdl/BiDirChannels_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/772c/hdl/BiDirChannels_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/1511/hdl/BiDirChannels_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1761,11 +1761,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/772c/hdl/BiDirChannels_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/1511/hdl/BiDirChannels_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/772c/hdl/BiDirChannels_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/1511/hdl/BiDirChannels_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1906,7 +1906,7 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>BiDirChannels_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>86</xilinx:coreRevision>
+      <xilinx:coreRevision>88</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:user:BiDirChannels:1.0_ARCHIVE_LOCATION">c:/Docs/ip_repo/BiDirChannels_1.0</xilinx:tag>
       </xilinx:tags>
@@ -1967,7 +1967,7 @@
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="f5a65f82"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d337f968"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bfadf860"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="bedf8859"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="3698c1f1"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="7087568e"/>

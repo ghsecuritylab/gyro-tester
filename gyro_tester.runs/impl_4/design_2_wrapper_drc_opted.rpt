@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Fri May 31 20:30:54 2019
+| Date         : Mon Jun  3 18:31:33 2019
 | Host         : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 | Command      : report_drc -file design_2_wrapper_drc_opted.rpt -pb design_2_wrapper_drc_opted.pb -rpx design_2_wrapper_drc_opted.rpx
 | Design       : design_2_wrapper
@@ -24,12 +24,12 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 31
+             Violations found: 30
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CHECK-3     | Warning  | Report rule limit reached                                   | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 8          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 7          |
 | REQP-1839   | Warning  | RAMB36 async control check                                  | 20         |
 | REQP-181    | Advisory | writefirst                                                  | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
@@ -50,7 +50,7 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff0/Q_i_1 is driving clock pin of 8 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff0/Q_i_1__0 is driving clock pin of 8 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR2/r_reg_reg[0] {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR2/r_reg_reg[1] {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR2/r_reg_reg[2] {FDCE}
@@ -64,7 +64,7 @@ Related violations: <none>
 
 PLHOLDVIO-2#3 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff1/Q_i_1__1 is driving clock pin of 8 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff1/Q_i_1__2 is driving clock pin of 8 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR0/r_reg_reg[0] {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR0/r_reg_reg[1] {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR0/r_reg_reg[2] {FDCE}
@@ -78,28 +78,13 @@ Related violations: <none>
 
 PLHOLDVIO-2#4 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/Q_i_1__0 is driving clock pin of 2 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/Q_i_1__1 is driving clock pin of 2 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff0/Q_reg {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff1/Q_reg {FDCE}
 
 Related violations: <none>
 
 PLHOLDVIO-2#5 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[31]_i_1 is driving clock pin of 32 cells. This could lead to large hold time violations. First few involved cells are:
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[0] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[10] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[11] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[12] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[13] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[14] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[15] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[16] {FDCE}
-    design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[17] {FDCE}
-
-Related violations: <none>
-
-PLHOLDVIO-2#6 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2 is driving clock pin of 64 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_P {FDPE}
@@ -114,7 +99,7 @@ A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2 is driving clo
 
 Related violations: <none>
 
-PLHOLDVIO-2#7 Warning
+PLHOLDVIO-2#6 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/X0/X1/s00_axis_tready_INST_0 is driving clock pin of 8 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR1/r_reg_reg[0] {FDCE}
@@ -128,7 +113,7 @@ A LUT design_2_i/BiDirChannels_0/inst/X1/X0/X1/s00_axis_tready_INST_0 is driving
 
 Related violations: <none>
 
-PLHOLDVIO-2#8 Warning
+PLHOLDVIO-2#7 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/X1/X1/m00_axis_tvalid_INST_0 is driving clock pin of 16 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/DBG/CNTR3/r_reg_reg[0] {FDCE}
@@ -235,12 +220,12 @@ Related violations: <none>
 
 REQP-1839#19 Warning
 RAMB36 async control check  
-The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff0/Q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#20 Warning
 RAMB36 async control check  
-The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-181#1 Advisory
