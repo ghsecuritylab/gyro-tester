@@ -49,6 +49,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_READ_REGISTER			0x41	// read 16-bit contents of gyro ic register
 #define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
 #define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
+#define CMD_PROG_OTP_VBG_TRIM		0x82	// program the bandgap trim value into OTP memory
 #define CMD_READ_PACKETS			0x45	// read packet data
 
 
@@ -93,7 +94,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN		0x400
+#define MAX_PKT_LEN		0x100
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -199,6 +200,7 @@ void SetTimerDuration(XInterval interval, u8 prescalar);
 static void DelayTimerInterruptHandler(void *CallBackRef);
 static Xuint8 ProgramOTP(u32 otp32BitValue);
 static Xuint8 ProgramOTP_chipID(u32 id);
+Xuint8 ProgramOTP_VbgTrim(u8 trimVal);
 static u32 readOTP32bits(void);
 /************************** Variable Definitions *****************************/
 /*
@@ -908,6 +910,53 @@ static int CheckData(int debug_mode)
 	return XST_SUCCESS;
 }
 
+
+static int getDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
+{
+	XAxiDma_BdRing *TxRingPtr;
+	XAxiDma_BdRing *RxRingPtr;
+	XAxiDma_Bd *BdPtr;
+	int ProcessedBdCount;
+	int FreeBdCount;
+	int Status;
+
+	RxRingPtr = XAxiDma_GetRxRing(AxiDmaInstPtr);
+
+
+	/* Wait until the data has been received by the Rx channel */
+	while ((ProcessedBdCount = XAxiDma_BdRingFromHw(RxRingPtr,
+						       XAXIDMA_ALL_BDS, &BdPtr)) == 0) {
+	}
+
+	/* Free all processed RX BDs for future transmission */
+	Status = XAxiDma_BdRingFree(RxRingPtr, ProcessedBdCount, BdPtr);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Failed to free %d rx BDs %d\r\n",
+		    ProcessedBdCount, Status);
+		return XST_FAILURE;
+	}
+
+	/* Return processed BDs to RX channel so we are ready to receive new
+	 * packets:
+	 *    - Allocate all free RX BDs
+	 *    - Pass the BDs to RX channel
+	 */
+	FreeBdCount = XAxiDma_BdRingGetFreeCnt(RxRingPtr);
+	Status = XAxiDma_BdRingAlloc(RxRingPtr, FreeBdCount, &BdPtr);
+	if (Status != XST_SUCCESS) {
+		xil_printf("bd alloc failed\r\n");
+		return XST_FAILURE;
+	}
+
+	Status = XAxiDma_BdRingToHw(RxRingPtr, FreeBdCount, BdPtr);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Submit %d rx BDs failed %d\r\n", FreeBdCount, Status);
+		return XST_FAILURE;
+	}
+
+	return XST_SUCCESS;
+}
+
 /*****************************************************************************/
 /**
 *
@@ -985,6 +1034,104 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip_tx)
 	}
 
 	return XST_SUCCESS;
+}
+
+
+// --------------------------------------------------------------------------
+int DMA_receive(int num_packets){
+	int Status, i;
+	XAxiDma_Config *Config;
+
+//#if defined(XPAR_UARTNS550_0_BASEADDR)
+//	Uart550_Setup();
+//#endif
+
+
+#ifdef __aarch64__
+	Xil_SetTlbAttributes(TX_BD_SPACE_BASE, MARK_UNCACHEABLE);
+	Xil_SetTlbAttributes(RX_BD_SPACE_BASE, MARK_UNCACHEABLE);
+#endif
+
+	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
+	if (!Config) {
+		xil_printf(" *** Error: No config found for %d\r\n", DMA_DEV_ID);
+		return XST_FAILURE;
+	}
+
+	/* Initialize DMA engine */
+	Status = XAxiDma_CfgInitialize(&AxiDma, Config);
+	if (Status != XST_SUCCESS) {
+	   return XST_FAILURE;
+	}
+
+	if(!XAxiDma_HasSg(&AxiDma)) {
+	   return XST_FAILURE;
+	}
+
+	Status = RxSetup(&AxiDma);
+	if (Status != XST_SUCCESS) {
+	   return XST_FAILURE;
+	}
+
+	for(i = 0; i < num_packets; i++){
+
+	  Status = getDMApacket(&AxiDma, 0);
+	  if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	  }
+
+	}
+
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	return XST_SUCCESS;
+}
+
+// June 5, 2019
+// this function reset the FIFO, sets the packet size
+// and receives 1 packet of data by activating
+// the input channel.
+// The argument dictates the packet size in number of
+// samples.
+// The clock of the channel is now set to be the maximum
+// frequency.
+
+void acquireSamples(int packet_size){
+
+	// reseting the FIFO and the CHannels
+	resetGyroTxFIFO();
+	resetGyroRxFIFO();
+
+	  setGyroChannelConfiguration(0x80000000);
+	  setGyroChannelConfiguration(0x00000000);
+
+// bit 17:16 is to divide clock by 2/4/8.
+if(packet_size == 64)
+  setGyroChannelConfiguration(0x00000000);
+if(packet_size == 128)
+  setGyroChannelConfiguration(0x00001000);
+if(packet_size == 256)
+  setGyroChannelConfiguration(0x00002000);
+if(packet_size == 512)
+  setGyroChannelConfiguration(0x00003000);
+if(packet_size == 1024)
+  setGyroChannelConfiguration(0x00004000);
+if(packet_size == 2048)
+  setGyroChannelConfiguration(0x00005000);
+if(packet_size == 4096)
+  setGyroChannelConfiguration(0x00006000);
+if(packet_size == 8192)
+  setGyroChannelConfiguration(0x00007000);
+
+setGyroChannelControl(0x00000000);
+
+// activate the output and the input shift registers
+setGyroChannelControl(0x00000010);
+DMA_receive(1);
+setGyroChannelControl(0x00000000);
+
 }
 
 // -------------------------------------------------------------------
@@ -1349,6 +1496,15 @@ void read_uart_bytes(void)
 				(UartRxData[2]<<8) | UartRxData[3]));
 			break;
 
+		case (CMD_PROG_OTP_VBG_TRIM):
+			//verify 1 byte for trim value received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+		send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
+			break;
+
 	}
 
 }
@@ -1577,9 +1733,6 @@ Xuint8 ProgramOTP_chipID(u32 id)
 {
 	u32 otp32register;
 
-	//mask bits 25-31 if set in chip id
-
-
 	//shift ID over to bits 31:8 of the 32 bit OTP register
 	otp32register = id << 8;
 	return ProgramOTP(otp32register);
@@ -1589,10 +1742,22 @@ Xuint8 ProgramOTP_chipID(u32 id)
 
 
 //------------------------------------------------------------
+Xuint8 ProgramOTP_VbgTrim(u8 trimVal)
+{
+	//mask bits 5-31 if set in trimVal
+	trimVal &= 0x1F;
+
+	return ProgramOTP((u32)trimVal);
+}
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
 Xuint8 ProgramOTP(u32 otp32ProgramValue)
 {
 	int i;
-	Xuint8 numReadErrors = 0;
+	Xuint8 readbackErrorCode = 0;
 	u32 x = 1;
 //	u16 reg3originalValue,regReadResult;
 //	u32 otpReadResult;
@@ -1659,22 +1824,22 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 	writeSPI_non_blocking_orig(2,0x0007);		//READ=1,BANK=1,RSWEN=1
 
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x01;
 
 	//set fuse block in read mode (low current)
 	writeSPI_non_blocking_orig(2,0x0047);		//BIASL=1,READ=1,BANK=1,RSWEN=1
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x02;
 
 	//set fuse block in read mode (high current)
 	writeSPI_non_blocking_orig(2,0x000F);		//BIASH=1,READ=1,BANK=1,RSWEN=1
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) numReadErrors++;
+	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x04;
 
 	//clear all bits in the OTP programming register
 	writeSPI_non_blocking_orig(2,0x0000);
 
-	return numReadErrors;
+	return readbackErrorCode;
 }
 //------------------------------------------------------------
 
@@ -1717,7 +1882,7 @@ int main() {
 //    unsigned int readVal, writeVal;
 
     xil_printf("\n\r=====================\n\r");
-    xil_printf("== START version 26 ==\n\r");
+    xil_printf("== START version 27 ==\n\r");
     // set interrupt_0/1 of AXI PL interrupt generator to 0
 
     *(baseaddr_p+0) = 0x00000000;
@@ -1741,7 +1906,7 @@ int main() {
 
     // clear SPI registers
     initSPI();
-    setSPIClockDivision(5);
+    setSPIClockDivision(1); // needs to be 1 , 2 or 3
     readSPIStatus();
 
     // set interrupt_0/1 of AXI PL interrupt generator to 0
@@ -1829,21 +1994,21 @@ int main() {
 
     //configure ADC0, ADC1 here via spi
 
-
-
-
     // --- loopback mode, POL = 0, in and out channels = 00
     //setGyroChannelConfiguration(0x01000000);
 
-    setGyroChannelConfiguration(0x00030000);
-
     // bit 17:16 is to divide clock by 2/4/8.
+    setGyroChannelConfiguration(0x00003000);
 
-    // bits 13:12 are to select the packet size.
-    //  00 is 32 samples  (16 words)
-    //  01 is 64 samples  (32 words)
-    //  10 is 128 samples (64 words)
-    //  11 is 512 samples (256 words)
+    // bits 14:12 are to select the packet size.
+    //  000 is 64 samples  (32 words)
+    //  001 is 128 samples  (64 words)
+    //  010 is 256 samples (128 words)
+    //  011 is 512 samples (256 words)
+    //  100 is 1024 samples  (512 words)
+    //  101 is 2048 samples  (1024 words)
+    //  110 is 4096 samples (2048 words)
+    //  111 is 8192 samples (4096 words)
     setGyroChannelControl(0x00000000);
 
     xil_printf(" - after initialization ==\n\r");
@@ -1871,8 +2036,14 @@ int main() {
     xil_printf("== STOP ==\n\r");
     xil_printf("=====================\n\n\r");
 
+/*
 
 
+xil_printf("== START 2  ==\n\r");
+    acquireSamples(MAX_PKT_LEN);
+xil_printf("== STOP 2  ==\n\r");
+
+*/
 
 
     //#################################################################
