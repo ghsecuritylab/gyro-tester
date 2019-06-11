@@ -51,6 +51,10 @@ extern void xil_printf(const char *format, ...);
 #define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
 #define CMD_PROG_OTP_VBG_TRIM		0x82	// program the bandgap trim value into OTP memory
 #define CMD_READ_PACKETS			0x45	// read packet data
+#define CMD_CAL_ADC0 				0x90	// perform calibration on ADC0
+#define CMD_CAL_ADC1  				0x91	// perform calibration on ADC1
+#define CMD_READ_ADC0_CAL 			0x92	// read/transmit calibration values for ADC0
+#define CMD_READ_ADC1_CAL 			0x93	// read/transmit calibration values for ADC1
 
 
 
@@ -140,6 +144,8 @@ XUartPs UartPs;							// Instance of the UART Device
 static u8 UartRxData[RX_BUFFER_SIZE];	// Buffer for Receiving Data
 static u8 UartTxData[TX_BUFFER_SIZE];	// Buffer for Transmitting Data
 
+u16 ADC_calData[8];			// store ADC cal data read from chip before transmit
+
 
 void isr0 (void *intc_inst_ptr);
 void isr1 (void *intc_inst_ptr);
@@ -193,7 +199,7 @@ static int 	SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 static void read_uart_bytes(void);
 static unsigned int get_num_data_points(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
-static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+static void send_data_over_UART(unsigned int num_points_to_send, u8 *dataArray);
 static void send_byte_over_UART(Xuint8 byteToSend);
 static int InitializeDelayTimer(void);
 void SetTimerDuration(XInterval interval, u8 prescalar);
@@ -202,6 +208,10 @@ static Xuint8 ProgramOTP(u32 otp32BitValue);
 static Xuint8 ProgramOTP_chipID(u32 id);
 Xuint8 ProgramOTP_VbgTrim(u8 trimVal);
 static u32 readOTP32bits(void);
+void run_ADC0_calibration(void);
+void run_ADC1_calibration(void);
+void read_ADC0_cal_data(void);
+void read_ADC1_cal_data(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -1451,7 +1461,7 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_READ_PACKETS):
-		send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+		send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
 			break;
 
 		case (CMD_LOAD_SAWTOOTH_UP_DATA):
@@ -1472,7 +1482,6 @@ void read_uart_bytes(void)
 			readSPI(&regData,regAddr);
 			char *c = (char*)&regData;
 			xil_printf("%c%c",*(c+1),*c); //send high byte first
-			//xil_printf("%04x",regData);
 			break;
 
 		case (CMD_WRITE_REGISTER):
@@ -1505,7 +1514,258 @@ void read_uart_bytes(void)
 		send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
 			break;
 
+		case (CMD_CAL_ADC0):
+			run_ADC0_calibration();
+			break;
+
+		case (CMD_CAL_ADC1):
+			run_ADC1_calibration();
+			break;
+
+		case (CMD_READ_ADC0_CAL):
+			read_ADC0_cal_data();
+
+			//8 16-bit cal values so send 16 bytes
+			send_data_over_UART(16,(u8*)ADC_calData);
+			break;
+
+		case (CMD_READ_ADC1_CAL):
+			read_ADC1_cal_data();
+
+			//8 16-bit cal values so send 16 bytes
+			send_data_over_UART(16,(u8*)ADC_calData);
+			break;
+
 	}
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void run_ADC0_calibration(void)
+{
+	unsigned int reg0,reg4,reg5,reg6,reg7,reg0_RO;
+	unsigned int newReg4val = 0;
+	unsigned int newReg6val = 0;
+	u8	reg4changed = 0;
+	u8  reg5changed = 0;
+	u8  reg7changed = 0;
+
+	//read all necessary registers here
+	readSPI(&reg4,4);
+	readSPI(&reg5,5);
+	readSPI(&reg6,6);
+	readSPI(&reg7,7);
+
+	//ensure ADC0_TEST_SEL is set to normal operation
+	if (reg7 & 0xC000)
+	{
+		reg7changed = 1;
+		writeSPI_non_blocking(7,0x00);
+	}
+
+	//ensure a TIIA_VGSW bit is set, in reg4[7:4]
+	if (!(reg4 & 0x00F0))
+	{
+		reg4changed = 1;
+		newReg4val = reg4 | 0xF0;
+	}
+
+	//ensure TIIA is enabled, reg4 bit0
+	if (!(reg4 & 0x0001))
+	{
+		reg4changed = 1;
+		newReg4val = newReg4val | 0x1;
+	}
+
+	//change reg 4 if needed
+	if (reg4changed) writeSPI_non_blocking(4,newReg4val);
+
+	//ensure VGA is enabled, reg5 bit0
+	if (!(reg5 & 0x1))
+	{
+		reg5changed = 1;
+		writeSPI_non_blocking(5,reg5|0x1);
+	}
+
+	//ensure ADC0 is enabled, reg6 bit1
+	if (!(reg6 & 0x2))
+	{
+		newReg6val = reg6|0x2;
+		writeSPI_non_blocking(6,newReg6val);
+	}
+
+	//if ADC0 cal bit is on turn it off, reg6 bit2
+	if (reg6 & 0x4)
+	{
+		newReg6val &= 0xFFFB;
+		writeSPI_non_blocking(6,newReg6val);
+	}
+
+	//to run cal turn on reg6 bit2
+	writeSPI_non_blocking(6,newReg6val|0x4);
+
+	//set reg0 readback mode to read-only to see when cal is done
+	readSPI(&reg0,0);
+	writeSPI_non_blocking(0,reg0|0x200);
+
+	//store reg0 read-only data for initial while loop test
+	readSPI(&reg0_RO,0);
+
+	//wait until cal is done, reg0 readback mode bit0=0 during cal
+	while (!reg0_RO & 0x1)
+	{
+		readSPI(&reg0_RO,0);
+	}
+
+	//restore register 6 with calibration bit off
+	writeSPI_non_blocking(6,reg6&0xFFFB);
+
+	//restore registers 4,5,7
+	if (reg4changed) writeSPI_non_blocking(4,reg4);
+	if (reg5changed) writeSPI_non_blocking(5,reg5);
+	if (reg7changed) writeSPI_non_blocking(7,reg7);
+
+	//register 0 back into normal readback mode
+	writeSPI_non_blocking(0,reg0&0xFDFF);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void run_ADC1_calibration(void)
+{
+	unsigned int reg0,reg8,reg9,reg10,reg11,reg0_RO;
+	unsigned int newreg8val = 0;
+	unsigned int newreg10val = 0;
+	u8	reg8changed = 0;
+	u8  reg9changed = 0;
+	u8  reg11changed = 0;
+
+	//read all necessary registers here
+	readSPI(&reg8,8);
+	readSPI(&reg9,9);
+	readSPI(&reg10,10);
+	readSPI(&reg11,11);
+
+	//ensure ADC1_TEST_SEL is set to normal operation
+	if (reg11 & 0xC000)
+	{
+		reg11changed = 1;
+		writeSPI_non_blocking(11,0x00);
+	}
+
+	//ensure a TIIA_VGSW bit is set, in reg8[7:4]
+	if (!(reg8 & 0x00F0))
+	{
+		reg8changed = 1;
+		newreg8val = reg8 | 0xF0;
+	}
+
+	//ensure TIIA is enabled, reg8 bit0
+	if (!(reg8 & 0x0001))
+	{
+		reg8changed = 1;
+		newreg8val = newreg8val | 0x1;
+	}
+
+	//change reg8 if needed
+	if (reg8changed) writeSPI_non_blocking(8,newreg8val);
+
+	//ensure VGA is enabled, reg9 bit0
+	if (!(reg9 & 0x1))
+	{
+		reg9changed = 1;
+		writeSPI_non_blocking(9,reg9|0x1);
+	}
+
+	//ensure ADC1 is enabled, reg10 bit1
+	if (!(reg10 & 0x2))
+	{
+		newreg10val = reg10|0x2;
+		writeSPI_non_blocking(10,newreg10val);
+	}
+
+	//if ADC1 cal bit is on turn it off, reg10 bit2
+	if (reg10 & 0x4)
+	{
+		newreg10val &= 0xFFFB;
+		writeSPI_non_blocking(10,newreg10val);
+	}
+
+	//to run cal turn on reg10 bit2
+	writeSPI_non_blocking(10,newreg10val|0x4);
+
+	//set reg0 readback mode to read-only to see when cal is done
+	readSPI(&reg0,0);
+	writeSPI_non_blocking(0,reg0|0x400);
+
+	//store reg0 read-only data for initial while loop test
+	readSPI(&reg0_RO,0);
+
+	//wait until cal is done, reg0 readback mode bit2=0 during cal
+	while (!reg0_RO & 0x4)
+	{
+		readSPI(&reg0_RO,0);
+	}
+
+	//register 0 back into normal readback mode
+	writeSPI_non_blocking(0,reg0&0xFBFF);
+
+	//restore register 10 with calibration bit off
+	writeSPI_non_blocking(10,reg10&0xFFFB);
+
+	//restore registers 8,9,11
+	if (reg8changed) writeSPI_non_blocking(8,reg8);
+	if (reg9changed) writeSPI_non_blocking(9,reg9);
+	if (reg11changed) writeSPI_non_blocking(11,reg11);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void read_ADC0_cal_data(void)
+{
+	unsigned int reg6,i;
+	unsigned int firstCalRegisterAddress = 32;
+
+	//store original register 6 setting
+	readSPI(&reg6,6);
+
+	//set register 6 readback mode to read-only
+	writeSPI_non_blocking(6,reg6|0xFF00);
+
+	for (i=0;i<8;i++)
+	{
+		readSPI((unsigned int*)&ADC_calData[i],firstCalRegisterAddress+i);
+	}
+
+	//set register 6 readback mode back to normal
+	writeSPI_non_blocking(6,reg6&0x00FF);
+
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void read_ADC1_cal_data(void)
+{
+	unsigned int reg10,i;
+	unsigned int firstCalRegisterAddress = 40;
+
+	//store original register 10 setting
+	readSPI(&reg10,10);
+
+	//set register 6 readback mode to read-only
+	writeSPI_non_blocking(10,reg10|0xFF00);
+
+	for (i=0;i<8;i++)
+	{
+		readSPI((unsigned int*)&ADC_calData[i],firstCalRegisterAddress+i);
+	}
+
+	//set register 10 readback mode back to normal
+	writeSPI_non_blocking(10,reg10&0x00FF);
 
 }
 //------------------------------------------------------------
@@ -1591,17 +1851,17 @@ void send_Tx_data_over_UART(unsigned int num_points_to_send)
 
 
 //------------------------------------------------------------
-void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData)
+void send_data_over_UART(unsigned int num_bytes_to_send, u8 *dataArray)
 {
 	int i;
 	// send the data array to the transmit buffer as space is available
-	for (i = 0; i < num_points_to_send; i++) {
+	for (i = 0; i < num_bytes_to_send; i++) {
 		/* Wait until there is space in TX FIFO */
 		 while (XUartPs_IsTransmitFull(XPAR_XUARTPS_0_BASEADDR));
 
 		/* Write the byte into the TX FIFO */
 		XUartPs_WriteReg(XPAR_XUARTPS_0_BASEADDR, XUARTPS_FIFO_OFFSET,
-				packetData[i]);
+				dataArray[i]);
 	}
 }
 //------------------------------------------------------------
@@ -1759,8 +2019,9 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 	int i;
 	Xuint8 readbackErrorCode = 0;
 	u32 x = 1;
-//	u16 reg3originalValue,regReadResult;
-//	u32 otpReadResult;
+	u32 otp32TestValue;
+
+	otp32TestValue = readOTP32bits() | otp32ProgramValue;
 
 	// setup the timer for 25usec delay to use later
 	SetTimerDuration(2500, 1);
@@ -1802,7 +2063,7 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 			XTtcPs_Start(&DelayTimer);
 			while(timerRunning);*/
 			// delay above was not needed because delay
-			// between spi register transfers is ~25usec
+			// between spi register write completions is ~25usec
 
 			writeSPI_non_blocking_orig(2,0x7000);	//SHORTEN=1,IZAPEN=1,WE=1
 			writeSPI_non_blocking_orig(2,0x6000);	//SHORTEN=1,IZAPEN=1,WE=0
@@ -1824,17 +2085,17 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 	writeSPI_non_blocking_orig(2,0x0007);		//READ=1,BANK=1,RSWEN=1
 
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x01;
+	if (otp32TestValue != readOTP32bits()) readbackErrorCode |= 0x01;
 
 	//set fuse block in read mode (low current)
 	writeSPI_non_blocking_orig(2,0x0047);		//BIASL=1,READ=1,BANK=1,RSWEN=1
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x02;
+	if (otp32TestValue != readOTP32bits()) readbackErrorCode |= 0x02;
 
 	//set fuse block in read mode (high current)
 	writeSPI_non_blocking_orig(2,0x000F);		//BIASH=1,READ=1,BANK=1,RSWEN=1
 	//test for correct value in NVM register
-	if (otp32ProgramValue != readOTP32bits()) readbackErrorCode |= 0x04;
+	if (otp32TestValue != readOTP32bits()) readbackErrorCode |= 0x04;
 
 	//clear all bits in the OTP programming register
 	writeSPI_non_blocking_orig(2,0x0000);

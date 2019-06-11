@@ -627,3 +627,1141 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+23:48:35 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:50:38 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:10:35 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:14:12 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:15:30 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:21:50 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:32:54 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:33:32 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:36:06 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:36:33 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:37:39 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:25:50 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:30:42 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:42:49 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:44:02 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:46:39 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:49:24 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:56:46 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:03:28 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:81:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:884:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:916:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1454:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:196:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:171:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:313:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  59640	   3936	  26728	  90304	  160c0	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:05:05 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+22:46:03 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:889:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:921:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1459:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:200:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1512:9: error: 'CAL_ADC0' undeclared (first use in this function); did you mean 'CMD_CAL_ADC0'?
+   case (CAL_ADC0):
+         ^~~~~~~~
+         CMD_CAL_ADC0
+../src/helloworld.c:1512:9: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c:1521:0: warning: "CMD_READ_ADC1_CAL" redefined
+  #define CMD_READ_ADC1_CAL
+ 
+../src/helloworld.c:57:0: note: this is the location of the previous definition
+ #define CMD_READ_ADC1_CAL    0x93 // read/transmit calibration values for ADC1
+ 
+../src/helloworld.c:1518:7: warning: statement with no effect [-Wunused-value]
+       0x90 // perform calibration on ADC0
+       ^~~~
+../src/helloworld.c:1522:1: error: expected ';' before '}' token
+ }
+ ^
+../src/helloworld.c: In function 'run_ADC0_calibration':
+../src/helloworld.c:1582:2: error: too few arguments to function 'readSPI'
+  readSPI(&reg0_RO);
+  ^~~~~~~
+../src/helloworld.c:420:5: note: declared here
+ int readSPI(unsigned int *data, unsigned int address){
+     ^~~~~~~
+../src/helloworld.c:1587:3: error: too few arguments to function 'readSPI'
+   readSPI(&reg0_RO);
+   ^~~~~~~
+../src/helloworld.c:420:5: note: declared here
+ int readSPI(unsigned int *data, unsigned int address){
+     ^~~~~~~
+../src/helloworld.c:1533:5: warning: variable 'reg6changed' set but not used [-Wunused-but-set-variable]
+  u8 reg6changed = 0;
+     ^~~~~~~~~~~
+../src/helloworld.c:1530:37: warning: unused variable 'newReg6val' [-Wunused-variable]
+  unsigned int newReg4val,newReg5val,newReg6val;
+                                     ^~~~~~~~~~
+../src/helloworld.c:1530:26: warning: unused variable 'newReg5val' [-Wunused-variable]
+  unsigned int newReg4val,newReg5val,newReg6val;
+                          ^~~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:318:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+22:49:25 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:889:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:921:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1459:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:200:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1512:9: error: 'CAL_ADC0' undeclared (first use in this function); did you mean 'CMD_CAL_ADC0'?
+   case (CAL_ADC0):
+         ^~~~~~~~
+         CMD_CAL_ADC0
+../src/helloworld.c:1512:9: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c:1521:0: warning: "CMD_READ_ADC1_CAL" redefined
+  #define CMD_READ_ADC1_CAL
+ 
+../src/helloworld.c:57:0: note: this is the location of the previous definition
+ #define CMD_READ_ADC1_CAL    0x93 // read/transmit calibration values for ADC1
+ 
+../src/helloworld.c:1518:7: warning: statement with no effect [-Wunused-value]
+       0x90 // perform calibration on ADC0
+       ^~~~
+../src/helloworld.c:1522:1: error: expected ';' before '}' token
+ }
+ ^
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:318:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+22:52:01 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:889:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:921:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1459:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:200:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1512:9: error: 'CAL_ADC0' undeclared (first use in this function); did you mean 'CMD_CAL_ADC0'?
+   case (CAL_ADC0):
+         ^~~~~~~~
+         CMD_CAL_ADC0
+../src/helloworld.c:1512:9: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c:1516:9: error: 'CAL_ADC1' undeclared (first use in this function); did you mean 'CAL_ADC0'?
+   case (CAL_ADC1):
+         ^~~~~~~~
+         CAL_ADC0
+../src/helloworld.c:1517:4: warning: implicit declaration of function 'run_ADC1_calibration'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    run_ADC1_calibration();
+    ^~~~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c:1521:4: warning: implicit declaration of function 'read_ADC0_cal_data'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    read_ADC0_cal_data();
+    ^~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c:1525:4: warning: implicit declaration of function 'read_ADC1_cal_data'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    read_ADC1_cal_data();
+    ^~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:318:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+22:52:29 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:889:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:921:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_uart_bytes':
+../src/helloworld.c:1459:62: warning: passing argument 2 of 'send_packet_data_over_UART' from incompatible pointer type [-Wincompatible-pointer-types]
+   send_packet_data_over_UART(get_num_data_points(UartRxData),outputDataBuffer);
+                                                              ^~~~~~~~~~~~~~~~
+../src/helloworld.c:200:13: note: expected 'u8 * {aka unsigned char *}' but argument is of type 'Xuint32 * {aka long unsigned int *}'
+ static void send_packet_data_over_UART(unsigned int num_points_to_send, u8 *packetData);
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:1517:4: warning: implicit declaration of function 'run_ADC1_calibration'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    run_ADC1_calibration();
+    ^~~~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c:1521:4: warning: implicit declaration of function 'read_ADC0_cal_data'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    read_ADC0_cal_data();
+    ^~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c:1525:4: warning: implicit declaration of function 'read_ADC1_cal_data'; did you mean 'run_ADC0_calibration'? [-Wimplicit-function-declaration]
+    read_ADC1_cal_data();
+    ^~~~~~~~~~~~~~~~~~
+    run_ADC0_calibration
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:318:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/helloworld.o: In function `read_uart_bytes':
+C:\Docs\gyro_tester\gyro_tester.sdk\axi4_gyro_test_0\Debug/../src/helloworld.c:1517: undefined reference to `run_ADC1_calibration'
+C:\Docs\gyro_tester\gyro_tester.sdk\axi4_gyro_test_0\Debug/../src/helloworld.c:1521: undefined reference to `read_ADC0_cal_data'
+C:\Docs\gyro_tester\gyro_tester.sdk\axi4_gyro_test_0\Debug/../src/helloworld.c:1525: undefined reference to `read_ADC1_cal_data'
+collect2.exe: error: ld returned 1 exit status
+make: *** [axi4_gyro_test_0.elf] Error 1
+23:13:29 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:892:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:924:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+In file included from ../../standalone_bsp_0/ps7_cortexa9_0/include/xuartps.h:190:0,
+                 from ../src/helloworld.c:7:
+../src/helloworld.c: In function 'send_bytes_over_UART':
+../src/helloworld.c:1752:7: error: 'byteToSend' undeclared (first use in this function); did you mean 'bytesToSend'?
+       byteToSend);
+       ^
+../../standalone_bsp_0/ps7_cortexa9_0/include/xuartps_hw.h:401:52: note: in definition of macro 'XUartPs_WriteReg'
+  Xil_Out32((BaseAddress) + (u32)(RegOffset), (u32)(RegisterValue))
+                                                    ^~~~~~~~~~~~~
+../src/helloworld.c:1752:7: note: each undeclared identifier is reported only once for each function it appears in
+       byteToSend);
+       ^
+../../standalone_bsp_0/ps7_cortexa9_0/include/xuartps_hw.h:401:52: note: in definition of macro 'XUartPs_WriteReg'
+  Xil_Out32((BaseAddress) + (u32)(RegOffset), (u32)(RegisterValue))
+                                                    ^~~~~~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:321:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+23:24:04 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:892:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:924:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:321:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60280	   3936	  26728	  90944	  16340	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+23:24:39 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:892:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:924:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:201:13: warning: 'send_byte_over_UART' used but never defined
+ static void send_byte_over_UART(Xuint8 byteToSend);
+             ^~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:321:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/helloworld.o: In function `read_uart_bytes':
+C:\Docs\gyro_tester\gyro_tester.sdk\axi4_gyro_test_0\Debug/../src/helloworld.c:1502: undefined reference to `send_byte_over_UART'
+C:\Docs\gyro_tester\gyro_tester.sdk\axi4_gyro_test_0\Debug/../src/helloworld.c:1512: undefined reference to `send_byte_over_UART'
+collect2.exe: error: ld returned 1 exit status
+make: *** [axi4_gyro_test_0.elf] Error 1
+23:25:15 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:892:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:924:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:175:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:321:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60280	   3936	  26728	  90944	  16340	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+23:26:17 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:27:31 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:45:56 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:23:51 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_ADC0_cal_data':
+../src/helloworld.c:1636:7: error: 'i' undeclared (first use in this function)
+  for (i=0;i<8;i++)
+       ^
+../src/helloworld.c:1636:7: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+00:24:26 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'read_ADC0_cal_data':
+../src/helloworld.c:1638:11: warning: passing argument 1 of 'readSPI' makes pointer from integer without a cast [-Wint-conversion]
+   readSPI(ADC_calData[i],firstCalRegisterAddress+i);
+           ^~~~~~~~~~~
+../src/helloworld.c:425:5: note: expected 'unsigned int *' but argument is of type 'unsigned int'
+ int readSPI(unsigned int *data, unsigned int address){
+     ^~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60472	   3936	  26760	  91168	  16420	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:25:39 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+02:52:22 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+03:12:50 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60472	   3936	  26760	  91168	  16420	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+03:29:16 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60472	   3936	  26744	  91152	  16410	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+03:29:28 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+04:14:31 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60600	   3936	  26744	  91280	  16490	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+04:14:55 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+04:35:35 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+04:56:37 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60600	   3936	  26744	  91280	  16490	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+04:56:56 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+05:26:29 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60664	   3936	  26744	  91344	  164d0	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+05:26:38 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+22:56:14 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:18:15 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:18:56 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:19:23 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:21:48 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:24:04 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:26:24 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+23:41:37 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:01:51 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  60664	   3936	  26744	  91344	  164d0	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:27:16 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  61304	   3936	  26744	  91984	  16750	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:56:10 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:85:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'CheckData':
+../src/helloworld.c:894:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'getDMApacket':
+../src/helloworld.c:926:18: warning: unused variable 'TxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *TxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:1707:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: At top level:
+../src/helloworld.c:177:12: warning: 'ReceivePacket' declared 'static' but never defined [-Wunused-function]
+ static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
+            ^~~~~~~~~~~~~
+../src/helloworld.c:323:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  61304	   3936	  26744	  91984	  16750	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:56:25 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.

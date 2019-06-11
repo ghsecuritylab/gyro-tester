@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="ProgramOTP_chipID" key="selection"/>
+		<item value="send_data_over_UART" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="send_data_over_UART"/>
+			<item value="send_packet_data_over_UART"/>
+			<item value="send_byte_over_UART"/>
+			<item value="run_ADC0_calibration"/>
 			<item value="ProgramOTP_chipID"/>
 			<item value="ProgramOTP_VbgTrim"/>
 			<item value="RX_BUFFER"/>
 			<item value="MAX_PKT_LEN"/>
-			<item value="failed"/>
-			<item value="XAxiDma_GetTxRing"/>
-			<item value="LEN"/>
-			<item value="DDR"/>
 		</list>
 		<list key="replacehistory">
+			<item value="send_data_over_UART"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
