@@ -55,8 +55,11 @@ extern void xil_printf(const char *format, ...);
 #define CMD_CAL_ADC1  				0x91	// perform calibration on ADC1
 #define CMD_READ_ADC0_CAL 			0x92	// read/transmit calibration values for ADC0
 #define CMD_READ_ADC1_CAL 			0x93	// read/transmit calibration values for ADC1
-
-
+#define CMD_START_ADC_ACQUISITIONS	0xA1	// read values via HSI bus into RxFIFO until full
+#define CMD_FILL_DAC_TXFIFO			0xA2	// fill the TxFIFO with values and send via HSI bus
+#define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
+#define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
+#define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
 
 
 #ifdef FAKE_DATA
@@ -98,7 +101,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN		0x100
+#define MAX_PKT_LEN		0x400
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -146,6 +149,8 @@ static u8 UartTxData[TX_BUFFER_SIZE];	// Buffer for Transmitting Data
 
 u16 ADC_calData[8];			// store ADC cal data read from chip before transmit
 
+u8	FPGA_outputs_state = 1; 	// 1=on, 2=0ff
+
 
 void isr0 (void *intc_inst_ptr);
 void isr1 (void *intc_inst_ptr);
@@ -155,6 +160,12 @@ void nops(unsigned int num);
 static XTtcPs DelayTimer;		/* Timer counter instance */
 static u8 TimerErrorCount;		/* Errors seen at interrupt time */
 static volatile u8 timerRunning;
+
+
+// --- DMA Device Global Variables.
+
+int Status;
+XAxiDma_Config *Config;
 
 
 /**************************** Type Definitions *******************************/
@@ -168,15 +179,25 @@ static void Uart550_Setup(void);
 static int  initSPI();
 static void readSPIStatus();
 static void setSPIControl(Xuint32 v);
+static void disableSPI();
+static void enableSPI();
+
 void modify_register(unsigned int *data, unsigned int address,
 					unsigned int newVal);
 
 static int RxSetup(XAxiDma * AxiDmaInstPtr);
 static int TxSetup(XAxiDma * AxiDmaInstPtr);
-static int SendPacket(XAxiDma * AxiDmaInstPtr, int id);
-static int ReceivePacket(XAxiDma * AxiDmaInstPtr);
-static int CheckData(int debug_mode);
+
+static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode);
+static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode);
+static int sendDMApackets(int npackets);
+static int receiveDMApackets(int npackets);
+
+static int SaveData(int debug_mode);
 static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip);
+
+static int openDMADevice();
+static int closeDMADevice();
 
 static int readGyroTxFIFODebugData();
 static int readGyroRxFIFODebugData();
@@ -185,10 +206,13 @@ static int resetGyroTxFIFO();
 static int resetGyroRxFIFO();
 
 static int  initGyroChannel();
+static void disableGyroChannel();
+static void enableGyroChannel();
 static void readGyroChannelStatus();
 static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
 
 static int 	SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 					u16 DeviceId, u16 UartIntrId);
@@ -208,10 +232,13 @@ static Xuint8 ProgramOTP(u32 otp32BitValue);
 static Xuint8 ProgramOTP_chipID(u32 id);
 Xuint8 ProgramOTP_VbgTrim(u8 trimVal);
 static u32 readOTP32bits(void);
-void run_ADC0_calibration(void);
-void run_ADC1_calibration(void);
-void read_ADC0_cal_data(void);
-void read_ADC1_cal_data(void);
+static void run_ADC0_calibration(void);
+static void run_ADC1_calibration(void);
+static void read_ADC0_cal_data(void);
+static void read_ADC1_cal_data(void);
+static int initDMADevice(void);
+static int sendPacketButton(void);
+static int receivePacketButton(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -250,6 +277,14 @@ int setGyroChannelConfiguration(unsigned int v){
   *(baseaddr_channel+0) = x;
   return 0;
 }
+
+ void disableGyroChannel(){
+	  *(baseaddr_channel+2) = 0x00000000;
+ }
+
+ void enableGyroChannel(){
+	  *(baseaddr_channel+2) = 0x00000001;
+ }
 
 // -------------------------------------------------------------------
 int setGyroChannelControl(unsigned int v){
@@ -455,7 +490,13 @@ int readSPI(unsigned int *data, unsigned int address){
   return res;
 }
 
+void disableSPI(){
+    *(baseaddr_spi+2) = 0x00000000;
+}
 
+void enableSPI(){
+    *(baseaddr_spi+2) = 0x00000001;
+}
 // -------------------------------------------------------------------
 void modify_register(unsigned int *data, unsigned int address, unsigned int newVal)
 {
@@ -599,6 +640,46 @@ static void Uart550_Setup(void){
 }
 #endif
 
+static int closeDMADevice(){
+  return XST_SUCCESS;
+}
+
+static int openDMADevice(){
+
+//#if defined(XPAR_UARTNS550_0_BASEADDR)
+//	Uart550_Setup();
+//#endif
+
+#ifdef __aarch64__
+Xil_SetTlbAttributes(TX_BD_SPACE_BASE, MARK_UNCACHEABLE);
+Xil_SetTlbAttributes(RX_BD_SPACE_BASE, MARK_UNCACHEABLE);
+#endif
+
+Config = XAxiDma_LookupConfig(DMA_DEV_ID);
+if (!Config) {
+	xil_printf(" *** Error: No config found for %d\r\n", DMA_DEV_ID);
+	return XST_FAILURE;
+} else {
+	xil_printf(" >>> config found for %d\r\n", DMA_DEV_ID);
+}
+
+/* Initialize DMA engine */
+Status = XAxiDma_CfgInitialize(&AxiDma, Config);
+if (Status != XST_SUCCESS) {
+   xil_printf(" *** Error: Initialization failed %d\r\n", Status);
+   return XST_FAILURE;
+} else {
+	xil_printf(" >>> Initialization succeeded\r\n");
+}
+
+if(!XAxiDma_HasSg(&AxiDma)) {
+   xil_printf("Could not configure device as Simple mode \r\n");
+   return XST_FAILURE;
+} else {
+	 xil_printf("Device configured as Simple mode \r\n");
+}
+  return XST_SUCCESS;
+}
 /*****************************************************************************/
 /**
 *
@@ -778,6 +859,308 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 	return XST_SUCCESS;
 }
 
+
+/*****************************************************************************/
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
+	int Index;
+	u8 Value1,Value2;
+	u8 Value;
+
+	Value1 = 0x0c;
+	Value2 = 0x80;
+
+	  for(Index = 0; Index < (npoints/2); Index = Index+2) {
+		TxPacket[Index] = Value1;
+		TxPacket[Index+1] = Value2;
+	  }
+
+double x;
+
+  x = sin(0.0);
+
+/*
+	  for(Index = 0; Index < npoints/2; Index++){
+		TxPacket[Index*2] = 0xff;
+		TxPacket[Index*2+1] =(Value & 0x7f);
+		Value =(Value +1)& 0xFF;
+	  }
+	  */
+
+	  // sin 6.txt
+
+	  TxPacket[2] = 0x00;
+	  TxPacket[3] = 0x80;
+	  TxPacket[0] = 0x90;
+	  TxPacket[1] = 0x8c;
+	  TxPacket[6] = 0x00;
+	  TxPacket[7] = 0x99;
+	  TxPacket[4] = 0x40;
+	  TxPacket[5] = 0xa5;
+	  TxPacket[10] = 0x20;
+	  TxPacket[11] = 0xb1;
+	  TxPacket[8] = 0x80;
+	  TxPacket[9] = 0xbc;
+	  TxPacket[14] = 0x40;
+	  TxPacket[15] = 0xc7;
+	  TxPacket[12] = 0x60;
+	  TxPacket[13] = 0xd1;
+	  TxPacket[18] = 0xb0;
+	  TxPacket[19] = 0xda;
+	  TxPacket[16] = 0x20;
+	  TxPacket[17] = 0xe3;
+	  TxPacket[22] = 0xa0;
+	  TxPacket[23] = 0xea;
+	  TxPacket[20] = 0x10;
+	  TxPacket[21] = 0xf1;
+	  TxPacket[26] = 0x70;
+	  TxPacket[27] = 0xf6;
+	  TxPacket[24] = 0xa0;
+	  TxPacket[25] = 0xfa;
+	  TxPacket[30] = 0xa0;
+	  TxPacket[31] = 0xfd;
+	  TxPacket[28] = 0x70;
+	  TxPacket[29] = 0xff;
+	  TxPacket[34] = 0xf0;
+	  TxPacket[35] = 0xff;
+	  TxPacket[32] = 0x50;
+	  TxPacket[33] = 0xff;
+	  TxPacket[38] = 0x60;
+	  TxPacket[39] = 0xfd;
+	  TxPacket[36] = 0x40;
+	  TxPacket[37] = 0xfa;
+	  TxPacket[42] = 0xf0;
+	  TxPacket[43] = 0xf5;
+	  TxPacket[40] = 0x70;
+	  TxPacket[41] = 0xf0;
+	  TxPacket[46] = 0xf0;
+	  TxPacket[47] = 0xe9;
+	  TxPacket[44] = 0x50;
+	  TxPacket[45] = 0xe2;
+	  TxPacket[50] = 0xd0;
+	  TxPacket[51] = 0xd9;
+	  TxPacket[48] = 0x60;
+	  TxPacket[49] = 0xd0;
+	  TxPacket[54] = 0x40;
+	  TxPacket[55] = 0xc6;
+	  TxPacket[52] = 0x60;
+	  TxPacket[53] = 0xbb;
+	  TxPacket[58] = 0xf0;
+	  TxPacket[59] = 0xaf;
+	  TxPacket[56] = 0x00;
+	  TxPacket[57] = 0xa4;
+	  TxPacket[62] = 0xc0;
+	  TxPacket[63] = 0x97;
+	  TxPacket[60] = 0x50;
+	  TxPacket[61] = 0x8b;
+	  TxPacket[66] = 0xb0;
+	  TxPacket[67] = 0x7e;
+	  TxPacket[64] = 0x20;
+	  TxPacket[65] = 0x72;
+	  TxPacket[70] = 0xb0;
+	  TxPacket[71] = 0x65;
+	  TxPacket[68] = 0x80;
+	  TxPacket[69] = 0x59;
+	  TxPacket[74] = 0xb0;
+	  TxPacket[75] = 0x4d;
+	  TxPacket[72] = 0x50;
+	  TxPacket[73] = 0x42;
+	  TxPacket[78] = 0xa0;
+	  TxPacket[79] = 0x37;
+	  TxPacket[76] = 0x90;
+	  TxPacket[77] = 0x2d;
+	  TxPacket[82] = 0x50;
+	  TxPacket[83] = 0x24;
+	  TxPacket[80] = 0x00;
+	  TxPacket[81] = 0x1c;
+	  TxPacket[86] = 0xa0;
+	  TxPacket[87] = 0x14;
+	  TxPacket[84] = 0x50;
+	  TxPacket[85] = 0x0e;
+	  TxPacket[90] = 0x10;
+	  TxPacket[91] = 0x09;
+	  TxPacket[88] = 0x00;
+	  TxPacket[89] = 0x05;
+	  TxPacket[94] = 0x10;
+	  TxPacket[95] = 0x02;
+	  TxPacket[92] = 0x70;
+	  TxPacket[93] = 0x00;
+	  TxPacket[98] = 0x00;
+	  TxPacket[99] = 0x00;
+	  TxPacket[96] = 0xd0;
+	  TxPacket[97] = 0x00;
+	  TxPacket[102] = 0xd0;
+	  TxPacket[103] = 0x02;
+	  TxPacket[100] = 0x10;
+	  TxPacket[101] = 0x06;
+	  TxPacket[106] = 0x80;
+	  TxPacket[107] = 0x0a;
+	  TxPacket[104] = 0x10;
+	  TxPacket[105] = 0x10;
+	  TxPacket[110] = 0xc0;
+	  TxPacket[111] = 0x16;
+	  TxPacket[108] = 0x70;
+	  TxPacket[109] = 0x1e;
+	  TxPacket[114] = 0x10;
+	  TxPacket[115] = 0x27;
+	  TxPacket[112] = 0x80;
+	  TxPacket[113] = 0x30;
+	  TxPacket[118] = 0xd0;
+	  TxPacket[119] = 0x3a;
+	  TxPacket[116] = 0xb0;
+	  TxPacket[117] = 0x45;
+	  TxPacket[122] = 0x30;
+	  TxPacket[123] = 0x51;
+	  TxPacket[120] = 0x20;
+	  TxPacket[121] = 0x5d;
+	  TxPacket[126] = 0x70;
+	  TxPacket[127] = 0x69;
+	  TxPacket[124] = 0xf0;
+	  TxPacket[125] = 0x75;
+	  TxPacket[130] = 0x80;
+	  TxPacket[131] = 0x82;
+	  TxPacket[128] = 0x10;
+	  TxPacket[129] = 0x8f;
+	  TxPacket[134] = 0x80;
+	  TxPacket[135] = 0x9b;
+	  TxPacket[132] = 0xb0;
+	  TxPacket[133] = 0xa7;
+	  TxPacket[138] = 0x70;
+	  TxPacket[139] = 0xb3;
+	  TxPacket[136] = 0xb0;
+	  TxPacket[137] = 0xbe;
+	  TxPacket[142] = 0x60;
+	  TxPacket[143] = 0xc9;
+	  TxPacket[140] = 0x50;
+	  TxPacket[141] = 0xd3;
+	  TxPacket[146] = 0x80;
+	  TxPacket[147] = 0xdc;
+	  TxPacket[144] = 0xc0;
+	  TxPacket[145] = 0xe4;
+	  TxPacket[150] = 0x00;
+	  TxPacket[151] = 0xec;
+	  TxPacket[148] = 0x40;
+	  TxPacket[149] = 0xf2;
+	  TxPacket[154] = 0x60;
+	  TxPacket[155] = 0xf7;
+	  TxPacket[152] = 0x50;
+	  TxPacket[153] = 0xfb;
+	  TxPacket[158] = 0x10;
+	  TxPacket[159] = 0xfe;
+	  TxPacket[156] = 0xa0;
+	  TxPacket[157] = 0xff;
+	  TxPacket[162] = 0xf0;
+	  TxPacket[163] = 0xff;
+	  TxPacket[160] = 0x00;
+	  TxPacket[161] = 0xff;
+	  TxPacket[166] = 0xd0;
+	  TxPacket[167] = 0xfc;
+	  TxPacket[164] = 0x70;
+	  TxPacket[165] = 0xf9;
+	  TxPacket[170] = 0xf0;
+	  TxPacket[171] = 0xf4;
+	  TxPacket[168] = 0x40;
+	  TxPacket[169] = 0xef;
+	  TxPacket[174] = 0x70;
+	  TxPacket[175] = 0xe8;
+	  TxPacket[172] = 0xb0;
+	  TxPacket[173] = 0xe0;
+	  TxPacket[178] = 0x00;
+	  TxPacket[179] = 0xd8;
+	  TxPacket[176] = 0x70;
+	  TxPacket[177] = 0xce;
+	  TxPacket[182] = 0x10;
+	  TxPacket[183] = 0xc4;
+	  TxPacket[180] = 0x20;
+	  TxPacket[181] = 0xb9;
+	  TxPacket[186] = 0x90;
+	  TxPacket[187] = 0xad;
+	  TxPacket[184] = 0x90;
+	  TxPacket[185] = 0xa1;
+	  TxPacket[190] = 0x40;
+	  TxPacket[191] = 0x95;
+	  TxPacket[188] = 0xc0;
+	  TxPacket[189] = 0x88;
+	  TxPacket[194] = 0x20;
+	  TxPacket[195] = 0x7c;
+	  TxPacket[192] = 0x90;
+	  TxPacket[193] = 0x6f;
+	  TxPacket[198] = 0x30;
+	  TxPacket[199] = 0x63;
+	  TxPacket[196] = 0x10;
+	  TxPacket[197] = 0x57;
+	  TxPacket[202] = 0x50;
+	  TxPacket[203] = 0x4b;
+	  TxPacket[200] = 0x20;
+	  TxPacket[201] = 0x40;
+	  TxPacket[206] = 0x80;
+	  TxPacket[207] = 0x35;
+	  TxPacket[204] = 0xa0;
+	  TxPacket[205] = 0x2b;
+	  TxPacket[210] = 0x90;
+	  TxPacket[211] = 0x22;
+	  TxPacket[208] = 0x70;
+	  TxPacket[209] = 0x1a;
+	  TxPacket[214] = 0x40;
+	  TxPacket[215] = 0x13;
+	  TxPacket[212] = 0x20;
+	  TxPacket[213] = 0x0d;
+	  TxPacket[218] = 0x20;
+	  TxPacket[219] = 0x08;
+	  TxPacket[216] = 0x50;
+	  TxPacket[217] = 0x04;
+	  TxPacket[222] = 0xa0;
+	  TxPacket[223] = 0x01;
+	  TxPacket[220] = 0x40;
+	  TxPacket[221] = 0x00;
+	  TxPacket[226] = 0x10;
+	  TxPacket[227] = 0x00;
+	  TxPacket[224] = 0x20;
+	  TxPacket[225] = 0x01;
+	  TxPacket[230] = 0x60;
+	  TxPacket[231] = 0x03;
+	  TxPacket[228] = 0xe0;
+	  TxPacket[229] = 0x06;
+	  TxPacket[234] = 0x90;
+	  TxPacket[235] = 0x0b;
+	  TxPacket[232] = 0x60;
+	  TxPacket[233] = 0x11;
+	  TxPacket[238] = 0x30;
+	  TxPacket[239] = 0x18;
+	  TxPacket[236] = 0x10;
+	  TxPacket[237] = 0x20;
+	  TxPacket[242] = 0xe0;
+	  TxPacket[243] = 0x28;
+	  TxPacket[240] = 0x90;
+	  TxPacket[241] = 0x32;
+	  TxPacket[246] = 0xf0;
+	  TxPacket[247] = 0x3c;
+	  TxPacket[244] = 0x00;
+	  TxPacket[245] = 0x48;
+	  TxPacket[250] = 0x90;
+	  TxPacket[251] = 0x53;
+	  TxPacket[248] = 0x90;
+	  TxPacket[249] = 0x5f;
+	  TxPacket[254] = 0xf0;
+	  TxPacket[255] = 0x6b;
+	  TxPacket[252] = 0x70;
+	  TxPacket[253] = 0x78;
+
+
+
+/*
+
+Value = 0x00;
+		  for(Index = 0; Index < npoints/2; Index++){
+			TxPacket[Index*2] = 0xf0;
+			TxPacket[Index*2+1] =((2*Value) & 0xff);
+			Value = (Value +1) & 0xFF;
+		  }
+
+*/
+
+}
+
+
 /*****************************************************************************/
 /**
 *
@@ -791,7 +1174,7 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 * @note     None.
 *
 ******************************************************************************/
-static int SendPacket(XAxiDma * AxiDmaInstPtr, int id){
+static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	XAxiDma_BdRing *TxRingPtr;
 	u8 *TxPacket;
 	u8 Value;
@@ -806,17 +1189,7 @@ static int SendPacket(XAxiDma * AxiDmaInstPtr, int id){
 	//Value = TEST_START_VALUE;
 	Value = 0x01;
 
-	if(id == 0){
-	  for(Index = 0; Index < MAX_PKT_LEN; Index ++) {
-		TxPacket[Index] = Value;
-		  Value = (Value + 1) & 0xFF;
-	  }
-	} else {
-		  for(Index = 0; Index < MAX_PKT_LEN; Index ++) {
-			TxPacket[Index] = Value+0x80;
-		    Value = (Value + 1) & 0xFF;
-		  }
-	}
+	fillTxPacketBuffer(MAX_PKT_LEN,TxPacket);
 
 	/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
 	 * is enabled
@@ -886,7 +1259,7 @@ static int SendPacket(XAxiDma * AxiDmaInstPtr, int id){
 * @note		None.
 *
 ******************************************************************************/
-static int CheckData(int debug_mode)
+static int SaveData(int debug_mode)
 {
 	u8 *RxPacket;
 	int Index = 0;
@@ -921,22 +1294,33 @@ static int CheckData(int debug_mode)
 }
 
 
-static int getDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
+static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 {
-	XAxiDma_BdRing *TxRingPtr;
 	XAxiDma_BdRing *RxRingPtr;
+
 	XAxiDma_Bd *BdPtr;
 	int ProcessedBdCount;
 	int FreeBdCount;
 	int Status;
 
+
 	RxRingPtr = XAxiDma_GetRxRing(AxiDmaInstPtr);
 
+	/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
+	 * is enabled
+	 */
+	Xil_DCacheFlushRange((UINTPTR)TX_BUFFER_BASE, MAX_PKT_LEN);
 
+#ifdef __aarch64__
+	Xil_DCacheFlushRange((UINTPTR)RX_BUFFER_BASE, MAX_PKT_LEN);
+#endif
 	/* Wait until the data has been received by the Rx channel */
 	while ((ProcessedBdCount = XAxiDma_BdRingFromHw(RxRingPtr,
 						       XAXIDMA_ALL_BDS, &BdPtr)) == 0) {
 	}
+
+	setGyroChannelControl(0x00000000);
+    SaveData(0);
 
 	/* Free all processed RX BDs for future transmission */
 	Status = XAxiDma_BdRingFree(RxRingPtr, ProcessedBdCount, BdPtr);
@@ -966,6 +1350,7 @@ static int getDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 
 	return XST_SUCCESS;
 }
+
 
 /*****************************************************************************/
 /**
@@ -1013,7 +1398,7 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip_tx)
 	}
 
 	/* Check received data */
-	if (CheckData(1) != XST_SUCCESS) {
+	if (SaveData(1) != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
@@ -1048,44 +1433,14 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip_tx)
 
 
 // --------------------------------------------------------------------------
-int DMA_receive(int num_packets){
-	int Status, i;
-	XAxiDma_Config *Config;
-
-//#if defined(XPAR_UARTNS550_0_BASEADDR)
-//	Uart550_Setup();
-//#endif
+int receiveDMApackets(int num_packets){
+	int i;
 
 
-#ifdef __aarch64__
-	Xil_SetTlbAttributes(TX_BD_SPACE_BASE, MARK_UNCACHEABLE);
-	Xil_SetTlbAttributes(RX_BD_SPACE_BASE, MARK_UNCACHEABLE);
-#endif
-
-	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
-	if (!Config) {
-		xil_printf(" *** Error: No config found for %d\r\n", DMA_DEV_ID);
-		return XST_FAILURE;
-	}
-
-	/* Initialize DMA engine */
-	Status = XAxiDma_CfgInitialize(&AxiDma, Config);
-	if (Status != XST_SUCCESS) {
-	   return XST_FAILURE;
-	}
-
-	if(!XAxiDma_HasSg(&AxiDma)) {
-	   return XST_FAILURE;
-	}
-
-	Status = RxSetup(&AxiDma);
-	if (Status != XST_SUCCESS) {
-	   return XST_FAILURE;
-	}
 
 	for(i = 0; i < num_packets; i++){
 
-	  Status = getDMApacket(&AxiDma, 0);
+	  Status = receiveDMApacket(&AxiDma, 0);
 	  if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	  }
@@ -1096,6 +1451,21 @@ int DMA_receive(int num_packets){
 		return XST_FAILURE;
 	}
 
+	return XST_SUCCESS;
+}
+// --------------------------------------------------------------------------
+int sendDMApackets(int num_packets){
+	int i;
+
+	for(i = 0; i < num_packets; i++){
+	  Status = sendDMApacket(&AxiDma, 0);
+	  if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	  }
+	}
+	if (Status != XST_SUCCESS) {
+	  return XST_FAILURE;
+	}
 	return XST_SUCCESS;
 }
 
@@ -1114,98 +1484,95 @@ void acquireSamples(int packet_size){
 	resetGyroTxFIFO();
 	resetGyroRxFIFO();
 
-	  setGyroChannelConfiguration(0x80000000);
+	setGyroChannelConfiguration(0x80000000);
+	setGyroChannelConfiguration(0x00000000);
+
+	// bit 17:16 is to divide clock by 2/4/8.
+	if(packet_size == 64)
 	  setGyroChannelConfiguration(0x00000000);
+	if(packet_size == 128)
+	  setGyroChannelConfiguration(0x00001000);
+	if(packet_size == 256)
+	  setGyroChannelConfiguration(0x00002000);
+	if(packet_size == 512)
+	  setGyroChannelConfiguration(0x00003000);
+	if(packet_size == 1024)
+	  setGyroChannelConfiguration(0x00004000);
+	if(packet_size == 2048)
+	  setGyroChannelConfiguration(0x00005000);
+	if(packet_size == 4096)
+	  setGyroChannelConfiguration(0x00006000);
+	if(packet_size == 8192)
+	  setGyroChannelConfiguration(0x00007000);
 
-// bit 17:16 is to divide clock by 2/4/8.
-if(packet_size == 64)
-  setGyroChannelConfiguration(0x00000000);
-if(packet_size == 128)
-  setGyroChannelConfiguration(0x00001000);
-if(packet_size == 256)
-  setGyroChannelConfiguration(0x00002000);
-if(packet_size == 512)
-  setGyroChannelConfiguration(0x00003000);
-if(packet_size == 1024)
-  setGyroChannelConfiguration(0x00004000);
-if(packet_size == 2048)
-  setGyroChannelConfiguration(0x00005000);
-if(packet_size == 4096)
-  setGyroChannelConfiguration(0x00006000);
-if(packet_size == 8192)
-  setGyroChannelConfiguration(0x00007000);
+	setGyroChannelControl(0x00000000);
 
-setGyroChannelControl(0x00000000);
-
-// activate the output and the input shift registers
-setGyroChannelControl(0x00000010);
-DMA_receive(1);
-setGyroChannelControl(0x00000000);
+	// activate the output and the input shift registers
+	setGyroChannelControl(0x00000010);
+	receiveDMApackets(1);
+	setGyroChannelControl(0x00000000);
 
 }
-
 // -------------------------------------------------------------------
+int sendPacketButton(void){
+	sendDMApackets(1);
+	setGyroChannelControl(0x00000001);
+	nops(100000);
+	setGyroChannelControl(0x00000000);
+	return 1;
+ }
 
+ // -------------------------------------------------------------------
+int receivePacketButton(void){
+
+	XAxiDma_BdRing *RxRingPtr;
+	XAxiDma_Bd *BdPtr;
+	int ProcessedBdCount;
+	int FreeBdCount;
+	int Status;
+
+	RxRingPtr = XAxiDma_GetRxRing(&AxiDma);
+
+	resetGyroRxFIFO();
+	setGyroChannelControl(0x00000010);
+	nops(4000000);
+	setGyroChannelControl(0x00000000);
+	receiveDMApacket(&AxiDma,0);
+	return 1;
+}
 // -------------------------------------------------------------------
-int test_DMA_loopback( int num_packets, int debug_mode){
-	int Status, i;
-	XAxiDma_Config *Config;
+int initDMADevice(void){
 
-//#if defined(XPAR_UARTNS550_0_BASEADDR)
-//	Uart550_Setup();
-//#endif
-
-	if(debug_mode != 0){
-	  xil_printf("\r\n  --- Entering DMA Loopback Test for %d packets --- \r\n",num_packets);
-	}
-
-#ifdef __aarch64__
-	Xil_SetTlbAttributes(TX_BD_SPACE_BASE, MARK_UNCACHEABLE);
-	Xil_SetTlbAttributes(RX_BD_SPACE_BASE, MARK_UNCACHEABLE);
-#endif
-
-	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
-	if (!Config) {
-		xil_printf(" *** Error: No config found for %d\r\n", DMA_DEV_ID);
-		return XST_FAILURE;
-	} else {
-		xil_printf(" >>> config found for %d\r\n", DMA_DEV_ID);
-	}
-
-	/* Initialize DMA engine */
-	Status = XAxiDma_CfgInitialize(&AxiDma, Config);
-	if (Status != XST_SUCCESS) {
-	   xil_printf(" *** Error: Initialization failed %d\r\n", Status);
-	   return XST_FAILURE;
-	} else {
-		xil_printf(" >>> Initialization succeeded\r\n");
-	}
-
-	if(!XAxiDma_HasSg(&AxiDma)) {
-	   xil_printf("Could not configure device as Simple mode \r\n");
-	   return XST_FAILURE;
-	} else {
-		 xil_printf("Device configured as Simple mode \r\n");
-	}
+	openDMADevice();
 
 	Status = TxSetup(&AxiDma);
 	if (Status != XST_SUCCESS) {
 	   return XST_FAILURE;
-	} else {
+	}
+	else {
 		 xil_printf("TxSetup completed. \r\n");
 	}
 
 	Status = RxSetup(&AxiDma);
 	if (Status != XST_SUCCESS) {
 	   return XST_FAILURE;
-	}else {
+	}
+	else {
 		 xil_printf("RxSetup completed. \r\n");
 	}
+
+	return XST_SUCCESS;
+}
+// -------------------------------------------------------------------
+int test_DMA_loopback( int num_packets, int debug_mode){
+	int i;
+
+    initDMADevice();
 
 	for(i = 0; i < num_packets; i++){
 	  /* Send a packet */
 
-	  Status = SendPacket(&AxiDma, i);
+	  Status = sendDMApacket(&AxiDma, i);
 
 	  if (Status != XST_SUCCESS) {
 		  xil_printf(" Failed sending packet number: %d\r\n",i+1);
@@ -1534,6 +1901,30 @@ void read_uart_bytes(void)
 
 			//8 16-bit cal values so send 16 bytes
 			send_data_over_UART(16,(u8*)ADC_calData);
+			break;
+
+		case (CMD_FILL_DAC_TXFIFO):
+			sendPacketButton();
+			break;
+
+		case (CMD_START_ADC_ACQUISITIONS):
+			receivePacketButton();
+			break;
+
+		case (CMD_FPGA_ALL_OUTPUTS_LOW):
+			disableSPI();
+			disableGyroChannel();
+			FPGA_outputs_state = 2;		// 1=on, 2=off
+			break;
+
+		case (CMD_FPGA_ALL_OUTPUTS_ENABLED):
+			enableSPI();
+			enableGyroChannel();
+			FPGA_outputs_state = 1;		// 1=on, 2=off
+			break;
+
+		case (CMD_FPGA_GET_OUTPUTS_STATE):
+			send_byte_over_UART(FPGA_outputs_state);
 			break;
 
 	}
@@ -2134,16 +2525,36 @@ u32 readOTP32bits(void)
 	return otp32bitResult;
 }
 
+// --------------------------------------------------------------------
+void test_DMA_receive_packets(int num_packets){
 
+	resetGyroRxFIFO();
+	setGyroChannelControl(0x00000010);
+	nops(4000000);
+	receiveDMApacket(&AxiDma, 0);
+
+	setGyroChannelControl(0x00000010);
+	nops(4000000);
+	receiveDMApacket(&AxiDma, 0);
+	setGyroChannelControl(0x00000000);
+
+	setGyroChannelControl(0x00000010);
+	nops(4000000);
+	receiveDMApacket(&AxiDma, 0);
+	setGyroChannelControl(0x00000000);
+
+}
 
 // -------------------------------------------------------------------
 int main() {
     init_platform();
 
+
+
 //    unsigned int readVal, writeVal;
 
     xil_printf("\n\r=====================\n\r");
-    xil_printf("== START version 27 ==\n\r");
+    xil_printf("== START version 28 ==\n\r");
     // set interrupt_0/1 of AXI PL interrupt generator to 0
 
     *(baseaddr_p+0) = 0x00000000;
@@ -2167,6 +2578,8 @@ int main() {
 
     // clear SPI registers
     initSPI();
+    enableSPI();
+
     setSPIClockDivision(1); // needs to be 1 , 2 or 3
     readSPIStatus();
 
@@ -2252,6 +2665,7 @@ int main() {
     resetGyroTxFIFO();
     resetGyroRxFIFO();
     initGyroChannel();
+    enableGyroChannel();
 
     //configure ADC0, ADC1 here via spi
 
@@ -2259,8 +2673,8 @@ int main() {
     //setGyroChannelConfiguration(0x01000000);
 
     // bit 17:16 is to divide clock by 2/4/8.
-    setGyroChannelConfiguration(0x00003000);
-
+   setGyroChannelConfiguration(0x00003000);
+   // setGyroChannelConfiguration(0x00000000); // 64 samples
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
     //  001 is 128 samples  (64 words)
@@ -2280,8 +2694,11 @@ int main() {
     readGyroRxFIFODebugData();
 
     xil_printf("== Starting FIFO / DMA test ++\n\r");
+
+    initDMADevice();
+
     //setGyroChannelControl(0x00000011); // moved inside loopback
-    test_DMA_loopback(1,1);
+    //test_DMA_receive_packets(1);
     // --- stopping both channels
 	setGyroChannelControl(0x00000000);
 

@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Fri May 24 19:23:09 2019
+-- Date        : Wed Jun 19 19:37:46 2019
 -- Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_SPI_ip_0_0/design_2_SPI_ip_0_0_sim_netlist.vhdl
@@ -67,16 +67,16 @@ entity design_2_SPI_ip_0_0_SPI_fsm is
     \r_reg_reg[1]_P\ : out STD_LOGIC;
     \r_reg_reg[0]_P\ : out STD_LOGIC;
     \r_reg_reg[4]_P_0\ : out STD_LOGIC;
-    SPI_SCK : out STD_LOGIC;
     SPI_MOSI : out STD_LOGIC;
     SPI_CS : out STD_LOGIC;
+    SPI_SCK : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 0 to 0 );
     s00_axi_aresetn : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 24 downto 0 );
-    \slv_reg3_reg[31]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     MOSI_int : in STD_LOGIC;
+    \slv_reg2_reg[31]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \slv_reg3_reg[31]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \slv_reg2_reg[31]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     SR : in STD_LOGIC_VECTOR ( 0 to 0 );
     \FSM_onehot_state_reg[3]_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     CLK : in STD_LOGIC
@@ -208,34 +208,37 @@ begin
       Q => \^out\(2),
       R => SR(0)
     );
-SPI_CS_INST_0: unisim.vcomponents.LUT3
+SPI_CS_INST_0: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FE"
+      INIT => X"FE00"
     )
         port map (
-      I0 => load,
+      I0 => \^out\(1),
       I1 => \FSM_onehot_state_reg_n_0_[0]\,
-      I2 => \^out\(1),
+      I2 => load,
+      I3 => \slv_reg2_reg[31]\(0),
       O => SPI_CS
     );
-SPI_MOSI_INST_0: unisim.vcomponents.LUT4
+SPI_MOSI_INST_0: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0002"
+      INIT => X"00020000"
     )
         port map (
       I0 => MOSI_int,
       I1 => \^out\(1),
       I2 => \FSM_onehot_state_reg_n_0_[0]\,
       I3 => load,
+      I4 => \slv_reg2_reg[31]\(0),
       O => SPI_MOSI
     );
-SPI_SCK_INST_0: unisim.vcomponents.LUT2
+SPI_SCK_INST_0: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"6"
+      INIT => X"60"
     )
         port map (
-      I0 => \^out\(2),
-      I1 => \slv_reg3_reg[31]\(0),
+      I0 => \slv_reg3_reg[31]\(0),
+      I1 => \^out\(2),
+      I2 => \slv_reg2_reg[31]\(0),
       O => SPI_SCK
     );
 \axi_rdata[31]_i_1\: unisim.vcomponents.LUT6
@@ -246,7 +249,7 @@ SPI_SCK_INST_0: unisim.vcomponents.LUT2
       I0 => \slv_reg3_reg[31]\(0),
       I1 => \^out\(1),
       I2 => axi_araddr(0),
-      I3 => \slv_reg2_reg[31]\(0),
+      I3 => \slv_reg2_reg[31]\(1),
       I4 => axi_araddr(1),
       I5 => Q(24),
       O => D(0)
@@ -2787,17 +2790,17 @@ entity design_2_SPI_ip_0_0_SPI_Master is
   port (
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    SPI_SCK : out STD_LOGIC;
     SPI_MOSI : out STD_LOGIC;
     SPI_CS : out STD_LOGIC;
+    SPI_SCK : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 24 downto 0 );
     SPI_MISO : in STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 24 downto 0 );
+    \slv_reg2_reg[31]\ : in STD_LOGIC_VECTOR ( 24 downto 0 );
     \slv_reg3_reg[31]\ : in STD_LOGIC_VECTOR ( 24 downto 0 );
-    axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \slv_reg2_reg[31]\ : in STD_LOGIC_VECTOR ( 24 downto 0 )
+    axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_Master : entity is "SPI_Master";
@@ -2952,7 +2955,8 @@ FSM: entity work.design_2_SPI_ip_0_0_SPI_fsm
       \r_reg_reg[9]_C\ => FSM_n_12,
       \r_reg_reg[9]_P\ => FSM_n_42,
       s00_axi_aresetn => s00_axi_aresetn,
-      \slv_reg2_reg[31]\(0) => \slv_reg2_reg[31]\(24),
+      \slv_reg2_reg[31]\(1) => \slv_reg2_reg[31]\(24),
+      \slv_reg2_reg[31]\(0) => \slv_reg2_reg[31]\(0),
       \slv_reg3_reg[31]\(0) => \slv_reg3_reg[31]\(24)
     );
 SR25Bits: entity work.design_2_SPI_ip_0_0_leftShiftRegister25bits
@@ -3028,9 +3032,9 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
     FSM_START : out STD_LOGIC;
     S_AXI_ARREADY : out STD_LOGIC;
     s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    SPI_SCK : out STD_LOGIC;
     SPI_MOSI : out STD_LOGIC;
     SPI_CS : out STD_LOGIC;
+    SPI_SCK : out STD_LOGIC;
     s00_axi_rvalid : out STD_LOGIC;
     s00_axi_bvalid : out STD_LOGIC;
     SPI_MISO : in STD_LOGIC;
@@ -3076,11 +3080,42 @@ architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
   signal \slv_reg0[23]_i_1_n_0\ : STD_LOGIC;
   signal \slv_reg0[31]_i_2_n_0\ : STD_LOGIC;
   signal \slv_reg0[7]_i_1_n_0\ : STD_LOGIC;
-  signal slv_reg2 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal slv_reg2 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \slv_reg2[15]_i_1_n_0\ : STD_LOGIC;
   signal \slv_reg2[23]_i_1_n_0\ : STD_LOGIC;
   signal \slv_reg2[31]_i_1_n_0\ : STD_LOGIC;
   signal \slv_reg2[7]_i_1_n_0\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[10]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[11]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[12]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[13]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[14]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[15]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[16]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[17]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[18]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[19]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[1]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[20]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[21]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[22]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[23]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[24]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[25]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[26]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[27]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[28]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[29]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[2]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[30]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[31]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[3]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[4]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[5]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[6]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[7]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[8]\ : STD_LOGIC;
+  signal \slv_reg2_reg_n_0_[9]\ : STD_LOGIC;
   signal slv_reg3 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal \slv_reg3[15]_i_1_n_0\ : STD_LOGIC;
   signal \slv_reg3[23]_i_1_n_0\ : STD_LOGIC;
@@ -3294,7 +3329,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[24]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(24),
+      I2 => \slv_reg2_reg_n_0_[24]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(24),
       O => reg_data_out(24)
@@ -3306,7 +3341,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[25]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(25),
+      I2 => \slv_reg2_reg_n_0_[25]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(25),
       O => reg_data_out(25)
@@ -3318,7 +3353,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[26]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(26),
+      I2 => \slv_reg2_reg_n_0_[26]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(26),
       O => reg_data_out(26)
@@ -3330,7 +3365,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[27]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(27),
+      I2 => \slv_reg2_reg_n_0_[27]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(27),
       O => reg_data_out(27)
@@ -3342,7 +3377,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[28]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(28),
+      I2 => \slv_reg2_reg_n_0_[28]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(28),
       O => reg_data_out(28)
@@ -3354,7 +3389,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[29]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(29),
+      I2 => \slv_reg2_reg_n_0_[29]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(29),
       O => reg_data_out(29)
@@ -3366,7 +3401,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \slv_reg3_reg_n_0_[30]\,
       I1 => axi_araddr(2),
-      I2 => slv_reg2(30),
+      I2 => \slv_reg2_reg_n_0_[30]\,
       I3 => axi_araddr(3),
       I4 => slv_reg0(30),
       O => reg_data_out(30)
@@ -4033,7 +4068,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(10),
-      Q => slv_reg2(10),
+      Q => \slv_reg2_reg_n_0_[10]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[11]\: unisim.vcomponents.FDRE
@@ -4041,7 +4076,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(11),
-      Q => slv_reg2(11),
+      Q => \slv_reg2_reg_n_0_[11]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[12]\: unisim.vcomponents.FDRE
@@ -4049,7 +4084,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(12),
-      Q => slv_reg2(12),
+      Q => \slv_reg2_reg_n_0_[12]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[13]\: unisim.vcomponents.FDRE
@@ -4057,7 +4092,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(13),
-      Q => slv_reg2(13),
+      Q => \slv_reg2_reg_n_0_[13]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[14]\: unisim.vcomponents.FDRE
@@ -4065,7 +4100,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(14),
-      Q => slv_reg2(14),
+      Q => \slv_reg2_reg_n_0_[14]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[15]\: unisim.vcomponents.FDRE
@@ -4073,7 +4108,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(15),
-      Q => slv_reg2(15),
+      Q => \slv_reg2_reg_n_0_[15]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[16]\: unisim.vcomponents.FDRE
@@ -4081,7 +4116,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(16),
-      Q => slv_reg2(16),
+      Q => \slv_reg2_reg_n_0_[16]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[17]\: unisim.vcomponents.FDRE
@@ -4089,7 +4124,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(17),
-      Q => slv_reg2(17),
+      Q => \slv_reg2_reg_n_0_[17]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[18]\: unisim.vcomponents.FDRE
@@ -4097,7 +4132,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(18),
-      Q => slv_reg2(18),
+      Q => \slv_reg2_reg_n_0_[18]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[19]\: unisim.vcomponents.FDRE
@@ -4105,7 +4140,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(19),
-      Q => slv_reg2(19),
+      Q => \slv_reg2_reg_n_0_[19]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[1]\: unisim.vcomponents.FDRE
@@ -4113,7 +4148,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(1),
-      Q => slv_reg2(1),
+      Q => \slv_reg2_reg_n_0_[1]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[20]\: unisim.vcomponents.FDRE
@@ -4121,7 +4156,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(20),
-      Q => slv_reg2(20),
+      Q => \slv_reg2_reg_n_0_[20]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[21]\: unisim.vcomponents.FDRE
@@ -4129,7 +4164,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(21),
-      Q => slv_reg2(21),
+      Q => \slv_reg2_reg_n_0_[21]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[22]\: unisim.vcomponents.FDRE
@@ -4137,7 +4172,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(22),
-      Q => slv_reg2(22),
+      Q => \slv_reg2_reg_n_0_[22]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[23]\: unisim.vcomponents.FDRE
@@ -4145,7 +4180,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[23]_i_1_n_0\,
       D => s00_axi_wdata(23),
-      Q => slv_reg2(23),
+      Q => \slv_reg2_reg_n_0_[23]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[24]\: unisim.vcomponents.FDRE
@@ -4153,7 +4188,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(24),
-      Q => slv_reg2(24),
+      Q => \slv_reg2_reg_n_0_[24]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[25]\: unisim.vcomponents.FDRE
@@ -4161,7 +4196,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(25),
-      Q => slv_reg2(25),
+      Q => \slv_reg2_reg_n_0_[25]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[26]\: unisim.vcomponents.FDRE
@@ -4169,7 +4204,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(26),
-      Q => slv_reg2(26),
+      Q => \slv_reg2_reg_n_0_[26]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[27]\: unisim.vcomponents.FDRE
@@ -4177,7 +4212,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(27),
-      Q => slv_reg2(27),
+      Q => \slv_reg2_reg_n_0_[27]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[28]\: unisim.vcomponents.FDRE
@@ -4185,7 +4220,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(28),
-      Q => slv_reg2(28),
+      Q => \slv_reg2_reg_n_0_[28]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[29]\: unisim.vcomponents.FDRE
@@ -4193,7 +4228,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(29),
-      Q => slv_reg2(29),
+      Q => \slv_reg2_reg_n_0_[29]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[2]\: unisim.vcomponents.FDRE
@@ -4201,7 +4236,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(2),
-      Q => slv_reg2(2),
+      Q => \slv_reg2_reg_n_0_[2]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[30]\: unisim.vcomponents.FDRE
@@ -4209,7 +4244,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(30),
-      Q => slv_reg2(30),
+      Q => \slv_reg2_reg_n_0_[30]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[31]\: unisim.vcomponents.FDRE
@@ -4217,7 +4252,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[31]_i_1_n_0\,
       D => s00_axi_wdata(31),
-      Q => slv_reg2(31),
+      Q => \slv_reg2_reg_n_0_[31]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[3]\: unisim.vcomponents.FDRE
@@ -4225,7 +4260,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(3),
-      Q => slv_reg2(3),
+      Q => \slv_reg2_reg_n_0_[3]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[4]\: unisim.vcomponents.FDRE
@@ -4233,7 +4268,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(4),
-      Q => slv_reg2(4),
+      Q => \slv_reg2_reg_n_0_[4]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[5]\: unisim.vcomponents.FDRE
@@ -4241,7 +4276,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(5),
-      Q => slv_reg2(5),
+      Q => \slv_reg2_reg_n_0_[5]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[6]\: unisim.vcomponents.FDRE
@@ -4249,7 +4284,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(6),
-      Q => slv_reg2(6),
+      Q => \slv_reg2_reg_n_0_[6]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[7]\: unisim.vcomponents.FDRE
@@ -4257,7 +4292,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[7]_i_1_n_0\,
       D => s00_axi_wdata(7),
-      Q => slv_reg2(7),
+      Q => \slv_reg2_reg_n_0_[7]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[8]\: unisim.vcomponents.FDRE
@@ -4265,7 +4300,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(8),
-      Q => slv_reg2(8),
+      Q => \slv_reg2_reg_n_0_[8]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg2_reg[9]\: unisim.vcomponents.FDRE
@@ -4273,7 +4308,7 @@ axi_wready_reg: unisim.vcomponents.FDRE
       C => s00_axi_aclk,
       CE => \slv_reg2[15]_i_1_n_0\,
       D => s00_axi_wdata(9),
-      Q => slv_reg2(9),
+      Q => \slv_reg2_reg_n_0_[9]\,
       R => user_SPI_Block_n_0
     );
 \slv_reg3[15]_i_1\: unisim.vcomponents.LUT4
@@ -4601,8 +4636,31 @@ user_SPI_Block: entity work.design_2_SPI_ip_0_0_SPI_Master
       \out\(0) => FSM_DONE,
       s00_axi_aclk => s00_axi_aclk,
       s00_axi_aresetn => s00_axi_aresetn,
-      \slv_reg2_reg[31]\(24) => slv_reg2(31),
-      \slv_reg2_reg[31]\(23 downto 0) => slv_reg2(23 downto 0),
+      \slv_reg2_reg[31]\(24) => \slv_reg2_reg_n_0_[31]\,
+      \slv_reg2_reg[31]\(23) => \slv_reg2_reg_n_0_[23]\,
+      \slv_reg2_reg[31]\(22) => \slv_reg2_reg_n_0_[22]\,
+      \slv_reg2_reg[31]\(21) => \slv_reg2_reg_n_0_[21]\,
+      \slv_reg2_reg[31]\(20) => \slv_reg2_reg_n_0_[20]\,
+      \slv_reg2_reg[31]\(19) => \slv_reg2_reg_n_0_[19]\,
+      \slv_reg2_reg[31]\(18) => \slv_reg2_reg_n_0_[18]\,
+      \slv_reg2_reg[31]\(17) => \slv_reg2_reg_n_0_[17]\,
+      \slv_reg2_reg[31]\(16) => \slv_reg2_reg_n_0_[16]\,
+      \slv_reg2_reg[31]\(15) => \slv_reg2_reg_n_0_[15]\,
+      \slv_reg2_reg[31]\(14) => \slv_reg2_reg_n_0_[14]\,
+      \slv_reg2_reg[31]\(13) => \slv_reg2_reg_n_0_[13]\,
+      \slv_reg2_reg[31]\(12) => \slv_reg2_reg_n_0_[12]\,
+      \slv_reg2_reg[31]\(11) => \slv_reg2_reg_n_0_[11]\,
+      \slv_reg2_reg[31]\(10) => \slv_reg2_reg_n_0_[10]\,
+      \slv_reg2_reg[31]\(9) => \slv_reg2_reg_n_0_[9]\,
+      \slv_reg2_reg[31]\(8) => \slv_reg2_reg_n_0_[8]\,
+      \slv_reg2_reg[31]\(7) => \slv_reg2_reg_n_0_[7]\,
+      \slv_reg2_reg[31]\(6) => \slv_reg2_reg_n_0_[6]\,
+      \slv_reg2_reg[31]\(5) => \slv_reg2_reg_n_0_[5]\,
+      \slv_reg2_reg[31]\(4) => \slv_reg2_reg_n_0_[4]\,
+      \slv_reg2_reg[31]\(3) => \slv_reg2_reg_n_0_[3]\,
+      \slv_reg2_reg[31]\(2) => \slv_reg2_reg_n_0_[2]\,
+      \slv_reg2_reg[31]\(1) => \slv_reg2_reg_n_0_[1]\,
+      \slv_reg2_reg[31]\(0) => slv_reg2(0),
       \slv_reg3_reg[31]\(24) => slv_reg3(31),
       \slv_reg3_reg[31]\(23) => \slv_reg3_reg_n_0_[23]\,
       \slv_reg3_reg[31]\(22) => \slv_reg3_reg_n_0_[22]\,
@@ -4640,9 +4698,9 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0 is
     Q : out STD_LOGIC_VECTOR ( 0 to 0 );
     S_AXI_ARREADY : out STD_LOGIC;
     s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    SPI_SCK : out STD_LOGIC;
     SPI_MOSI : out STD_LOGIC;
     SPI_CS : out STD_LOGIC;
+    SPI_SCK : out STD_LOGIC;
     s00_axi_rvalid : out STD_LOGIC;
     s00_axi_bvalid : out STD_LOGIC;
     SPI_MISO : in STD_LOGIC;

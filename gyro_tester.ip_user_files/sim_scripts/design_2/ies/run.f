@@ -52,8 +52,8 @@
   "../../../bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0_S00_AXI.v" \
   "../../../bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0.v" \
   "../../../bd/design_2/ip/design_2_axi4_pl_interrupt_ge_0_0/sim/design_2_axi4_pl_interrupt_ge_0_0.v" \
-  "../../../bd/design_2/ipshared/e62d/hdl/SPI_ip_v1_0_S00_AXI.v" \
-  "../../../bd/design_2/ipshared/e62d/hdl/SPI_ip_v1_0.v" \
+  "../../../bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0_S00_AXI.v" \
+  "../../../bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0.v" \
   "../../../bd/design_2/ip/design_2_SPI_ip_0_0/sim/design_2_SPI_ip_0_0.v" \
 -endlib
 -makelib ies_lib/lib_pkg_v1_0_2 \
@@ -174,12 +174,12 @@
 -endlib
 -makelib ies_lib/xil_defaultlib \
   "../../../bd/design_2/ip/design_2_axi_smc_0/sim/design_2_axi_smc_0.v" \
-  "../../../bd/design_2/ipshared/fd90/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
-  "../../../bd/design_2/ipshared/fd90/hdl/axis_stream_fifo_v1_0.v" \
+  "../../../bd/design_2/ipshared/2721/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
+  "../../../bd/design_2/ipshared/2721/hdl/axis_stream_fifo_v1_0.v" \
   "../../../bd/design_2/ip/design_2_RxFIFO_0/sim/design_2_RxFIFO_0.v" \
   "../../../bd/design_2/ip/design_2_TxFIFO_0/sim/design_2_TxFIFO_0.v" \
-  "../../../bd/design_2/ipshared/d394/hdl/BiDirChannels_v1_0_S00_AXI.v" \
-  "../../../bd/design_2/ipshared/d394/hdl/BiDirChannels_v1_0.v" \
+  "../../../bd/design_2/ipshared/10b0/hdl/BiDirChannels_v1_0_S00_AXI.v" \
+  "../../../bd/design_2/ipshared/10b0/hdl/BiDirChannels_v1_0.v" \
   "../../../bd/design_2/ip/design_2_BiDirChannels_0_0/sim/design_2_BiDirChannels_0_0.v" \
 -endlib
 -makelib ies_lib/generic_baseblocks_v2_1_0 \

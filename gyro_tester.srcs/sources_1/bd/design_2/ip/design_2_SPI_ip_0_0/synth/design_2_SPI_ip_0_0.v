@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:user:axi4_pl_SPI_ip:1.0
-// IP Revision: 10
+// IP Revision: 11
 
 (* X_CORE_INFO = "SPI_ip_v1_0,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "design_2_SPI_ip_0_0,SPI_ip_v1_0,{}" *)
-(* CORE_GENERATION_INFO = "design_2_SPI_ip_0_0,SPI_ip_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axi4_pl_SPI_ip,x_ipVersion=1.0,x_ipCoreRevision=10,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4}" *)
+(* CORE_GENERATION_INFO = "design_2_SPI_ip_0_0,SPI_ip_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axi4_pl_SPI_ip,x_ipVersion=1.0,x_ipCoreRevision=11,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_2_SPI_ip_0_0 (
   SPI_MISO,

@@ -105,8 +105,8 @@ vlog -work xil_defaultlib -64 "+incdir+../../../../gyro_tester.srcs/sources_1/bd
 "../../../bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0_S00_AXI.v" \
 "../../../bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0.v" \
 "../../../bd/design_2/ip/design_2_axi4_pl_interrupt_ge_0_0/sim/design_2_axi4_pl_interrupt_ge_0_0.v" \
-"../../../bd/design_2/ipshared/e62d/hdl/SPI_ip_v1_0_S00_AXI.v" \
-"../../../bd/design_2/ipshared/e62d/hdl/SPI_ip_v1_0.v" \
+"../../../bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0_S00_AXI.v" \
+"../../../bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0.v" \
 "../../../bd/design_2/ip/design_2_SPI_ip_0_0/sim/design_2_SPI_ip_0_0.v" \
 
 vcom -work lib_pkg_v1_0_2 -64 -93 \
@@ -227,12 +227,12 @@ vcom -work xil_defaultlib -64 -93 \
 
 vlog -work xil_defaultlib -64 "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/ec67/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/5bb9/hdl/verilog" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/70fd/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/f90c/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2018.2/data/xilinx_vip/include" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/ec67/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/5bb9/hdl/verilog" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/70fd/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/f90c/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2018.2/data/xilinx_vip/include" \
 "../../../bd/design_2/ip/design_2_axi_smc_0/sim/design_2_axi_smc_0.v" \
-"../../../bd/design_2/ipshared/fd90/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
-"../../../bd/design_2/ipshared/fd90/hdl/axis_stream_fifo_v1_0.v" \
+"../../../bd/design_2/ipshared/2721/hdl/axis_stream_fifo_v1_0_S00_AXI.v" \
+"../../../bd/design_2/ipshared/2721/hdl/axis_stream_fifo_v1_0.v" \
 "../../../bd/design_2/ip/design_2_RxFIFO_0/sim/design_2_RxFIFO_0.v" \
 "../../../bd/design_2/ip/design_2_TxFIFO_0/sim/design_2_TxFIFO_0.v" \
-"../../../bd/design_2/ipshared/d394/hdl/BiDirChannels_v1_0_S00_AXI.v" \
-"../../../bd/design_2/ipshared/d394/hdl/BiDirChannels_v1_0.v" \
+"../../../bd/design_2/ipshared/10b0/hdl/BiDirChannels_v1_0_S00_AXI.v" \
+"../../../bd/design_2/ipshared/10b0/hdl/BiDirChannels_v1_0.v" \
 "../../../bd/design_2/ip/design_2_BiDirChannels_0_0/sim/design_2_BiDirChannels_0_0.v" \
 
 vlog -work generic_baseblocks_v2_1_0 -64 "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/ec67/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/5bb9/hdl/verilog" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/70fd/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/f90c/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2018.2/data/xilinx_vip/include" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/ec67/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/5bb9/hdl/verilog" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/70fd/hdl" "+incdir+../../../../gyro_tester.srcs/sources_1/bd/design_2/ipshared/f90c/hdl/verilog" "+incdir+C:/Xilinx/Vivado/2018.2/data/xilinx_vip/include" \

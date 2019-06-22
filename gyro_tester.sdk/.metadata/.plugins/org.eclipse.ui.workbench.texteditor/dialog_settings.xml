@@ -2,22 +2,28 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="send_data_over_UART" key="selection"/>
+		<item value="receiveDMApacket" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="send_data_over_UART"/>
-			<item value="send_packet_data_over_UART"/>
-			<item value="send_byte_over_UART"/>
-			<item value="run_ADC0_calibration"/>
-			<item value="ProgramOTP_chipID"/>
-			<item value="ProgramOTP_VbgTrim"/>
-			<item value="RX_BUFFER"/>
-			<item value="MAX_PKT_LEN"/>
+			<item value="receiveDMApacket"/>
+			<item value="Flush"/>
+			<item value="Invalidate"/>
+			<item value="Configura"/>
+			<item value="receiveDMA"/>
+			<item value="SaveData"/>
+			<item value="CheckData"/>
+			<item value="CheckDa"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SaveData"/>
+			<item value="reg11"/>
+			<item value="reg10"/>
+			<item value="reg9"/>
+			<item value="reg8"/>
+			<item value="reg"/>
 			<item value="send_data_over_UART"/>
 		</list>
 	</section>
@@ -25,7 +31,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="1012" key="DIALOG_X_ORIGIN"/>
-		<item value="93" key="DIALOG_Y_ORIGIN"/>
+		<item value="991" key="DIALOG_X_ORIGIN"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Fri May 24 19:23:09 2019
+// Date        : Wed Jun 19 19:37:46 2019
 // Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_SPI_ip_0_0/design_2_SPI_ip_0_0_sim_netlist.v
@@ -131,30 +131,30 @@ endmodule
 module design_2_SPI_ip_0_0_SPI_Master
    (SR,
     out,
-    SPI_SCK,
     SPI_MOSI,
     SPI_CS,
+    SPI_SCK,
     D,
     SPI_MISO,
     s00_axi_aclk,
     s00_axi_aresetn,
     Q,
+    \slv_reg2_reg[31] ,
     \slv_reg3_reg[31] ,
-    axi_araddr,
-    \slv_reg2_reg[31] );
+    axi_araddr);
   output [0:0]SR;
   output [0:0]out;
-  output SPI_SCK;
   output SPI_MOSI;
   output SPI_CS;
+  output SPI_SCK;
   output [24:0]D;
   input SPI_MISO;
   input s00_axi_aclk;
   input s00_axi_aresetn;
   input [24:0]Q;
+  input [24:0]\slv_reg2_reg[31] ;
   input [24:0]\slv_reg3_reg[31] ;
   input [1:0]axi_araddr;
-  input [24:0]\slv_reg2_reg[31] ;
 
   wire [24:0]D;
   wire DWCNTR_n_0;
@@ -302,7 +302,7 @@ module design_2_SPI_ip_0_0_SPI_Master
         .\r_reg_reg[9]_C (FSM_n_12),
         .\r_reg_reg[9]_P (FSM_n_42),
         .s00_axi_aresetn(s00_axi_aresetn),
-        .\slv_reg2_reg[31] (\slv_reg2_reg[31] [24]),
+        .\slv_reg2_reg[31] ({\slv_reg2_reg[31] [24],\slv_reg2_reg[31] [0]}),
         .\slv_reg3_reg[31] (\slv_reg3_reg[31] [24]));
   design_2_SPI_ip_0_0_leftShiftRegister25bits SR25Bits
        (.D(D[23:0]),
@@ -417,16 +417,16 @@ module design_2_SPI_ip_0_0_SPI_fsm
     \r_reg_reg[1]_P ,
     \r_reg_reg[0]_P ,
     \r_reg_reg[4]_P_0 ,
-    SPI_SCK,
     SPI_MOSI,
     SPI_CS,
+    SPI_SCK,
     D,
     s00_axi_aresetn,
     Q,
-    \slv_reg3_reg[31] ,
     MOSI_int,
-    axi_araddr,
     \slv_reg2_reg[31] ,
+    \slv_reg3_reg[31] ,
+    axi_araddr,
     SR,
     \FSM_onehot_state_reg[3]_0 ,
     CLK);
@@ -481,16 +481,16 @@ module design_2_SPI_ip_0_0_SPI_fsm
   output \r_reg_reg[1]_P ;
   output \r_reg_reg[0]_P ;
   output \r_reg_reg[4]_P_0 ;
-  output SPI_SCK;
   output SPI_MOSI;
   output SPI_CS;
+  output SPI_SCK;
   output [0:0]D;
   input s00_axi_aresetn;
   input [24:0]Q;
-  input [0:0]\slv_reg3_reg[31] ;
   input MOSI_int;
+  input [1:0]\slv_reg2_reg[31] ;
+  input [0:0]\slv_reg3_reg[31] ;
   input [1:0]axi_araddr;
-  input [0:0]\slv_reg2_reg[31] ;
   input [0:0]SR;
   input [1:0]\FSM_onehot_state_reg[3]_0 ;
   input CLK;
@@ -563,7 +563,7 @@ module design_2_SPI_ip_0_0_SPI_fsm
   wire \r_reg_reg[9]_C ;
   wire \r_reg_reg[9]_P ;
   wire s00_axi_aresetn;
-  wire [0:0]\slv_reg2_reg[31] ;
+  wire [1:0]\slv_reg2_reg[31] ;
   wire [0:0]\slv_reg3_reg[31] ;
 
   LUT3 #(
@@ -645,26 +645,29 @@ module design_2_SPI_ip_0_0_SPI_fsm
         .D(\FSM_onehot_state_reg[3]_0 [1]),
         .Q(out[2]),
         .R(SR));
-  LUT3 #(
-    .INIT(8'hFE)) 
-    SPI_CS_INST_0
-       (.I0(load),
-        .I1(\FSM_onehot_state_reg_n_0_[0] ),
-        .I2(out[1]),
-        .O(SPI_CS));
   LUT4 #(
-    .INIT(16'h0002)) 
+    .INIT(16'hFE00)) 
+    SPI_CS_INST_0
+       (.I0(out[1]),
+        .I1(\FSM_onehot_state_reg_n_0_[0] ),
+        .I2(load),
+        .I3(\slv_reg2_reg[31] [0]),
+        .O(SPI_CS));
+  LUT5 #(
+    .INIT(32'h00020000)) 
     SPI_MOSI_INST_0
        (.I0(MOSI_int),
         .I1(out[1]),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(load),
+        .I4(\slv_reg2_reg[31] [0]),
         .O(SPI_MOSI));
-  LUT2 #(
-    .INIT(4'h6)) 
+  LUT3 #(
+    .INIT(8'h60)) 
     SPI_SCK_INST_0
-       (.I0(out[2]),
-        .I1(\slv_reg3_reg[31] ),
+       (.I0(\slv_reg3_reg[31] ),
+        .I1(out[2]),
+        .I2(\slv_reg2_reg[31] [0]),
         .O(SPI_SCK));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -672,7 +675,7 @@ module design_2_SPI_ip_0_0_SPI_fsm
        (.I0(\slv_reg3_reg[31] ),
         .I1(out[1]),
         .I2(axi_araddr[0]),
-        .I3(\slv_reg2_reg[31] ),
+        .I3(\slv_reg2_reg[31] [1]),
         .I4(axi_araddr[1]),
         .I5(Q[24]),
         .O(D));
@@ -1034,9 +1037,9 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0
     Q,
     S_AXI_ARREADY,
     s00_axi_rdata,
-    SPI_SCK,
     SPI_MOSI,
     SPI_CS,
+    SPI_SCK,
     s00_axi_rvalid,
     s00_axi_bvalid,
     SPI_MISO,
@@ -1057,9 +1060,9 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0
   output [0:0]Q;
   output S_AXI_ARREADY;
   output [31:0]s00_axi_rdata;
-  output SPI_SCK;
   output SPI_MOSI;
   output SPI_CS;
+  output SPI_SCK;
   output s00_axi_rvalid;
   output s00_axi_bvalid;
   input SPI_MISO;
@@ -1133,9 +1136,9 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     FSM_START,
     S_AXI_ARREADY,
     s00_axi_rdata,
-    SPI_SCK,
     SPI_MOSI,
     SPI_CS,
+    SPI_SCK,
     s00_axi_rvalid,
     s00_axi_bvalid,
     SPI_MISO,
@@ -1156,9 +1159,9 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
   output FSM_START;
   output S_AXI_ARREADY;
   output [31:0]s00_axi_rdata;
-  output SPI_SCK;
   output SPI_MOSI;
   output SPI_CS;
+  output SPI_SCK;
   output s00_axi_rvalid;
   output s00_axi_bvalid;
   input SPI_MISO;
@@ -1216,11 +1219,42 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
   wire \slv_reg0[23]_i_1_n_0 ;
   wire \slv_reg0[31]_i_2_n_0 ;
   wire \slv_reg0[7]_i_1_n_0 ;
-  wire [31:0]slv_reg2;
+  wire [0:0]slv_reg2;
   wire \slv_reg2[15]_i_1_n_0 ;
   wire \slv_reg2[23]_i_1_n_0 ;
   wire \slv_reg2[31]_i_1_n_0 ;
   wire \slv_reg2[7]_i_1_n_0 ;
+  wire \slv_reg2_reg_n_0_[10] ;
+  wire \slv_reg2_reg_n_0_[11] ;
+  wire \slv_reg2_reg_n_0_[12] ;
+  wire \slv_reg2_reg_n_0_[13] ;
+  wire \slv_reg2_reg_n_0_[14] ;
+  wire \slv_reg2_reg_n_0_[15] ;
+  wire \slv_reg2_reg_n_0_[16] ;
+  wire \slv_reg2_reg_n_0_[17] ;
+  wire \slv_reg2_reg_n_0_[18] ;
+  wire \slv_reg2_reg_n_0_[19] ;
+  wire \slv_reg2_reg_n_0_[1] ;
+  wire \slv_reg2_reg_n_0_[20] ;
+  wire \slv_reg2_reg_n_0_[21] ;
+  wire \slv_reg2_reg_n_0_[22] ;
+  wire \slv_reg2_reg_n_0_[23] ;
+  wire \slv_reg2_reg_n_0_[24] ;
+  wire \slv_reg2_reg_n_0_[25] ;
+  wire \slv_reg2_reg_n_0_[26] ;
+  wire \slv_reg2_reg_n_0_[27] ;
+  wire \slv_reg2_reg_n_0_[28] ;
+  wire \slv_reg2_reg_n_0_[29] ;
+  wire \slv_reg2_reg_n_0_[2] ;
+  wire \slv_reg2_reg_n_0_[30] ;
+  wire \slv_reg2_reg_n_0_[31] ;
+  wire \slv_reg2_reg_n_0_[3] ;
+  wire \slv_reg2_reg_n_0_[4] ;
+  wire \slv_reg2_reg_n_0_[5] ;
+  wire \slv_reg2_reg_n_0_[6] ;
+  wire \slv_reg2_reg_n_0_[7] ;
+  wire \slv_reg2_reg_n_0_[8] ;
+  wire \slv_reg2_reg_n_0_[9] ;
   wire [31:0]slv_reg3;
   wire \slv_reg3[15]_i_1_n_0 ;
   wire \slv_reg3[23]_i_1_n_0 ;
@@ -1382,7 +1416,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[24]_i_1 
        (.I0(\slv_reg3_reg_n_0_[24] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[24]),
+        .I2(\slv_reg2_reg_n_0_[24] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[24]),
         .O(reg_data_out[24]));
@@ -1391,7 +1425,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[25]_i_1 
        (.I0(\slv_reg3_reg_n_0_[25] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[25]),
+        .I2(\slv_reg2_reg_n_0_[25] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[25]),
         .O(reg_data_out[25]));
@@ -1400,7 +1434,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[26]_i_1 
        (.I0(\slv_reg3_reg_n_0_[26] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[26]),
+        .I2(\slv_reg2_reg_n_0_[26] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[26]),
         .O(reg_data_out[26]));
@@ -1409,7 +1443,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[27]_i_1 
        (.I0(\slv_reg3_reg_n_0_[27] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[27]),
+        .I2(\slv_reg2_reg_n_0_[27] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[27]),
         .O(reg_data_out[27]));
@@ -1418,7 +1452,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[28]_i_1 
        (.I0(\slv_reg3_reg_n_0_[28] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[28]),
+        .I2(\slv_reg2_reg_n_0_[28] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[28]),
         .O(reg_data_out[28]));
@@ -1427,7 +1461,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[29]_i_1 
        (.I0(\slv_reg3_reg_n_0_[29] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[29]),
+        .I2(\slv_reg2_reg_n_0_[29] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[29]),
         .O(reg_data_out[29]));
@@ -1436,7 +1470,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
     \axi_rdata[30]_i_1 
        (.I0(\slv_reg3_reg_n_0_[30] ),
         .I1(axi_araddr[2]),
-        .I2(slv_reg2[30]),
+        .I2(\slv_reg2_reg_n_0_[30] ),
         .I3(axi_araddr[3]),
         .I4(slv_reg0[30]),
         .O(reg_data_out[30]));
@@ -1931,193 +1965,193 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[0]),
-        .Q(slv_reg2[0]),
+        .Q(slv_reg2),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[10] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[10]),
-        .Q(slv_reg2[10]),
+        .Q(\slv_reg2_reg_n_0_[10] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[11] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[11]),
-        .Q(slv_reg2[11]),
+        .Q(\slv_reg2_reg_n_0_[11] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[12] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[12]),
-        .Q(slv_reg2[12]),
+        .Q(\slv_reg2_reg_n_0_[12] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[13] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[13]),
-        .Q(slv_reg2[13]),
+        .Q(\slv_reg2_reg_n_0_[13] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[14] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[14]),
-        .Q(slv_reg2[14]),
+        .Q(\slv_reg2_reg_n_0_[14] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[15] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[15]),
-        .Q(slv_reg2[15]),
+        .Q(\slv_reg2_reg_n_0_[15] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[16] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[16]),
-        .Q(slv_reg2[16]),
+        .Q(\slv_reg2_reg_n_0_[16] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[17] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[17]),
-        .Q(slv_reg2[17]),
+        .Q(\slv_reg2_reg_n_0_[17] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[18] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[18]),
-        .Q(slv_reg2[18]),
+        .Q(\slv_reg2_reg_n_0_[18] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[19] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[19]),
-        .Q(slv_reg2[19]),
+        .Q(\slv_reg2_reg_n_0_[19] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[1] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[1]),
-        .Q(slv_reg2[1]),
+        .Q(\slv_reg2_reg_n_0_[1] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[20] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[20]),
-        .Q(slv_reg2[20]),
+        .Q(\slv_reg2_reg_n_0_[20] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[21] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[21]),
-        .Q(slv_reg2[21]),
+        .Q(\slv_reg2_reg_n_0_[21] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[22] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[22]),
-        .Q(slv_reg2[22]),
+        .Q(\slv_reg2_reg_n_0_[22] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[23] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[23]_i_1_n_0 ),
         .D(s00_axi_wdata[23]),
-        .Q(slv_reg2[23]),
+        .Q(\slv_reg2_reg_n_0_[23] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[24] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[24]),
-        .Q(slv_reg2[24]),
+        .Q(\slv_reg2_reg_n_0_[24] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[25] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[25]),
-        .Q(slv_reg2[25]),
+        .Q(\slv_reg2_reg_n_0_[25] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[26] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[26]),
-        .Q(slv_reg2[26]),
+        .Q(\slv_reg2_reg_n_0_[26] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[27] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[27]),
-        .Q(slv_reg2[27]),
+        .Q(\slv_reg2_reg_n_0_[27] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[28] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[28]),
-        .Q(slv_reg2[28]),
+        .Q(\slv_reg2_reg_n_0_[28] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[29] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[29]),
-        .Q(slv_reg2[29]),
+        .Q(\slv_reg2_reg_n_0_[29] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[2] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[2]),
-        .Q(slv_reg2[2]),
+        .Q(\slv_reg2_reg_n_0_[2] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[30] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[30]),
-        .Q(slv_reg2[30]),
+        .Q(\slv_reg2_reg_n_0_[30] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[31] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[31]_i_1_n_0 ),
         .D(s00_axi_wdata[31]),
-        .Q(slv_reg2[31]),
+        .Q(\slv_reg2_reg_n_0_[31] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[3] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[3]),
-        .Q(slv_reg2[3]),
+        .Q(\slv_reg2_reg_n_0_[3] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[4] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[4]),
-        .Q(slv_reg2[4]),
+        .Q(\slv_reg2_reg_n_0_[4] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[5] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[5]),
-        .Q(slv_reg2[5]),
+        .Q(\slv_reg2_reg_n_0_[5] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[6] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[6]),
-        .Q(slv_reg2[6]),
+        .Q(\slv_reg2_reg_n_0_[6] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[7] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[7]_i_1_n_0 ),
         .D(s00_axi_wdata[7]),
-        .Q(slv_reg2[7]),
+        .Q(\slv_reg2_reg_n_0_[7] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[8] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[8]),
-        .Q(slv_reg2[8]),
+        .Q(\slv_reg2_reg_n_0_[8] ),
         .R(user_SPI_Block_n_0));
   FDRE \slv_reg2_reg[9] 
        (.C(s00_axi_aclk),
         .CE(\slv_reg2[15]_i_1_n_0 ),
         .D(s00_axi_wdata[9]),
-        .Q(slv_reg2[9]),
+        .Q(\slv_reg2_reg_n_0_[9] ),
         .R(user_SPI_Block_n_0));
   LUT4 #(
     .INIT(16'h8000)) 
@@ -2362,7 +2396,7 @@ module design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI
         .out(FSM_DONE),
         .s00_axi_aclk(s00_axi_aclk),
         .s00_axi_aresetn(s00_axi_aresetn),
-        .\slv_reg2_reg[31] ({slv_reg2[31],slv_reg2[23:0]}),
+        .\slv_reg2_reg[31] ({\slv_reg2_reg_n_0_[31] ,\slv_reg2_reg_n_0_[23] ,\slv_reg2_reg_n_0_[22] ,\slv_reg2_reg_n_0_[21] ,\slv_reg2_reg_n_0_[20] ,\slv_reg2_reg_n_0_[19] ,\slv_reg2_reg_n_0_[18] ,\slv_reg2_reg_n_0_[17] ,\slv_reg2_reg_n_0_[16] ,\slv_reg2_reg_n_0_[15] ,\slv_reg2_reg_n_0_[14] ,\slv_reg2_reg_n_0_[13] ,\slv_reg2_reg_n_0_[12] ,\slv_reg2_reg_n_0_[11] ,\slv_reg2_reg_n_0_[10] ,\slv_reg2_reg_n_0_[9] ,\slv_reg2_reg_n_0_[8] ,\slv_reg2_reg_n_0_[7] ,\slv_reg2_reg_n_0_[6] ,\slv_reg2_reg_n_0_[5] ,\slv_reg2_reg_n_0_[4] ,\slv_reg2_reg_n_0_[3] ,\slv_reg2_reg_n_0_[2] ,\slv_reg2_reg_n_0_[1] ,slv_reg2}),
         .\slv_reg3_reg[31] ({slv_reg3[31],\slv_reg3_reg_n_0_[23] ,\slv_reg3_reg_n_0_[22] ,\slv_reg3_reg_n_0_[21] ,\slv_reg3_reg_n_0_[20] ,\slv_reg3_reg_n_0_[19] ,\slv_reg3_reg_n_0_[18] ,\slv_reg3_reg_n_0_[17] ,\slv_reg3_reg_n_0_[16] ,\slv_reg3_reg_n_0_[15] ,\slv_reg3_reg_n_0_[14] ,\slv_reg3_reg_n_0_[13] ,\slv_reg3_reg_n_0_[12] ,\slv_reg3_reg_n_0_[11] ,\slv_reg3_reg_n_0_[10] ,\slv_reg3_reg_n_0_[9] ,\slv_reg3_reg_n_0_[8] ,\slv_reg3_reg_n_0_[7] ,\slv_reg3_reg_n_0_[6] ,\slv_reg3_reg_n_0_[5] ,\slv_reg3_reg_n_0_[4] ,\slv_reg3_reg_n_0_[3] ,slv_reg3[2:0]}));
 endmodule
 
