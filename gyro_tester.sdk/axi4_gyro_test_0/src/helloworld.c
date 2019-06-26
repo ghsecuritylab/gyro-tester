@@ -101,7 +101,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN		0x400
+#define MAX_PKT_LEN				0x400
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -121,6 +121,8 @@ typedef struct {
 	u16 Options;	/* Option settings */
 } TmrCntrSetup;
 
+
+volatile int busySamplingFlag = 0;
 // ---------------
 
 #define INTC_INTERRUPT_ID_0 63 // IRQ_F2P[2:2]
@@ -1275,6 +1277,8 @@ static int SaveData(int debug_mode)
 	 */
 #ifndef __aarch64__
 	Xil_DCacheInvalidateRange((UINTPTR)RxPacket, MAX_PKT_LEN);
+	Xil_DCacheInvalidateRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
+	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 #endif
 
    idx = 0;
@@ -1531,13 +1535,21 @@ int receivePacketButton(void){
 	int FreeBdCount;
 	int Status;
 
-	RxRingPtr = XAxiDma_GetRxRing(&AxiDma);
 
 	resetGyroRxFIFO();
+
 	setGyroChannelControl(0x00000010);
-	nops(4000000);
+	nops(100000000); // this is the value for DIV 1
 	setGyroChannelControl(0x00000000);
 	receiveDMApacket(&AxiDma,0);
+
+	setGyroChannelControl(0x00000010);
+	nops(100000000); // this is the value for DIV 1
+	setGyroChannelControl(0x00000000);
+	receiveDMApacket(&AxiDma,0);
+
+	busySamplingFlag = 0;
+
 	return 1;
 }
 // -------------------------------------------------------------------
@@ -1828,7 +1840,9 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_READ_PACKETS):
+		while(busySamplingFlag == 1);
 		send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
+		//send_data_over_UART(get_num_data_points(UartRxData),(u8*)RX_BUFFER_BASE);
 			break;
 
 		case (CMD_LOAD_SAWTOOTH_UP_DATA):
@@ -1908,6 +1922,7 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_START_ADC_ACQUISITIONS):
+				busySamplingFlag = 1;
 			receivePacketButton();
 			break;
 
@@ -2673,8 +2688,8 @@ int main() {
     //setGyroChannelConfiguration(0x01000000);
 
     // bit 17:16 is to divide clock by 2/4/8.
-   setGyroChannelConfiguration(0x00003000);
-   // setGyroChannelConfiguration(0x00000000); // 64 samples
+   setGyroChannelConfiguration(0x00001000);
+    //setGyroChannelConfiguration(0x00000000); // 64 samples
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
     //  001 is 128 samples  (64 words)
