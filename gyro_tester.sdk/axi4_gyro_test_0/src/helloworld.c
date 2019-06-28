@@ -60,6 +60,25 @@ extern void xil_printf(const char *format, ...);
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
+#define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
+
+
+// test ADC mux settings
+#define TADC_MUX_TEMPERATURE_SENSOR		0x000
+#define	TADC_MUX_BANDGAP_VOLTAGE		0x200
+#define TADC_MUX_REFERENCE_VOLTAGE		0x400
+#define TADC_MUX_VEXT					0x600
+#define TADC_MUX_CEXT					0x800
+#define TADC_MUX_REXT					0xA00
+#define TADC_MUX_VSSA					0xC00
+#define TADC_MUX_VDDA					0xE00
+
+#define TADC_ENABLE						0x1000
+#define	TADC_TEMP_SENSOR_ENABLE			0x0080
+#define TADC_VEXTSEL					0x0040
+#define	TADC_RESET						0x0002
+#define TADC_START						0x0001
+
 
 
 #ifdef FAKE_DATA
@@ -153,6 +172,9 @@ u16 ADC_calData[8];			// store ADC cal data read from chip before transmit
 
 u8	FPGA_outputs_state = 1; 	// 1=on, 2=0ff
 
+#define MAX_TADC_RESULTS_SIZE 512
+static u16 testADCresults[MAX_TADC_RESULTS_SIZE];
+
 
 void isr0 (void *intc_inst_ptr);
 void isr1 (void *intc_inst_ptr);
@@ -241,6 +263,7 @@ static void read_ADC1_cal_data(void);
 static int initDMADevice(void);
 static int sendPacketButton(void);
 static int receivePacketButton(void);
+static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -1539,12 +1562,12 @@ int receivePacketButton(void){
 	resetGyroRxFIFO();
 
 	setGyroChannelControl(0x00000010);
-	nops(100000000); // this is the value for DIV 1
+	nops(10000000); // this is the value for DIV 1
 	setGyroChannelControl(0x00000000);
 	receiveDMApacket(&AxiDma,0);
 
 	setGyroChannelControl(0x00000010);
-	nops(100000000); // this is the value for DIV 1
+	nops(10000000); // this is the value for DIV 1
 	setGyroChannelControl(0x00000000);
 	receiveDMApacket(&AxiDma,0);
 
@@ -1820,6 +1843,7 @@ static int SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 void read_uart_bytes(void)
 {
 	u8 numBytesReceived = 0;
+	u16 numPoints;
 	unsigned int commandByte,regAddr,regData;
 
 	// loop through Uart Rx buffer and store received data
@@ -1940,6 +1964,25 @@ void read_uart_bytes(void)
 
 		case (CMD_FPGA_GET_OUTPUTS_STATE):
 			send_byte_over_UART(FPGA_outputs_state);
+			break;
+
+		case (CMD_RUN_TADC_CONVERSIONS):
+			//verify 4 bytes received(command and 3 data bytes after)
+			if (numBytesReceived<4)
+			{
+				return;
+			}
+
+			// first byte received is command, second byte is signal to measure,
+			// third and fourth bytes are 16-bit number of measurements MSbyte(3rd) LSbyte(4th)
+			numPoints = (u16)((UartRxData[2]<<8)+(UartRxData[3]));
+			if (numPoints > MAX_TADC_RESULTS_SIZE)
+			{
+				numPoints = MAX_TADC_RESULTS_SIZE;
+			}
+
+			fill_testADC_results_array((u16)(UartRxData[1]<<8),numPoints);
+			send_data_over_UART(numPoints*2,(u8*)testADCresults);
 			break;
 
 	}
@@ -2172,6 +2215,85 @@ void read_ADC1_cal_data(void)
 
 	//set register 10 readback mode back to normal
 	writeSPI_non_blocking(10,reg10&0x00FF);
+
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
+{
+	unsigned int reg0,reg1,i,TADCresult;
+	u16 testADCinitialConditions,testADCstartConditions;
+	u8 firstSetup = 1;
+
+	//store original register 0,1 setting
+	readSPI(&reg0,0);
+	readSPI(&reg1,1);
+
+	//set register 1 readback mode to read-only, this is
+	//controlled by register 0 bit 10
+	writeSPI_non_blocking(0,reg0|0x0400);
+
+	if (numReadings > MAX_TADC_RESULTS_SIZE)
+	{
+		numReadings = MAX_TADC_RESULTS_SIZE;
+	}
+
+	//build initial register setting for desired test case
+	testADCinitialConditions = TADC_ENABLE | signalToMeasure |
+			TADC_RESET | TADC_START;
+
+	// if temperature sensor is being measured need to enable it too
+	if (signalToMeasure == TADC_MUX_TEMPERATURE_SENSOR)
+	{
+		testADCinitialConditions |= TADC_TEMP_SENSOR_ENABLE;
+	}
+
+	// if VEXT is being measured set VEXTSEL bit high too
+	if (signalToMeasure == TADC_MUX_VEXT)
+	{
+		testADCinitialConditions |= TADC_VEXTSEL;
+	}
+
+	//to start conversion set the start bit low
+	testADCstartConditions = testADCinitialConditions & ~TADC_START;
+
+	// need to set initial conditions and led ADC settle before looping
+	// through successive measurements
+	writeSPI_non_blocking(1,testADCinitialConditions);
+
+	SetTimerDuration(65535, 8);		// delay for 5msec after initial mux setting
+	timerRunning = 1;				// set flag that is cleared in timer ISR
+	XTtcPs_Start(&DelayTimer);		// start the timer
+	while(timerRunning);			// wait for ISR to clear flag
+
+	SetTimerDuration(10000, 1);		// change timer setting to 100usec
+									// for use in loop below
+
+	for (i=0;i<numReadings;i++)
+	{
+		// initial tadc setting for desired measurement
+		writeSPI_non_blocking(1,testADCinitialConditions);
+
+		// start test ADC conversion
+		writeSPI_non_blocking(1,testADCstartConditions);
+
+		// wait for conversion to complete
+		timerRunning = 1;
+		XTtcPs_Start(&DelayTimer);
+		while(timerRunning);
+
+		// store result in array
+		readSPI((unsigned int*)&TADCresult,1);
+
+		// 12-bit result is in LSBs of 16-bit register
+		testADCresults[i] = TADCresult & 0xFFF;
+	}
+
+	//restore register 0 with RBKSEL1 turned off
+	writeSPI_non_blocking(0,reg0&0xFBFF);
+	writeSPI_non_blocking(1,reg1);
 
 }
 //------------------------------------------------------------
@@ -2688,7 +2810,7 @@ int main() {
     //setGyroChannelConfiguration(0x01000000);
 
     // bit 17:16 is to divide clock by 2/4/8.
-   setGyroChannelConfiguration(0x00001000);
+   setGyroChannelConfiguration(0x00003000);
     //setGyroChannelConfiguration(0x00000000); // 64 samples
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
