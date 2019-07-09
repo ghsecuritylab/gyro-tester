@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Jun 19 19:49:51 2019
+//Date        : Mon Jul  8 20:42:13 2019
 //Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 //Command     : generate_target design_2.bd
 //Design      : design_2
@@ -32,9 +32,14 @@ module design_2
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    HSIA0,
     HSICK,
-    HSID0,
+    HSI_A0,
+    HSI_A1,
+    HSI_DAM,
+    HSI_DAP,
+    HSI_DBM,
+    HSI_DBP,
+    HSI_DC,
     LED0,
     LED1,
     LED2,
@@ -46,7 +51,8 @@ module design_2
     SPI_MOSI,
     SPI_SCK,
     SW6,
-    SW7);
+    SW7,
+    SYNC_CK);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -68,9 +74,14 @@ module design_2
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSIA0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSIA0, LAYERED_METADATA undef" *) input HSIA0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSICK DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSICK, LAYERED_METADATA undef" *) output HSICK;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSID0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSID0, LAYERED_METADATA undef" *) output HSID0;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_A0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_A0, LAYERED_METADATA undef" *) input HSI_A0;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_A1 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_A1, LAYERED_METADATA undef" *) input HSI_A1;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_DAM DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_DAM, LAYERED_METADATA undef" *) output HSI_DAM;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_DAP DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_DAP, LAYERED_METADATA undef" *) output HSI_DAP;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_DBM DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_DBM, LAYERED_METADATA undef" *) output HSI_DBM;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_DBP DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_DBP, LAYERED_METADATA undef" *) output HSI_DBP;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HSI_DC DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HSI_DC, LAYERED_METADATA undef" *) output HSI_DC;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.LED0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.LED0, LAYERED_METADATA undef" *) output LED0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.LED1 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.LED1, LAYERED_METADATA undef" *) output LED1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.LED2 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.LED2, LAYERED_METADATA undef" *) output LED2;
@@ -83,9 +94,14 @@ module design_2
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SPI_SCK DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SPI_SCK, LAYERED_METADATA undef" *) output SPI_SCK;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SW6 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SW6, LAYERED_METADATA undef" *) input SW6;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SW7 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SW7, LAYERED_METADATA undef" *) input SW7;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SYNC_CK DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SYNC_CK, LAYERED_METADATA undef" *) output SYNC_CK;
 
+  wire BiDirChannels_0_HSI_DAM;
+  wire BiDirChannels_0_HSI_DAP;
+  wire BiDirChannels_0_HSI_DBM;
+  wire BiDirChannels_0_HSI_DBP;
+  wire BiDirChannels_0_HSI_DC;
   wire BiDirChannels_0_HS_Clock;
-  wire BiDirChannels_0_HS_DataOut;
   wire [31:0]BiDirChannels_0_M00_AXIS_TDATA;
   wire BiDirChannels_0_M00_AXIS_TLAST;
   wire BiDirChannels_0_M00_AXIS_TREADY;
@@ -93,7 +109,9 @@ module design_2
   wire BiDirChannels_0_M00_AXIS_TVALID;
   wire BiDirChannels_0_MCK_N;
   wire BiDirChannels_0_MCK_P;
-  wire HSIA0_1;
+  wire BiDirChannels_0_SYNCK;
+  wire HSI_A0_1;
+  wire HSI_A1_1;
   wire SPI_MISO_1;
   wire SPI_ip_0_FSM_DONE;
   wire SPI_ip_0_FSM_START;
@@ -389,9 +407,14 @@ module design_2
   wire [0:0]rst_ps7_0_100M_peripheral_aresetn;
   wire [4:0]xlconcat_0_dout;
 
-  assign HSIA0_1 = HSIA0;
   assign HSICK = BiDirChannels_0_HS_Clock;
-  assign HSID0 = BiDirChannels_0_HS_DataOut;
+  assign HSI_A0_1 = HSI_A0;
+  assign HSI_A1_1 = HSI_A1;
+  assign HSI_DAM = BiDirChannels_0_HSI_DAM;
+  assign HSI_DAP = BiDirChannels_0_HSI_DAP;
+  assign HSI_DBM = BiDirChannels_0_HSI_DBM;
+  assign HSI_DBP = BiDirChannels_0_HSI_DBP;
+  assign HSI_DC = BiDirChannels_0_HSI_DC;
   assign LED0 = axi4_pl_interrupt_ge_0_LED_0;
   assign LED1 = SPI_ip_0_FSM_START;
   assign LED2 = SPI_ip_0_FSM_DONE;
@@ -403,12 +426,19 @@ module design_2
   assign SPI_MOSI = SPI_ip_0_SPI_MOSI;
   assign SPI_SCK = SPI_ip_0_SPI_SCK;
   assign SW6_1 = SW6;
+  assign SYNC_CK = BiDirChannels_0_SYNCK;
   design_2_BiDirChannels_0_0 BiDirChannels_0
-       (.HS_Clock(BiDirChannels_0_HS_Clock),
-        .HS_DataIn(HSIA0_1),
-        .HS_DataOut(BiDirChannels_0_HS_DataOut),
+       (.HSI_A0(HSI_A0_1),
+        .HSI_A1(HSI_A1_1),
+        .HSI_DAM(BiDirChannels_0_HSI_DAM),
+        .HSI_DAP(BiDirChannels_0_HSI_DAP),
+        .HSI_DBM(BiDirChannels_0_HSI_DBM),
+        .HSI_DBP(BiDirChannels_0_HSI_DBP),
+        .HSI_DC(BiDirChannels_0_HSI_DC),
+        .HS_Clock(BiDirChannels_0_HS_Clock),
         .MCK_N(BiDirChannels_0_MCK_N),
         .MCK_P(BiDirChannels_0_MCK_P),
+        .SYNCK(BiDirChannels_0_SYNCK),
         .m00_axis_aclk(processing_system7_0_FCLK_CLK0),
         .m00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
         .m00_axis_tdata(BiDirChannels_0_M00_AXIS_TDATA),

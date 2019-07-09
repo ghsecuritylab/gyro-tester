@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 19 19:50:19 2019" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jul  8 20:42:41 2019" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="em.avnet.com:zed:part0:1.4" DEVICE="7z020" NAME="design_2" PACKAGE="clg484" SPEEDGRADE="-1"/>
 
@@ -75,19 +75,9 @@
         <CONNECTION INSTANCE="SPI_ip_0" PORT="FSM_DONE"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="HSIA0" SIGIS="data" SIGNAME="External_Ports_HSIA0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HS_DataIn"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="O" NAME="HSICK" SIGIS="data" SIGNAME="BiDirChannels_0_HS_Clock">
       <CONNECTIONS>
         <CONNECTION INSTANCE="BiDirChannels_0" PORT="HS_Clock"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="HSID0" SIGIS="data" SIGNAME="BiDirChannels_0_HS_DataOut">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HS_DataOut"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="MCK_P" SIGIS="data" SIGNAME="BiDirChannels_0_MCK_P">
@@ -98,6 +88,46 @@
     <PORT DIR="O" NAME="MCK_N" SIGIS="data" SIGNAME="BiDirChannels_0_MCK_N">
       <CONNECTIONS>
         <CONNECTION INSTANCE="BiDirChannels_0" PORT="MCK_N"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="HSI_A0" SIGIS="data" SIGNAME="External_Ports_HSI_A0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_A0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="HSI_A1" SIGIS="data" SIGNAME="External_Ports_HSI_A1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_A1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="HSI_DAP" SIGIS="data" SIGNAME="BiDirChannels_0_HSI_DAP">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_DAP"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="HSI_DAM" SIGIS="data" SIGNAME="BiDirChannels_0_HSI_DAM">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_DAM"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="HSI_DBM" SIGIS="data" SIGNAME="BiDirChannels_0_HSI_DBM">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_DBM"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="HSI_DBP" SIGIS="data" SIGNAME="BiDirChannels_0_HSI_DBP">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_DBP"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="HSI_DC" SIGIS="data" SIGNAME="BiDirChannels_0_HSI_DC">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="HSI_DC"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="SYNC_CK" SIGIS="data" SIGNAME="BiDirChannels_0_SYNCK">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="BiDirChannels_0" PORT="SYNCK"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -167,14 +197,39 @@
         <PARAMETER NAME="C_S00_AXI_HIGHADDR" VALUE="0x43C2FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="HS_DataIn" SIGIS="undef" SIGNAME="External_Ports_HSIA0">
+        <PORT DIR="I" NAME="HSI_A0" SIGIS="undef" SIGNAME="External_Ports_HSI_A0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="HSIA0"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_A0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="HS_DataOut" SIGIS="undef" SIGNAME="BiDirChannels_0_HS_DataOut">
+        <PORT DIR="I" NAME="HSI_A1" SIGIS="undef" SIGNAME="External_Ports_HSI_A1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="HSID0"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_A1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="HSI_DBM" SIGIS="undef" SIGNAME="BiDirChannels_0_HSI_DBM">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_DBM"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="HSI_DBP" SIGIS="undef" SIGNAME="BiDirChannels_0_HSI_DBP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_DBP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="HSI_DAM" SIGIS="undef" SIGNAME="BiDirChannels_0_HSI_DAM">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_DAM"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="HSI_DAP" SIGIS="undef" SIGNAME="BiDirChannels_0_HSI_DAP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_DAP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="HSI_DC" SIGIS="undef" SIGNAME="BiDirChannels_0_HSI_DC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HSI_DC"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="HS_Clock" SIGIS="undef" SIGNAME="BiDirChannels_0_HS_Clock">
@@ -190,6 +245,11 @@
         <PORT DIR="O" NAME="MCK_N" SIGIS="undef" SIGNAME="BiDirChannels_0_MCK_N">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="MCK_N"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="SYNCK" SIGIS="undef" SIGNAME="BiDirChannels_0_SYNCK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SYNC_CK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="3" NAME="s00_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="BiDirChannels_0_s00_axi_awaddr">
@@ -5147,6 +5207,7 @@
             <CONNECTION INSTANCE="TxFIFO" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="TxFIFO" PORT="m00_axis_aclk"/>
             <CONNECTION INSTANCE="TxFIFO" PORT="s00_axis_aclk"/>
+            <CONNECTION INSTANCE="SPI_ip_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ACLK"/>
@@ -5155,7 +5216,6 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M03_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M04_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M05_ACLK"/>
-            <CONNECTION INSTANCE="SPI_ip_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="m00_axis_aclk"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="s00_axis_aclk"/>
@@ -6793,6 +6853,7 @@
             <CONNECTION INSTANCE="TxFIFO" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="TxFIFO" PORT="m00_axis_aresetn"/>
             <CONNECTION INSTANCE="TxFIFO" PORT="s00_axis_aresetn"/>
+            <CONNECTION INSTANCE="SPI_ip_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M01_ARESETN"/>
@@ -6800,7 +6861,6 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M03_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M04_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M05_ARESETN"/>
-            <CONNECTION INSTANCE="SPI_ip_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="m00_axis_aresetn"/>
             <CONNECTION INSTANCE="BiDirChannels_0" PORT="s00_axis_aresetn"/>

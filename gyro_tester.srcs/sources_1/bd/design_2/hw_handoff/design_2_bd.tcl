@@ -160,9 +160,14 @@ proc create_root_design { parentCell } {
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
   # Create ports
-  set HSIA0 [ create_bd_port -dir I -type data HSIA0 ]
   set HSICK [ create_bd_port -dir O -type data HSICK ]
-  set HSID0 [ create_bd_port -dir O -type data HSID0 ]
+  set HSI_A0 [ create_bd_port -dir I -type data HSI_A0 ]
+  set HSI_A1 [ create_bd_port -dir I -type data HSI_A1 ]
+  set HSI_DAM [ create_bd_port -dir O -type data HSI_DAM ]
+  set HSI_DAP [ create_bd_port -dir O -type data HSI_DAP ]
+  set HSI_DBM [ create_bd_port -dir O -type data HSI_DBM ]
+  set HSI_DBP [ create_bd_port -dir O -type data HSI_DBP ]
+  set HSI_DC [ create_bd_port -dir O -type data HSI_DC ]
   set LED0 [ create_bd_port -dir O -type data LED0 ]
   set LED1 [ create_bd_port -dir O -type data LED1 ]
   set LED2 [ create_bd_port -dir O -type data LED2 ]
@@ -175,6 +180,7 @@ proc create_root_design { parentCell } {
   set SPI_SCK [ create_bd_port -dir O -type data SPI_SCK ]
   set SW6 [ create_bd_port -dir I -type data SW6 ]
   set SW7 [ create_bd_port -dir I -type data SW7 ]
+  set SYNC_CK [ create_bd_port -dir O -type data SYNC_CK ]
 
   # Create instance: BiDirChannels_0, and set properties
   set BiDirChannels_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:BiDirChannels:1.0 BiDirChannels_0 ]
@@ -1042,11 +1048,17 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M05_AXI [get_bd_intf_pins TxFIFO/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M05_AXI]
 
   # Create port connections
+  connect_bd_net -net BiDirChannels_0_HSI_DAM [get_bd_ports HSI_DAM] [get_bd_pins BiDirChannels_0/HSI_DAM]
+  connect_bd_net -net BiDirChannels_0_HSI_DAP [get_bd_ports HSI_DAP] [get_bd_pins BiDirChannels_0/HSI_DAP]
+  connect_bd_net -net BiDirChannels_0_HSI_DBM [get_bd_ports HSI_DBM] [get_bd_pins BiDirChannels_0/HSI_DBM]
+  connect_bd_net -net BiDirChannels_0_HSI_DBP [get_bd_ports HSI_DBP] [get_bd_pins BiDirChannels_0/HSI_DBP]
+  connect_bd_net -net BiDirChannels_0_HSI_DC [get_bd_ports HSI_DC] [get_bd_pins BiDirChannels_0/HSI_DC]
   connect_bd_net -net BiDirChannels_0_HS_Clock [get_bd_ports HSICK] [get_bd_pins BiDirChannels_0/HS_Clock]
-  connect_bd_net -net BiDirChannels_0_HS_DataOut [get_bd_ports HSID0] [get_bd_pins BiDirChannels_0/HS_DataOut]
   connect_bd_net -net BiDirChannels_0_MCK_N [get_bd_ports MCK_N] [get_bd_pins BiDirChannels_0/MCK_N]
   connect_bd_net -net BiDirChannels_0_MCK_P [get_bd_ports MCK_P] [get_bd_pins BiDirChannels_0/MCK_P]
-  connect_bd_net -net HSIA0_1 [get_bd_ports HSIA0] [get_bd_pins BiDirChannels_0/HS_DataIn]
+  connect_bd_net -net BiDirChannels_0_SYNCK [get_bd_ports SYNC_CK] [get_bd_pins BiDirChannels_0/SYNCK]
+  connect_bd_net -net HSI_A0_1 [get_bd_ports HSI_A0] [get_bd_pins BiDirChannels_0/HSI_A0]
+  connect_bd_net -net HSI_A1_1 [get_bd_ports HSI_A1] [get_bd_pins BiDirChannels_0/HSI_A1]
   connect_bd_net -net SPI_MISO_1 [get_bd_ports SPI_MISO] [get_bd_pins SPI_ip_0/SPI_MISO]
   connect_bd_net -net SPI_ip_0_FSM_DONE [get_bd_ports LED2] [get_bd_pins SPI_ip_0/FSM_DONE]
   connect_bd_net -net SPI_ip_0_FSM_START [get_bd_ports LED1] [get_bd_pins SPI_ip_0/FSM_START]

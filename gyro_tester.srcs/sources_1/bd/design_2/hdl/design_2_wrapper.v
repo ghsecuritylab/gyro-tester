@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Jun 19 19:49:52 2019
+//Date        : Mon Jul  8 20:42:14 2019
 //Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 //Command     : generate_target design_2_wrapper.bd
 //Design      : design_2_wrapper
@@ -31,9 +31,14 @@ module design_2_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    HSIA0,
     HSICK,
-    HSID0,
+    HSI_A0,
+    HSI_A1,
+    HSI_DAM,
+    HSI_DAP,
+    HSI_DBM,
+    HSI_DBP,
+    HSI_DC,
     LED0,
     LED1,
     LED2,
@@ -45,7 +50,8 @@ module design_2_wrapper
     SPI_MOSI,
     SPI_SCK,
     SW6,
-    SW7);
+    SW7,
+    SYNC_CK);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -67,9 +73,14 @@ module design_2_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  input HSIA0;
   output HSICK;
-  output HSID0;
+  input HSI_A0;
+  input HSI_A1;
+  output HSI_DAM;
+  output HSI_DAP;
+  output HSI_DBM;
+  output HSI_DBP;
+  output HSI_DC;
   output LED0;
   output LED1;
   output LED2;
@@ -82,6 +93,7 @@ module design_2_wrapper
   output SPI_SCK;
   input SW6;
   input SW7;
+  output SYNC_CK;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -104,9 +116,14 @@ module design_2_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire HSIA0;
   wire HSICK;
-  wire HSID0;
+  wire HSI_A0;
+  wire HSI_A1;
+  wire HSI_DAM;
+  wire HSI_DAP;
+  wire HSI_DBM;
+  wire HSI_DBP;
+  wire HSI_DC;
   wire LED0;
   wire LED1;
   wire LED2;
@@ -119,6 +136,7 @@ module design_2_wrapper
   wire SPI_SCK;
   wire SW6;
   wire SW7;
+  wire SYNC_CK;
 
   design_2 design_2_i
        (.DDR_addr(DDR_addr),
@@ -142,9 +160,14 @@ module design_2_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .HSIA0(HSIA0),
         .HSICK(HSICK),
-        .HSID0(HSID0),
+        .HSI_A0(HSI_A0),
+        .HSI_A1(HSI_A1),
+        .HSI_DAM(HSI_DAM),
+        .HSI_DAP(HSI_DAP),
+        .HSI_DBM(HSI_DBM),
+        .HSI_DBP(HSI_DBP),
+        .HSI_DC(HSI_DC),
         .LED0(LED0),
         .LED1(LED1),
         .LED2(LED2),
@@ -156,5 +179,6 @@ module design_2_wrapper
         .SPI_MOSI(SPI_MOSI),
         .SPI_SCK(SPI_SCK),
         .SW6(SW6),
-        .SW7(SW7));
+        .SW7(SW7),
+        .SYNC_CK(SYNC_CK));
 endmodule

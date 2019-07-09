@@ -2037,3 +2037,1506 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+16:54:07 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:900:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:900:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:900:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:898:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:888:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1204:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1201:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1288:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1555:6: warning: variable 'Status' set but not used [-Wunused-but-set-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1554:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1553:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1552:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1551:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2153:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2225:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:664:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:379:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67196	   3944	  30856	 101996	  18e6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+16:54:17 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:47:58 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:49:15 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:900:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:900:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:900:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:898:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:888:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1204:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1201:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1288:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1555:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1554:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1553:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1552:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1551:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2153:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2225:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:664:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:379:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67196	   3944	  30856	 101996	  18e6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+17:49:24 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:15:08 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:900:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:900:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:900:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:898:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:888:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1204:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1201:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1288:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1555:6: warning: variable 'Status' set but not used [-Wunused-but-set-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1554:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1553:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1552:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1551:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2153:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2225:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:664:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:379:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67196	   3944	  30856	 101996	  18e6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+18:15:18 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:18:30 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:900:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:900:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:900:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:898:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:888:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1204:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1201:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1288:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1555:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1554:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1553:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1552:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1551:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2153:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2225:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:664:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:379:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67196	   3944	  30856	 101996	  18e6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+18:18:38 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:40:26 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:910:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:910:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:910:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:908:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:898:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1214:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1211:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1298:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1565:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1564:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1563:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1562:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1561:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2163:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2235:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:674:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:389:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/helloworld.c:316:7: warning: 'enableHSIGyroChannel' defined but not used [-Wunused-function]
+  void enableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:312:7: warning: 'disableHSIGyroChannel' defined but not used [-Wunused-function]
+  void disableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67260	   3944	  30856	 102060	  18eac	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+18:53:31 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:911:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:911:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:911:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:909:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:899:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1215:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1212:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1299:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1566:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1565:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1564:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1563:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1562:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2164:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2236:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:675:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:390:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/helloworld.c:317:7: warning: 'enableHSIGyroChannel' defined but not used [-Wunused-function]
+  void enableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:313:7: warning: 'disableHSIGyroChannel' defined but not used [-Wunused-function]
+  void disableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67260	   3944	  30856	 102060	  18eac	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+18:57:18 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'disableGyroChannel':
+../src/helloworld.c:308:4: error: 'FPGA_channel_state' undeclared (first use in this function); did you mean 'FPGA_hsi_state'?
+    FPGA_channel_state = 2;
+    ^~~~~~~~~~~~~~~~~~
+    FPGA_hsi_state
+../src/helloworld.c:308:4: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: In function 'enableGyroChannel':
+../src/helloworld.c:314:4: error: 'FPGA_channel_state' undeclared (first use in this function); did you mean 'FPGA_hsi_state'?
+    FPGA_channel_state = 1;
+    ^~~~~~~~~~~~~~~~~~
+    FPGA_hsi_state
+../src/helloworld.c: In function 'disableHSIGyroChannel':
+../src/helloworld.c:319:4: error: 'FPGA_channel_state' undeclared (first use in this function); did you mean 'FPGA_hsi_state'?
+    FPGA_channel_state = 1;
+    ^~~~~~~~~~~~~~~~~~
+    FPGA_hsi_state
+../src/helloworld.c: In function 'enableHSIGyroChannel':
+../src/helloworld.c:325:4: error: 'FPGA_channel_state' undeclared (first use in this function); did you mean 'FPGA_hsi_state'?
+    FPGA_channel_state = 1;
+    ^~~~~~~~~~~~~~~~~~
+    FPGA_hsi_state
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:919:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:919:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:919:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:917:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:907:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1223:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1220:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1307:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1574:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1573:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1572:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1571:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1570:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2172:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2244:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:683:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:398:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/helloworld.c:323:7: warning: 'enableHSIGyroChannel' defined but not used [-Wunused-function]
+  void enableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:317:7: warning: 'disableHSIGyroChannel' defined but not used [-Wunused-function]
+  void disableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~~
+make: *** [src/helloworld.o] Error 1
+18:59:22 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:920:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:920:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:920:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:918:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:908:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1224:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1221:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1308:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1575:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1574:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1573:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1572:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1571:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2173:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2245:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:684:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:399:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/helloworld.c:324:7: warning: 'enableHSIGyroChannel' defined but not used [-Wunused-function]
+  void enableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:318:7: warning: 'disableHSIGyroChannel' defined but not used [-Wunused-function]
+  void disableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67388	   3944	  30856	 102188	  18f2c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:10:02 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:103:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2182:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2254:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/helloworld.c:329:7: warning: 'enableHSIGyroChannel' defined but not used [-Wunused-function]
+  void enableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~
+../src/helloworld.c:318:7: warning: 'disableHSIGyroChannel' defined but not used [-Wunused-function]
+  void disableHSIGyroChannel(){
+       ^~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:19:26 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:931:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:931:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:931:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:929:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:919:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1235:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1232:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1319:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1586:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1585:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1584:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1583:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1582:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2192:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2264:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:695:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:410:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67516	   3944	  30856	 102316	  18fac	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:23:02 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:925:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:925:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:925:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:923:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:913:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1229:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1226:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1313:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1580:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1579:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1578:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1577:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1576:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2186:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2258:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:689:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:404:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:24:34 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2190:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2262:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:26:04 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:28:21 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:30:20 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+16:22:32 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+16:25:27 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:36:27 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:46:20 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:48:35 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2190:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2262:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:00:26 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:14:55 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2190:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2262:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:24:26 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:25:51 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2190:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2262:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+19:26:03 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+21:45:52 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+16:08:21 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+16:54:30 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+16:55:21 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+18:07:43 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:5:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c:105:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/helloworld.c: In function 'fillTxPacketBuffer':
+../src/helloworld.c:929:7: warning: implicit declaration of function 'sin' [-Wimplicit-function-declaration]
+   x = sin(0.0);
+       ^~~
+../src/helloworld.c:929:7: warning: incompatible implicit declaration of built-in function 'sin'
+../src/helloworld.c:929:7: note: include '<math.h>' or provide a declaration of 'sin'
+../src/helloworld.c:927:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+ double x;
+        ^
+../src/helloworld.c:917:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'sendDMApacket':
+../src/helloworld.c:1233:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/helloworld.c:1230:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'SaveData':
+../src/helloworld.c:1317:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/helloworld.c: In function 'receivePacketButton':
+../src/helloworld.c:1584:6: warning: unused variable 'Status' [-Wunused-variable]
+  int Status;
+      ^~~~~~
+../src/helloworld.c:1583:6: warning: unused variable 'FreeBdCount' [-Wunused-variable]
+  int FreeBdCount;
+      ^~~~~~~~~~~
+../src/helloworld.c:1582:6: warning: unused variable 'ProcessedBdCount' [-Wunused-variable]
+  int ProcessedBdCount;
+      ^~~~~~~~~~~~~~~~
+../src/helloworld.c:1581:14: warning: unused variable 'BdPtr' [-Wunused-variable]
+  XAxiDma_Bd *BdPtr;
+              ^~~~~
+../src/helloworld.c:1580:18: warning: unused variable 'RxRingPtr' [-Wunused-variable]
+  XAxiDma_BdRing *RxRingPtr;
+                  ^~~~~~~~~
+../src/helloworld.c: In function 'run_ADC1_calibration':
+../src/helloworld.c:2190:9: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
+  while (!reg0_RO & 0x4)
+         ^~~~~~~~
+../src/helloworld.c: In function 'fill_testADC_results_array':
+../src/helloworld.c:2262:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/helloworld.c:693:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/helloworld.c:408:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  67452	   3944	  30856	 102252	  18f6c	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+18:07:56 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:39:17 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:47:33 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:14:22 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+20:02:01 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.

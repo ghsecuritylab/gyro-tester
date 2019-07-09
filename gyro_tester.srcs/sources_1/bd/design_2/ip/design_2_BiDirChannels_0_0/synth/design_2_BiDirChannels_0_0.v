@@ -48,18 +48,24 @@
 
 
 // IP VLNV: xilinx.com:user:BiDirChannels:1.0
-// IP Revision: 94
+// IP Revision: 105
 
 (* X_CORE_INFO = "BiDirChannels_v1_0,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "design_2_BiDirChannels_0_0,BiDirChannels_v1_0,{}" *)
-(* CORE_GENERATION_INFO = "design_2_BiDirChannels_0_0,BiDirChannels_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=BiDirChannels,x_ipVersion=1.0,x_ipCoreRevision=94,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,C_M00_AXIS_TDATA_WIDTH=32,C_M00_AXIS_START_COUNT=32,C_S00_AXIS_TDATA_WIDTH=32}" *)
+(* CORE_GENERATION_INFO = "design_2_BiDirChannels_0_0,BiDirChannels_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=BiDirChannels,x_ipVersion=1.0,x_ipCoreRevision=105,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,C_M00_AXIS_TDATA_WIDTH=32,C_M00_AXIS_START_COUNT=32,C_S00_AXIS_TDATA_WIDTH=32}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_2_BiDirChannels_0_0 (
-  HS_DataIn,
-  HS_DataOut,
+  HSI_A0,
+  HSI_A1,
+  HSI_DBM,
+  HSI_DBP,
+  HSI_DAM,
+  HSI_DAP,
+  HSI_DC,
   HS_Clock,
   MCK_P,
   MCK_N,
+  SYNCK,
   s00_axi_awaddr,
   s00_axi_awprot,
   s00_axi_awvalid,
@@ -97,11 +103,17 @@ module design_2_BiDirChannels_0_0 (
   s00_axis_aresetn
 );
 
-input wire HS_DataIn;
-output wire HS_DataOut;
+input wire HSI_A0;
+input wire HSI_A1;
+output wire HSI_DBM;
+output wire HSI_DBP;
+output wire HSI_DAM;
+output wire HSI_DAP;
+output wire HSI_DC;
 output wire HS_Clock;
 output wire MCK_P;
 output wire MCK_N;
+output wire SYNCK;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *)
 input wire [3 : 0] s00_axi_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *)
@@ -190,11 +202,17 @@ input wire s00_axis_aresetn;
     .C_M00_AXIS_START_COUNT(32),  // Start count is the number of clock cycles the master will wait before initiating/issuing any transaction.
     .C_S00_AXIS_TDATA_WIDTH(32)  // AXI4Stream sink: Data Width
   ) inst (
-    .HS_DataIn(HS_DataIn),
-    .HS_DataOut(HS_DataOut),
+    .HSI_A0(HSI_A0),
+    .HSI_A1(HSI_A1),
+    .HSI_DBM(HSI_DBM),
+    .HSI_DBP(HSI_DBP),
+    .HSI_DAM(HSI_DAM),
+    .HSI_DAP(HSI_DAP),
+    .HSI_DC(HSI_DC),
     .HS_Clock(HS_Clock),
     .MCK_P(MCK_P),
     .MCK_N(MCK_N),
+    .SYNCK(SYNCK),
     .s00_axi_awaddr(s00_axi_awaddr),
     .s00_axi_awprot(s00_axi_awprot),
     .s00_axi_awvalid(s00_axi_awvalid),

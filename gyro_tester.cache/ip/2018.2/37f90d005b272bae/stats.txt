@@ -1,0 +1,4 @@
+NumberHits:0
+Timestamp: Tue Jul 09 03:25:03 UTC 2019
+VLNV: xilinx.com:user:BiDirChannels:1.0
+SynthRuntime: 63

@@ -29,7 +29,6 @@
 extern void xil_printf(const char *format, ...);
 #endif
 
-
 /******************** Constant Definitions **********************************/
 #define UARTPS_DEVICE_ID	XPAR_XUARTPS_0_DEVICE_ID
 #define INTC_DEVICE_ID		XPAR_SCUGIC_SINGLE_DEVICE_ID
@@ -61,7 +60,8 @@ extern void xil_printf(const char *format, ...);
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
 #define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
-
+#define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
+#define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
 
 // test ADC mux settings
 #define TADC_MUX_TEMPERATURE_SENSOR		0x000
@@ -78,8 +78,6 @@ extern void xil_printf(const char *format, ...);
 #define TADC_VEXTSEL					0x0040
 #define	TADC_RESET						0x0002
 #define TADC_START						0x0001
-
-
 
 #ifdef FAKE_DATA
 static void load_sawtooth_up_data(void);
@@ -171,6 +169,8 @@ static u8 UartTxData[TX_BUFFER_SIZE];	// Buffer for Transmitting Data
 u16 ADC_calData[8];			// store ADC cal data read from chip before transmit
 
 u8	FPGA_outputs_state = 1; 	// 1=on, 2=0ff
+u8  FPGA_hsi_state = 1;			// 1=disabled, 2=enabled
+u8  FPGA_channel_state = 1;     //
 
 #define MAX_TADC_RESULTS_SIZE 512
 static u16 testADCresults[MAX_TADC_RESULTS_SIZE];
@@ -232,6 +232,8 @@ static int resetGyroRxFIFO();
 static int  initGyroChannel();
 static void disableGyroChannel();
 static void enableGyroChannel();
+static void disableHSIGyroChannel();
+static void enableHSIGyroChannel();
 static void readGyroChannelStatus();
 static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
@@ -302,13 +304,36 @@ int setGyroChannelConfiguration(unsigned int v){
   *(baseaddr_channel+0) = x;
   return 0;
 }
+// -------------------------------------------------------------------
 
  void disableGyroChannel(){
 	  *(baseaddr_channel+2) = 0x00000000;
+	  FPGA_hsi_state = 2;
+	  FPGA_channel_state = 2;
  }
+ // -------------------------------------------------------------------
 
  void enableGyroChannel(){
-	  *(baseaddr_channel+2) = 0x00000001;
+	  *(baseaddr_channel+2) = 0x00000011;
+	  FPGA_hsi_state = 1;
+	  FPGA_channel_state = 1;
+ }
+ // -------------------------------------------------------------------
+
+ void disableHSIGyroChannel(){
+	 if(FPGA_channel_state == 1){
+	  *(baseaddr_channel+2) = 0x000000001;
+	  FPGA_hsi_state = 2;
+	 }
+
+ }
+ // -------------------------------------------------------------------
+
+ void enableHSIGyroChannel(){
+	 if(FPGA_channel_state == 1){
+	  *(baseaddr_channel+2) = 0x000000011;
+	  FPGA_hsi_state = 1;
+	 }
  }
 
 // -------------------------------------------------------------------
@@ -1507,7 +1532,7 @@ int sendDMApackets(int num_packets){
 
 void acquireSamples(int packet_size){
 
-	// reseting the FIFO and the CHannels
+	// reset the FIFO and the CHannels
 	resetGyroTxFIFO();
 	resetGyroRxFIFO();
 
@@ -1558,6 +1583,7 @@ int receivePacketButton(void){
 	int FreeBdCount;
 	int Status;
 
+	//Status = RxSetup(&AxiDma); // ####
 
 	resetGyroRxFIFO();
 
@@ -1983,6 +2009,14 @@ void read_uart_bytes(void)
 
 			fill_testADC_results_array((u16)(UartRxData[1]<<8),numPoints);
 			send_data_over_UART(numPoints*2,(u8*)testADCresults);
+			break;
+
+		case (CMD_ENABLE_HSI_SIGNALS):
+			enableHSIGyroChannel();
+			break;
+
+		case (CMD_DISABLE_HSI_SIGNALS):
+			disableHSIGyroChannel();
 			break;
 
 	}
