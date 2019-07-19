@@ -63,6 +63,8 @@ extern void xil_printf(const char *format, ...);
 #define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
 #define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
 
+#define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
+
 // test ADC mux settings
 #define TADC_MUX_TEMPERATURE_SENSOR		0x000
 #define	TADC_MUX_BANDGAP_VOLTAGE		0x200
@@ -110,15 +112,17 @@ static void load_sawtooth_down_data(void);
 #endif
 
 #define TX_BD_SPACE_BASE	(MEM_BASE_ADDR)
+
 #define TX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x00000FFF)
 #define RX_BD_SPACE_BASE	(MEM_BASE_ADDR + 0x00001000)
-#define RX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x00001FFF)
+#define RX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x00003FFF) // was 1FFF
 #define TX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00100000)
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00300000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
 
 
-#define MAX_PKT_LEN				0x400
+
+#define MAX_PKT_LEN				8192	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -129,7 +133,7 @@ static void load_sawtooth_down_data(void);
 #define TICKS_PER_CHANGE_PERIOD	TICK_TIMER_FREQ_HZ /* Tick signals per update */
 
 int numberDataSamples;
-Xuint32 outputDataBuffer[MAX_PKT_LEN];
+Xuint32 outputDataBuffer[MAX_PKT_LEN/4];
 
 typedef struct {
 	u32 OutputHz;	/* Output frequency */
@@ -140,6 +144,7 @@ typedef struct {
 
 
 volatile int busySamplingFlag = 0;
+volatile int ADCSamplingFinished = 0;
 // ---------------
 
 #define INTC_INTERRUPT_ID_0 63 // IRQ_F2P[2:2]
@@ -168,7 +173,7 @@ static u8 UartTxData[TX_BUFFER_SIZE];	// Buffer for Transmitting Data
 
 u16 ADC_calData[8];			// store ADC cal data read from chip before transmit
 
-u8	FPGA_outputs_state = 1; 	// 1=on, 2=0ff
+u8	FPGA_outputs_state = 2; 	// 1=on, 2=0ff
 u8  FPGA_hsi_state = 1;			// 1=disabled, 2=enabled
 u8  FPGA_channel_state = 1;     //
 
@@ -228,6 +233,9 @@ static int readGyroRxFIFODebugData();
 
 static int resetGyroTxFIFO();
 static int resetGyroRxFIFO();
+
+static int resetGyroTxFIFOLooping();
+static int   setGyroTxFIFOLooping();
 
 static int  initGyroChannel();
 static void disableGyroChannel();
@@ -321,7 +329,7 @@ int setGyroChannelConfiguration(unsigned int v){
  // -------------------------------------------------------------------
 
  void disableHSIGyroChannel(){
-	 if(FPGA_channel_state == 1){
+	 if(FPGA_channel_state == 1){ // 1=enabled, 2=disabled
 	  *(baseaddr_channel+2) = 0x000000001;
 	  FPGA_hsi_state = 2;
 	 }
@@ -384,6 +392,15 @@ int resetGyroRxFIFO(){
 	  return 0;
 }
 
+int resetGyroTxFIFOLooping(){
+	*(baseaddr_tx_fifo+1) = 0x00000000;
+	  return 0;
+}
+
+int setGyroTxFIFOLooping(){
+	*(baseaddr_tx_fifo+1) = 0x00000001;
+	  return 0;
+}
 // -------------------------------------------------------------------
 //   SPI FUNCTIONS
 // -------------------------------------------------------------------
@@ -919,7 +936,7 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 	Value1 = 0x0c;
 	Value2 = 0x80;
 
-	  for(Index = 0; Index < (npoints/2); Index = Index+2) {
+	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
 		TxPacket[Index] = Value1;
 		TxPacket[Index+1] = Value2;
 	  }
@@ -1337,11 +1354,11 @@ static int SaveData(int debug_mode)
 		v1 = m1 >> 2;
 		//xil_printf("Sample: %d: %x%x\r\n",idx,v0,v1);
 		outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
-		xil_printf("Index: %d: %x\r\n",idx,outputDataBuffer[idx]);
+		//xil_printf("Index: %d: %x\r\n",idx,outputDataBuffer[idx]);
 		idx++;
 	}
 	numberDataSamples = idx*2;
-	xil_printf("Number of Samples: %d:\r\n",idx*2);
+	//xil_printf("Number of Samples: %d:\r\n",idx*2);
 	return XST_SUCCESS;
 }
 
@@ -1373,6 +1390,7 @@ static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 
 	setGyroChannelControl(0x00000000);
     SaveData(0);
+
 
 	/* Free all processed RX BDs for future transmission */
 	Status = XAxiDma_BdRingFree(RxRingPtr, ProcessedBdCount, BdPtr);
@@ -1597,7 +1615,7 @@ int receivePacketButton(void){
 	setGyroChannelControl(0x00000000);
 	receiveDMApacket(&AxiDma,0);
 
-	busySamplingFlag = 0;
+	ADCSamplingFinished = 1;
 
 	return 1;
 }
@@ -1972,8 +1990,8 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_START_ADC_ACQUISITIONS):
-				busySamplingFlag = 1;
 			receivePacketButton();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
 		case (CMD_FPGA_ALL_OUTPUTS_LOW):
@@ -2033,6 +2051,8 @@ void run_ADC0_calibration(void)
 	u8	reg4changed = 0;
 	u8  reg5changed = 0;
 	u8  reg7changed = 0;
+	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
+							// calibration flag needed until done
 
 	//read all necessary registers here
 	readSPI(&reg4,4);
@@ -2085,19 +2105,20 @@ void run_ADC0_calibration(void)
 		writeSPI_non_blocking(6,newReg6val);
 	}
 
-	//to run cal turn on reg6 bit2
-	writeSPI_non_blocking(6,newReg6val|0x4);
-
 	//set reg0 readback mode to read-only to see when cal is done
 	readSPI(&reg0,0);
 	writeSPI_non_blocking(0,reg0|0x200);
+
+	//to run cal turn on reg6 bit2
+	writeSPI_non_blocking(6,newReg6val|0x4);
 
 	//store reg0 read-only data for initial while loop test
 	readSPI(&reg0_RO,0);
 
 	//wait until cal is done, reg0 readback mode bit0=0 during cal
-	while (!reg0_RO & 0x1)
+	while (~reg0_RO & 0x1)
 	{
+		numDoneChecks++;
 		readSPI(&reg0_RO,0);
 	}
 
@@ -2121,6 +2142,8 @@ void run_ADC1_calibration(void)
 	unsigned int reg0,reg8,reg9,reg10,reg11,reg0_RO;
 	unsigned int newreg8val = 0;
 	unsigned int newreg10val = 0;
+	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
+							// calibration flag needed until done
 	u8	reg8changed = 0;
 	u8  reg9changed = 0;
 	u8  reg11changed = 0;
@@ -2181,14 +2204,15 @@ void run_ADC1_calibration(void)
 
 	//set reg0 readback mode to read-only to see when cal is done
 	readSPI(&reg0,0);
-	writeSPI_non_blocking(0,reg0|0x400);
+	writeSPI_non_blocking(0,reg0|0x200);
 
 	//store reg0 read-only data for initial while loop test
 	readSPI(&reg0_RO,0);
 
-	//wait until cal is done, reg0 readback mode bit2=0 during cal
-	while (!reg0_RO & 0x4)
+	//wait until cal is done, reg0 readback mode bit1=0 during cal
+	while (~reg0_RO & 0x2)
 	{
+		numDoneChecks++;
 		readSPI(&reg0_RO,0);
 	}
 
@@ -2749,7 +2773,7 @@ int main() {
 
     // clear SPI registers
     initSPI();
-    enableSPI();
+//    enableSPI();
 
     setSPIClockDivision(1); // needs to be 1 , 2 or 3
     readSPIStatus();
@@ -2836,16 +2860,19 @@ int main() {
     resetGyroTxFIFO();
     resetGyroRxFIFO();
     initGyroChannel();
-    enableGyroChannel();
+//    enableGyroChannel();
 
     //configure ADC0, ADC1 here via spi
 
     // --- loopback mode, POL = 0, in and out channels = 00
     //setGyroChannelConfiguration(0x01000000);
 
-    // bit 17:16 is to divide clock by 2/4/8.
-   setGyroChannelConfiguration(0x00003000);
-    //setGyroChannelConfiguration(0x00000000); // 64 samples
+    //=======================================================
+    // setGyroChannelConfiguration() description:
+    //
+    // bit 18:16 is to divide clock by 1/2/4/8/16/32/64/128
+    // with 128 (7 Hex) we get 50 MHz divided by 128 = 390 KHz.
+    //
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
     //  001 is 128 samples  (64 words)
@@ -2855,6 +2882,20 @@ int main() {
     //  101 is 2048 samples  (1024 words)
     //  110 is 4096 samples (2048 words)
     //  111 is 8192 samples (4096 words)
+    //
+    // bits 6:4 - control the in+channel:
+    //   00 is HSI_A0
+    //   01 is HSI_A1
+    //   10 and 11 inactive.
+    // bits 2:0  - control the out_channel:
+    //   00 is HSI_DAP
+    //   01 is HSI_DAM
+    //   10 is HSI_DBP
+    //   11 is HGSI_DBM
+    //	 HSI_DC not yet active.
+    //=======================================================
+    setGyroChannelConfiguration(0x00026000);
+
     setGyroChannelControl(0x00000000);
 
     xil_printf(" - after initialization ==\n\r");

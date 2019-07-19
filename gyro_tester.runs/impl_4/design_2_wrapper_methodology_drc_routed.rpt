@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Mon Jul  8 20:54:53 2019
+| Date         : Fri Jul 19 16:32:02 2019
 | Host         : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 | Command      : report_methodology -file design_2_wrapper_methodology_drc_routed.rpt -pb design_2_wrapper_methodology_drc_routed.pb -rpx design_2_wrapper_methodology_drc_routed.rpx
 | Design       : design_2_wrapper
@@ -23,14 +23,14 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 375
+             Violations found: 376
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
 | LUTAR-1   | Warning  | LUT drives async reset alert  | 116        |
 | TIMING-14 | Warning  | LUT on the clock tree         | 1          |
 | TIMING-17 | Warning  | Non-clocked sequential cell   | 187        |
-| TIMING-18 | Warning  | Missing input or output delay | 14         |
+| TIMING-18 | Warning  | Missing input or output delay | 15         |
 | TIMING-20 | Warning  | Non-clocked latch             | 57         |
 +-----------+----------+-------------------------------+------------+
 
@@ -38,332 +38,332 @@ Table of Contents
 -----------------
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/out_clock_int_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/CLK_DIV2/ff0/Q_reg/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV4/ff0/Q_reg/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[0]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[1]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[2]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[0]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[10]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[11]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[12]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[13]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[14]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[15]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[16]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[17]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[18]/CLR (the first 15 of 68 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/out_clock_int_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/CLK_DIV2/ff0/Q_reg/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV4/ff0/Q_reg/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[0]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[1]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[2]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[3]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[4]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[5]/CLR, design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/r_reg_reg[6]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[0]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[10]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[11]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[12]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[13]/CLR, design_2_i/BiDirChannels_0/inst/X1/IN_SHIFT_REG/r_reg_reg[14]/CLR (the first 15 of 72 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#2 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg[32]_i_3, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[32]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#3 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#4 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[10]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#5 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[10]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[10]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#6 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[10]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[10]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[11]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#7 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[11]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[11]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#8 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[11]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[11]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[12]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#9 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[12]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[12]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#10 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[12]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[12]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[13]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#11 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[13]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[13]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#12 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[13]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[13]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[14]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#13 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[14]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[14]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#14 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[14]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[14]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[15]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#15 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[15]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[15]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#16 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[15]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[15]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[16]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#17 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[16]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[16]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#18 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[16]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[16]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[17]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#19 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[17]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[17]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#20 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[17]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[17]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[18]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#21 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[18]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[18]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#22 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[18]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[18]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[19]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#23 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[19]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[19]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#24 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[19]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[19]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#25 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#26 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[20]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#27 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[20]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[20]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#28 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[20]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[20]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[21]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#29 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[21]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[21]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#30 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[21]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[21]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[22]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#31 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[22]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[22]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#32 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[22]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[22]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[23]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#33 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[23]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[23]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#34 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[23]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[23]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[24]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#35 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[24]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[24]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#36 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[24]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[24]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[25]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#37 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[25]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[25]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#38 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[25]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[25]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[26]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#39 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[26]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[26]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#40 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[26]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[26]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[27]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#41 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[27]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[27]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#42 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[27]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[27]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[28]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#43 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[28]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[28]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#44 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[28]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[28]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[29]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#45 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[29]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[29]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#46 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[29]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[29]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#47 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#48 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[30]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#49 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[30]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[30]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#50 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[30]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[30]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[31]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#51 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[31]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[31]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#52 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[31]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[31]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#53 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#54 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#55 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#56 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#57 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#58 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#59 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#60 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#61 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#62 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[8]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#63 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[8]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[8]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#64 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[8]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[8]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[9]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#65 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[9]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[9]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#66 Warning
 LUT drives async reset alert  
-LUT cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[9]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_C/CLR, design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[9]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg[32]_i_3, with 2 or more inputs, drives asynchronous preset/clear pin(s) design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[32]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#67 Warning
@@ -618,7 +618,7 @@ Related violations: <none>
 
 TIMING-14#1 Warning
 LUT on the clock tree  
-The LUT design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+The LUT design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
 Related violations: <none>
 
 TIMING-17#1 Warning
@@ -1588,40 +1588,45 @@ Related violations: <none>
 
 TIMING-18#7 Warning
 Missing input or output delay  
-An output delay is missing on LED0 relative to clock(s) clk_fpga_0
+An output delay is missing on HSI_DC relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#8 Warning
 Missing input or output delay  
-An output delay is missing on LED1 relative to clock(s) clk_fpga_0
+An output delay is missing on LED0 relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#9 Warning
 Missing input or output delay  
-An output delay is missing on MCK_N relative to clock(s) clk_fpga_0
+An output delay is missing on LED1 relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#10 Warning
 Missing input or output delay  
-An output delay is missing on MCK_P relative to clock(s) clk_fpga_0
+An output delay is missing on MCK_N relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#11 Warning
 Missing input or output delay  
-An output delay is missing on SPI_CS relative to clock(s) clk_fpga_0
+An output delay is missing on MCK_P relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#12 Warning
 Missing input or output delay  
-An output delay is missing on SPI_MOSI relative to clock(s) clk_fpga_0
+An output delay is missing on SPI_CS relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#13 Warning
 Missing input or output delay  
-An output delay is missing on SPI_SCK relative to clock(s) clk_fpga_0
+An output delay is missing on SPI_MOSI relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#14 Warning
+Missing input or output delay  
+An output delay is missing on SPI_SCK relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#15 Warning
 Missing input or output delay  
 An output delay is missing on SYNC_CK relative to clock(s) clk_fpga_0
 Related violations: <none>

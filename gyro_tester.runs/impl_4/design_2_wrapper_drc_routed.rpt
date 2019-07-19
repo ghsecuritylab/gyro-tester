@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Mon Jul  8 20:54:38 2019
+| Date         : Fri Jul 19 16:31:43 2019
 | Host         : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 | Command      : report_drc -file design_2_wrapper_drc_routed.rpt -pb design_2_wrapper_drc_routed.pb -rpx design_2_wrapper_drc_routed.rpx
 | Design       : design_2_wrapper
@@ -24,13 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 89
+             Violations found: 88
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CHECK-3     | Warning  | Report rule limit reached                                   | 1          |
 | PDRC-153    | Warning  | Gated clock check                                           | 62         |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 4          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 3          |
 | REQP-1839   | Warning  | RAMB36 async control check                                  | 20         |
 | REQP-181    | Advisory | writefirst                                                  | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
@@ -44,177 +44,177 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/clock_base is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_i_2/O, cell design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[0]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[0]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/Q_reg is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/m00_axis_tvalid_INST_0_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/m00_axis_tvalid_INST_0_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[10]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[10]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[10]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/outSR_shift is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2/O, cell design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[11]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[11]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[11]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[0]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[0]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[12]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[12]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[12]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[10]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[10]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[10]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[13]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[13]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[13]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#6 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[11]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[11]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[11]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[14]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[14]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[14]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#7 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[12]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[12]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[12]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[15]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[15]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[15]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#8 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[13]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[13]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[13]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[16]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[16]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[16]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#9 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[14]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[14]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[14]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[17]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[17]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[17]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#10 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[15]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[15]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[15]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[18]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[18]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[18]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#11 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[16]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[16]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[16]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[19]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[19]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[19]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#12 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[17]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[17]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[17]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[1]_P_0 is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[1]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#13 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[18]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[18]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[18]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[20]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[20]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[20]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#14 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[19]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[19]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[19]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[21]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[21]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[21]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#15 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[1]_P_0 is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[1]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[22]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[22]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[22]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#16 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[20]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[20]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[20]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[23]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[23]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[23]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#17 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[21]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[21]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[21]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[24]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[24]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[24]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#18 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[22]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[22]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[22]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[25]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[25]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[25]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#19 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[23]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[23]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[23]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[26]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[26]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[26]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#20 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[24]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[24]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[24]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[27]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[27]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[27]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#21 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[25]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[25]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[25]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[28]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[28]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[28]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#22 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[26]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[26]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[26]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[29]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[29]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[29]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#23 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[27]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[27]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[27]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[2]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[2]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#24 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[28]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[28]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[28]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[30]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[30]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[30]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#25 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[29]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[29]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[29]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[31]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[31]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[31]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#26 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[2]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[2]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[3]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[3]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#27 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[30]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[30]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[30]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[4]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[4]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#28 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[31]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[31]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[31]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[5]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[5]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#29 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[3]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[3]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[6]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[6]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#30 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[4]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[4]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[7]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[7]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#31 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[5]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[5]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[8]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[8]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[8]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#32 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[6]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[6]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[9]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[9]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/BiDirChannels_v1_0_S00_AXI_inst/r_reg_reg[9]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#33 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[7]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[7]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/mux_out is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_reg_i_2/O, cell design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#34 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[8]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[8]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[8]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/Q_reg is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/m00_axis_tvalid_INST_0_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/m00_axis_tvalid_INST_0_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#35 Warning
 Gated clock check  
-Net design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[9]_P is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[9]_LDC_i_1/O, cell design_2_i/BiDirChannels_0/inst/X1/X0/X1/r_reg_reg[9]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/outSR_shift is a gated clock net sourced by a combinational pin design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2/O, cell design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#36 Warning
@@ -354,20 +354,13 @@ Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT design_2_i/BiDirChannels_0/inst/X1/CLK_DIV_CNTR/Q_i_2 is driving clock pin of 1 cells. This could lead to large hold time violations. First few involved cells are:
-    design_2_i/BiDirChannels_0/inst/X1/CLK_DIV2/ff0/Q_reg {FDCE}
-
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/m00_axis_tvalid_INST_0_i_1 is driving clock pin of 2 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff0/Q_reg {FDCE}
     design_2_i/BiDirChannels_0/inst/X1/MASK_HSCK/ff1/Q_reg {FDCE}
 
 Related violations: <none>
 
-PLHOLDVIO-2#3 Warning
+PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2 is driving clock pin of 64 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_P {FDPE}
@@ -382,7 +375,7 @@ A LUT design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg[32]_i_2 is driving clo
 
 Related violations: <none>
 
-PLHOLDVIO-2#4 Warning
+PLHOLDVIO-2#3 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT design_2_i/BiDirChannels_0/inst/X1/X1/X1/m00_axis_tvalid_INST_0 is driving clock pin of 12 cells. This could lead to large hold time violations. First few involved cells are:
     design_2_i/BiDirChannels_0/inst/X1/LAST_CNTR/r_reg_reg[0] {FDCE}
@@ -494,7 +487,7 @@ Related violations: <none>
 
 REQP-1839#20 Warning
 RAMB36 async control check  
-The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/PULSE_CNTR/r_reg_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 design_2_i/RxFIFO/inst/mem_reg_2 has an input control pin design_2_i/RxFIFO/inst/mem_reg_2/ENARDEN (net: design_2_i/RxFIFO/inst/s00_axis_tvalid) which is driven by a register (design_2_i/BiDirChannels_0/inst/X1/X1/X0/Q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-181#1 Advisory
