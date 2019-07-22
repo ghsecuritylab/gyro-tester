@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Fri Jul 19 16:17:06 2019
-# Process ID: 3436
+# Start of session at: Sat Jul 20 16:53:32 2019
+# Process ID: 7124
 # Current directory: C:/Docs/gyro_tester/gyro_tester.runs/design_2_RxFIFO_0_synth_1
 # Command line: vivado.exe -log design_2_RxFIFO_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_2_RxFIFO_0.tcl
 # Log file: C:/Docs/gyro_tester/gyro_tester.runs/design_2_RxFIFO_0_synth_1/design_2_RxFIFO_0.vds

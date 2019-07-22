@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "platform.h"
 #include "xparameters.h"
 #include "xil_printf.h"
@@ -8,6 +9,7 @@
 #include "xuartps_hw.h"
 #include "xil_exception.h"
 #include "xttcps.h"
+
 
 //#define FAKE_IC		//used to send data back when no IC present
 #define FAKE_DATA	//used to create an array of data for COM test
@@ -62,6 +64,13 @@ extern void xil_printf(const char *format, ...);
 #define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
 #define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
 #define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
+#define CMD_SET_MCLK_DIV			0xB0	// set the MCLK division setting
+#define CMD_GET_MCLK_DIV			0xB1	// send MCLK division setting over uart
+#define	CMD_SET_SPICLK_DIV			0xB2	// set the SPI clock division setting
+#define CMD_GET_SPI_CLK_DIV			0xB3	// send the SPI clock division setting over uart
+#define CMD_SET_PACKET_SIZE			0xB4	// set the FIFO packet size
+#define CMD_GET_PACKET_SIZE			0xB5	// send the packet size over uart
+
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
 
@@ -80,6 +89,53 @@ extern void xil_printf(const char *format, ...);
 #define TADC_VEXTSEL					0x0040
 #define	TADC_RESET						0x0002
 #define TADC_START						0x0001
+
+//configuration constants
+#define CONFIG_MCK_DIV_1				0x00000	// base frequency is 50MHz
+#define CONFIG_MCK_DIV_2				0x10000	// div2 is 25MHz
+#define CONFIG_MCK_DIV_4				0x20000	// div4 is 12.5MHz
+#define CONFIG_MCK_DIV_8				0x30000	// div8 is 6.25MHz
+#define CONFIG_MCK_DIV_16				0x40000
+#define CONFIG_MCK_DIV_32				0x50000
+#define CONFIG_MCK_DIV_64				0x60000
+#define CONFIG_MCK_DIV_128				0x70000
+u32 MCK_div_setting = CONFIG_MCK_DIV_1;
+//
+#define CONFIG_PACKET_SIZE_64_SAMPLES	0x0000
+#define CONFIG_PACKET_SIZE_128_SAMPLES	0x1000
+#define CONFIG_PACKET_SIZE_256_SAMPLES	0x2000
+#define CONFIG_PACKET_SIZE_512_SAMPLES	0x3000
+#define CONFIG_PACKET_SIZE_1024_SAMPLES	0x4000
+#define CONFIG_PACKET_SIZE_2048_SAMPLES	0x5000
+#define CONFIG_PACKET_SIZE_4096_SAMPLES	0x6000
+#define CONFIG_PACKET_SIZE_8192_SAMPLES	0x7000
+u32 packet_size_setting = CONFIG_PACKET_SIZE_4096_SAMPLES;
+//
+#define CONFIG_INPUT_CHANNEL_HSIA0		0x00
+#define CONFIG_INPUT_CHANNEL_HSIA1		0x10
+u32 HSI_input_channel_setting = CONFIG_INPUT_CHANNEL_HSIA0;
+//
+#define CONFIG_OUTPUT_CHANNEL_HSIDAP	0x0
+#define CONFIG_OUTPUT_CHANNEL_HSIDAM	0x1
+#define CONFIG_OUTPUT_CHANNEL_HSIDBP	0x2
+#define CONFIG_OUTPUT_CHANNEL_HSIDBM	0x3
+#define CONFIG_OUTPUT_CHANNEL_HSIDC		0x4
+u32 HSI_output_channel_setting = CONFIG_OUTPUT_CHANNEL_HSIDAP;
+//
+#define CONFIG_SPI_CLK_DIV_1			0x0	// base frequency is 25MHz
+#define CONFIG_SPI_CLK_DIV_2			0x1	// div2 is 12.5MHz
+#define CONFIG_SPI_CLK_DIV_4			0x2	// div4 is 6.25MHz
+#define CONFIG_SPI_CLK_DIV_8			0x3	// div8 is 3.125MHz
+unsigned int SPI_clock_division_setting = CONFIG_SPI_CLK_DIV_4;
+
+#define DIV_1	1
+#define DIV_2	2
+#define DIV_4	4
+#define DIV_8	8
+#define DIV_16	16
+#define DIV_32	32
+#define DIV_64	64
+#define DIV_128	128
 
 #ifdef FAKE_DATA
 static void load_sawtooth_up_data(void);
@@ -112,15 +168,14 @@ static void load_sawtooth_down_data(void);
 #endif
 
 #define TX_BD_SPACE_BASE	(MEM_BASE_ADDR)
+#define TX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x0000FFFF) // was FFFF
+#define TX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00010000)
+#define TX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0001FFFF)
 
-#define TX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x00000FFF)
-#define RX_BD_SPACE_BASE	(MEM_BASE_ADDR + 0x00001000)
-#define RX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x00003FFF) // was 1FFF
-#define TX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00100000)
-#define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00300000)
-#define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x004FFFFF)
-
-
+#define RX_BD_SPACE_BASE	(MEM_BASE_ADDR + 0x00020000) // was 1000
+#define RX_BD_SPACE_HIGH	(MEM_BASE_ADDR + 0x0002FFFF) // was 1FFF
+#define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
+#define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
 #define MAX_PKT_LEN				8192	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
@@ -928,6 +983,51 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 
 
 /*****************************************************************************/
+static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+	int Index;
+	u8 Value1,Value2;
+	u8 Value;
+
+
+}
+
+// -------------------------------------------------------------
+//
+// -------------------------------------------------------------
+// N is the number of samples and each sample is 1 micro secs
+// Example:  generateSineWave(50.0*1E3, N);
+// --------------------------------------------------------
+void emitDataToBuffer(int idx, double value) {
+  signed short int v;
+
+  v = (signed short int)(value);
+  v = v & 0x0FFF;
+  v = v << 4;
+  printf("TxPacket[%d] = 0x%02x;\n",((idx*2)^2),v&0x00FF);
+  printf("TxPacket[%d] = 0x%02x;\n",((idx*2+1)^2),((v&0xFF00) >> 8) & 0xFF);
+}
+
+void generateSineWave(double freq, int num_samples, int AMP) {
+  double f, x, y, base, mult;
+  signed short int i, v, w;
+
+  // printf(" size: %d\n",sizeof(v));
+  // for N = 128 we get base = 7.8 KHz : 1.0/(128 * 1 micro secs)
+  base = 1.0/(num_samples*1.0E-6);
+  f = (3.151526/180.0);
+  mult = freq / base;
+
+  for(i = 0; i < num_samples; i++){
+    //x = sin(mult*f*i*(360.0/(num_samples * 1.0)));
+    emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+  }
+}
+
+
+
+
+
+/*****************************************************************************/
 static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 	int Index;
 	u8 Value1,Value2;
@@ -1586,6 +1686,7 @@ void acquireSamples(int packet_size){
 // -------------------------------------------------------------------
 int sendPacketButton(void){
 	sendDMApackets(1);
+	//setGyroTxFIFOLooping();
 	setGyroChannelControl(0x00000001);
 	nops(100000);
 	setGyroChannelControl(0x00000000);
@@ -1908,9 +2009,9 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_READ_PACKETS):
-		while(busySamplingFlag == 1);
-		send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
-		//send_data_over_UART(get_num_data_points(UartRxData),(u8*)RX_BUFFER_BASE);
+			while(busySamplingFlag == 1);
+			send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
+			//send_data_over_UART(get_num_data_points(UartRxData),(u8*)RX_BUFFER_BASE);
 			break;
 
 		case (CMD_LOAD_SAWTOOTH_UP_DATA):
@@ -2037,9 +2138,116 @@ void read_uart_bytes(void)
 			disableHSIGyroChannel();
 			break;
 
+		case (CMD_SET_MCLK_DIV):
+			//verify clock division setting byte was received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+
+			// second byte received has the division setting
+			changeGyroChannelMCLKdivision(UartRxData[1]);
+
+			// use new variable in call to configuration function
+			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+					HSI_input_channel_setting | HSI_output_channel_setting);
+			break;
+
+		case (CMD_SET_SPICLK_DIV):
+			//verify clock division setting byte was received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+
+			// second byte received has the division setting
+			changeSPIclockDivision(UartRxData[1]);
+
+			// use new variable in call to configuration function
+			setSPIClockDivision(SPI_clock_division_setting);
+			break;
+
+		case (CMD_SET_PACKET_SIZE):
+			//verify packet size setting byte was received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+
+			// second byte received has the packet size setting
+			packet_size_setting = UartRxData[1] << 12;
+
+			// use new variable in call to configuration function
+			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+					HSI_input_channel_setting | HSI_output_channel_setting);
+			break;
+
+		case (CMD_GET_PACKET_SIZE):
+			send_byte_over_UART( (u8)(packet_size_setting>>12) );
+			break;
+
+		case (CMD_GET_SPI_CLK_DIV):
+			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
+			break;
+
+		case (CMD_GET_MCLK_DIV):
+			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
+			break;
+
 	}
 }
 //------------------------------------------------------------
+
+
+
+void changeSPIclockDivision(divSetting)
+{
+	switch (divSetting){
+		case (DIV_1):
+		SPI_clock_division_setting = CONFIG_SPI_CLK_DIV_1;
+			break;
+		case (DIV_2):
+		SPI_clock_division_setting = CONFIG_SPI_CLK_DIV_2;
+			break;
+		case (DIV_4):
+		SPI_clock_division_setting = CONFIG_SPI_CLK_DIV_4;
+			break;
+		case (DIV_8):
+		SPI_clock_division_setting = CONFIG_SPI_CLK_DIV_8;
+			break;
+	}
+}
+
+void changeGyroChannelMCLKdivision(divSetting)
+{
+	switch (divSetting){
+		case (DIV_1):
+			MCK_div_setting = CONFIG_MCK_DIV_1;
+			break;
+		case (DIV_2):
+			MCK_div_setting = CONFIG_MCK_DIV_2;
+			break;
+		case (DIV_4):
+			MCK_div_setting = CONFIG_MCK_DIV_4;
+			break;
+		case (DIV_8):
+			MCK_div_setting = CONFIG_MCK_DIV_8;
+			break;
+		case (DIV_16):
+			MCK_div_setting = CONFIG_MCK_DIV_16;
+			break;
+		case (DIV_32):
+			MCK_div_setting = CONFIG_MCK_DIV_32;
+			break;
+		case (DIV_64):
+			MCK_div_setting = CONFIG_MCK_DIV_64;
+			break;
+		case (DIV_128):
+			MCK_div_setting = CONFIG_MCK_DIV_128;
+			break;
+	}
+}
+
 
 
 //------------------------------------------------------------
@@ -2775,7 +2983,8 @@ int main() {
     initSPI();
 //    enableSPI();
 
-    setSPIClockDivision(1); // needs to be 1 , 2 or 3
+
+    setSPIClockDivision(SPI_clock_division_setting); // needs to be 1 , 2 or 3
     readSPIStatus();
 
     // set interrupt_0/1 of AXI PL interrupt generator to 0
@@ -2872,7 +3081,6 @@ int main() {
     //
     // bit 18:16 is to divide clock by 1/2/4/8/16/32/64/128
     // with 128 (7 Hex) we get 50 MHz divided by 128 = 390 KHz.
-    //
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
     //  001 is 128 samples  (64 words)
@@ -2888,13 +3096,15 @@ int main() {
     //   01 is HSI_A1
     //   10 and 11 inactive.
     // bits 2:0  - control the out_channel:
-    //   00 is HSI_DAP
-    //   01 is HSI_DAM
-    //   10 is HSI_DBP
-    //   11 is HGSI_DBM
-    //	 HSI_DC not yet active.
+    //   000 is HSI_DAP
+    //   001 is HSI_DAM
+    //   010 is HSI_DBP
+    //   011 is HGSI_DBM
+    //	 100 is HSI_DC
     //=======================================================
-    setGyroChannelConfiguration(0x00026000);
+    setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+    		HSI_input_channel_setting | HSI_output_channel_setting);
+    //setGyroChannelConfiguration(0x00017000);
 
     setGyroChannelControl(0x00000000);
 

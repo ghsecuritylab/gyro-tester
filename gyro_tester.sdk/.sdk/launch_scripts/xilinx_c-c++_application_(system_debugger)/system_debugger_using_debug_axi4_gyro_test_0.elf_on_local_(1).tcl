@@ -7,10 +7,4 @@ targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 
 stop
 ps7_init
 ps7_post_config
-targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
-rst -processor
-targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
-dow C:/Docs/gyro_tester/gyro_tester.sdk/axi4_gyro_test_0/Debug/axi4_gyro_test_0.elf
 configparams force-mem-access 0
-targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248AA3C5B"} -index 0
-con
