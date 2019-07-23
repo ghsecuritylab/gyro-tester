@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setGyroChannelConfiguration" key="selection"/>
+		<item value="sin(" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setGyroChannelConfiguration"/>
-			<item value="acquireSamples"/>
+			<item value="sin("/>
+			<item value="MAX_PKT_LEN"/>
+			<item value="Flag"/>
+			<item value="Sampling"/>
 			<item value="receiveDMApacket"/>
-			<item value="Flush"/>
-			<item value="Invalidate"/>
-			<item value="Configura"/>
-			<item value="receiveDMA"/>
-			<item value="SaveData"/>
+			<item value="numberDataSamples"/>
+			<item value="MARK_UNCACHEABLE"/>
+			<item value="setGyroChannelConfiguration"/>
 		</list>
 		<list key="replacehistory">
 			<item value="SaveData"/>

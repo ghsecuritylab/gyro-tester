@@ -67,9 +67,14 @@ extern void xil_printf(const char *format, ...);
 #define CMD_SET_MCLK_DIV			0xB0	// set the MCLK division setting
 #define CMD_GET_MCLK_DIV			0xB1	// send MCLK division setting over uart
 #define	CMD_SET_SPICLK_DIV			0xB2	// set the SPI clock division setting
-#define CMD_GET_SPI_CLK_DIV			0xB3	// send the SPI clock division setting over uart
+#define CMD_GET_SPICLK_DIV			0xB3	// send the SPI clock division setting over uart
 #define CMD_SET_PACKET_SIZE			0xB4	// set the FIFO packet size
 #define CMD_GET_PACKET_SIZE			0xB5	// send the packet size over uart
+#define CMD_GET_DAC_SELECTION		0xB6	// send the current DAC(TX channel) selected for HSI dout over UART
+#define	CMD_SET_DAC_SELECTION		0xB7	// set the current DAC(TX channel) selected for HSI dout
+#define CMD_GET_ADC_SELECTION		0xB8	// send the current ADC(RX channel) mux selection over UART
+#define CMD_SET_ADC_SELECTION		0xB9	// set the current ADC(RX channel) mux selection
+#define CMD_GET_CONFIG_SETTINGS		0xBA	// send all config settings over uart
 
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
@@ -329,6 +334,10 @@ static int initDMADevice(void);
 static int sendPacketButton(void);
 static int receivePacketButton(void);
 static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
+static void changeSPIclockDivision(u8 divSetting);
+static void changeMCLKdivision(u8 divSetting);
+static void changeHSI_ADC_selection(u8 selection);
+static void sendConfigBytesOverUart(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -1043,7 +1052,7 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 
 double x;
 
-  x = sin(0.0);
+  //x = sin(0.0);
 
 /*
 	  for(Index = 0; Index < npoints/2; Index++){
@@ -1051,8 +1060,8 @@ double x;
 		TxPacket[Index*2+1] =(Value & 0x7f);
 		Value =(Value +1)& 0xFF;
 	  }
-	  */
-
+*/
+/*
 	  // sin 6.txt
 
 	  TxPacket[2] = 0x00;
@@ -1313,7 +1322,7 @@ double x;
 	  TxPacket[253] = 0x78;
 
 
-
+*/
 /*
 
 Value = 0x00;
@@ -2138,6 +2147,10 @@ void read_uart_bytes(void)
 			disableHSIGyroChannel();
 			break;
 
+		case (CMD_GET_MCLK_DIV):
+			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
+			break;
+
 		case (CMD_SET_MCLK_DIV):
 			//verify clock division setting byte was received after command byte
 			if (numBytesReceived<2)
@@ -2146,11 +2159,15 @@ void read_uart_bytes(void)
 			}
 
 			// second byte received has the division setting
-			changeGyroChannelMCLKdivision(UartRxData[1]);
+			changeMCLKdivision(UartRxData[1]);
 
 			// use new variable in call to configuration function
 			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
 					HSI_input_channel_setting | HSI_output_channel_setting);
+			break;
+
+		case (CMD_GET_SPICLK_DIV):
+			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
 			break;
 
 		case (CMD_SET_SPICLK_DIV):
@@ -2167,6 +2184,10 @@ void read_uart_bytes(void)
 			setSPIClockDivision(SPI_clock_division_setting);
 			break;
 
+		case (CMD_GET_PACKET_SIZE):
+			send_byte_over_UART( (u8)(packet_size_setting>>12) );
+			break;
+
 		case (CMD_SET_PACKET_SIZE):
 			//verify packet size setting byte was received after command byte
 			if (numBytesReceived<2)
@@ -2175,32 +2196,91 @@ void read_uart_bytes(void)
 			}
 
 			// second byte received has the packet size setting
-			packet_size_setting = UartRxData[1] << 12;
+			packet_size_setting = (u32)UartRxData[1] << 12;
 
 			// use new variable in call to configuration function
 			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
 					HSI_input_channel_setting | HSI_output_channel_setting);
 			break;
 
-		case (CMD_GET_PACKET_SIZE):
-			send_byte_over_UART( (u8)(packet_size_setting>>12) );
+		case (CMD_GET_DAC_SELECTION):
+			send_byte_over_UART( (u8)HSI_output_channel_setting );
 			break;
 
-		case (CMD_GET_SPI_CLK_DIV):
-			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
+		case (CMD_SET_DAC_SELECTION):
+			//verify DAC selection setting byte was received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+
+			// second byte received has the DAC selection
+			HSI_output_channel_setting = UartRxData[1];
+
+			// use new variable in call to configuration function
+			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+					HSI_input_channel_setting | HSI_output_channel_setting);
 			break;
 
-		case (CMD_GET_MCLK_DIV):
-			send_byte_over_UART( (u8)(MCK_div_setting>>12) );
+		case (CMD_GET_ADC_SELECTION):
+			send_byte_over_UART( (u8)HSI_input_channel_setting );
 			break;
+
+		case (CMD_SET_ADC_SELECTION):
+			//verify ADC selection setting byte was received after command byte
+			if (numBytesReceived<2)
+			{
+				return;
+			}
+
+			// second byte received has the DAC selection
+			changeHSI_ADC_selection(UartRxData[1]);
+
+			// use new variable in call to configuration function
+			setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+					HSI_input_channel_setting | HSI_output_channel_setting);
+			break;
+
+		case (CMD_GET_CONFIG_SETTINGS):
+			sendConfigBytesOverUart();
+			break;
+
 
 	}
 }
 //------------------------------------------------------------
 
 
+//------------------------------------------------------------
+void sendConfigBytesOverUart(void)
+{
+	send_byte_over_UART( (u8)HSI_output_channel_setting );		//DAC channel mux selection
+	send_byte_over_UART( (u8)(HSI_input_channel_setting>>4) );	//ADC channel mux selection
+	send_byte_over_UART( (u8)(MCK_div_setting>>16) );
+	send_byte_over_UART( (u8)SPI_clock_division_setting );
+	send_byte_over_UART( (u8)(packet_size_setting>>12) );
 
-void changeSPIclockDivision(divSetting)
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void changeHSI_ADC_selection(u8 selection)
+{
+	switch (selection){
+		case (0):
+		HSI_input_channel_setting = CONFIG_INPUT_CHANNEL_HSIA0;
+			break;
+		case (1):
+		HSI_input_channel_setting = CONFIG_INPUT_CHANNEL_HSIA1;
+			break;
+	}
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void changeSPIclockDivision(u8 divSetting)
 {
 	switch (divSetting){
 		case (DIV_1):
@@ -2217,8 +2297,11 @@ void changeSPIclockDivision(divSetting)
 			break;
 	}
 }
+//------------------------------------------------------------
 
-void changeGyroChannelMCLKdivision(divSetting)
+
+//------------------------------------------------------------
+void changeMCLKdivision(u8 divSetting)
 {
 	switch (divSetting){
 		case (DIV_1):
@@ -2247,6 +2330,7 @@ void changeGyroChannelMCLKdivision(divSetting)
 			break;
 	}
 }
+//------------------------------------------------------------
 
 
 
@@ -2474,7 +2558,7 @@ void read_ADC1_cal_data(void)
 	//set register 6 readback mode to read-only
 	writeSPI_non_blocking(10,reg10|0xFF00);
 
-	for (i=0;i<8;i++)
+	for (i=0;i < 8; i++)
 	{
 		readSPI((unsigned int*)&ADC_calData[i],firstCalRegisterAddress+i);
 	}
@@ -2537,7 +2621,7 @@ void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
 	SetTimerDuration(10000, 1);		// change timer setting to 100usec
 									// for use in loop below
 
-	for (i=0;i<numReadings;i++)
+	for (i=0; i < numReadings; i++)
 	{
 		// initial tadc setting for desired measurement
 		writeSPI_non_blocking(1,testADCinitialConditions);
