@@ -2,36 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="sin(" key="selection"/>
+		<item value="Flush" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="sin("/>
-			<item value="MAX_PKT_LEN"/>
-			<item value="Flag"/>
-			<item value="Sampling"/>
-			<item value="receiveDMApacket"/>
-			<item value="numberDataSamples"/>
-			<item value="MARK_UNCACHEABLE"/>
-			<item value="setGyroChannelConfiguration"/>
+			<item value="FLUSH"/>
+			<item value="1700"/>
+			<item value="cONFIGURA"/>
+			<item value="loop"/>
+			<item value="packet_size_setting"/>
+			<item value="CMD_GET_CONFIG_SETTINGS"/>
+			<item value="CMD_SET_ADC_SELECTION"/>
+			<item value="CMD_GET_SPI_CLK_DIV"/>
 		</list>
 		<list key="replacehistory">
+			<item value="CMD_GET_SPICLK_DIV"/>
+			<item value="changeMCLKdivision"/>
+			<item value="changeGyroChannelMCLKdivision"/>
 			<item value="SaveData"/>
 			<item value="reg11"/>
 			<item value="reg10"/>
 			<item value="reg9"/>
 			<item value="reg8"/>
-			<item value="reg"/>
-			<item value="send_data_over_UART"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="991" key="DIALOG_X_ORIGIN"/>
+		<item value="984" key="DIALOG_X_ORIGIN"/>
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

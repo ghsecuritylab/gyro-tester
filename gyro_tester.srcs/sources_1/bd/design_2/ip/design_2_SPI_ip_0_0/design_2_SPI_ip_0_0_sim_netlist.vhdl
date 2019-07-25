@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Wed Jun 19 19:37:46 2019
+-- Date        : Wed Jul 24 19:20:06 2019
 -- Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_SPI_ip_0_0/design_2_SPI_ip_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_2_SPI_ip_0_0 -prefix
+--               design_2_SPI_ip_0_0_ design_2_SPI_ip_0_0_sim_netlist.vhdl
 -- Design      : design_2_SPI_ip_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -81,8 +81,6 @@ entity design_2_SPI_ip_0_0_SPI_fsm is
     \FSM_onehot_state_reg[3]_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     CLK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_fsm : entity is "SPI_fsm";
 end design_2_SPI_ip_0_0_SPI_fsm;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_fsm is
@@ -764,8 +762,6 @@ entity design_2_SPI_ip_0_0_dff is
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_dff : entity is "dff";
 end design_2_SPI_ip_0_0_dff;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_dff is
@@ -1106,8 +1102,6 @@ entity design_2_SPI_ip_0_0_downCounter5Bits is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     \FSM_onehot_state_reg[1]_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_downCounter5Bits : entity is "downCounter5Bits";
 end design_2_SPI_ip_0_0_downCounter5Bits;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_downCounter5Bits is
@@ -1383,8 +1377,6 @@ entity design_2_SPI_ip_0_0_leftShiftRegister25bits is
     \slv_reg2_reg[23]\ : in STD_LOGIC_VECTOR ( 23 downto 0 );
     Q : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_leftShiftRegister25bits : entity is "leftShiftRegister25bits";
 end design_2_SPI_ip_0_0_leftShiftRegister25bits;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_leftShiftRegister25bits is
@@ -2708,8 +2700,6 @@ entity design_2_SPI_ip_0_0_clock_divider is
     s00_axi_aresetn : in STD_LOGIC;
     \slv_reg3_reg[2]\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_clock_divider : entity is "clock_divider";
 end design_2_SPI_ip_0_0_clock_divider;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_clock_divider is
@@ -2802,8 +2792,6 @@ entity design_2_SPI_ip_0_0_SPI_Master is
     \slv_reg3_reg[31]\ : in STD_LOGIC_VECTOR ( 24 downto 0 );
     axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_Master : entity is "SPI_Master";
 end design_2_SPI_ip_0_0_SPI_Master;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_Master is
@@ -3050,8 +3038,6 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI : entity is "SPI_ip_v1_0_S00_AXI";
 end design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
@@ -4716,8 +4702,6 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_ip_v1_0 : entity is "SPI_ip_v1_0";
 end design_2_SPI_ip_0_0_SPI_ip_v1_0;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_ip_v1_0 is
@@ -4798,7 +4782,7 @@ architecture STRUCTURE of design_2_SPI_ip_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of s00_axi_aclk : signal is "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of s00_axi_aclk : signal is "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN design_2_processing_system7_0_0_FCLK_CLK0";
+  attribute X_INTERFACE_PARAMETER of s00_axi_aclk : signal is "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_2_processing_system7_0_0_FCLK_CLK0";
   attribute X_INTERFACE_INFO of s00_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 S00_AXI_RST RST";
   attribute X_INTERFACE_PARAMETER of s00_axi_aresetn : signal is "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW";
   attribute X_INTERFACE_INFO of s00_axi_arready : signal is "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY";
@@ -4808,7 +4792,7 @@ architecture STRUCTURE of design_2_SPI_ip_0_0 is
   attribute X_INTERFACE_INFO of s00_axi_bready : signal is "xilinx.com:interface:aximm:1.0 S00_AXI BREADY";
   attribute X_INTERFACE_INFO of s00_axi_bvalid : signal is "xilinx.com:interface:aximm:1.0 S00_AXI BVALID";
   attribute X_INTERFACE_INFO of s00_axi_rready : signal is "xilinx.com:interface:aximm:1.0 S00_AXI RREADY";
-  attribute X_INTERFACE_PARAMETER of s00_axi_rready : signal is "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 1e+08, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_2_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute X_INTERFACE_PARAMETER of s00_axi_rready : signal is "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_2_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
   attribute X_INTERFACE_INFO of s00_axi_rvalid : signal is "xilinx.com:interface:aximm:1.0 S00_AXI RVALID";
   attribute X_INTERFACE_INFO of s00_axi_wready : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WREADY";
   attribute X_INTERFACE_INFO of s00_axi_wvalid : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WVALID";
