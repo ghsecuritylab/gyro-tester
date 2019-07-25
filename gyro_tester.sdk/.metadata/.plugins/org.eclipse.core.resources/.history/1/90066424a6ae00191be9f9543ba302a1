@@ -182,7 +182,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
-#define MAX_PKT_LEN				8192	// this is Bytes
+#define MAX_PKT_LEN				2048	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC

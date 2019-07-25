@@ -3186,12 +3186,12 @@ int main() {
     //   000 is HSI_DAP
     //   001 is HSI_DAM
     //   010 is HSI_DBP
-    //   011 is HSI_DBM
+    //   011 is HGSI_DBM
     //	 100 is HSI_DC
     //=======================================================
-    setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
-    		HSI_input_channel_setting | HSI_output_channel_setting);
-    //setGyroChannelConfiguration(0x00016000);
+    //setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+    		//HSI_input_channel_setting | HSI_output_channel_setting);
+    setGyroChannelConfiguration(0x00016000);
 
     setGyroChannelControl(0x00000000);
 
