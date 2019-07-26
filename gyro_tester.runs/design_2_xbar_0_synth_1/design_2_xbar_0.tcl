@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_msg_config -id {HDL-1065} -limit 10000
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 create_project -in_memory -part xc7z020clg484-1
@@ -39,7 +38,6 @@ set_property ip_repo_paths {
 set_property ip_output_repo c:/Docs/gyro_tester_zedboard_code/gyro_tester.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_ip -quiet C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_xbar_0/design_2_xbar_0.xci
-set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_xbar_0/design_2_xbar_0_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -49,8 +47,6 @@ set_property used_in_implementation false [get_files -all c:/Docs/gyro_tester_ze
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 0
 
 set cached_ip [config_ip_cache -export -no_bom -use_project_ipc -dir C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_xbar_0_synth_1 -new_name design_2_xbar_0 -ip [get_ips design_2_xbar_0]]

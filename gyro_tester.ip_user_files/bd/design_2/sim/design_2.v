@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Jul 24 19:10:10 2019
+//Date        : Thu Jul 25 16:45:43 2019
 //Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 //Command     : generate_target design_2.bd
 //Design      : design_2
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=22,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_2.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=22,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_2.hwdef" *) 
 module design_2
    (DDR_addr,
     DDR_ba,
@@ -80,7 +80,7 @@ module design_2
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RESET_N" *) inout DDR_reset_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR WE_N" *) inout DDR_we_n;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.EOT DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.EOT, LAYERED_METADATA undef" *) output EOT;
-  input EOWB;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.EOWB DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.EOWB, LAYERED_METADATA undef" *) input EOWB;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false" *) inout FIXED_IO_ddr_vrn;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP" *) inout FIXED_IO_ddr_vrp;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO" *) inout [53:0]FIXED_IO_mio;
@@ -113,7 +113,7 @@ module design_2
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SPI_MISO DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SPI_MISO, LAYERED_METADATA undef" *) input SPI_MISO;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SPI_MOSI DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SPI_MOSI, LAYERED_METADATA undef" *) output SPI_MOSI;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SPI_SCK DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SPI_SCK, LAYERED_METADATA undef" *) output SPI_SCK;
-  input STARTB;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.STARTB DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.STARTB, LAYERED_METADATA undef" *) input STARTB;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SW6 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SW6, LAYERED_METADATA undef" *) input SW6;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SW7 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SW7, LAYERED_METADATA undef" *) input SW7;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SYNC_CK DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SYNC_CK, LAYERED_METADATA undef" *) output SYNC_CK;
@@ -537,7 +537,7 @@ module design_2
         .s00_axis_tready(TxFIFO_M00_AXIS_TREADY),
         .s00_axis_tstrb(TxFIFO_M00_AXIS_TSTRB),
         .s00_axis_tvalid(TxFIFO_M00_AXIS_TVALID));
-  design_2_Handler_0_1 Handler_0
+  design_2_Handler_0_0 Handler_0
        (.EOT(Handler_0_EOT),
         .EOWB(EOWB_1),
         .SORT0(Handler_0_SORT0),

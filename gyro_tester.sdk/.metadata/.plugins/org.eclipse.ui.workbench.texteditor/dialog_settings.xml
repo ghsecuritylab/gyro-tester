@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Flush" key="selection"/>
+		<item value="receiveDMApackets" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="receiveDMApackets"/>
+			<item value="fillTxPacketBuffer"/>
+			<item value="MAX_PKT_LEN"/>
 			<item value="FLUSH"/>
 			<item value="1700"/>
 			<item value="cONFIGURA"/>
 			<item value="loop"/>
 			<item value="packet_size_setting"/>
-			<item value="CMD_GET_CONFIG_SETTINGS"/>
-			<item value="CMD_SET_ADC_SELECTION"/>
-			<item value="CMD_GET_SPI_CLK_DIV"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CMD_GET_SPICLK_DIV"/>

@@ -160,6 +160,8 @@ proc create_root_design { parentCell } {
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
   # Create ports
+  set EOT [ create_bd_port -dir O -type data EOT ]
+  set EOWB [ create_bd_port -dir I -type data EOWB ]
   set HSICK [ create_bd_port -dir O -type data HSICK ]
   set HSI_A0 [ create_bd_port -dir I -type data HSI_A0 ]
   set HSI_A1 [ create_bd_port -dir I -type data HSI_A1 ]
@@ -174,16 +176,28 @@ proc create_root_design { parentCell } {
   set LED7 [ create_bd_port -dir O -type data LED7 ]
   set MCK_N [ create_bd_port -dir O -type data MCK_N ]
   set MCK_P [ create_bd_port -dir O -type data MCK_P ]
+  set SORT0 [ create_bd_port -dir O -type data SORT0 ]
+  set SORT1 [ create_bd_port -dir O -type data SORT1 ]
+  set SORT2 [ create_bd_port -dir O -type data SORT2 ]
+  set SORT3 [ create_bd_port -dir O -type data SORT3 ]
+  set SORT4 [ create_bd_port -dir O -type data SORT4 ]
+  set SORT5 [ create_bd_port -dir O -type data SORT5 ]
+  set SORT6 [ create_bd_port -dir O -type data SORT6 ]
+  set SORT7 [ create_bd_port -dir O -type data SORT7 ]
   set SPI_CS [ create_bd_port -dir O -type data SPI_CS ]
   set SPI_MISO [ create_bd_port -dir I -type data SPI_MISO ]
   set SPI_MOSI [ create_bd_port -dir O -type data SPI_MOSI ]
   set SPI_SCK [ create_bd_port -dir O -type data SPI_SCK ]
+  set STARTB [ create_bd_port -dir I -type data STARTB ]
   set SW6 [ create_bd_port -dir I -type data SW6 ]
   set SW7 [ create_bd_port -dir I -type data SW7 ]
   set SYNC_CK [ create_bd_port -dir O -type data SYNC_CK ]
 
   # Create instance: BiDirChannels_0, and set properties
   set BiDirChannels_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:BiDirChannels:1.0 BiDirChannels_0 ]
+
+  # Create instance: Handler_0, and set properties
+  set Handler_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:Handler:1.0 Handler_0 ]
 
   # Create instance: RxFIFO, and set properties
   set RxFIFO [ create_bd_cell -type ip -vlnv xilinx.com:user:axis_stream_fifo:1.0 RxFIFO ]
@@ -1046,6 +1060,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M04_AXI [get_bd_intf_pins RxFIFO/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M04_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M05_AXI [get_bd_intf_pins TxFIFO/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M05_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M06_AXI [get_bd_intf_pins Handler_0/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M06_AXI]
 
   # Create port connections
   connect_bd_net -net BiDirChannels_0_HSI_DAM [get_bd_ports HSI_DAM] [get_bd_pins BiDirChannels_0/HSI_DAM]
@@ -1057,14 +1072,25 @@ proc create_root_design { parentCell } {
   connect_bd_net -net BiDirChannels_0_MCK_N [get_bd_ports MCK_N] [get_bd_pins BiDirChannels_0/MCK_N]
   connect_bd_net -net BiDirChannels_0_MCK_P [get_bd_ports MCK_P] [get_bd_pins BiDirChannels_0/MCK_P]
   connect_bd_net -net BiDirChannels_0_SYNCK [get_bd_ports SYNC_CK] [get_bd_pins BiDirChannels_0/SYNCK]
+  connect_bd_net -net EOWB_1 [get_bd_ports EOWB] [get_bd_pins Handler_0/EOWB]
   connect_bd_net -net HSI_A0_1 [get_bd_ports HSI_A0] [get_bd_pins BiDirChannels_0/HSI_A0]
   connect_bd_net -net HSI_A1_1 [get_bd_ports HSI_A1] [get_bd_pins BiDirChannels_0/HSI_A1]
+  connect_bd_net -net Handler_0_EOT [get_bd_ports EOT] [get_bd_pins Handler_0/EOT]
+  connect_bd_net -net Handler_0_SORT0 [get_bd_ports SORT0] [get_bd_pins Handler_0/SORT0]
+  connect_bd_net -net Handler_0_SORT1 [get_bd_ports SORT1] [get_bd_pins Handler_0/SORT1]
+  connect_bd_net -net Handler_0_SORT2 [get_bd_ports SORT2] [get_bd_pins Handler_0/SORT2]
+  connect_bd_net -net Handler_0_SORT3 [get_bd_ports SORT3] [get_bd_pins Handler_0/SORT3]
+  connect_bd_net -net Handler_0_SORT4 [get_bd_ports SORT4] [get_bd_pins Handler_0/SORT4]
+  connect_bd_net -net Handler_0_SORT5 [get_bd_ports SORT5] [get_bd_pins Handler_0/SORT5]
+  connect_bd_net -net Handler_0_SORT6 [get_bd_ports SORT6] [get_bd_pins Handler_0/SORT6]
+  connect_bd_net -net Handler_0_SORT7 [get_bd_ports SORT7] [get_bd_pins Handler_0/SORT7]
   connect_bd_net -net SPI_MISO_1 [get_bd_ports SPI_MISO] [get_bd_pins SPI_ip_0/SPI_MISO]
   connect_bd_net -net SPI_ip_0_FSM_DONE [get_bd_ports LED2] [get_bd_pins SPI_ip_0/FSM_DONE]
   connect_bd_net -net SPI_ip_0_FSM_START [get_bd_ports LED1] [get_bd_pins SPI_ip_0/FSM_START]
   connect_bd_net -net SPI_ip_0_SPI_CS [get_bd_ports SPI_CS] [get_bd_pins SPI_ip_0/SPI_CS]
   connect_bd_net -net SPI_ip_0_SPI_MOSI [get_bd_ports SPI_MOSI] [get_bd_pins SPI_ip_0/SPI_MOSI]
   connect_bd_net -net SPI_ip_0_SPI_SCK [get_bd_ports SPI_SCK] [get_bd_pins SPI_ip_0/SPI_SCK]
+  connect_bd_net -net STARTB_1 [get_bd_ports STARTB] [get_bd_pins Handler_0/STARTB]
   connect_bd_net -net SW6_1 [get_bd_ports SW6] [get_bd_pins axi4_pl_interrupt_ge_0/SW_6]
   connect_bd_net -net SW7 [get_bd_ports SW7] [get_bd_pins axi4_pl_interrupt_ge_0/SW_7]
   connect_bd_net -net axi4_pl_interrupt_ge_0_LED_0 [get_bd_ports LED0] [get_bd_pins axi4_pl_interrupt_ge_0/LED_0]
@@ -1074,10 +1100,10 @@ proc create_root_design { parentCell } {
   connect_bd_net -net axi4_pl_interrupt_ge_0_interrupt_2 [get_bd_pins axi4_pl_interrupt_ge_0/interrupt_2] [get_bd_pins xlconcat_0/In4]
   connect_bd_net -net axi_dma_0_mm2s_introut [get_bd_pins axi_dma_0/mm2s_introut] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins BiDirChannels_0/m00_axis_aclk] [get_bd_pins BiDirChannels_0/s00_axi_aclk] [get_bd_pins BiDirChannels_0/s00_axis_aclk] [get_bd_pins RxFIFO/m00_axis_aclk] [get_bd_pins RxFIFO/s00_axi_aclk] [get_bd_pins RxFIFO/s00_axis_aclk] [get_bd_pins SPI_ip_0/s00_axi_aclk] [get_bd_pins TxFIFO/m00_axis_aclk] [get_bd_pins TxFIFO/s00_axi_aclk] [get_bd_pins TxFIFO/s00_axis_aclk] [get_bd_pins axi4_pl_interrupt_ge_0/s00_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/M05_ACLK] [get_bd_pins ps7_0_axi_periph/M06_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins BiDirChannels_0/m00_axis_aclk] [get_bd_pins BiDirChannels_0/s00_axi_aclk] [get_bd_pins BiDirChannels_0/s00_axis_aclk] [get_bd_pins Handler_0/s00_axi_aclk] [get_bd_pins RxFIFO/m00_axis_aclk] [get_bd_pins RxFIFO/s00_axi_aclk] [get_bd_pins RxFIFO/s00_axis_aclk] [get_bd_pins SPI_ip_0/s00_axi_aclk] [get_bd_pins TxFIFO/m00_axis_aclk] [get_bd_pins TxFIFO/s00_axi_aclk] [get_bd_pins TxFIFO/s00_axis_aclk] [get_bd_pins axi4_pl_interrupt_ge_0/s00_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/M05_ACLK] [get_bd_pins ps7_0_axi_periph/M06_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins BiDirChannels_0/m00_axis_aresetn] [get_bd_pins BiDirChannels_0/s00_axi_aresetn] [get_bd_pins BiDirChannels_0/s00_axis_aresetn] [get_bd_pins RxFIFO/m00_axis_aresetn] [get_bd_pins RxFIFO/s00_axi_aresetn] [get_bd_pins RxFIFO/s00_axis_aresetn] [get_bd_pins SPI_ip_0/s00_axi_aresetn] [get_bd_pins TxFIFO/m00_axis_aresetn] [get_bd_pins TxFIFO/s00_axi_aresetn] [get_bd_pins TxFIFO/s00_axis_aresetn] [get_bd_pins axi4_pl_interrupt_ge_0/s00_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/M05_ARESETN] [get_bd_pins ps7_0_axi_periph/M06_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins BiDirChannels_0/m00_axis_aresetn] [get_bd_pins BiDirChannels_0/s00_axi_aresetn] [get_bd_pins BiDirChannels_0/s00_axis_aresetn] [get_bd_pins Handler_0/s00_axi_aresetn] [get_bd_pins RxFIFO/m00_axis_aresetn] [get_bd_pins RxFIFO/s00_axi_aresetn] [get_bd_pins RxFIFO/s00_axis_aresetn] [get_bd_pins SPI_ip_0/s00_axi_aresetn] [get_bd_pins TxFIFO/m00_axis_aresetn] [get_bd_pins TxFIFO/s00_axi_aresetn] [get_bd_pins TxFIFO/s00_axis_aresetn] [get_bd_pins axi4_pl_interrupt_ge_0/s00_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/M05_ARESETN] [get_bd_pins ps7_0_axi_periph/M06_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
@@ -1085,6 +1111,7 @@ proc create_root_design { parentCell } {
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
   create_bd_addr_seg -range 0x00010000 -offset 0x43C20000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs BiDirChannels_0/S00_AXI/S00_AXI_reg] SEG_BiDirChannels_0_S00_AXI_reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x43C50000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs Handler_0/S00_AXI/S00_AXI_reg] SEG_Handler_0_S00_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x43C30000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs RxFIFO/S00_AXI/S00_AXI_reg] SEG_RxFIFO_S00_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x43C10000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs SPI_ip_0/S00_AXI/S00_AXI_reg] SEG_SPI_ip_0_S00_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x43C40000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TxFIFO/S00_AXI/S00_AXI_reg] SEG_TxFIFO_S00_AXI_reg

@@ -42,6 +42,9 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_2_BiDirC
 # IP: bd/design_2/ip/design_2_xbar_0/design_2_xbar_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_2_xbar_0 || ORIG_REF_NAME==design_2_xbar_0} -quiet] -quiet
 
+# IP: bd/design_2/ip/design_2_Handler_0_0/design_2_Handler_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_2_Handler_0_0 || ORIG_REF_NAME==design_2_Handler_0_0} -quiet] -quiet
+
 # IP: bd/design_2/ip/design_2_auto_pc_0/design_2_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_2_auto_pc_0 || ORIG_REF_NAME==design_2_auto_pc_0} -quiet] -quiet
 

@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Wed Jun 19 19:37:46 2019
+-- Date        : Wed Jun 19 19:37:45 2019
 -- Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_SPI_ip_0_0/design_2_SPI_ip_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_2_SPI_ip_0_0 -prefix
+--               design_2_SPI_ip_0_0_ design_2_SPI_ip_0_0_sim_netlist.vhdl
 -- Design      : design_2_SPI_ip_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -81,8 +81,6 @@ entity design_2_SPI_ip_0_0_SPI_fsm is
     \FSM_onehot_state_reg[3]_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     CLK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_fsm : entity is "SPI_fsm";
 end design_2_SPI_ip_0_0_SPI_fsm;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_fsm is
@@ -764,8 +762,6 @@ entity design_2_SPI_ip_0_0_dff is
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_dff : entity is "dff";
 end design_2_SPI_ip_0_0_dff;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_dff is
@@ -1106,8 +1102,6 @@ entity design_2_SPI_ip_0_0_downCounter5Bits is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     \FSM_onehot_state_reg[1]_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_downCounter5Bits : entity is "downCounter5Bits";
 end design_2_SPI_ip_0_0_downCounter5Bits;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_downCounter5Bits is
@@ -1383,8 +1377,6 @@ entity design_2_SPI_ip_0_0_leftShiftRegister25bits is
     \slv_reg2_reg[23]\ : in STD_LOGIC_VECTOR ( 23 downto 0 );
     Q : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_leftShiftRegister25bits : entity is "leftShiftRegister25bits";
 end design_2_SPI_ip_0_0_leftShiftRegister25bits;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_leftShiftRegister25bits is
@@ -2708,8 +2700,6 @@ entity design_2_SPI_ip_0_0_clock_divider is
     s00_axi_aresetn : in STD_LOGIC;
     \slv_reg3_reg[2]\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_clock_divider : entity is "clock_divider";
 end design_2_SPI_ip_0_0_clock_divider;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_clock_divider is
@@ -2802,8 +2792,6 @@ entity design_2_SPI_ip_0_0_SPI_Master is
     \slv_reg3_reg[31]\ : in STD_LOGIC_VECTOR ( 24 downto 0 );
     axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_Master : entity is "SPI_Master";
 end design_2_SPI_ip_0_0_SPI_Master;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_Master is
@@ -3050,8 +3038,6 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI : entity is "SPI_ip_v1_0_S00_AXI";
 end design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_ip_v1_0_S00_AXI is
@@ -4716,8 +4702,6 @@ entity design_2_SPI_ip_0_0_SPI_ip_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_SPI_ip_0_0_SPI_ip_v1_0 : entity is "SPI_ip_v1_0";
 end design_2_SPI_ip_0_0_SPI_ip_v1_0;
 
 architecture STRUCTURE of design_2_SPI_ip_0_0_SPI_ip_v1_0 is

@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Fri May 24 19:21:27 2019
+-- Date        : Fri May 24 19:21:25 2019
 -- Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/Docs/gyro_tester/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_axi4_pl_interrupt_ge_0_0/design_2_axi4_pl_interrupt_ge_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_2_axi4_pl_interrupt_ge_0_0 -prefix
+--               design_2_axi4_pl_interrupt_ge_0_0_ design_2_axi4_pl_interrupt_ge_0_0_sim_netlist.vhdl
 -- Design      : design_2_axi4_pl_interrupt_ge_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -38,8 +38,6 @@ entity design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0_S00_AX
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0_S00_AXI : entity is "axi4_pl_interrupt_generator_v1_0_S00_AXI";
 end design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0_S00_AXI;
 
 architecture STRUCTURE of design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0_S00_AXI is
@@ -2217,8 +2215,6 @@ entity design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0 : entity is "axi4_pl_interrupt_generator_v1_0";
 end design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0;
 
 architecture STRUCTURE of design_2_axi4_pl_interrupt_ge_0_0_axi4_pl_interrupt_generator_v1_0 is

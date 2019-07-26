@@ -77,6 +77,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_GET_CONFIG_SETTINGS		0xBA	// send all config settings over uart
 
 
+
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
 
 // test ADC mux settings
@@ -182,7 +183,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
-#define MAX_PKT_LEN				8192	// this is Bytes
+#define MAX_PKT_LEN				256	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -220,6 +221,7 @@ Xuint32* baseaddr_spi         = (Xuint32*) 0x43C10000;
 Xuint32* baseaddr_channel     = (Xuint32*) 0x43C20000;
 Xuint32* baseaddr_rx_fifo     = (Xuint32*) 0x43C30000;
 Xuint32* baseaddr_tx_fifo     = (Xuint32*) 0x43C40000;
+Xuint32* baseaddr_handler     = (Xuint32*) 0x43C50000;
 
 int flag;
 int setup_interrupt_system();
@@ -278,11 +280,11 @@ static int RxSetup(XAxiDma * AxiDmaInstPtr);
 static int TxSetup(XAxiDma * AxiDmaInstPtr);
 
 static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode);
-static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode);
+static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int packet_id, int debug_mode);
 static int sendDMApackets(int npackets);
 static int receiveDMApackets(int npackets);
 
-static int SaveData(int debug_mode);
+static int SaveData(int offset, int debug_mode);
 static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip);
 
 static int openDMADevice();
@@ -296,6 +298,20 @@ static int resetGyroRxFIFO();
 
 static int resetGyroTxFIFOLooping();
 static int   setGyroTxFIFOLooping();
+
+static int  getHandlerEOWB();
+static int  getHandlerSTARTB();
+static void setHandlerEOT();
+static void resetHandlerEOT();
+static void setHandlerSortLines(unsigned int v);
+static void setHandlerSortLine0(unsigned int v);
+static void setHandlerSortLine1(unsigned int v);
+static void setHandlerSortLine2(unsigned int v);
+static void setHandlerSortLine3(unsigned int v);
+static void setHandlerSortLine4(unsigned int v);
+static void setHandlerSortLine5(unsigned int v);
+static void setHandlerSortLine6(unsigned int v);
+static void setHandlerSortLine7(unsigned int v);
 
 static int  initGyroChannel();
 static void disableGyroChannel();
@@ -465,6 +481,93 @@ int setGyroTxFIFOLooping(){
 	*(baseaddr_tx_fifo+1) = 0x00000001;
 	  return 0;
 }
+
+// -------------------------------------------------------------------
+//   HANDLER FUNCTIONS
+// -------------------------------------------------------------------
+int getHandlerEOWB(){
+	int res;
+	res = *(baseaddr_handler+1);
+	return res;
+}
+
+int getHandlerSTARTB(){
+	int res;
+	res = *(baseaddr_handler+0);
+	return res;
+}
+
+void setHandlerEOT(){
+	*(baseaddr_handler+2) = 0x00000001;
+}
+
+void resetHandlerEOT(){
+	*(baseaddr_handler+2) = 0x00000000;
+}
+
+void setHandlerSortLines(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x11111111);
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine0(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001);
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine1(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 4;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine2(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 8;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine3(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 12;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine4(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 16;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine5(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 20;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine6(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 24;
+	   *(baseaddr_handler+3) = x;
+}
+
+void setHandlerSortLine7(unsigned int v){
+	   Xuint32 x;
+
+	   x = (Xuint32)(v & 0x00000001) << 28;
+	   *(baseaddr_handler+3) = x;
+}
+
 // -------------------------------------------------------------------
 //   SPI FUNCTIONS
 // -------------------------------------------------------------------
@@ -1006,17 +1109,19 @@ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
 // N is the number of samples and each sample is 1 micro secs
 // Example:  generateSineWave(50.0*1E3, N);
 // --------------------------------------------------------
-void emitDataToBuffer(int idx, double value) {
+void emitDataToBuffer(u8 *TxPacket,int idx, double value) {
   signed short int v;
 
   v = (signed short int)(value);
   v = v & 0x0FFF;
   v = v << 4;
-  printf("TxPacket[%d] = 0x%02x;\n",((idx*2)^2),v&0x00FF);
-  printf("TxPacket[%d] = 0x%02x;\n",((idx*2+1)^2),((v&0xFF00) >> 8) & 0xFF);
+  //printf("TxPacket[%d] = 0x%02x;\n",((idx*2)^2),v&0x00FF);
+  //printf("TxPacket[%d] = 0x%02x;\n",((idx*2+1)^2),((v&0xFF00) >> 8) & 0xFF);
+  TxPacket[((idx*2)^2)] = v&0x00FF;
+  TxPacket[((idx*2+1)^2)] = (((v&0xFF00) >> 8) & 0xFF);
 }
 
-void generateSineWave(double freq, int num_samples, int AMP) {
+void generateSineWave(u8 *TxPacket, double freq, int num_samples, int AMP) {
   double f, x, y, base, mult;
   signed short int i, v, w;
 
@@ -1028,12 +1133,9 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 
   for(i = 0; i < num_samples; i++){
     //x = sin(mult*f*i*(360.0/(num_samples * 1.0)));
-    emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+    emitDataToBuffer(TxPacket, i, x*((AMP)*1.0)+ (AMP*1.0));
   }
 }
-
-
-
 
 
 /*****************************************************************************/
@@ -1434,7 +1536,7 @@ static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 * @note		None.
 *
 ******************************************************************************/
-static int SaveData(int debug_mode)
+static int SaveData(int packet_id, int debug_mode)
 {
 	u8 *RxPacket;
 	int Index = 0;
@@ -1454,7 +1556,7 @@ static int SaveData(int debug_mode)
 	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 #endif
 
-   idx = 0;
+   idx = packet_id * (MAX_PKT_LEN/4);
 	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
 		m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
 		m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
@@ -1471,7 +1573,7 @@ static int SaveData(int debug_mode)
 }
 
 
-static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
+static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int packet_id, int debug_mode)
 {
 	XAxiDma_BdRing *RxRingPtr;
 
@@ -1496,9 +1598,8 @@ static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 						       XAXIDMA_ALL_BDS, &BdPtr)) == 0) {
 	}
 
-	setGyroChannelControl(0x00000000);
-    SaveData(0);
-
+	//setGyroChannelControl(0x00000000);
+    SaveData(packet_id,0);
 
 	/* Free all processed RX BDs for future transmission */
 	Status = XAxiDma_BdRingFree(RxRingPtr, ProcessedBdCount, BdPtr);
@@ -1576,7 +1677,7 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip_tx)
 	}
 
 	/* Check received data */
-	if (SaveData(1) != XST_SUCCESS) {
+	if (SaveData(0,1) != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
@@ -1614,11 +1715,8 @@ static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip_tx)
 int receiveDMApackets(int num_packets){
 	int i;
 
-
-
 	for(i = 0; i < num_packets; i++){
-
-	  Status = receiveDMApacket(&AxiDma, 0);
+	  Status = receiveDMApacket(&AxiDma, i, 0);
 	  if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	  }
@@ -1714,19 +1812,18 @@ int receivePacketButton(void){
 
 	resetGyroRxFIFO();
 
-	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN/4);
+//	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN/4);
 
 	setGyroChannelControl(0x00000010);
-	nops(10000000); // this is the value for DIV 1
-	setGyroChannelControl(0x00000000);
-	receiveDMApacket(&AxiDma,0);
 
-	setGyroChannelControl(0x00000010);
 	nops(10000000); // this is the value for DIV 1
-	setGyroChannelControl(0x00000000);
-	receiveDMApacket(&AxiDma,0);
 
-	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN/4);
+	receiveDMApacket(&AxiDma,0,0);
+	receiveDMApacket(&AxiDma,1,0);
+
+	setGyroChannelControl(0x00000000);
+
+//	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN/4);
 
 	ADCSamplingFinished = 1;
 
@@ -3021,16 +3118,16 @@ void test_DMA_receive_packets(int num_packets){
 	resetGyroRxFIFO();
 	setGyroChannelControl(0x00000010);
 	nops(4000000);
-	receiveDMApacket(&AxiDma, 0);
+	receiveDMApacket(&AxiDma,0, 0);
 
 	setGyroChannelControl(0x00000010);
 	nops(4000000);
-	receiveDMApacket(&AxiDma, 0);
+	receiveDMApacket(&AxiDma,0, 0);
 	setGyroChannelControl(0x00000000);
 
 	setGyroChannelControl(0x00000010);
 	nops(4000000);
-	receiveDMApacket(&AxiDma, 0);
+	receiveDMApacket(&AxiDma,0, 0);
 	setGyroChannelControl(0x00000000);
 
 }
@@ -3189,9 +3286,9 @@ int main() {
     //   011 is HSI_DBM
     //	 100 is HSI_DC
     //=======================================================
-    setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
-    		HSI_input_channel_setting | HSI_output_channel_setting);
-    //setGyroChannelConfiguration(0x00016000);
+    //setGyroChannelConfiguration(MCK_div_setting | packet_size_setting |
+    //		HSI_input_channel_setting | HSI_output_channel_setting);
+    setGyroChannelConfiguration(0x00011000);
 
     setGyroChannelControl(0x00000000);
 

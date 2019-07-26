@@ -2,22 +2,23 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Jul 24 19:25:54 2019
-# Process ID: 9096
+# Start of session at: Thu Jul 25 16:47:27 2019
+# Process ID: 11116
 # Current directory: C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1
 # Command line: vivado.exe -log design_2_BiDirChannels_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_2_BiDirChannels_0_0.tcl
 # Log file: C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1/design_2_BiDirChannels_0_0.vds
 # Journal file: C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1\vivado.jou
 #-----------------------------------------------------------
 source design_2_BiDirChannels_0_0.tcl -notrace
+WARNING: [IP_Flow 19-5242] IP Cache entry (cache-ID 1f89522271c1c999) does not have the required number of cached files and is not valid. Please delete this entry using the TCL command: 'config_ip_cache -remove [get_ips design_2_BiDirChannels_0_0]'
 Command: synth_design -top design_2_BiDirChannels_0_0 -part xc7z020clg484-1 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 11920 
+INFO: Helper process launched with PID 2552 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 390.613 ; gain = 102.375
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 390.828 ; gain = 99.633
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_2_BiDirChannels_0_0' [c:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_BiDirChannels_0_0/synth/design_2_BiDirChannels_0_0.v:57]
 INFO: [Synth 8-6157] synthesizing module 'BiDirChannels_v1_0' [c:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f290/hdl/BiDirChannels_v1_0.v:813]
@@ -98,7 +99,7 @@ WARNING: [Synth 8-3331] design BiDirChannels_v1_0 has unconnected port s00_axis_
 WARNING: [Synth 8-3331] design BiDirChannels_v1_0 has unconnected port m00_axis_aclk
 WARNING: [Synth 8-3331] design BiDirChannels_v1_0 has unconnected port m00_axis_aresetn
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 445.781 ; gain = 157.543
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 445.875 ; gain = 154.680
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -111,10 +112,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 445.781 ; gain = 157.543
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 445.875 ; gain = 154.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 445.781 ; gain = 157.543
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 445.875 ; gain = 154.680
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -130,26 +131,26 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS, OBUFDS): 1 instances
 
 WARNING: [Constraints 18-5210] No constraint will be written out.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.316 . Memory (MB): peak = 793.191 ; gain = 2.320
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.516 . Memory (MB): peak = 792.855 ; gain = 1.883
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:39 . Memory (MB): peak = 793.191 ; gain = 504.953
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:46 . Memory (MB): peak = 792.855 ; gain = 501.660
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:39 . Memory (MB): peak = 793.191 ; gain = 504.953
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:46 . Memory (MB): peak = 792.855 ; gain = 501.660
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:39 . Memory (MB): peak = 793.191 ; gain = 504.953
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:46 . Memory (MB): peak = 792.855 ; gain = 501.660
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "out_clock_int" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:40 . Memory (MB): peak = 793.191 ; gain = 504.953
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 792.855 ; gain = 501.660
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -312,7 +313,7 @@ INFO: [Synth 8-3332] Sequential element (inst/BiDirChannels_v1_0_S00_AXI_inst/ax
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_C )
 INFO: [Synth 8-3332] Sequential element (inst/X1/OUT_SHIFT_REG/r_reg_reg[0]_C) is unused and will be removed from module design_2_BiDirChannels_0_0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:43 . Memory (MB): peak = 793.191 ; gain = 504.953
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:50 . Memory (MB): peak = 792.855 ; gain = 501.660
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -324,13 +325,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:46 ; elapsed = 00:01:06 . Memory (MB): peak = 793.430 ; gain = 505.191
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:01:18 . Memory (MB): peak = 794.727 ; gain = 503.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:01:06 . Memory (MB): peak = 793.801 ; gain = 505.563
+Finished Timing Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:01:18 . Memory (MB): peak = 795.102 ; gain = 503.906
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -342,7 +343,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:46 ; elapsed = 00:01:06 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Technology Mapping : Time (s): cpu = 00:00:48 ; elapsed = 00:01:18 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -366,7 +367,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:01:22 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -379,7 +380,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:01:22 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -391,25 +392,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -472,11 +473,11 @@ Report Instance Areas:
 |25    |      X20                           |dff_2                      |     1|
 +------+------------------------------------+---------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 17 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:48 . Memory (MB): peak = 804.766 ; gain = 169.117
-Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:01:10 . Memory (MB): peak = 804.766 ; gain = 516.527
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:54 . Memory (MB): peak = 805.719 ; gain = 167.543
+Synthesis Optimization Complete : Time (s): cpu = 00:00:51 ; elapsed = 00:01:23 . Memory (MB): peak = 805.719 ; gain = 514.523
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 37 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -488,15 +489,15 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS, OBUFDS): 1 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-76 Infos, 38 Warnings, 0 Critical Warnings and 0 Errors encountered.
+76 Infos, 39 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:01:16 . Memory (MB): peak = 818.832 ; gain = 536.016
+synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:01:32 . Memory (MB): peak = 816.961 ; gain = 534.363
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1/design_2_BiDirChannels_0_0.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP c:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_BiDirChannels_0_0/design_2_BiDirChannels_0_0.xci
+config_ip_cache: Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 816.961 ; gain = 0.000
 INFO: [Coretcl 2-1174] Renamed 24 cell refs.
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_BiDirChannels_0_0_synth_1/design_2_BiDirChannels_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_2_BiDirChannels_0_0_utilization_synth.rpt -pb design_2_BiDirChannels_0_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.149 . Memory (MB): peak = 818.832 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Wed Jul 24 19:27:36 2019...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.205 . Memory (MB): peak = 816.961 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Thu Jul 25 16:49:25 2019...

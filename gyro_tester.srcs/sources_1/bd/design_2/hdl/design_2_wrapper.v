@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Wed Jul 24 19:18:54 2019
+//Date        : Thu Jul 25 16:45:43 2019
 //Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 //Command     : generate_target design_2_wrapper.bd
 //Design      : design_2_wrapper
@@ -25,6 +25,8 @@ module design_2_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    EOT,
+    EOWB,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -45,10 +47,19 @@ module design_2_wrapper
     LED7,
     MCK_N,
     MCK_P,
+    SORT0,
+    SORT1,
+    SORT2,
+    SORT3,
+    SORT4,
+    SORT5,
+    SORT6,
+    SORT7,
     SPI_CS,
     SPI_MISO,
     SPI_MOSI,
     SPI_SCK,
+    STARTB,
     SW6,
     SW7,
     SYNC_CK);
@@ -67,6 +78,8 @@ module design_2_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
+  output EOT;
+  input EOWB;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
@@ -87,10 +100,19 @@ module design_2_wrapper
   output LED7;
   output MCK_N;
   output MCK_P;
+  output SORT0;
+  output SORT1;
+  output SORT2;
+  output SORT3;
+  output SORT4;
+  output SORT5;
+  output SORT6;
+  output SORT7;
   output SPI_CS;
   input SPI_MISO;
   output SPI_MOSI;
   output SPI_SCK;
+  input STARTB;
   input SW6;
   input SW7;
   output SYNC_CK;
@@ -110,6 +132,8 @@ module design_2_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire EOT;
+  wire EOWB;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -130,10 +154,19 @@ module design_2_wrapper
   wire LED7;
   wire MCK_N;
   wire MCK_P;
+  wire SORT0;
+  wire SORT1;
+  wire SORT2;
+  wire SORT3;
+  wire SORT4;
+  wire SORT5;
+  wire SORT6;
+  wire SORT7;
   wire SPI_CS;
   wire SPI_MISO;
   wire SPI_MOSI;
   wire SPI_SCK;
+  wire STARTB;
   wire SW6;
   wire SW7;
   wire SYNC_CK;
@@ -154,6 +187,8 @@ module design_2_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
+        .EOT(EOT),
+        .EOWB(EOWB),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),
@@ -174,10 +209,19 @@ module design_2_wrapper
         .LED7(LED7),
         .MCK_N(MCK_N),
         .MCK_P(MCK_P),
+        .SORT0(SORT0),
+        .SORT1(SORT1),
+        .SORT2(SORT2),
+        .SORT3(SORT3),
+        .SORT4(SORT4),
+        .SORT5(SORT5),
+        .SORT6(SORT6),
+        .SORT7(SORT7),
         .SPI_CS(SPI_CS),
         .SPI_MISO(SPI_MISO),
         .SPI_MOSI(SPI_MOSI),
         .SPI_SCK(SPI_SCK),
+        .STARTB(STARTB),
         .SW6(SW6),
         .SW7(SW7),
         .SYNC_CK(SYNC_CK));
