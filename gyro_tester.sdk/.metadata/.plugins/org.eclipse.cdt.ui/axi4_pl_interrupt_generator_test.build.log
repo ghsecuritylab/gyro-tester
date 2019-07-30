@@ -1,4 +1,4 @@
-19:38:02 **** Auto Build of configuration Debug for project axi4_pl_interrupt_generator_test ****
+16:51:34 **** Auto Build of configuration Debug for project axi4_pl_interrupt_generator_test ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
@@ -45,5 +45,5 @@ arm-none-eabi-size axi4_pl_interrupt_generator_test.elf  |tee "axi4_pl_interrupt
 'Finished building: axi4_pl_interrupt_generator_test.elf.size'
 ' '
 
-19:38:07 Build Finished (took 5s.32ms)
+16:51:39 Build Finished (took 4s.230ms)
 
