@@ -12246,3 +12246,11 @@ Note: The software must not move the tail pointer to a location that has not bee
 
 !ENTRY com.xilinx.sdk.utils 0 0 2019-08-02 16:48:15.279
 !MESSAGE XSCT command with result: [disconnect tcfchan#1], Result: [null, ]. Thread: Thread-106
+
+!ENTRY com.xilinx.sdk.utils 0 0 2019-08-05 18:04:14.349
+!MESSAGE XSCT Command: [::hsi::utils::get_addr_tag_info -json C:/Docs/gyro_tester_zedboard_code/gyro_tester.sdk/design_2_wrapper_hw_platform_2/system.hdf ], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2019-08-05 18:04:14.629
+!MESSAGE XSCT command with result: [::hsi::utils::get_addr_tag_info -json C:/Docs/gyro_tester_zedboard_code/gyro_tester.sdk/design_2_wrapper_hw_platform_2/system.hdf ], Result: [null, {"ps7_cortexa9_0": "",
+"ps7_cortexa9_1": "",
+}]. Thread: main
