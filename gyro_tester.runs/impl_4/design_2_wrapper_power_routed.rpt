@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Fri Jul 26 17:55:16 2019
+| Date             : Wed Aug  7 21:33:28 2019
 | Host             : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 | Command          : report_power -file design_2_wrapper_power_routed.rpt -pb design_2_wrapper_power_summary_routed.pb -rpx design_2_wrapper_power_routed.rpx
 | Design           : design_2_wrapper
@@ -54,15 +54,15 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.029 |        3 |       --- |             --- |
-| Slice Logic              |     0.011 |    18514 |       --- |             --- |
-|   LUT as Logic           |     0.009 |     5495 |     53200 |           10.33 |
+| Slice Logic              |     0.011 |    18445 |       --- |             --- |
+|   LUT as Logic           |     0.009 |     5474 |     53200 |           10.29 |
 |   LUT as Distributed RAM |     0.001 |      632 |     17400 |            3.63 |
-|   Register               |    <0.001 |     9282 |    106400 |            8.72 |
-|   CARRY4                 |    <0.001 |       96 |     13300 |            0.72 |
+|   Register               |    <0.001 |     9234 |    106400 |            8.68 |
+|   CARRY4                 |    <0.001 |       97 |     13300 |            0.73 |
+|   F7/F8 Muxes            |    <0.001 |       16 |     53200 |            0.03 |
 |   LUT as Shift Register  |    <0.001 |      206 |     17400 |            1.18 |
-|   F7/F8 Muxes            |    <0.001 |       12 |     53200 |            0.02 |
 |   Others                 |     0.000 |      811 |       --- |             --- |
-| Signals                  |     0.013 |    12663 |       --- |             --- |
+| Signals                  |     0.013 |    12604 |       --- |             --- |
 | Block RAM                |     0.010 |        7 |       140 |            5.00 |
 | I/O                      |     0.048 |       32 |       200 |           16.00 |
 | PS7                      |     1.533 |        1 |       --- |             --- |
@@ -435,7 +435,7 @@ Table of Contents
 |                 gen_w_cmd_fifo.w_cmd_fifo                                                         |    <0.001 |
 |                   gen_srls[1].srl_nx1                                                             |    <0.001 |
 |                   gen_srls[2].srl_nx1                                                             |    <0.001 |
-|               r_reg                                                                               |    <0.001 |
+|               r_reg                                                                               |     0.001 |
 |               splitter_inst                                                                       |     0.002 |
 |                 gen_axi3.axi3_conv_inst                                                           |     0.002 |
 |                   USE_READ.USE_SPLIT_R.read_addr_inst                                             |    <0.001 |
@@ -716,7 +716,7 @@ Table of Contents
 |                 inst_arb_stall_late                                                               |    <0.001 |
 |           s00_b_node                                                                              |     0.001 |
 |             inst                                                                                  |     0.001 |
-|               inst_mi_handler                                                                     |     0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
 |                 gen_normal_area.gen_node_prog_full.inst_node_prog_full                            |    <0.001 |
 |                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
 |                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |

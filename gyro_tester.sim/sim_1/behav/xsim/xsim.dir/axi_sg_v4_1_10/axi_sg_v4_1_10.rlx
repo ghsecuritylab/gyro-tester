@@ -1,0 +1,5 @@
+0.6
+2018.2
+Jun 14 2018
+20:41:02
+C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/6e5f/hdl/axi_sg_v4_1_rfs.vhd,1557358820,vhdl,C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/6bfe/hdl/axi_dma_v7_1_vh_rfs.vhd,,,axi_sg;axi_sg_addr_cntl;axi_sg_afifo_autord;axi_sg_cmd_status;axi_sg_cntrl_strm;axi_sg_datamover;axi_sg_fifo;axi_sg_ftch_cmdsts_if;axi_sg_ftch_mngr;axi_sg_ftch_noqueue;axi_sg_ftch_pntr;axi_sg_ftch_q_mngr;axi_sg_ftch_queue;axi_sg_ftch_sm;axi_sg_intrpt;axi_sg_mm2s_basic_wrap;axi_sg_pkg;axi_sg_rd_status_cntl;axi_sg_rddata_cntl;axi_sg_rdmux;axi_sg_reset;axi_sg_s2mm_basic_wrap;axi_sg_scc;axi_sg_scc_wr;axi_sg_sfifo_autord;axi_sg_skid2mm_buf;axi_sg_skid_buf;axi_sg_updt_cmdsts_if;axi_sg_updt_mngr;axi_sg_updt_noqueue;axi_sg_updt_q_mngr;axi_sg_updt_queue;axi_sg_updt_sm;axi_sg_wr_demux;axi_sg_wr_status_cntl;axi_sg_wrdata_cntl,,,,,,,,

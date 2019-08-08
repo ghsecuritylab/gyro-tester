@@ -1,0 +1,352 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_processing_system7_0_0/sim/design_2_processing_system7_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_processing_system7_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/2f66/hdl/xlconcat_v2_1_vl_rfs.v" into library xlconcat_v2_1_1
+INFO: [VRFC 10-311] analyzing module xlconcat_v2_1_1_xlconcat
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_xlconcat_0_0/sim/design_2_xlconcat_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_xlconcat_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi4_pl_interrupt_generator_v1_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/1c3f/hdl/axi4_pl_interrupt_generator_v1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi4_pl_interrupt_generator_v1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi4_pl_interrupt_ge_0_0/sim/design_2_axi4_pl_interrupt_ge_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_axi4_pl_interrupt_ge_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SPI_ip_v1_0_S00_AXI
+INFO: [VRFC 10-311] analyzing module mux_8_to_1
+INFO: [VRFC 10-311] analyzing module dff
+INFO: [VRFC 10-311] analyzing module clock_divider
+INFO: [VRFC 10-311] analyzing module downCounter6Bits
+INFO: [VRFC 10-311] analyzing module downCounter5Bits
+INFO: [VRFC 10-311] analyzing module leftShiftRegister25bits
+INFO: [VRFC 10-311] analyzing module SPI_fsm
+INFO: [VRFC 10-311] analyzing module SPI_Master
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/2e00/hdl/SPI_ip_v1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SPI_ip_v1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_SPI_ip_0_0/sim/design_2_SPI_ip_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_SPI_ip_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v" into library fifo_generator_v13_2_2
+INFO: [VRFC 10-311] analyzing module fifo_generator_vlog_beh
+INFO: [VRFC 10-2458] undeclared symbol wr_rst_busy_i, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:1249]
+INFO: [VRFC 10-2458] undeclared symbol wr_eop_ad, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:1331]
+INFO: [VRFC 10-2458] undeclared symbol rd_eop_ad, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:1332]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_axis, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:1574]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_wach, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:2099]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_wdch, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:2319]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_wrch, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:2486]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_rach, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:2866]
+INFO: [VRFC 10-2458] undeclared symbol rd_rst_busy_rdch, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:3099]
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_CONV_VER
+INFO: [VRFC 10-2458] undeclared symbol safety_ckt_rd_rst, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:4153]
+INFO: [VRFC 10-2458] undeclared symbol safety_ckt_rd_rst, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:4361]
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_sync_stage
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_bhv_ver_as
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_beh_ver_ll_afifo
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_bhv_ver_ss
+INFO: [VRFC 10-2458] undeclared symbol srst_wrst_busy, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/simulation/fifo_generator_vlog_beh.v:7793]
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_bhv_ver_preload0
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2_axic_reg_slice
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/hdl/fifo_generator_v13_2_rfs.v" into library fifo_generator_v13_2_2
+INFO: [VRFC 10-311] analyzing module fifo_generator_v13_2_2
+INFO: [VRFC 10-2458] undeclared symbol sleep_i, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/hdl/fifo_generator_v13_2_rfs.v:519]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/sim/bd_ebcc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc
+INFO: [VRFC 10-311] analyzing module clk_map_imp_1WDPOJN
+INFO: [VRFC 10-311] analyzing module m00_exit_pipeline_imp_44FLG8
+INFO: [VRFC 10-311] analyzing module m00_nodes_imp_QC1J78
+INFO: [VRFC 10-311] analyzing module s00_entry_pipeline_imp_13E00UZ
+INFO: [VRFC 10-311] analyzing module s00_nodes_imp_1699R9D
+INFO: [VRFC 10-311] analyzing module s01_entry_pipeline_imp_68ZHQN
+INFO: [VRFC 10-311] analyzing module s01_nodes_imp_1GKMD3
+INFO: [VRFC 10-311] analyzing module s02_entry_pipeline_imp_QQS8TU
+INFO: [VRFC 10-311] analyzing module s02_nodes_imp_XLZ0TO
+INFO: [VRFC 10-311] analyzing module switchboards_imp_1VMK311
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_10/sim/bd_ebcc_s00a2s_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s00a2s_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_19/sim/bd_ebcc_s01a2s_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s01a2s_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_25/sim/bd_ebcc_s02a2s_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s02a2s_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_29/sim/bd_ebcc_m00s2a_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00s2a_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_35/sim/bd_ebcc_m00e_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00e_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_30/sim/bd_ebcc_m00arn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00arn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_31/sim/bd_ebcc_m00rn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00rn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_32/sim/bd_ebcc_m00awn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00awn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_33/sim/bd_ebcc_m00wn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00wn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_34/sim/bd_ebcc_m00bn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_m00bn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_26/sim/bd_ebcc_sawn_1.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sawn_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_27/sim/bd_ebcc_swn_1.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_swn_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_28/sim/bd_ebcc_sbn_1.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sbn_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_22/sim/bd_ebcc_s02mmu_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s02mmu_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_23/sim/bd_ebcc_s02tr_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s02tr_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_24/sim/bd_ebcc_s02sic_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s02sic_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_20/sim/bd_ebcc_sarn_1.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sarn_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_21/sim/bd_ebcc_srn_1.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_srn_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_16/sim/bd_ebcc_s01mmu_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s01mmu_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_17/sim/bd_ebcc_s01tr_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s01tr_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_18/sim/bd_ebcc_s01sic_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s01sic_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_11/sim/bd_ebcc_sarn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sarn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_12/sim/bd_ebcc_srn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_srn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_13/sim/bd_ebcc_sawn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sawn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_14/sim/bd_ebcc_swn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_swn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_15/sim/bd_ebcc_sbn_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_sbn_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_7/sim/bd_ebcc_s00mmu_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s00mmu_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_8/sim/bd_ebcc_s00tr_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s00tr_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_9/sim/bd_ebcc_s00sic_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_s00sic_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_2/sim/bd_ebcc_arsw_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_arsw_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_3/sim/bd_ebcc_rsw_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_rsw_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_4/sim/bd_ebcc_awsw_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_awsw_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_5/sim/bd_ebcc_wsw_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_wsw_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_6/sim/bd_ebcc_bsw_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_bsw_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_0/sim/bd_ebcc_one_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bd_ebcc_one_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/sim/design_2_axi_smc_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_axi_smc_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/6fa0/hdl/axis_stream_fifo_v1_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axis_stream_fifo_v1_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/6fa0/hdl/axis_stream_fifo_v1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axis_stream_fifo_v1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_RxFIFO_0/sim/design_2_RxFIFO_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_RxFIFO_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_TxFIFO_0/sim/design_2_TxFIFO_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_TxFIFO_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/f290/hdl/BiDirChannels_v1_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module BiDirChannels_v1_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/f290/hdl/BiDirChannels_v1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dff
+WARNING: [VRFC 10-2845] overwriting previous definition of module dff [C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/f290/hdl/BiDirChannels_v1_0.v:5]
+INFO: [VRFC 10-311] analyzing module clock_divider_by_2
+INFO: [VRFC 10-311] analyzing module counter48Cycles
+INFO: [VRFC 10-311] analyzing module clock_divider_by_10
+INFO: [VRFC 10-311] analyzing module maskHSCK
+INFO: [VRFC 10-2458] undeclared symbol mask, assumed default net type wire [C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/f290/hdl/BiDirChannels_v1_0.v:137]
+INFO: [VRFC 10-311] analyzing module register_2bits
+INFO: [VRFC 10-311] analyzing module register_4bits
+INFO: [VRFC 10-311] analyzing module register_16bits
+INFO: [VRFC 10-311] analyzing module outputShiftRegister32Bits
+INFO: [VRFC 10-311] analyzing module inputShiftRegister32Bits
+INFO: [VRFC 10-311] analyzing module mux_2x1_1bit
+INFO: [VRFC 10-311] analyzing module mux_4x1_1bit
+INFO: [VRFC 10-311] analyzing module mux_8x1_1bit
+INFO: [VRFC 10-311] analyzing module demux_1_to_4
+INFO: [VRFC 10-311] analyzing module demux_1_to_8
+INFO: [VRFC 10-311] analyzing module register_32bits
+INFO: [VRFC 10-311] analyzing module syncReady
+INFO: [VRFC 10-311] analyzing module upCounter3Bits
+INFO: [VRFC 10-311] analyzing module upCounter8Bits
+INFO: [VRFC 10-311] analyzing module upCounter12Bits
+INFO: [VRFC 10-311] analyzing module GyroChannelDebugger
+INFO: [VRFC 10-311] analyzing module packet_size_logic
+INFO: [VRFC 10-311] analyzing module GyroInputOutputSerializer
+INFO: [VRFC 10-311] analyzing module BiDirChannels_v1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_BiDirChannels_0_0/sim/design_2_BiDirChannels_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_BiDirChannels_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_xbar_0/sim/design_2_xbar_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_xbar_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/sim/design_2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2
+INFO: [VRFC 10-311] analyzing module design_2_ps7_0_axi_periph_0
+INFO: [VRFC 10-311] analyzing module m00_couplers_imp_4CL9SY
+INFO: [VRFC 10-311] analyzing module m01_couplers_imp_1QFGL4Z
+INFO: [VRFC 10-311] analyzing module m02_couplers_imp_2WM541
+INFO: [VRFC 10-311] analyzing module m03_couplers_imp_1RL4A68
+INFO: [VRFC 10-311] analyzing module m04_couplers_imp_1468DG
+INFO: [VRFC 10-311] analyzing module m05_couplers_imp_1TAQYV9
+INFO: [VRFC 10-311] analyzing module m06_couplers_imp_I6JXJ
+INFO: [VRFC 10-311] analyzing module s00_couplers_imp_1WEZHCW
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/c314/hdl/Handler_v1_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Handler_v1_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ipshared/c314/hdl/Handler_v1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Handler_v1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_Handler_0_0/sim/design_2_Handler_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_Handler_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_auto_pc_0/sim/design_2_auto_pc_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_auto_pc_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/hdl/design_2_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module design_2_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd" into library lib_cdc_v1_0_2
+INFO: [VRFC 10-307] analyzing entity cdc_sync
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/f86a/hdl/proc_sys_reset_v5_0_vh_rfs.vhd" into library proc_sys_reset_v5_0_12
+INFO: [VRFC 10-307] analyzing entity upcnt_n
+INFO: [VRFC 10-307] analyzing entity sequence_psr
+INFO: [VRFC 10-307] analyzing entity lpf
+INFO: [VRFC 10-307] analyzing entity proc_sys_reset
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_rst_ps7_0_100M_0/sim/design_2_rst_ps7_0_100M_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity design_2_rst_ps7_0_100M_0
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" into library lib_pkg_v1_0_2
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/7aff/hdl/fifo_generator_v13_2_rfs.vhd" into library fifo_generator_v13_2_2
+INFO: [VRFC 10-307] analyzing entity input_blk
+INFO: [VRFC 10-307] analyzing entity output_blk
+INFO: [VRFC 10-307] analyzing entity shft_wrapper
+INFO: [VRFC 10-307] analyzing entity shft_ram
+INFO: [VRFC 10-307] analyzing entity wr_pf_as
+INFO: [VRFC 10-307] analyzing entity wr_pf_ss
+INFO: [VRFC 10-307] analyzing entity rd_pe_as
+INFO: [VRFC 10-307] analyzing entity rd_pe_ss
+INFO: [VRFC 10-307] analyzing entity synchronizer_ff
+INFO: [VRFC 10-307] analyzing entity delay
+INFO: [VRFC 10-307] analyzing entity bin_cntr
+INFO: [VRFC 10-307] analyzing entity clk_x_pntrs_builtin
+INFO: [VRFC 10-307] analyzing entity logic_builtin
+INFO: [VRFC 10-307] analyzing entity builtin_prim
+INFO: [VRFC 10-307] analyzing entity builtin_extdepth
+INFO: [VRFC 10-307] analyzing entity builtin_top
+INFO: [VRFC 10-307] analyzing entity reset_builtin
+INFO: [VRFC 10-307] analyzing entity builtin_prim_v6
+INFO: [VRFC 10-307] analyzing entity builtin_extdepth_v6
+INFO: [VRFC 10-307] analyzing entity builtin_extdepth_low_latency
+INFO: [VRFC 10-307] analyzing entity builtin_top_v6
+INFO: [VRFC 10-307] analyzing entity fifo_generator_v13_2_2_builtin
+INFO: [VRFC 10-307] analyzing entity bram_sync_reg
+INFO: [VRFC 10-307] analyzing entity bram_fifo_rstlogic
+INFO: [VRFC 10-307] analyzing entity reset_blk_ramfifo
+INFO: [VRFC 10-307] analyzing entity axi_reg_slice
+INFO: [VRFC 10-307] analyzing entity fifo_generator_top
+INFO: [VRFC 10-307] analyzing entity fifo_generator_v13_2_2_synth
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/6078/hdl/lib_fifo_v1_0_rfs.vhd" into library lib_fifo_v1_0_11
+INFO: [VRFC 10-307] analyzing entity async_fifo_fg
+INFO: [VRFC 10-307] analyzing entity sync_fifo_fg
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" into library lib_srl_fifo_v1_0_2
+INFO: [VRFC 10-307] analyzing entity cntr_incr_decr_addn_f
+INFO: [VRFC 10-307] analyzing entity dynshreg_f
+INFO: [VRFC 10-307] analyzing entity srl_fifo_rbu_f
+INFO: [VRFC 10-307] analyzing entity srl_fifo_f
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/ec8a/hdl/axi_datamover_v5_1_vh_rfs.vhd" into library axi_datamover_v5_1_19
+INFO: [VRFC 10-307] analyzing entity axi_datamover_reset
+INFO: [VRFC 10-307] analyzing entity axi_datamover_afifo_autord
+INFO: [VRFC 10-307] analyzing entity axi_datamover_sfifo_autord
+INFO: [VRFC 10-307] analyzing entity axi_datamover_fifo
+INFO: [VRFC 10-307] analyzing entity axi_datamover_cmd_status
+INFO: [VRFC 10-307] analyzing entity axi_datamover_scc
+INFO: [VRFC 10-307] analyzing entity axi_datamover_strb_gen2
+INFO: [VRFC 10-307] analyzing entity axi_datamover_pcc
+INFO: [VRFC 10-307] analyzing entity axi_datamover_addr_cntl
+INFO: [VRFC 10-307] analyzing entity axi_datamover_rdmux
+INFO: [VRFC 10-307] analyzing entity axi_datamover_rddata_cntl
+INFO: [VRFC 10-307] analyzing entity axi_datamover_rd_status_cntl
+INFO: [VRFC 10-307] analyzing entity axi_datamover_wr_demux
+INFO: [VRFC 10-307] analyzing entity axi_datamover_wrdata_cntl
+INFO: [VRFC 10-307] analyzing entity axi_datamover_wr_status_cntl
+INFO: [VRFC 10-307] analyzing entity axi_datamover_skid2mm_buf
+INFO: [VRFC 10-307] analyzing entity axi_datamover_skid_buf
+INFO: [VRFC 10-307] analyzing entity axi_datamover_rd_sf
+INFO: [VRFC 10-307] analyzing entity axi_datamover_wr_sf
+INFO: [VRFC 10-307] analyzing entity axi_datamover_stbs_set
+INFO: [VRFC 10-307] analyzing entity axi_datamover_stbs_set_nodre
+INFO: [VRFC 10-307] analyzing entity axi_datamover_ibttcc
+INFO: [VRFC 10-307] analyzing entity axi_datamover_indet_btt
+INFO: [VRFC 10-307] analyzing entity axi_datamover_dre_mux2_1_x_n
+INFO: [VRFC 10-307] analyzing entity axi_datamover_dre_mux4_1_x_n
+INFO: [VRFC 10-307] analyzing entity axi_datamover_dre_mux8_1_x_n
+INFO: [VRFC 10-307] analyzing entity axi_datamover_mm2s_dre
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_dre
+INFO: [VRFC 10-307] analyzing entity axi_datamover_ms_strb_set
+INFO: [VRFC 10-307] analyzing entity axi_datamover_mssai_skid_buf
+INFO: [VRFC 10-307] analyzing entity axi_datamover_slice
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_scatter
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_realign
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_basic_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_omit_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover_s2mm_full_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover_mm2s_basic_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover_mm2s_omit_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover_mm2s_full_wrap
+INFO: [VRFC 10-307] analyzing entity axi_datamover
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/6e5f/hdl/axi_sg_v4_1_rfs.vhd" into library axi_sg_v4_1_10
+INFO: [VRFC 10-307] analyzing entity axi_sg_reset
+INFO: [VRFC 10-307] analyzing entity axi_sg_sfifo_autord
+INFO: [VRFC 10-307] analyzing entity axi_sg_afifo_autord
+INFO: [VRFC 10-307] analyzing entity axi_sg_fifo
+INFO: [VRFC 10-307] analyzing entity axi_sg_cmd_status
+INFO: [VRFC 10-307] analyzing entity axi_sg_rdmux
+INFO: [VRFC 10-307] analyzing entity axi_sg_addr_cntl
+INFO: [VRFC 10-307] analyzing entity axi_sg_rddata_cntl
+INFO: [VRFC 10-307] analyzing entity axi_sg_rd_status_cntl
+INFO: [VRFC 10-307] analyzing entity axi_sg_scc
+INFO: [VRFC 10-307] analyzing entity axi_sg_wr_demux
+INFO: [VRFC 10-307] analyzing entity axi_sg_scc_wr
+INFO: [VRFC 10-307] analyzing entity axi_sg_skid2mm_buf
+INFO: [VRFC 10-307] analyzing entity axi_sg_wrdata_cntl
+INFO: [VRFC 10-307] analyzing entity axi_sg_wr_status_cntl
+INFO: [VRFC 10-307] analyzing entity axi_sg_skid_buf
+INFO: [VRFC 10-307] analyzing entity axi_sg_mm2s_basic_wrap
+INFO: [VRFC 10-307] analyzing entity axi_sg_s2mm_basic_wrap
+INFO: [VRFC 10-307] analyzing entity axi_sg_datamover
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_sm
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_pntr
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_cmdsts_if
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_mngr
+INFO: [VRFC 10-307] analyzing entity axi_sg_cntrl_strm
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_queue
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_noqueue
+INFO: [VRFC 10-307] analyzing entity axi_sg_ftch_q_mngr
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_cmdsts_if
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_sm
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_mngr
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_queue
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_noqueue
+INFO: [VRFC 10-307] analyzing entity axi_sg_updt_q_mngr
+INFO: [VRFC 10-307] analyzing entity axi_sg_intrpt
+INFO: [VRFC 10-307] analyzing entity axi_sg
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ipshared/6bfe/hdl/axi_dma_v7_1_vh_rfs.vhd" into library axi_dma_v7_1_18
+INFO: [VRFC 10-307] analyzing entity axi_dma_reset
+INFO: [VRFC 10-307] analyzing entity axi_dma_rst_module
+INFO: [VRFC 10-307] analyzing entity axi_dma_lite_if
+INFO: [VRFC 10-307] analyzing entity axi_dma_register
+INFO: [VRFC 10-307] analyzing entity axi_dma_register_s2mm
+INFO: [VRFC 10-307] analyzing entity axi_dma_reg_module
+INFO: [VRFC 10-307] analyzing entity axi_dma_skid_buf
+INFO: [VRFC 10-307] analyzing entity axi_dma_afifo_autord
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm
+INFO: [VRFC 10-307] analyzing entity axi_dma_sofeof_gen
+INFO: [VRFC 10-307] analyzing entity axi_dma_smple_sm
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_sg_if
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_sm
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_cmdsts_if
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_sts_mngr
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_cntrl_strm
+INFO: [VRFC 10-307] analyzing entity axi_dma_mm2s_mngr
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_sg_if
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_sm
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_cmdsts_if
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_sts_mngr
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_sts_strm
+INFO: [VRFC 10-307] analyzing entity axi_dma_s2mm_mngr
+INFO: [VRFC 10-307] analyzing entity axi_dma_cmd_split
+INFO: [VRFC 10-307] analyzing entity axi_dma
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_dma_0_0/sim/design_2_axi_dma_0_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity design_2_axi_dma_0_0
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Docs/gyro_tester_zedboard_code/gyro_tester.ip_user_files/bd/design_2/ip/design_2_axi_smc_0/bd_0/ip/ip_1/sim/bd_ebcc_psr_aclk_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity bd_ebcc_psr_aclk_0

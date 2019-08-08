@@ -51,66 +51,66 @@ preplace inst axi4_pl_interrupt_ge_0 -pg 1 -lvl 3 -y 810 -defaultsOSRD
 preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 460 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 6 -y 520 -defaultsOSRD
 preplace netloc processing_system7_0_DDR 1 6 1 NJ
-preplace netloc ps7_0_axi_periph_M02_AXI 1 2 4 840J 20 NJ 20 NJ 20 1930
-preplace netloc BiDirChannels_0_MCK_N 1 6 1 2400J
-preplace netloc BiDirChannels_0_M00_AXIS 1 2 5 920 -10 NJ -10 NJ -10 NJ -10 2400
-preplace netloc BiDirChannels_0_HSI_DC 1 6 1 2410J
+preplace netloc ps7_0_axi_periph_M02_AXI 1 2 4 680J 290 NJ 290 NJ 290 1890
+preplace netloc BiDirChannels_0_MCK_N 1 6 1 2460J
+preplace netloc BiDirChannels_0_M00_AXIS 1 2 5 730 -20 NJ -20 NJ -20 NJ -20 2460
+preplace netloc BiDirChannels_0_HSI_DC 1 6 1 2470J
 preplace netloc SPI_ip_0_FSM_DONE 1 6 1 NJ
 preplace netloc SPI_ip_0_SPI_SCK 1 6 1 NJ
 preplace netloc Handler_0_SORT0 1 6 1 N
-preplace netloc BiDirChannels_0_MCK_P 1 6 1 2410J
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 6 520 350 NJ 350 1220J 550 NJ 550 1900J 380 2400
+preplace netloc BiDirChannels_0_MCK_P 1 6 1 2470J
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 6 350 -10 NJ -10 NJ -10 NJ -10 NJ -10 2450
 preplace netloc Handler_0_SORT1 1 6 1 N
-preplace netloc BiDirChannels_0_HSI_DBM 1 6 1 2410J
+preplace netloc BiDirChannels_0_HSI_DBM 1 6 1 2470J
 preplace netloc SPI_ip_0_SPI_CS 1 6 1 NJ
-preplace netloc axi4_pl_interrupt_ge_0_LED_7 1 3 4 NJ 850 1580J 880 NJ 880 NJ
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 5 510 340 920 570 1240 570 1600 30 1920
-preplace netloc axis_stream_fifo_0_M00_AXIS 1 3 1 1240
+preplace netloc axi4_pl_interrupt_ge_0_LED_7 1 3 4 1080J 670 NJ 670 1890J 880 NJ
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 5 350 850 730 320 1080 280 1450 10 1940
+preplace netloc axis_stream_fifo_0_M00_AXIS 1 3 1 1060
 preplace netloc axi_smc_M00_AXI 1 5 1 1890
 preplace netloc Handler_0_SORT2 1 6 1 N
-preplace netloc BiDirChannels_0_SYNCK 1 6 1 2410
-preplace netloc SW7 1 0 3 -130J 850 NJ 850 870J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 7 -110J 910 NJ 910 NJ 910 NJ 910 NJ 910 NJ 910 2400
-preplace netloc ps7_0_axi_periph_M03_AXI 1 2 2 900J 550 1210
+preplace netloc BiDirChannels_0_SYNCK 1 6 1 2470
+preplace netloc SW7 1 0 3 -130J 860 NJ 860 750J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 7 -110J 910 NJ 910 NJ 910 NJ 910 NJ 910 NJ 910 2450
+preplace netloc ps7_0_axi_periph_M03_AXI 1 2 2 690J 540 1050
 preplace netloc axi_dma_0_M_AXI_SG 1 4 1 N
 preplace netloc Handler_0_SORT3 1 6 1 N
-preplace netloc EOWB_1 1 4 2 1580J -180 1930
-preplace netloc BiDirChannels_0_HSI_DAM 1 6 1 2410J
-preplace netloc BiDirChannels_0_HS_Clock 1 6 1 2400J
-preplace netloc ps7_0_axi_periph_M01_AXI 1 2 4 880J 580 NJ 580 NJ 580 1900
+preplace netloc EOWB_1 1 4 2 1420J -180 1960
+preplace netloc BiDirChannels_0_HSI_DAM 1 6 1 2470J
+preplace netloc BiDirChannels_0_HS_Clock 1 6 1 2460J
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 4 NJ 550 NJ 550 NJ 550 1920
 preplace netloc Handler_0_SORT4 1 6 1 N
-preplace netloc STARTB_1 1 4 2 1600J -190 1940
-preplace netloc BiDirChannels_0_HSI_DBP 1 6 1 2400J
-preplace netloc axi_dma_0_s2mm_introut 1 4 1 1580
-preplace netloc SW6_1 1 0 3 -120J 840 NJ 840 930J
+preplace netloc STARTB_1 1 4 2 1450J -190 1970
+preplace netloc BiDirChannels_0_HSI_DBP 1 6 1 2460J
+preplace netloc axi_dma_0_s2mm_introut 1 4 1 1420
+preplace netloc SW6_1 1 0 3 -120J 840 NJ 840 740J
 preplace netloc axi_dma_0_M_AXI_MM2S 1 4 1 N
 preplace netloc Handler_0_SORT5 1 6 1 N
-preplace netloc xlconcat_0_dout 1 5 1 1940
-preplace netloc ps7_0_axi_periph_M06_AXI 1 2 4 850 -200 N -200 N -200 N
+preplace netloc xlconcat_0_dout 1 5 1 1960
 preplace netloc processing_system7_0_FIXED_IO 1 6 1 NJ
+preplace netloc ps7_0_axi_periph_M06_AXI 1 2 4 670 -200 N -200 N -200 N
 preplace netloc Handler_0_SORT6 1 6 1 N
-preplace netloc BiDirChannels_0_HSI_DAP 1 6 1 2400J
-preplace netloc axi_dma_0_mm2s_introut 1 4 1 1590
+preplace netloc BiDirChannels_0_HSI_DAP 1 6 1 2460J
+preplace netloc axi_dma_0_mm2s_introut 1 4 1 1440
 preplace netloc axi_dma_0_M_AXI_S2MM 1 4 1 N
 preplace netloc Handler_0_SORT7 1 6 1 N
 preplace netloc Handler_0_EOT 1 6 1 N
 preplace netloc axi4_pl_interrupt_ge_0_interrupt_0 1 3 2 N 770 NJ
-preplace netloc axi4_pl_interrupt_ge_0_LED_0 1 3 4 NJ 830 1600J 870 NJ 870 2410J
-preplace netloc TxFIFO_M00_AXIS 1 5 1 N
-preplace netloc ps7_0_axi_periph_M05_AXI 1 2 3 860J 30 NJ 30 1580
-preplace netloc ps7_0_axi_periph_M04_AXI 1 2 1 870
-preplace netloc HSI_A1_1 1 0 6 NJ 40 NJ 40 830J 10 NJ 10 NJ 10 1890J
+preplace netloc axi4_pl_interrupt_ge_0_LED_0 1 3 4 1060J 660 NJ 660 1910J 670 2460J
+preplace netloc TxFIFO_M00_AXIS 1 5 1 1960
+preplace netloc ps7_0_axi_periph_M05_AXI 1 2 3 700J 310 1050J 260 1420
+preplace netloc ps7_0_axi_periph_M04_AXI 1 2 1 660
+preplace netloc HSI_A1_1 1 0 6 -110J 30 NJ 30 NJ 30 NJ 30 NJ 30 1950J
 preplace netloc axi4_pl_interrupt_ge_0_interrupt_1 1 3 2 N 790 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 7 -110 360 500 330 910 560 1230 560 1610 290 1910 660 2410
-preplace netloc SPI_MISO_1 1 0 6 NJ 800 500J 830 900J 670 NJ 670 NJ 670 1890J
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 4 1 1580
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 890
-preplace netloc HSI_A0_1 1 0 6 NJ 20 NJ 20 820J 0 NJ 0 NJ 0 1940J
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 7 -110 360 340 350 720 300 1070 270 1440 0 1930 660 2470
+preplace netloc SPI_MISO_1 1 0 6 NJ 800 330J 830 700J 650 NJ 650 NJ 650 1900J
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 4 1 1430
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 710
+preplace netloc HSI_A0_1 1 0 6 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 1970J
 preplace netloc axi4_pl_interrupt_ge_0_interrupt_2 1 3 2 N 810 NJ
 preplace netloc SPI_ip_0_SPI_MOSI 1 6 1 NJ
 preplace netloc SPI_ip_0_FSM_START 1 6 1 NJ
-preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 490
-levelinfo -pg 1 -150 320 670 1070 1410 1750 2170 2430 -top -540 -bot 1000
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 330
+levelinfo -pg 1 -150 160 510 910 1250 1720 2220 2490 -top -540 -bot 1300
 ",
 }
 {

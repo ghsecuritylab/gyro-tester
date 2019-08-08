@@ -408,7 +408,8 @@
 
 	// Add user logic here
 	assign resetn =  ~slv_reg0[0];     // inverted here to be active high in software.
-	assign loop   = slv_reg1[0];
+//	assign loop   = slv_reg1[0];
+	assign loop = 1'b0;
 	// User logic ends
 
 	endmodule

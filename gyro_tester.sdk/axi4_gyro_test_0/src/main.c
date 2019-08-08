@@ -1042,12 +1042,12 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 
 	Value1 = 0x0c;
 	Value2 = 0x80;
-
+/*
 	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
 		TxPacket[Index] = Value1;
 		TxPacket[Index+1] = Value2;
 	  }
-
+*/
 double x;
 
   //x = sin(0.0);
@@ -1321,7 +1321,7 @@ double x;
 
 
 */
-/*
+
 
 Value = 0x00;
 		  for(Index = 0; Index < npoints/2; Index++){
@@ -1330,7 +1330,7 @@ Value = 0x00;
 			Value = (Value +1) & 0xFF;
 		  }
 
-*/
+
 
 }
 
@@ -1696,7 +1696,7 @@ int sendPacketButton(void){
 	//setGyroTxFIFOLooping();
 	setGyroChannelControl(0x00000001);
 	nops(100000);
-	setGyroChannelControl(0x00000000);
+	//setGyroChannelControl(0x00000000);
 	return 1;
  }
 

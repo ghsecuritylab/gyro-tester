@@ -137,8 +137,8 @@ wire full = ((wr_ptr_gray_reg[ADDR_WIDTH] != rd_ptr_gray_sync2_reg[ADDR_WIDTH]) 
              (wr_ptr_gray_reg[ADDR_WIDTH-1] != rd_ptr_gray_sync2_reg[ADDR_WIDTH-1]) && 
              (wr_ptr_gray_reg[ADDR_WIDTH-2:0] == rd_ptr_gray_sync2_reg[ADDR_WIDTH-2:0])); 
 // empty when pointers match exactly 
-wire empty = rd_ptr_gray_reg == wr_ptr_gray_sync2_reg; 
- 
+//wire empty = rd_ptr_gray_reg == wr_ptr_gray_sync2_reg; 
+wire empty = 1'b0;
 // control signals 
 reg write; 
 reg read; 
