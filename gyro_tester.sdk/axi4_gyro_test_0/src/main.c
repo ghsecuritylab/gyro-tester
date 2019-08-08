@@ -1318,19 +1318,30 @@ double x;
 	  TxPacket[255] = 0x6b;
 	  TxPacket[252] = 0x70;
 	  TxPacket[253] = 0x78;
-
-
 */
 
-
-Value = 0x00;
-		  for(Index = 0; Index < npoints/2; Index++){
+/*
+		Value = 0x00;
+		for(Index = 0; Index < npoints/2; Index++){
 			TxPacket[Index*2] = 0xf0;
 			TxPacket[Index*2+1] =((2*Value) & 0xff);
 			Value = (Value +1) & 0xFF;
-		  }
+		}
+*/
 
+		u16 rampValue = 0x00;
+		for(Index = 0; Index < npoints; Index++){
+			TxPacket[Index*2] = (u8)(rampValue & 0xFF);
+			TxPacket[Index*2+1] = (u8)(rampValue >> 8);
+			rampValue++;
+		}
 
+/*
+		for(Index = 0; Index < npoints; Index+=2){
+			TxPacket[Index] = 0x05;		//LSbyte?
+			TxPacket[Index+1] = 0x0D;	//MSbyte?
+		}
+*/
 
 }
 
@@ -1695,7 +1706,7 @@ int sendPacketButton(void){
 	sendDMApackets(1);
 	//setGyroTxFIFOLooping();
 	setGyroChannelControl(0x00000001);
-	nops(100000);
+	//nops(100000);
 	//setGyroChannelControl(0x00000000);
 	return 1;
  }
