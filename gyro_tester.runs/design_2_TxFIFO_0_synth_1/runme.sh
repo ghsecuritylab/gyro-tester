@@ -40,4 +40,3 @@ EAStep()
      fi
 }
 
-EAStep vivado -log design_2_TxFIFO_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_2_TxFIFO_0.tcl

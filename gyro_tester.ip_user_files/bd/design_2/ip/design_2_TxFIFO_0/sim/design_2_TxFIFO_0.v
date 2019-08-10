@@ -175,7 +175,7 @@ input wire s00_axis_aresetn;
   axis_stream_fifo_v1_0 #(
     .C_S00_AXI_DATA_WIDTH(32),  // Width of S_AXI data bus
     .C_S00_AXI_ADDR_WIDTH(4),  // Width of S_AXI address bus
-    .ADDR_WIDTH(10),
+    .ADDR_WIDTH(11),
     .C_AXIS_TDATA_WIDTH(32)
   ) inst (
     .s00_axi_awaddr(s00_axi_awaddr),

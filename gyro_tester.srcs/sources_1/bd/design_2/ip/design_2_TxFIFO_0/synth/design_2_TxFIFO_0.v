@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "axis_stream_fifo_v1_0,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "design_2_TxFIFO_0,axis_stream_fifo_v1_0,{}" *)
-(* CORE_GENERATION_INFO = "design_2_TxFIFO_0,axis_stream_fifo_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axis_stream_fifo,x_ipVersion=1.0,x_ipCoreRevision=36,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,ADDR_WIDTH=10,C_AXIS_TDATA_WIDTH=32}" *)
+(* CORE_GENERATION_INFO = "design_2_TxFIFO_0,axis_stream_fifo_v1_0,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axis_stream_fifo,x_ipVersion=1.0,x_ipCoreRevision=36,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,ADDR_WIDTH=11,C_AXIS_TDATA_WIDTH=32}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_2_TxFIFO_0 (
   s00_axi_awaddr,
@@ -176,7 +176,7 @@ input wire s00_axis_aresetn;
   axis_stream_fifo_v1_0 #(
     .C_S00_AXI_DATA_WIDTH(32),  // Width of S_AXI data bus
     .C_S00_AXI_ADDR_WIDTH(4),  // Width of S_AXI address bus
-    .ADDR_WIDTH(10),
+    .ADDR_WIDTH(11),
     .C_AXIS_TDATA_WIDTH(32)
   ) inst (
     .s00_axi_awaddr(s00_axi_awaddr),

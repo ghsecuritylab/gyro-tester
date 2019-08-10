@@ -183,7 +183,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
-#define MAX_PKT_LEN				8192	// this is Bytes
+#define MAX_PKT_LEN				8192//16384	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -1037,287 +1037,11 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 /*****************************************************************************/
 static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 	int Index;
-	u8 Value1,Value2;
-	u8 Value;
-
-	Value1 = 0x0c;
-	Value2 = 0x80;
 /*
 	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
 		TxPacket[Index] = Value1;
 		TxPacket[Index+1] = Value2;
 	  }
-*/
-double x;
-
-  //x = sin(0.0);
-
-/*
-	  for(Index = 0; Index < npoints/2; Index++){
-		TxPacket[Index*2] = 0xff;
-		TxPacket[Index*2+1] =(Value & 0x7f);
-		Value =(Value +1)& 0xFF;
-	  }
-*/
-/*
-	  // sin 6.txt
-
-	  TxPacket[2] = 0x00;
-	  TxPacket[3] = 0x80;
-	  TxPacket[0] = 0x90;
-	  TxPacket[1] = 0x8c;
-	  TxPacket[6] = 0x00;
-	  TxPacket[7] = 0x99;
-	  TxPacket[4] = 0x40;
-	  TxPacket[5] = 0xa5;
-	  TxPacket[10] = 0x20;
-	  TxPacket[11] = 0xb1;
-	  TxPacket[8] = 0x80;
-	  TxPacket[9] = 0xbc;
-	  TxPacket[14] = 0x40;
-	  TxPacket[15] = 0xc7;
-	  TxPacket[12] = 0x60;
-	  TxPacket[13] = 0xd1;
-	  TxPacket[18] = 0xb0;
-	  TxPacket[19] = 0xda;
-	  TxPacket[16] = 0x20;
-	  TxPacket[17] = 0xe3;
-	  TxPacket[22] = 0xa0;
-	  TxPacket[23] = 0xea;
-	  TxPacket[20] = 0x10;
-	  TxPacket[21] = 0xf1;
-	  TxPacket[26] = 0x70;
-	  TxPacket[27] = 0xf6;
-	  TxPacket[24] = 0xa0;
-	  TxPacket[25] = 0xfa;
-	  TxPacket[30] = 0xa0;
-	  TxPacket[31] = 0xfd;
-	  TxPacket[28] = 0x70;
-	  TxPacket[29] = 0xff;
-	  TxPacket[34] = 0xf0;
-	  TxPacket[35] = 0xff;
-	  TxPacket[32] = 0x50;
-	  TxPacket[33] = 0xff;
-	  TxPacket[38] = 0x60;
-	  TxPacket[39] = 0xfd;
-	  TxPacket[36] = 0x40;
-	  TxPacket[37] = 0xfa;
-	  TxPacket[42] = 0xf0;
-	  TxPacket[43] = 0xf5;
-	  TxPacket[40] = 0x70;
-	  TxPacket[41] = 0xf0;
-	  TxPacket[46] = 0xf0;
-	  TxPacket[47] = 0xe9;
-	  TxPacket[44] = 0x50;
-	  TxPacket[45] = 0xe2;
-	  TxPacket[50] = 0xd0;
-	  TxPacket[51] = 0xd9;
-	  TxPacket[48] = 0x60;
-	  TxPacket[49] = 0xd0;
-	  TxPacket[54] = 0x40;
-	  TxPacket[55] = 0xc6;
-	  TxPacket[52] = 0x60;
-	  TxPacket[53] = 0xbb;
-	  TxPacket[58] = 0xf0;
-	  TxPacket[59] = 0xaf;
-	  TxPacket[56] = 0x00;
-	  TxPacket[57] = 0xa4;
-	  TxPacket[62] = 0xc0;
-	  TxPacket[63] = 0x97;
-	  TxPacket[60] = 0x50;
-	  TxPacket[61] = 0x8b;
-	  TxPacket[66] = 0xb0;
-	  TxPacket[67] = 0x7e;
-	  TxPacket[64] = 0x20;
-	  TxPacket[65] = 0x72;
-	  TxPacket[70] = 0xb0;
-	  TxPacket[71] = 0x65;
-	  TxPacket[68] = 0x80;
-	  TxPacket[69] = 0x59;
-	  TxPacket[74] = 0xb0;
-	  TxPacket[75] = 0x4d;
-	  TxPacket[72] = 0x50;
-	  TxPacket[73] = 0x42;
-	  TxPacket[78] = 0xa0;
-	  TxPacket[79] = 0x37;
-	  TxPacket[76] = 0x90;
-	  TxPacket[77] = 0x2d;
-	  TxPacket[82] = 0x50;
-	  TxPacket[83] = 0x24;
-	  TxPacket[80] = 0x00;
-	  TxPacket[81] = 0x1c;
-	  TxPacket[86] = 0xa0;
-	  TxPacket[87] = 0x14;
-	  TxPacket[84] = 0x50;
-	  TxPacket[85] = 0x0e;
-	  TxPacket[90] = 0x10;
-	  TxPacket[91] = 0x09;
-	  TxPacket[88] = 0x00;
-	  TxPacket[89] = 0x05;
-	  TxPacket[94] = 0x10;
-	  TxPacket[95] = 0x02;
-	  TxPacket[92] = 0x70;
-	  TxPacket[93] = 0x00;
-	  TxPacket[98] = 0x00;
-	  TxPacket[99] = 0x00;
-	  TxPacket[96] = 0xd0;
-	  TxPacket[97] = 0x00;
-	  TxPacket[102] = 0xd0;
-	  TxPacket[103] = 0x02;
-	  TxPacket[100] = 0x10;
-	  TxPacket[101] = 0x06;
-	  TxPacket[106] = 0x80;
-	  TxPacket[107] = 0x0a;
-	  TxPacket[104] = 0x10;
-	  TxPacket[105] = 0x10;
-	  TxPacket[110] = 0xc0;
-	  TxPacket[111] = 0x16;
-	  TxPacket[108] = 0x70;
-	  TxPacket[109] = 0x1e;
-	  TxPacket[114] = 0x10;
-	  TxPacket[115] = 0x27;
-	  TxPacket[112] = 0x80;
-	  TxPacket[113] = 0x30;
-	  TxPacket[118] = 0xd0;
-	  TxPacket[119] = 0x3a;
-	  TxPacket[116] = 0xb0;
-	  TxPacket[117] = 0x45;
-	  TxPacket[122] = 0x30;
-	  TxPacket[123] = 0x51;
-	  TxPacket[120] = 0x20;
-	  TxPacket[121] = 0x5d;
-	  TxPacket[126] = 0x70;
-	  TxPacket[127] = 0x69;
-	  TxPacket[124] = 0xf0;
-	  TxPacket[125] = 0x75;
-	  TxPacket[130] = 0x80;
-	  TxPacket[131] = 0x82;
-	  TxPacket[128] = 0x10;
-	  TxPacket[129] = 0x8f;
-	  TxPacket[134] = 0x80;
-	  TxPacket[135] = 0x9b;
-	  TxPacket[132] = 0xb0;
-	  TxPacket[133] = 0xa7;
-	  TxPacket[138] = 0x70;
-	  TxPacket[139] = 0xb3;
-	  TxPacket[136] = 0xb0;
-	  TxPacket[137] = 0xbe;
-	  TxPacket[142] = 0x60;
-	  TxPacket[143] = 0xc9;
-	  TxPacket[140] = 0x50;
-	  TxPacket[141] = 0xd3;
-	  TxPacket[146] = 0x80;
-	  TxPacket[147] = 0xdc;
-	  TxPacket[144] = 0xc0;
-	  TxPacket[145] = 0xe4;
-	  TxPacket[150] = 0x00;
-	  TxPacket[151] = 0xec;
-	  TxPacket[148] = 0x40;
-	  TxPacket[149] = 0xf2;
-	  TxPacket[154] = 0x60;
-	  TxPacket[155] = 0xf7;
-	  TxPacket[152] = 0x50;
-	  TxPacket[153] = 0xfb;
-	  TxPacket[158] = 0x10;
-	  TxPacket[159] = 0xfe;
-	  TxPacket[156] = 0xa0;
-	  TxPacket[157] = 0xff;
-	  TxPacket[162] = 0xf0;
-	  TxPacket[163] = 0xff;
-	  TxPacket[160] = 0x00;
-	  TxPacket[161] = 0xff;
-	  TxPacket[166] = 0xd0;
-	  TxPacket[167] = 0xfc;
-	  TxPacket[164] = 0x70;
-	  TxPacket[165] = 0xf9;
-	  TxPacket[170] = 0xf0;
-	  TxPacket[171] = 0xf4;
-	  TxPacket[168] = 0x40;
-	  TxPacket[169] = 0xef;
-	  TxPacket[174] = 0x70;
-	  TxPacket[175] = 0xe8;
-	  TxPacket[172] = 0xb0;
-	  TxPacket[173] = 0xe0;
-	  TxPacket[178] = 0x00;
-	  TxPacket[179] = 0xd8;
-	  TxPacket[176] = 0x70;
-	  TxPacket[177] = 0xce;
-	  TxPacket[182] = 0x10;
-	  TxPacket[183] = 0xc4;
-	  TxPacket[180] = 0x20;
-	  TxPacket[181] = 0xb9;
-	  TxPacket[186] = 0x90;
-	  TxPacket[187] = 0xad;
-	  TxPacket[184] = 0x90;
-	  TxPacket[185] = 0xa1;
-	  TxPacket[190] = 0x40;
-	  TxPacket[191] = 0x95;
-	  TxPacket[188] = 0xc0;
-	  TxPacket[189] = 0x88;
-	  TxPacket[194] = 0x20;
-	  TxPacket[195] = 0x7c;
-	  TxPacket[192] = 0x90;
-	  TxPacket[193] = 0x6f;
-	  TxPacket[198] = 0x30;
-	  TxPacket[199] = 0x63;
-	  TxPacket[196] = 0x10;
-	  TxPacket[197] = 0x57;
-	  TxPacket[202] = 0x50;
-	  TxPacket[203] = 0x4b;
-	  TxPacket[200] = 0x20;
-	  TxPacket[201] = 0x40;
-	  TxPacket[206] = 0x80;
-	  TxPacket[207] = 0x35;
-	  TxPacket[204] = 0xa0;
-	  TxPacket[205] = 0x2b;
-	  TxPacket[210] = 0x90;
-	  TxPacket[211] = 0x22;
-	  TxPacket[208] = 0x70;
-	  TxPacket[209] = 0x1a;
-	  TxPacket[214] = 0x40;
-	  TxPacket[215] = 0x13;
-	  TxPacket[212] = 0x20;
-	  TxPacket[213] = 0x0d;
-	  TxPacket[218] = 0x20;
-	  TxPacket[219] = 0x08;
-	  TxPacket[216] = 0x50;
-	  TxPacket[217] = 0x04;
-	  TxPacket[222] = 0xa0;
-	  TxPacket[223] = 0x01;
-	  TxPacket[220] = 0x40;
-	  TxPacket[221] = 0x00;
-	  TxPacket[226] = 0x10;
-	  TxPacket[227] = 0x00;
-	  TxPacket[224] = 0x20;
-	  TxPacket[225] = 0x01;
-	  TxPacket[230] = 0x60;
-	  TxPacket[231] = 0x03;
-	  TxPacket[228] = 0xe0;
-	  TxPacket[229] = 0x06;
-	  TxPacket[234] = 0x90;
-	  TxPacket[235] = 0x0b;
-	  TxPacket[232] = 0x60;
-	  TxPacket[233] = 0x11;
-	  TxPacket[238] = 0x30;
-	  TxPacket[239] = 0x18;
-	  TxPacket[236] = 0x10;
-	  TxPacket[237] = 0x20;
-	  TxPacket[242] = 0xe0;
-	  TxPacket[243] = 0x28;
-	  TxPacket[240] = 0x90;
-	  TxPacket[241] = 0x32;
-	  TxPacket[246] = 0xf0;
-	  TxPacket[247] = 0x3c;
-	  TxPacket[244] = 0x00;
-	  TxPacket[245] = 0x48;
-	  TxPacket[250] = 0x90;
-	  TxPacket[251] = 0x53;
-	  TxPacket[248] = 0x90;
-	  TxPacket[249] = 0x5f;
-	  TxPacket[254] = 0xf0;
-	  TxPacket[255] = 0x6b;
-	  TxPacket[252] = 0x70;
-	  TxPacket[253] = 0x78;
 */
 
 /*
@@ -1328,20 +1052,37 @@ double x;
 			Value = (Value +1) & 0xFF;
 		}
 */
-
+ 		//============== ramp data ======================
 		u16 rampValue = 0x00;
+		u16 dataShifted;
 		for(Index = 0; Index < npoints; Index++){
-			TxPacket[Index*2] = (u8)(rampValue & 0xFF);
-			TxPacket[Index*2+1] = (u8)(rampValue >> 8);
-			rampValue++;
-		}
+			dataShifted = rampValue << 4;
 
-/*
-		for(Index = 0; Index < npoints; Index+=2){
-			TxPacket[Index] = 0x05;		//LSbyte?
-			TxPacket[Index+1] = 0x0D;	//MSbyte?
+			if (Index < 2048)
+			{	//first half of the buffer
+				TxPacket[Index*2] = (u8)(dataShifted & 0xFF); //store the LSbyte
+				TxPacket[Index*2+1] = (u8)(dataShifted >> 8); //store the MSbyte
+				rampValue++;
+			}
+			else
+			{	//second half of the buffer
+				TxPacket[Index*2] = (u8)(dataShifted & 0xFF); //store the LSbyte
+				TxPacket[Index*2+1] = (u8)(dataShifted >> 8); //store the MSbyte
+				rampValue--;
+
+			}
 		}
-*/
+		//===============================================
+
+
+
+/*     	//=========== static DC value ===================
+		u16 dataShifted = 0xAA5 << 4;
+		for(Index = 0; Index < npoints; Index++){
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+*/		//===============================================
 
 }
 
@@ -1728,12 +1469,38 @@ int receivePacketButton(void){
 	for (i=0; i<NUM_RXFIFO_READS_REQUIRED;i++)
 	{
 		setGyroChannelControl(0x00000010);
+
+		//======================================================
+		// remove this later ---only added for calibration testing
+		nops(100000);
+		writeSPI_non_blocking(6,0x0e); // set calibration bit
+		//======================================================
+
 		nops(10000000); // this is the value for DIV 1
+
+		//======================================================
+		// remove this later ---only added for calibration testing
+		writeSPI_non_blocking(6,0x02); // clear calibration bit
+		//======================================================
+
 		setGyroChannelControl(0x00000000);
 		receiveDMApacket(&AxiDma,0);
 
 		setGyroChannelControl(0x00000010);
+
+		//======================================================
+		// remove this later ---only added for calibration testing
+		nops(100000);
+		writeSPI_non_blocking(6,0x0e); // set calibration bit
+		//======================================================
+
 		nops(10000000); // this is the value for DIV 1
+
+		//======================================================
+		// remove this later ---only added for calibration testing
+		writeSPI_non_blocking(6,0x02); // clear calibration bit
+		//======================================================
+
 		setGyroChannelControl(0x00000000);
 		receiveDMApacket(&AxiDma,0);
 	}

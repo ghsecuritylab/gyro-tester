@@ -211,7 +211,7 @@ proc create_root_design { parentCell } {
   # Create instance: TxFIFO, and set properties
   set TxFIFO [ create_bd_cell -type ip -vlnv xilinx.com:user:axis_stream_fifo:1.0 TxFIFO ]
   set_property -dict [ list \
-   CONFIG.ADDR_WIDTH {10} \
+   CONFIG.ADDR_WIDTH {11} \
  ] $TxFIFO
 
   # Create instance: axi4_pl_interrupt_ge_0, and set properties
