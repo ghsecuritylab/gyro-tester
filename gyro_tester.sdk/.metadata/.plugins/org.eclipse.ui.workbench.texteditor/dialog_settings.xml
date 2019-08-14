@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="changeMCLKdivision" key="selection"/>
+		<item value="reg10" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="changeMCLKdivision"/>
+			<item value="reg10"/>
+			<item value="NUM_RXFIFO_DUMMY_READS_REQUIRED"/>
+			<item value="CMD_LOOP_ADC_ACQUISITIONS"/>
+			<item value="receivePacketButton"/>
 			<item value="NUM_RXFIFO_READS_REQUIRED"/>
-			<item value="SaveData"/>
-			<item value="numberDataSamples"/>
-			<item value="busySamplingFlag"/>
-			<item value="ADCSamplingFinished"/>
-			<item value="setGyroChannelControl"/>
-			<item value="test_DMA_receive_packets"/>
+			<item value="ramp"/>
+			<item value="1352"/>
+			<item value="1357"/>
 		</list>
 		<list key="replacehistory">
+			<item value="reg6"/>
 			<item value="CMD_GET_SPICLK_DIV"/>
 			<item value="changeMCLKdivision"/>
 			<item value="changeGyroChannelMCLKdivision"/>
@@ -25,7 +26,6 @@
 			<item value="reg11"/>
 			<item value="reg10"/>
 			<item value="reg9"/>
-			<item value="reg8"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
