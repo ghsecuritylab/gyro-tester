@@ -307,9 +307,7 @@ static void readGyroChannelStatus();
 static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
-//static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
-static void fillTxPacketBuffer(int npoints, u32 *TxPacket);
-
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
 
 static int 	SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 					u16 DeviceId, u16 UartIntrId);
@@ -996,7 +994,6 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 
 /*****************************************************************************/
 static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
-
 	int Index;
 	u8 Value1,Value2;
 	u8 Value;
@@ -1041,8 +1038,7 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 
 
 /*****************************************************************************/
-//static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
-	static void fillTxPacketBuffer(int npoints, u32 *TxPacket){
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 	int Index;
 /*
 	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
@@ -25692,26 +25688,8 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 		pattern3[4095]=4095;
 
 */
-		u32 * TXbufPtr = TX_BUFFER_BASE;
+
 		//=========== load DMA ==========================
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
-
-		}
-
-
-	/*
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+2048] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
-		}
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+4096] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
-		}
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+6144] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
-		}
-*/
-/*
 		u16 dataShifted;
 		for(Index = 0; Index < npoints; Index++){
 			dataShifted = pattern1[Index]<<4;
@@ -25733,7 +25711,7 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-	*/	//===============================================
+		//===============================================
 
 }
 
@@ -25753,8 +25731,8 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 ******************************************************************************/
 static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	XAxiDma_BdRing *TxRingPtr;
-	u32 *TxPacket;
-	//u8 Value;
+	u8 *TxPacket;
+	u8 Value;
 	XAxiDma_Bd *BdPtr;
 	int Status;
 	int Index;
@@ -25762,10 +25740,9 @@ static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	TxRingPtr = XAxiDma_GetTxRing(AxiDmaInstPtr);
 
 	/* Create pattern in the packet to transmit */
-	TxPacket = (u32 *) Packet;
-	//TxPacket = (u8 *) Packet;
+	TxPacket = (u8 *) Packet;
 	//Value = TEST_START_VALUE;
-//	Value = 0x01;
+	Value = 0x01;
 
 	fillTxPacketBuffer(MAX_PKT_LEN,TxPacket);
 
