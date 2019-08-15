@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="design_1_wrapper.bit" key="design_1_wrapper_hw_platform_0-bitFile"/>
+	<item value="C:\Docs\gyro_tester_zedboard_code\gyro_tester.sdk\design_2_wrapper_hw_platform_3\design_2_wrapper.bit" key="design_1_wrapper_hw_platform_0-bitFile"/>
 	<item value="Auto Detect" key="design_2_wrapper_hw_platform_0-device"/>
 	<item value="" key="design_1_wrapper_hw_platform_2-bmmFile"/>
 	<item value="Auto Detect" key="design_1_wrapper_hw_platform_3-device"/>
@@ -12,7 +12,7 @@
 	<item value="" key="design_1_wrapper_hw_platform_0-bmmFile"/>
 	<item value="Auto Detect" key="design_2_wrapper_hw_platform_2-device"/>
 	<item value="false" key="design_1_wrapper_hw_platform_5-partial_bit"/>
-	<item value="design_2_wrapper.bit" key="design_2_wrapper_hw_platform_3-bitFile"/>
+	<item value="C:\Docs\gyro_tester_gold\addr12.bit" key="design_2_wrapper_hw_platform_3-bitFile"/>
 	<item value="false" key="design_1_wrapper_hw_platform_6-partial_bit"/>
 	<item value="" key="design_1_wrapper_hw_platform_4-bmmFile"/>
 	<item value="false" key="design_2_wrapper_hw_platform_2-partial_bit"/>

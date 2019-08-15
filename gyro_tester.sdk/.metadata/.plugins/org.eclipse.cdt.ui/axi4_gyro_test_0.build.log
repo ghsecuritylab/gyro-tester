@@ -1,8 +1,8 @@
-00:52:24 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+03:09:14 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
 
-00:52:25 Build Finished (took 592ms)
+03:09:15 Build Finished (took 1s.100ms)
 

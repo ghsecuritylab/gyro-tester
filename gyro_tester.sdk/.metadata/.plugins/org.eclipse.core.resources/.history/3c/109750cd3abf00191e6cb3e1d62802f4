@@ -62,8 +62,6 @@ extern void xil_printf(const char *format, ...);
 #define CMD_LOOP_ADC_ACQUISITIONS	0xA0	// loops AXI commands to read ADC samples --for debug only--
 #define CMD_START_ADC_ACQUISITIONS	0xA1	// read values via HSI bus into RxFIFO until full
 #define CMD_FILL_DAC_TXFIFO			0xA2	// fill the TxFIFO with values and send via HSI bus
-#define CMD_CAPTURE_ADC0_CAL_DATA	0xA3	// run calibration while capturing ADC0 data
-#define CMD_CAPTURE_ADC1_CAL_DATA	0xA4	// run calibration while capturing ADC1 data
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
@@ -188,7 +186,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
-#define MAX_PKT_LEN				8192	//8192//16384	// this is Bytes
+#define MAX_PKT_LEN				4096	//8192//16384	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -337,10 +335,6 @@ static void read_ADC0_cal_data(void);
 static void read_ADC1_cal_data(void);
 static int initDMADevice(void);
 static int sendPacketButton(void);
-static int captureADC0calibrationData(void);
-static int captureADC1calibrationData(void);
-static void fastCalibrationADC0(void);
-static void fastCalibrationADC1(void);
 static int receivePacketButton(void);
 static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
 static void changeSPIclockDivision(u8 divSetting);
@@ -26142,8 +26136,8 @@ void fastCalibrationADC1(void)
 
 }
 
-// -------------------------------------------------------------------
-int captureADC1calibrationData(void){
+ // -------------------------------------------------------------------
+int receivePacketButton(void){
 
 	resetGyroRxFIFO();
 
@@ -26162,44 +26156,6 @@ int captureADC1calibrationData(void){
 	writeSPI_non_blocking(10,0x02); // clear calibration bit
 	//======================================================
 
-	setGyroChannelControl(0x00000000);	//reset acquisition
-	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
-
-	return 1;
-}
-
-// -------------------------------------------------------------------
-int captureADC0calibrationData(void){
-
-	resetGyroRxFIFO();
-
-	setGyroChannelControl(0x00000010);	//start acquisition
-
-	//======================================================
-	// remove this later ---only added for calibration testing
-	nops(80000);
-	writeSPI_non_blocking(6,0x06); // set calibration bit
-	//======================================================
-
-	nops(10000000); 					//delay value for DIV 1 of MCLK
-
-	//======================================================
-	// remove this later ---only added for calibration testing
-	writeSPI_non_blocking(6,0x02); // clear calibration bit
-	//======================================================
-
-	setGyroChannelControl(0x00000000);	//reset acquisition
-	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
-
-	return 1;
-}
-
- // -------------------------------------------------------------------
-int receivePacketButton(void){
-
-	resetGyroRxFIFO();
-	setGyroChannelControl(0x00000010);	//start acquisition
-	nops(10000000); 					//delay value for DIV 1 of MCLK
 	setGyroChannelControl(0x00000000);	//reset acquisition
 	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
 
@@ -26631,16 +26587,6 @@ void read_uart_bytes(void)
 
 		case (CMD_START_ADC_ACQUISITIONS):
 			receivePacketButton();
-			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
-			break;
-
-		case (CMD_CAPTURE_ADC0_CAL_DATA):
-			captureADC0calibrationData();
-			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
-			break;
-
-		case (CMD_CAPTURE_ADC1_CAL_DATA):
-			captureADC1calibrationData();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
