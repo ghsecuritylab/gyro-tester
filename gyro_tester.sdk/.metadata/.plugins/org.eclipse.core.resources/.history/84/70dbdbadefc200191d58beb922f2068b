@@ -1655,6 +1655,24 @@ int receivePacketButtonLoop(void){
 		receiveDMApacket(&AxiDma,0);
 	}
 
+	setGyroChannelControl(0x00000010);
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	nops(80000);
+	writeSPI_non_blocking(6,0x0e); // set calibration bit
+	//======================================================
+
+	nops(1000000); // this is the value for DIV 1
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	writeSPI_non_blocking(6,0x02); // clear calibration bit
+	//======================================================
+
+	setGyroChannelControl(0x00000000);
+	receiveDMApacket(&AxiDma,0);
+
 	return 1;
 }
 
