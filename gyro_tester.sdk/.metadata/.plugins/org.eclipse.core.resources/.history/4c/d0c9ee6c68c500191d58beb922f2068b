@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+#include <stdlib.h>
 #include "platform.h"
 #include "xparameters.h"
 #include "xil_printf.h"
@@ -38,7 +40,7 @@ extern void xil_printf(const char *format, ...);
 #define UART_BASEADDR		XPAR_XUARTPS_0_BASEADDR
 #define RX_BUFFER_SIZE		30
 #define TX_BUFFER_SIZE		1000
-#define NUM_RXFIFO_READS_REQUIRED	9
+#define NUM_RXFIFO_DUMMY_READS_REQUIRED	31
 
 // possible states for main while loop used to drive actions
 #define SERVICE_UART		0x04
@@ -57,8 +59,13 @@ extern void xil_printf(const char *format, ...);
 #define CMD_CAL_ADC1  				0x91	// perform calibration on ADC1
 #define CMD_READ_ADC0_CAL 			0x92	// read/transmit calibration values for ADC0
 #define CMD_READ_ADC1_CAL 			0x93	// read/transmit calibration values for ADC1
+#define CMD_FAST_CAL_ADC0			0x94	// perform fast calibration on ADC0
+#define CMD_FAST_CAL_ADC1			0x95	// perform fast calibration on ADC1
+#define CMD_LOOP_ADC_ACQUISITIONS	0xA0	// loops AXI commands to read ADC samples --for debug only--
 #define CMD_START_ADC_ACQUISITIONS	0xA1	// read values via HSI bus into RxFIFO until full
 #define CMD_FILL_DAC_TXFIFO			0xA2	// fill the TxFIFO with values and send via HSI bus
+#define CMD_CAPTURE_ADC0_CAL_DATA	0xA3	// run calibration while capturing ADC0 data
+#define CMD_CAPTURE_ADC1_CAL_DATA	0xA4	// run calibration while capturing ADC1 data
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
@@ -183,7 +190,7 @@ static void load_sawtooth_down_data(void);
 #define RX_BUFFER_BASE		(MEM_BASE_ADDR + 0x00030000)
 #define RX_BUFFER_HIGH		(MEM_BASE_ADDR + 0x0003FFFF)
 
-#define MAX_PKT_LEN				8192//16384	// this is Bytes
+#define MAX_PKT_LEN				8192	//8192//16384	// this is Bytes
 #define MARK_UNCACHEABLE        0x701
 
 #define TEST_START_VALUE	0xC
@@ -237,6 +244,9 @@ u8  FPGA_channel_state = 1;     //
 
 #define MAX_TADC_RESULTS_SIZE 512
 static u16 testADCresults[MAX_TADC_RESULTS_SIZE];
+
+#define WAVEFORM_DATA_ARRAY_SIZE 10
+static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
 
 
 void isr0 (void *intc_inst_ptr);
@@ -304,7 +314,9 @@ static void readGyroChannelStatus();
 static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
-static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
+//static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
+static void fillTxPacketBuffer(int npoints, u32 *TxPacket);
+
 
 static int 	SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 					u16 DeviceId, u16 UartIntrId);
@@ -330,6 +342,10 @@ static void read_ADC0_cal_data(void);
 static void read_ADC1_cal_data(void);
 static int initDMADevice(void);
 static int sendPacketButton(void);
+static int captureADC0calibrationData(void);
+static int captureADC1calibrationData(void);
+static void fastCalibrationADC0(void);
+static void fastCalibrationADC1(void);
 static int receivePacketButton(void);
 static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
 static void changeSPIclockDivision(u8 divSetting);
@@ -991,6 +1007,7 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 
 /*****************************************************************************/
 static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+
 	int Index;
 	u8 Value1,Value2;
 	u8 Value;
@@ -1032,11 +1049,33 @@ void generateSineWave(double freq, int num_samples, int AMP) {
 
 
 
+static void readWaveformData(void){
+
+	FILE *fp;
+	char * line = NULL;
+	size_t len = 0;
+	u16 index = 0;
+
+	fp = fopen("C:\\Users\\Public\\rampUp_4096.txt","r");
+	//fp = fopen("../wfm/rampUp_4096.txt","r");
+	if (fp == NULL)
+		exit(0);
+	while ((__getline(&line, &len, fp)) != -1){
+		TxFifoData[index++] = atoi(line);
+	}
+
+	fclose(fp);
+
+
+}
 
 
 /*****************************************************************************/
-static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
+//static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
+	static void fillTxPacketBuffer(int npoints, u32 *TxPacket){
 	int Index;
+
+	readWaveformData();
 /*
 	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
 		TxPacket[Index] = Value1;
@@ -1052,13 +1091,14 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 			Value = (Value +1) & 0xFF;
 		}
 */
+/*
  		//============== ramp data ======================
 		u16 rampValue = 0x00;
 		u16 dataShifted;
 		for(Index = 0; Index < npoints; Index++){
 			dataShifted = rampValue << 4;
 
-			if (Index < 4095)
+			if (Index < 2048)
 			{	//first half of the buffer
 				TxPacket[Index*2] = (u8)(dataShifted & 0xFF); //store the LSbyte
 				TxPacket[Index*2+1] = (u8)(dataShifted >> 8); //store the MSbyte
@@ -1074,7 +1114,7 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 		}
 		//===============================================
 
-
+*/
 
 /*     	//=========== static DC value ===================
 		u16 dataShifted = 0xAA5 << 4;
@@ -1083,6 +1123,53 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
 */		//===============================================
+		u16 pattern1[4096];
+		u16 pattern2[4096];
+		u16 pattern3[4096];
+		u16 pattern4[4096];
+
+		u32 * TXbufPtr = TX_BUFFER_BASE;
+		//=========== load DMA ==========================
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+
+		}
+
+
+	/*
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+2048] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+4096] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+6144] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+*/
+/*
+		u16 dataShifted;
+		for(Index = 0; Index < npoints; Index++){
+			dataShifted = pattern1[Index]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+		for(Index = 4096; Index < npoints*2; Index++){
+			dataShifted = pattern2[Index-4096]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+		for(Index = 8192; Index < npoints*3; Index++){
+			dataShifted = pattern3[Index-8192]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+		for(Index = 12288; Index < npoints*4; Index++){
+			dataShifted = pattern2[Index-12288]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+	*/	//===============================================
 
 }
 
@@ -1102,8 +1189,8 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 ******************************************************************************/
 static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	XAxiDma_BdRing *TxRingPtr;
-	u8 *TxPacket;
-	u8 Value;
+	u32 *TxPacket;
+	//u8 Value;
 	XAxiDma_Bd *BdPtr;
 	int Status;
 	int Index;
@@ -1111,9 +1198,10 @@ static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	TxRingPtr = XAxiDma_GetTxRing(AxiDmaInstPtr);
 
 	/* Create pattern in the packet to transmit */
-	TxPacket = (u8 *) Packet;
+	TxPacket = (u32 *) Packet;
+	//TxPacket = (u8 *) Packet;
 	//Value = TEST_START_VALUE;
-	Value = 0x01;
+//	Value = 0x01;
 
 	fillTxPacketBuffer(MAX_PKT_LEN,TxPacket);
 
@@ -1452,60 +1540,125 @@ int sendPacketButton(void){
 	return 1;
  }
 
+// -------------------------------------------------------------------
+void fastCalibrationADC0(void)
+{
+	unsigned int reg6;
+
+	readSPI(&reg6,6);				// store for restoring later
+
+	writeSPI_non_blocking(6,0x0a); // set fastcal and ADC_EN bits
+	writeSPI_non_blocking(6,0x0e); // set CAL_START bit
+	nops(100000);
+	writeSPI_non_blocking(6,0x0a); // clear CAL_START bit
+
+	writeSPI_non_blocking(6,reg6); // restore original value
+
+}
+
+// -------------------------------------------------------------------
+void fastCalibrationADC1(void)
+{
+	unsigned int reg10;
+
+	readSPI(&reg10,10);				// store for restoring later
+
+	writeSPI_non_blocking(10,0x0a); // set fastcal and ADC_EN bits
+	writeSPI_non_blocking(10,0x0e); // set CAL_START bit
+	nops(100000);
+	writeSPI_non_blocking(10,0x0a); // clear CAL_START bit
+
+	writeSPI_non_blocking(10,reg10); // restore original value
+
+}
+
+// -------------------------------------------------------------------
+int captureADC1calibrationData(void){
+
+	resetGyroRxFIFO();
+
+	setGyroChannelControl(0x00000010);	//start acquisition
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	nops(80000);
+	writeSPI_non_blocking(10,0x06); // set calibration bit
+	//======================================================
+
+	nops(10000000); 					//delay value for DIV 1 of MCLK
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	writeSPI_non_blocking(10,0x02); // clear calibration bit
+	//======================================================
+
+	setGyroChannelControl(0x00000000);	//reset acquisition
+	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
+
+	return 1;
+}
+
+// -------------------------------------------------------------------
+int captureADC0calibrationData(void){
+
+	resetGyroRxFIFO();
+
+	setGyroChannelControl(0x00000010);	//start acquisition
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	nops(80000);
+	writeSPI_non_blocking(6,0x06); // set calibration bit
+	//======================================================
+
+	nops(10000000); 					//delay value for DIV 1 of MCLK
+
+	//======================================================
+	// remove this later ---only added for calibration testing
+	writeSPI_non_blocking(6,0x02); // clear calibration bit
+	//======================================================
+
+	setGyroChannelControl(0x00000000);	//reset acquisition
+	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
+
+	return 1;
+}
+
  // -------------------------------------------------------------------
 int receivePacketButton(void){
 
-//	XAxiDma_BdRing *RxRingPtr;
-//	XAxiDma_Bd *BdPtr;
-//	int ProcessedBdCount;
-//	int FreeBdCount;
-//	int Status;
+	resetGyroRxFIFO();
+	setGyroChannelControl(0x00000010);	//start acquisition
+	nops(10000000); 					//delay value for DIV 1 of MCLK
+	setGyroChannelControl(0x00000000);	//reset acquisition
+	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
+
+	return 1;
+}
+
+// -------------------------------------------------------------------
+int receivePacketButtonLoop(void){
+
 	int i;
 
 	//Status = RxSetup(&AxiDma); // ####
 
 	resetGyroRxFIFO();
 
-	for (i=0; i<NUM_RXFIFO_READS_REQUIRED;i++)
+	for (i=0; i<NUM_RXFIFO_DUMMY_READS_REQUIRED;i++)
 	{
 		setGyroChannelControl(0x00000010);
 
-		//======================================================
-		// remove this later ---only added for calibration testing
-		nops(100000);
-		writeSPI_non_blocking(6,0x0e); // set calibration bit
-		//======================================================
-
 		nops(10000000); // this is the value for DIV 1
-
-		//======================================================
-		// remove this later ---only added for calibration testing
-		writeSPI_non_blocking(6,0x02); // clear calibration bit
-		//======================================================
-
-		setGyroChannelControl(0x00000000);
-		receiveDMApacket(&AxiDma,0);
-
-		setGyroChannelControl(0x00000010);
-
-		//======================================================
-		// remove this later ---only added for calibration testing
-		nops(100000);
-		writeSPI_non_blocking(6,0x0e); // set calibration bit
-		//======================================================
-
-		nops(10000000); // this is the value for DIV 1
-
-		//======================================================
-		// remove this later ---only added for calibration testing
-		writeSPI_non_blocking(6,0x02); // clear calibration bit
-		//======================================================
 
 		setGyroChannelControl(0x00000000);
 		receiveDMApacket(&AxiDma,0);
 	}
+
 	return 1;
 }
+
+
 // -------------------------------------------------------------------
 int initDMADevice(void){
 
@@ -1857,6 +2010,14 @@ void read_uart_bytes(void)
 			run_ADC1_calibration();
 			break;
 
+		case (CMD_FAST_CAL_ADC0):
+			fastCalibrationADC0();
+			break;
+
+		case (CMD_FAST_CAL_ADC1):
+			fastCalibrationADC1();
+			break;
+
 		case (CMD_READ_ADC0_CAL):
 			read_ADC0_cal_data();
 
@@ -1875,8 +2036,23 @@ void read_uart_bytes(void)
 			sendPacketButton();
 			break;
 
+		case (CMD_LOOP_ADC_ACQUISITIONS):
+			receivePacketButtonLoop();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
 		case (CMD_START_ADC_ACQUISITIONS):
 			receivePacketButton();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_CAPTURE_ADC0_CAL_DATA):
+			captureADC0calibrationData();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_CAPTURE_ADC1_CAL_DATA):
+			captureADC1calibrationData();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
@@ -3024,6 +3200,7 @@ xil_printf("== STOP 2  ==\n\r");
 	xil_printf("  waiting for received UART data...\n");
 
 	InitializeDelayTimer();
+	//readWaveformData();
 
 	while(looping){// loop here and let interrupts drive further actions
 
