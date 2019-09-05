@@ -10737,9 +10737,6 @@ unsigned int read_test_ADC_result(void)
 	//fist 12 bits are ADC value, mask others
 	reg1readBack &= 0xFFF;
 
-	//turn register1 readback mode off
-	writeSPI_non_blocking(0,reg0);
-
 	return reg1readBack;
 }
 

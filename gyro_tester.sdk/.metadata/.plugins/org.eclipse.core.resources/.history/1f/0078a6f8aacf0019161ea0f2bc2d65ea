@@ -69,7 +69,6 @@ extern void xil_printf(const char *format, ...);
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
-#define CMD_RUN_TADC_CONVERSION		0xAB	// take a single test ADC conversion and return result
 #define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
 #define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
 #define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
@@ -357,7 +356,6 @@ static void changeSPIclockDivision(u8 divSetting);
 static void changeMCLKdivision(u8 divSetting);
 static void changeHSI_ADC_selection(u8 selection);
 static void sendConfigBytesOverUart(void);
-static unsigned int read_test_ADC_result(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -10118,7 +10116,6 @@ void read_uart_bytes(void)
 {
 	u8 numBytesReceived = 0;
 	u16 numPoints;
-	u16 TxData;
 	unsigned int commandByte,regAddr,regData;
 
 	// loop through Uart Rx buffer and store received data
@@ -10261,11 +10258,6 @@ void read_uart_bytes(void)
 
 		case (CMD_FPGA_GET_OUTPUTS_STATE):
 			send_byte_over_UART(FPGA_outputs_state);
-			break;
-
-		case (CMD_RUN_TADC_CONVERSION):
-			TxData = read_test_ADC_result();
-			send_data_over_UART(2,(u8*)&TxData);
 			break;
 
 		case (CMD_RUN_TADC_CONVERSIONS):
@@ -10717,31 +10709,6 @@ void read_ADC1_cal_data(void)
 }
 //------------------------------------------------------------
 
-
-//------------------------------------------------------------
-unsigned int read_test_ADC_result(void)
-{
-	unsigned int reg0,reg1readBack;
-	unsigned int firstCalRegisterAddress = 32;
-
-	//store original register 0 setting
-	readSPI(&reg0,0);
-
-	//set register 1 readback mode to read-only, this is
-	//controlled by register 0 bit 10
-	writeSPI_non_blocking(0,reg0|0x0400);
-
-	//read the state of TESTADC readback register
-	readSPI(&reg1readBack,1);
-
-	//fist 12 bits are ADC value, mask others
-	reg1readBack &= 0xFFF;
-
-	//turn register1 readback mode off
-	writeSPI_non_blocking(0,reg0);
-
-	return reg1readBack;
-}
 
 //------------------------------------------------------------
 void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
