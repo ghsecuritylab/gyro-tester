@@ -11,6 +11,7 @@
 #include "xuartps_hw.h"
 #include "xil_exception.h"
 #include "xttcps.h"
+#include "xgpio.h"
 
 
 //#define FAKE_IC		//used to send data back when no IC present
@@ -40,7 +41,7 @@ extern void xil_printf(const char *format, ...);
 #define UART_BASEADDR		XPAR_XUARTPS_0_BASEADDR
 #define RX_BUFFER_SIZE		30
 #define TX_BUFFER_SIZE		1000
-#define NUM_RXFIFO_DUMMY_READS_REQUIRED	31
+#define NUM_RXFIFO_DUMMY_READS_REQUIRED	40
 
 // possible states for main while loop used to drive actions
 #define SERVICE_UART		0x04
@@ -52,7 +53,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_LOAD_SAWTOOTH_DOWN_DATA	0x63	// load test data1(sawtooth down) into TxData array
 #define CMD_READ_REGISTER			0x41	// read 16-bit contents of gyro ic register
 #define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
-#define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
+#define CMD_PROG_OTP_CHIP_ID		0x81	// program the chip ID into OTP memory
 #define CMD_PROG_OTP_VBG_TRIM		0x82	// program the bandgap trim value into OTP memory
 #define CMD_READ_PACKETS			0x45	// read packet data
 #define CMD_CAL_ADC0 				0x90	// perform calibration on ADC0
@@ -84,6 +85,8 @@ extern void xil_printf(const char *format, ...);
 #define CMD_GET_ADC_SELECTION		0xB8	// send the current ADC(RX channel) mux selection over UART
 #define CMD_SET_ADC_SELECTION		0xB9	// set the current ADC(RX channel) mux selection
 #define CMD_GET_CONFIG_SETTINGS		0xBA	// send all config settings over uart
+#define CMD_ENABLE_VFUSE			0xBE	// set Vfuse control bit high to enable Vfuse
+#define CMD_DISABLE_VFUSE			0xBF	// set Vfuse control bit low to disable Vfuse
 
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
@@ -263,6 +266,10 @@ static XTtcPs DelayTimer;		/* Timer counter instance */
 static u8 TimerErrorCount;		/* Errors seen at interrupt time */
 static volatile u8 timerRunning;
 
+XGpio gpio_portA;
+#define GPIO_AXI_ID XPAR_AXI_GPIO_0_DEVICE_ID
+#define GPIO_PORTA_CHANNEL 1
+
 
 // --- DMA Device Global Variables.
 
@@ -283,6 +290,10 @@ static void readSPIStatus();
 static void setSPIControl(Xuint32 v);
 static void disableSPI();
 static void enableSPI();
+
+void init_gpio(void);
+void enable_Vfuse(void);
+void disable_Vfuse(void);
 
 void modify_register(unsigned int *data, unsigned int address,
 					unsigned int newVal);
@@ -10174,7 +10185,7 @@ void read_uart_bytes(void)
 			writeSPI_non_blocking(regAddr,regData);
 			break;
 
-		case (CMD_PROG_OTP_CHIP_ADDR):
+		case (CMD_PROG_OTP_CHIP_ID):
 			//verify 3 bytes for chipID received after command byte
 			if (numBytesReceived<4)
 			{
@@ -10393,7 +10404,13 @@ void read_uart_bytes(void)
 			sendConfigBytesOverUart();
 			break;
 
+		case (CMD_ENABLE_VFUSE):
+			enable_Vfuse();
+			break;
 
+		case (CMD_DISABLE_VFUSE):
+			disable_Vfuse();
+			break;
 	}
 }
 //------------------------------------------------------------
@@ -11055,7 +11072,7 @@ Xuint8 ProgramOTP_chipID(u32 id)
 //------------------------------------------------------------
 Xuint8 ProgramOTP_VbgTrim(u8 trimVal)
 {
-	//mask bits 5-31 if set in trimVal
+	//only bits 4:0 used for trim value
 	trimVal &= 0x1F;
 
 	return ProgramOTP((u32)trimVal);
@@ -11184,8 +11201,10 @@ u32 readOTP32bits(void)
 
 	return otp32bitResult;
 }
+//------------------------------------------------------------
 
-// --------------------------------------------------------------------
+
+// -----------------------------------------------------------
 void test_DMA_receive_packets(int num_packets){
 
 	resetGyroRxFIFO();
@@ -11204,6 +11223,40 @@ void test_DMA_receive_packets(int num_packets){
 	setGyroChannelControl(0x00000000);
 
 }
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void init_gpio(void)
+{
+    //Initialize GPIO for 8-bit portA
+    Status = XGpio_Initialize(&gpio_portA, GPIO_AXI_ID);
+    if (Status != XST_SUCCESS){
+    	xil_printf("error initializing gpio portA\n");
+    }
+    else{
+    	xil_printf("success initializing gpio portA\n");
+    }
+
+	//only bit0 of the port set as output(Vfuse_control), rest as inputs
+    XGpio_SetDataDirection(&gpio_portA, 1, 0xFE); //0=output, 1=input
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void enable_Vfuse(void){
+	XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x01);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void disable_Vfuse(void){
+	XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x00);
+}
+//------------------------------------------------------------
+
 
 // -------------------------------------------------------------------
 int main() {
@@ -11235,6 +11288,9 @@ int main() {
     xil_printf("slv_reg2: 0x%08x\n\r", *(baseaddr_p+2));
     xil_printf("slv_reg3: 0x%08x\n\r", *(baseaddr_p+3));
 
+
+    // initialize GPIO for DIO_PORTA
+//    init_gpio();
 
     // clear SPI registers
     initSPI();

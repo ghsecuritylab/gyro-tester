@@ -3,7 +3,7 @@
 	<name>axi4_gyro_test_0</name>
 	<comment></comment>
 	<projects>
-		<project>standalone_bsp_0</project>
+		<project>axi4_gyro_test_0_bsp2</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,18 +1,18 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sat Feb 16 23:25:58 2019
-// Host        : DESKTOP-KC9HGNO running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top design_2_xlconcat_0_0 -prefix
-//               design_2_xlconcat_0_0_ design_1_xlconcat_0_0_sim_netlist.v
-// Design      : design_1_xlconcat_0_0
+// Date        : Fri Sep 27 21:06:33 2019
+// Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim
+//               C:/Docs/gyro_tester_zedboard_code/gyro_tester.srcs/sources_1/bd/design_2/ip/design_2_xlconcat_0_0/design_2_xlconcat_0_0_sim_netlist.v
+// Design      : design_2_xlconcat_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7z020clg484-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_xlconcat_0_0,xlconcat_v2_1_1_xlconcat,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xlconcat_v2_1_1_xlconcat,Vivado 2018.2" *) 
+(* CHECK_LICENSE_TYPE = "design_2_xlconcat_0_0,xlconcat_v2_1_1_xlconcat,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xlconcat_v2_1_1_xlconcat,Vivado 2018.2" *) 
 (* NotValidForBitStream *)
 module design_2_xlconcat_0_0
    (In0,
@@ -20,20 +20,24 @@ module design_2_xlconcat_0_0
     In2,
     In3,
     In4,
+    In5,
     dout);
   input [0:0]In0;
   input [0:0]In1;
   input [0:0]In2;
   input [0:0]In3;
   input [0:0]In4;
-  output [4:0]dout;
+  input [0:0]In5;
+  output [5:0]dout;
 
   wire [0:0]In0;
   wire [0:0]In1;
   wire [0:0]In2;
   wire [0:0]In3;
   wire [0:0]In4;
+  wire [0:0]In5;
 
+  assign dout[5] = In5;
   assign dout[4] = In4;
   assign dout[3] = In3;
   assign dout[2] = In2;

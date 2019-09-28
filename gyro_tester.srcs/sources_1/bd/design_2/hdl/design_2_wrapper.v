@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Mon Jul  8 20:42:14 2019
+//Date        : Fri Sep 27 21:00:28 2019
 //Host        : LAPTOP-FM91H59Q running 64-bit major release  (build 9200)
 //Command     : generate_target design_2_wrapper.bd
 //Design      : design_2_wrapper
@@ -25,6 +25,7 @@ module design_2_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    DIO_PORTA_tri_io,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -67,6 +68,7 @@ module design_2_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
+  inout [7:0]DIO_PORTA_tri_io;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
@@ -110,6 +112,38 @@ module design_2_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire [0:0]DIO_PORTA_tri_i_0;
+  wire [1:1]DIO_PORTA_tri_i_1;
+  wire [2:2]DIO_PORTA_tri_i_2;
+  wire [3:3]DIO_PORTA_tri_i_3;
+  wire [4:4]DIO_PORTA_tri_i_4;
+  wire [5:5]DIO_PORTA_tri_i_5;
+  wire [6:6]DIO_PORTA_tri_i_6;
+  wire [7:7]DIO_PORTA_tri_i_7;
+  wire [0:0]DIO_PORTA_tri_io_0;
+  wire [1:1]DIO_PORTA_tri_io_1;
+  wire [2:2]DIO_PORTA_tri_io_2;
+  wire [3:3]DIO_PORTA_tri_io_3;
+  wire [4:4]DIO_PORTA_tri_io_4;
+  wire [5:5]DIO_PORTA_tri_io_5;
+  wire [6:6]DIO_PORTA_tri_io_6;
+  wire [7:7]DIO_PORTA_tri_io_7;
+  wire [0:0]DIO_PORTA_tri_o_0;
+  wire [1:1]DIO_PORTA_tri_o_1;
+  wire [2:2]DIO_PORTA_tri_o_2;
+  wire [3:3]DIO_PORTA_tri_o_3;
+  wire [4:4]DIO_PORTA_tri_o_4;
+  wire [5:5]DIO_PORTA_tri_o_5;
+  wire [6:6]DIO_PORTA_tri_o_6;
+  wire [7:7]DIO_PORTA_tri_o_7;
+  wire [0:0]DIO_PORTA_tri_t_0;
+  wire [1:1]DIO_PORTA_tri_t_1;
+  wire [2:2]DIO_PORTA_tri_t_2;
+  wire [3:3]DIO_PORTA_tri_t_3;
+  wire [4:4]DIO_PORTA_tri_t_4;
+  wire [5:5]DIO_PORTA_tri_t_5;
+  wire [6:6]DIO_PORTA_tri_t_6;
+  wire [7:7]DIO_PORTA_tri_t_7;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -138,6 +172,46 @@ module design_2_wrapper
   wire SW7;
   wire SYNC_CK;
 
+  IOBUF DIO_PORTA_tri_iobuf_0
+       (.I(DIO_PORTA_tri_o_0),
+        .IO(DIO_PORTA_tri_io[0]),
+        .O(DIO_PORTA_tri_i_0),
+        .T(DIO_PORTA_tri_t_0));
+  IOBUF DIO_PORTA_tri_iobuf_1
+       (.I(DIO_PORTA_tri_o_1),
+        .IO(DIO_PORTA_tri_io[1]),
+        .O(DIO_PORTA_tri_i_1),
+        .T(DIO_PORTA_tri_t_1));
+  IOBUF DIO_PORTA_tri_iobuf_2
+       (.I(DIO_PORTA_tri_o_2),
+        .IO(DIO_PORTA_tri_io[2]),
+        .O(DIO_PORTA_tri_i_2),
+        .T(DIO_PORTA_tri_t_2));
+  IOBUF DIO_PORTA_tri_iobuf_3
+       (.I(DIO_PORTA_tri_o_3),
+        .IO(DIO_PORTA_tri_io[3]),
+        .O(DIO_PORTA_tri_i_3),
+        .T(DIO_PORTA_tri_t_3));
+  IOBUF DIO_PORTA_tri_iobuf_4
+       (.I(DIO_PORTA_tri_o_4),
+        .IO(DIO_PORTA_tri_io[4]),
+        .O(DIO_PORTA_tri_i_4),
+        .T(DIO_PORTA_tri_t_4));
+  IOBUF DIO_PORTA_tri_iobuf_5
+       (.I(DIO_PORTA_tri_o_5),
+        .IO(DIO_PORTA_tri_io[5]),
+        .O(DIO_PORTA_tri_i_5),
+        .T(DIO_PORTA_tri_t_5));
+  IOBUF DIO_PORTA_tri_iobuf_6
+       (.I(DIO_PORTA_tri_o_6),
+        .IO(DIO_PORTA_tri_io[6]),
+        .O(DIO_PORTA_tri_i_6),
+        .T(DIO_PORTA_tri_t_6));
+  IOBUF DIO_PORTA_tri_iobuf_7
+       (.I(DIO_PORTA_tri_o_7),
+        .IO(DIO_PORTA_tri_io[7]),
+        .O(DIO_PORTA_tri_i_7),
+        .T(DIO_PORTA_tri_t_7));
   design_2 design_2_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -154,6 +228,9 @@ module design_2_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
+        .DIO_PORTA_tri_i({DIO_PORTA_tri_i_7,DIO_PORTA_tri_i_6,DIO_PORTA_tri_i_5,DIO_PORTA_tri_i_4,DIO_PORTA_tri_i_3,DIO_PORTA_tri_i_2,DIO_PORTA_tri_i_1,DIO_PORTA_tri_i_0}),
+        .DIO_PORTA_tri_o({DIO_PORTA_tri_o_7,DIO_PORTA_tri_o_6,DIO_PORTA_tri_o_5,DIO_PORTA_tri_o_4,DIO_PORTA_tri_o_3,DIO_PORTA_tri_o_2,DIO_PORTA_tri_o_1,DIO_PORTA_tri_o_0}),
+        .DIO_PORTA_tri_t({DIO_PORTA_tri_t_7,DIO_PORTA_tri_t_6,DIO_PORTA_tri_t_5,DIO_PORTA_tri_t_4,DIO_PORTA_tri_t_3,DIO_PORTA_tri_t_2,DIO_PORTA_tri_t_1,DIO_PORTA_tri_t_0}),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),
