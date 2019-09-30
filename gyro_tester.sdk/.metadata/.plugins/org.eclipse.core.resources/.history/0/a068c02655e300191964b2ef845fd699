@@ -11,7 +11,6 @@
 #include "xuartps_hw.h"
 #include "xil_exception.h"
 #include "xttcps.h"
-#include "xgpiops.h"
 
 
 //#define FAKE_IC		//used to send data back when no IC present
@@ -85,8 +84,6 @@ extern void xil_printf(const char *format, ...);
 #define CMD_GET_ADC_SELECTION		0xB8	// send the current ADC(RX channel) mux selection over UART
 #define CMD_SET_ADC_SELECTION		0xB9	// set the current ADC(RX channel) mux selection
 #define CMD_GET_CONFIG_SETTINGS		0xBA	// send all config settings over uart
-#define CMD_ENABLE_VFUSE			0xBE	// set Vfuse control bit high to enable Vfuse
-#define CMD_DISABLE_VFUSE			0xBF	// set Vfuse control bit low to disable Vfuse
 
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
@@ -272,12 +269,6 @@ static volatile u8 timerRunning;
 int Status;
 XAxiDma_Config *Config;
 
-XGpioPs MIO_gpio;
-#define MIO_GPIO_BANK 0
-#define VFUSE_MIO_OUTPUT_PIN 13
-#define DIRECTION_OUTPUT 1
-#define DIRECTION_INPUT 0
-
 
 /**************************** Type Definitions *******************************/
 /***************** Macros (Inline Functions) Definitions *********************/
@@ -367,9 +358,6 @@ static void changeMCLKdivision(u8 divSetting);
 static void changeHSI_ADC_selection(u8 selection);
 static void sendConfigBytesOverUart(void);
 static unsigned int read_test_ADC_result(void);
-static void init_MIO_gpio(void);
-static void enable_Vfuse(void);
-static void disable_Vfuse(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -10405,14 +10393,6 @@ void read_uart_bytes(void)
 			sendConfigBytesOverUart();
 			break;
 
-		case (CMD_ENABLE_VFUSE):
-			enable_Vfuse();
-			break;
-
-		case (CMD_DISABLE_VFUSE):
-			disable_Vfuse();
-			break;
-
 
 	}
 }
@@ -11094,17 +11074,8 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 
 	otp32TestValue = readOTP32bits() | otp32ProgramValue;
 
-	//turn Vfuse on (NVM programming voltage)
-	enable_Vfuse();
-
-	//delay for Vfuse to come up
-	SetTimerDuration(65000, 10);
-	timerRunning = 1;
-	XTtcPs_Start(&DelayTimer);
-	while(timerRunning);
-
 	// setup the timer for 25usec delay to use later
-//	SetTimerDuration(2500, 1);
+	SetTimerDuration(2500, 1);
 
 	// loop through all 32 bits in otp register to clear out any 1s
 	for(i=0;i<32;i++)
@@ -11142,7 +11113,6 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 			/*timerRunning = 1;
 			XTtcPs_Start(&DelayTimer);
 			while(timerRunning);*/
-
 			// delay above was not needed because delay
 			// between spi register write completions is ~25usec
 
@@ -11158,8 +11128,6 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 		writeSPI_non_blocking_orig(2,0x0020);		//DIN=0,CLKM=0,CLKS=1
 		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
 	}
-
-	disable_Vfuse();		// programming done so disable voltage
 
 	//enable read operations
 	writeSPI_non_blocking_orig(2,0x0001);		//RSWEN=1
@@ -11239,36 +11207,33 @@ void test_DMA_receive_packets(int num_packets){
 
 
 //------------------------------------------------------------
-void init_MIO_gpio(void)
+void init_MIO(void)
 {
-	XGpioPs_Config *GPIO_Config;
-	GPIO_Config = XGpioPs_LookupConfig(XPAR_PS7_GPIO_0_DEVICE_ID);
-
-    Status = XGpioPs_CfgInitialize(&MIO_gpio, GPIO_Config, GPIO_Config->BaseAddr);
+    //Initialize GPIO for 8-bit portA
+    Status = XGpio_Initialize(&gpio_portA, GPIO_AXI_ID);
     if (Status != XST_SUCCESS){
-    	xil_printf("error initializing gpio from MIO\n");
+    	xil_printf("error initializing gpio portA\n");
     }
     else{
-    	xil_printf("success initializing gpio from MIO\n");
+    	xil_printf("success initializing gpio portA\n");
     }
 
-    XGpioPs_SetDirectionPin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
-
-    XGpioPs_SetOutputEnablePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
+	//only bit0 of the port set as output(Vfuse_control), rest as inputs
+    XGpio_SetDataDirection(&gpio_portA, 1, 0xFE); //0=output, 1=input
 }
 //------------------------------------------------------------
 
 
 //------------------------------------------------------------
 void enable_Vfuse(void){
-	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 1);
+	XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x01);
 }
 //------------------------------------------------------------
 
 
 //------------------------------------------------------------
 void disable_Vfuse(void){
-	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 0);
+	XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x00);
 }
 //------------------------------------------------------------
 
@@ -11302,7 +11267,7 @@ int main() {
     xil_printf("slv_reg2: 0x%08x\n\r", *(baseaddr_p+2));
     xil_printf("slv_reg3: 0x%08x\n\r", *(baseaddr_p+3));
 
-    init_MIO_gpio();
+    init_MIO();
 
     // clear SPI registers
     initSPI();

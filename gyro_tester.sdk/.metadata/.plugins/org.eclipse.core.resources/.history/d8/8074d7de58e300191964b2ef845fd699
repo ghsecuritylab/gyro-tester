@@ -11094,17 +11094,8 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 
 	otp32TestValue = readOTP32bits() | otp32ProgramValue;
 
-	//turn Vfuse on (NVM programming voltage)
-	enable_Vfuse();
-
-	//delay for Vfuse to come up
-	SetTimerDuration(65000, 10);
-	timerRunning = 1;
-	XTtcPs_Start(&DelayTimer);
-	while(timerRunning);
-
 	// setup the timer for 25usec delay to use later
-//	SetTimerDuration(2500, 1);
+	SetTimerDuration(2500, 1);
 
 	// loop through all 32 bits in otp register to clear out any 1s
 	for(i=0;i<32;i++)
@@ -11142,7 +11133,6 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 			/*timerRunning = 1;
 			XTtcPs_Start(&DelayTimer);
 			while(timerRunning);*/
-
 			// delay above was not needed because delay
 			// between spi register write completions is ~25usec
 
@@ -11158,8 +11148,6 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 		writeSPI_non_blocking_orig(2,0x0020);		//DIN=0,CLKM=0,CLKS=1
 		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
 	}
-
-	disable_Vfuse();		// programming done so disable voltage
 
 	//enable read operations
 	writeSPI_non_blocking_orig(2,0x0001);		//RSWEN=1
@@ -11253,7 +11241,6 @@ void init_MIO_gpio(void)
     }
 
     XGpioPs_SetDirectionPin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
-
     XGpioPs_SetOutputEnablePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
 }
 //------------------------------------------------------------

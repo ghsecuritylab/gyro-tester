@@ -407,3 +407,1922 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+22:13:42 **** Auto Build of project axi4_gyro_test_0_bsp ****
+make -k all 
+"Running Make include in ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/lwip202_v1_1/src"
+make -C ps7_cortexa9_0/libsrc/lwip202_v1_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make libs in ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axi_gyro_hsi..."
+axi_gyro_hsi_selftest.c: In function 'AXI_GYRO_HSI_Reg_SelfTest':
+axi_gyro_hsi_selftest.c:52:61: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXI_GYRO_HSI_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                             ^~
+axi_gyro_hsi_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axi4_pl_interrupt_generator..."
+axi4_pl_interrupt_generator_selftest.c: In function 'AXI4_PL_INTERRUPT_GENERATOR_Reg_SelfTest':
+axi4_pl_interrupt_generator_selftest.c:52:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXI4_PL_INTERRUPT_GENERATOR_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                                            ^~
+axi4_pl_interrupt_generator_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling coresightps_dcc"
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling cpu_cortexa9"
+"Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ddrps"
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling devcfg"
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling dmaps"
+"Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling emacps"
+"Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling gpiops"
+"Running Make libs in ps7_cortexa9_0/libsrc/lwip202_v1_1/src"
+make -C ps7_cortexa9_0/libsrc/lwip202_v1_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling lwip src and adapter files"
+"Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling qspips"
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scugic"
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scutimer"
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scuwdt"
+"Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling sdps"
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling standalone"
+In file included from sleep.c:57:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from usleep.c:60:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xil_sleeptimer.c:55:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xtime_l.c:53:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ttcps"
+"Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling uartps"
+"Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling usbps"
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling xadcps"
+'Finished building libraries'
+22:15:07 **** Auto Build of project axi4_pl_interrupt_generator_test_bsp ****
+make -k all 
+"Running Make include in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make libs in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axi4_pl_interrupt_generator..."
+axi4_pl_interrupt_generator_selftest.c: In function 'AXI4_PL_INTERRUPT_GENERATOR_Reg_SelfTest':
+axi4_pl_interrupt_generator_selftest.c:52:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXI4_PL_INTERRUPT_GENERATOR_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                                            ^~
+axi4_pl_interrupt_generator_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling coresightps_dcc"
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling cpu_cortexa9"
+"Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ddrps"
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling devcfg"
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling dmaps"
+"Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling emacps"
+"Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling gpiops"
+"Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling qspips"
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scugic"
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scutimer"
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scuwdt"
+"Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling sdps"
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling standalone"
+"Running Make libs in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ttcps"
+"Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling uartps"
+"Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling usbps"
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling xadcps"
+'Finished building libraries'
+22:16:13 **** Auto Build of configuration Debug for project axi4_pl_interrupt_generator_test ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../axi4_pl_interrupt_generator_test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+In file included from ../src/helloworld.c:4:0:
+../../axi4_pl_interrupt_generator_test_bsp/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../axi4_pl_interrupt_generator_test_bsp/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/helloworld.c: In function 'setSPIClockDivision':
+../src/helloworld.c:76:7: warning: unused variable 'w' [-Wunused-variable]
+   int w;
+       ^
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:208:18: warning: unused variable 'writeVal' [-Wunused-variable]
+     int readVal, writeVal;
+                  ^~~~~~~~
+../src/helloworld.c:208:9: warning: unused variable 'readVal' [-Wunused-variable]
+     int readVal, writeVal;
+         ^~~~~~~
+../src/helloworld.c:206:6: warning: unused variable 'err' [-Wunused-variable]
+  int err;
+      ^~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../axi4_pl_interrupt_generator_test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: axi4_pl_interrupt_generator_test.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../axi4_pl_interrupt_generator_test_bsp/ps7_cortexa9_0/lib -o "axi4_pl_interrupt_generator_test.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_pl_interrupt_generator_test.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_pl_interrupt_generator_test.elf  |tee "axi4_pl_interrupt_generator_test.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  29056	   2736	  22600	  54392	   d478	axi4_pl_interrupt_generator_test.elf
+'Finished building: axi4_pl_interrupt_generator_test.elf.size'
+' '
+22:16:17 **** Auto Build of project standalone_bsp_0 ****
+make -k all 
+"Running Make include in ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/axidma_v9_7/src"
+make -C ps7_cortexa9_0/libsrc/axidma_v9_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/axis_stream_fifo_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axis_stream_fifo_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make libs in ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi_gyro_hsi_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axi_gyro_hsi..."
+axi_gyro_hsi_selftest.c: In function 'AXI_GYRO_HSI_Reg_SelfTest':
+axi_gyro_hsi_selftest.c:52:61: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXI_GYRO_HSI_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                             ^~
+axi_gyro_hsi_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axi4_pl_interrupt_generator_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axi4_pl_interrupt_generator..."
+axi4_pl_interrupt_generator_selftest.c: In function 'AXI4_PL_INTERRUPT_GENERATOR_Reg_SelfTest':
+axi4_pl_interrupt_generator_selftest.c:52:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXI4_PL_INTERRUPT_GENERATOR_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                                            ^~
+axi4_pl_interrupt_generator_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/axidma_v9_7/src"
+make -C ps7_cortexa9_0/libsrc/axidma_v9_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axidma"
+"Running Make libs in ps7_cortexa9_0/libsrc/axis_stream_fifo_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/axis_stream_fifo_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling axis_stream_fifo..."
+axis_stream_fifo_selftest.c: In function 'AXIS_STREAM_FIFO_Reg_SelfTest':
+axis_stream_fifo_selftest.c:52:65: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( AXIS_STREAM_FIFO_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                                 ^~
+axis_stream_fifo_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling coresightps_dcc"
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling cpu_cortexa9"
+"Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/ddrps_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ddrps"
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling devcfg"
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling dmaps"
+"Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_7/src"
+make -C ps7_cortexa9_0/libsrc/emacps_v3_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling emacps"
+"Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_3/src"
+make -C ps7_cortexa9_0/libsrc/gpiops_v3_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling gpiops"
+"Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_4/src"
+make -C ps7_cortexa9_0/libsrc/qspips_v3_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling qspips"
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v3_9/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scugic"
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scutimer"
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scuwdt"
+"Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/sdps_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling sdps"
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v6_7/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v6_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling standalone"
+In file included from sleep.c:57:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from usleep.c:60:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xil_sleeptimer.c:55:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xtime_l.c:53:0:
+xtime_l.h:89:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/ttcps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/ttcps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling ttcps"
+"Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_6/src"
+make -C ps7_cortexa9_0/libsrc/uartps_v3_6/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling uartps"
+"Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling usbps"
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_2/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling xadcps"
+'Finished building libraries'
+22:17:35 **** Clean-only build of configuration Debug for project axi4_gyro_test_0 ****
+make clean 
+rm -rf  ./src/main.o ./src/platform.o  ./src/main.d ./src/platform.d  axi4_gyro_test_0.elf.size  axi4_gyro_test_0.elf
+' '
+22:17:36 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:177:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:254:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1019:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1018:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1018:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1017:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1042:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1042:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1041:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1041:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1041:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9386:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9471:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10725:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10751:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1015:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:794:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:509:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:484:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:479:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1052:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 314764	   4344	  35696	 354804	  569f4	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+22:20:13 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:177:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:254:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1019:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1018:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1018:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1017:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1042:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1042:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1041:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1041:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1041:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9386:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9471:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10725:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10751:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: In function 'init_MIO':
+../src/main.c:11213:14: warning: implicit declaration of function 'XGpio_Initialize'; did you mean 'XAxiDma_CfgInitialize'? [-Wimplicit-function-declaration]
+     Status = XGpio_Initialize(&gpio_portA, GPIO_AXI_ID);
+              ^~~~~~~~~~~~~~~~
+              XAxiDma_CfgInitialize
+../src/main.c:11213:32: error: 'gpio_portA' undeclared (first use in this function)
+     Status = XGpio_Initialize(&gpio_portA, GPIO_AXI_ID);
+                                ^~~~~~~~~~
+../src/main.c:11213:32: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:11213:44: error: 'GPIO_AXI_ID' undeclared (first use in this function); did you mean 'XPAR_AXI_EMC'?
+     Status = XGpio_Initialize(&gpio_portA, GPIO_AXI_ID);
+                                            ^~~~~~~~~~~
+                                            XPAR_AXI_EMC
+../src/main.c:11222:5: warning: implicit declaration of function 'XGpio_SetDataDirection' [-Wimplicit-function-declaration]
+     XGpio_SetDataDirection(&gpio_portA, 1, 0xFE); //0=output, 1=input
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'enable_Vfuse':
+../src/main.c:11229:2: warning: implicit declaration of function 'XGpio_DiscreteWrite' [-Wimplicit-function-declaration]
+  XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x01);
+  ^~~~~~~~~~~~~~~~~~~
+../src/main.c:11229:23: error: 'gpio_portA' undeclared (first use in this function)
+  XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x01);
+                       ^~~~~~~~~~
+../src/main.c:11229:35: error: 'GPIO_PORTA_CHANNEL' undeclared (first use in this function)
+  XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x01);
+                                   ^~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11236:23: error: 'gpio_portA' undeclared (first use in this function)
+  XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x00);
+                       ^~~~~~~~~~
+../src/main.c:11236:35: error: 'GPIO_PORTA_CHANNEL' undeclared (first use in this function)
+  XGpio_DiscreteWrite(&gpio_portA, GPIO_PORTA_CHANNEL, 0x00);
+                                   ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/main.c:1015:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:794:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:509:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:484:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:479:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:37:28 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:178:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:255:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c:369:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c:370:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1029:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1028:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1028:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1027:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1052:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1052:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1051:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1051:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1051:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9396:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9481:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10735:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10761:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: In function 'init_MIO_gpio':
+../src/main.c:11235:29: error: incompatible type for argument 1 of 'XGpioPs_SetDirectionPin'
+     XGpioPs_SetDirectionPin(MIO_gpio, VFUSE_OUTPUT_PIN, DIRECTION_OUTPUT);
+                             ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:236:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_SetDirectionPin(XGpioPs *InstancePtr, u32 Pin, u32 Direction);
+      ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'enable_Vfuse':
+../src/main.c:11246:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 1);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11253:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 0);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+../src/main.c: In function 'main':
+../src/main.c:11287:5: warning: implicit declaration of function 'init_MIO'; did you mean 'initSPI'? [-Wimplicit-function-declaration]
+     init_MIO();
+     ^~~~~~~~
+     initSPI
+At top level:
+../src/main.c:11245:6: warning: 'enable_Vfuse' defined but not used [-Wunused-function]
+ void enable_Vfuse(void){
+      ^~~~~~~~~~~~
+../src/main.c:11220:6: warning: 'init_MIO_gpio' defined but not used [-Wunused-function]
+ void init_MIO_gpio(void)
+      ^~~~~~~~~~~~~
+../src/main.c:1025:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:804:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:519:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:494:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:489:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:39:01 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:178:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:255:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c:369:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c:370:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1029:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1028:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1028:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1027:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1052:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1052:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1051:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1051:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1051:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9396:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9481:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10735:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10761:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11249:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 0);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+../src/main.c: In function 'main':
+../src/main.c:11283:5: warning: implicit declaration of function 'init_MIO'; did you mean 'initSPI'? [-Wimplicit-function-declaration]
+     init_MIO();
+     ^~~~~~~~
+     initSPI
+At top level:
+../src/main.c:11241:6: warning: 'enable_Vfuse' defined but not used [-Wunused-function]
+ void enable_Vfuse(void){
+      ^~~~~~~~~~~~
+../src/main.c:11220:6: warning: 'init_MIO_gpio' defined but not used [-Wunused-function]
+ void init_MIO_gpio(void)
+      ^~~~~~~~~~~~~
+../src/main.c:1025:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:804:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:519:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:494:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:489:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:40:26 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:178:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:255:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c:369:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c:370:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1029:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1028:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1028:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1027:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1052:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1052:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1051:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1051:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1051:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9396:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9481:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_uart_bytes':
+../src/main.c:10406:9: error: 'CMD_ENABLE_VFUSE' undeclared (first use in this function)
+   case (CMD_ENABLE_VFUSE):
+         ^~~~~~~~~~~~~~~~
+../src/main.c:10406:9: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:10410:9: error: 'CMD_DISABLE_VFUSE' undeclared (first use in this function); did you mean 'CMD_ENABLE_VFUSE'?
+   case (CMD_DISABLE_VFUSE):
+         ^~~~~~~~~~~~~~~~~
+         CMD_ENABLE_VFUSE
+../src/main.c:10411:4: warning: implicit declaration of function 'disable_Vfuse'; did you mean 'enable_Vfuse'? [-Wimplicit-function-declaration]
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+    enable_Vfuse
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10743:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10769:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: At top level:
+../src/main.c:11256:6: warning: conflicting types for 'disable_Vfuse'
+ void disable_Vfuse(void){
+      ^~~~~~~~~~~~~
+../src/main.c:10411:4: note: previous implicit declaration of 'disable_Vfuse' was here
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11257:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 0);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+At top level:
+../src/main.c:1025:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:804:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:519:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:494:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:489:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:41:00 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c:371:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c:372:13: error: two or more data types in declaration specifiers
+ static void void enable_Vfuse(void);
+             ^~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_uart_bytes':
+../src/main.c:10413:4: warning: implicit declaration of function 'disable_Vfuse'; did you mean 'enable_Vfuse'? [-Wimplicit-function-declaration]
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+    enable_Vfuse
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: At top level:
+../src/main.c:11258:6: warning: conflicting types for 'disable_Vfuse'
+ void disable_Vfuse(void){
+      ^~~~~~~~~~~~~
+../src/main.c:10413:4: note: previous implicit declaration of 'disable_Vfuse' was here
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11259:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 0);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:41:32 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_uart_bytes':
+../src/main.c:10413:4: warning: implicit declaration of function 'disable_Vfuse'; did you mean 'enable_Vfuse'? [-Wimplicit-function-declaration]
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+    enable_Vfuse
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: At top level:
+../src/main.c:11258:6: warning: conflicting types for 'disable_Vfuse'
+ void disable_Vfuse(void){
+      ^~~~~~~~~~~~~
+../src/main.c:10413:4: note: previous implicit declaration of 'disable_Vfuse' was here
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+../src/main.c: In function 'disable_Vfuse':
+../src/main.c:11259:19: error: incompatible type for argument 1 of 'XGpioPs_WritePin'
+  XGpioPs_WritePin(MIO_gpio, VFUSE_OUTPUT_PIN, 0);
+                   ^~~~~~~~
+In file included from ../src/main.c:14:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xgpiops.h:235:6: note: expected 'XGpioPs * {aka struct <anonymous> *}' but argument is of type 'XGpioPs {aka struct <anonymous>}'
+ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data);
+      ^~~~~~~~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/main.o] Error 1
+00:42:39 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_uart_bytes':
+../src/main.c:10413:4: warning: implicit declaration of function 'disable_Vfuse'; did you mean 'enable_Vfuse'? [-Wimplicit-function-declaration]
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+    enable_Vfuse
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+../src/main.c: At top level:
+../src/main.c:11258:6: warning: conflicting types for 'disable_Vfuse'
+ void disable_Vfuse(void){
+      ^~~~~~~~~~~~~
+../src/main.c:10413:4: note: previous implicit declaration of 'disable_Vfuse' was here
+    disable_Vfuse();
+    ^~~~~~~~~~~~~
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321904	   4352	  35728	 361984	  58600	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:44:31 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321904	   4352	  35728	 361984	  58600	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:53:31 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+00:56:03 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321904	   4352	  35728	 361984	  58600	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:56:59 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321904	   4352	  35728	 361984	  58600	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+00:57:15 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:03:23 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321968	   4352	  35728	 362048	  58640	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:04:05 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 321968	   4352	  35728	 362048	  58640	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:04:20 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+01:52:12 **** Auto Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../standalone_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:8:0:
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:115:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../standalone_bsp_0/ps7_cortexa9_0/include/xbasic_types.h:116:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/main.c:180:2: warning: #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, DEFAULT SET TO 0x01000000 [-Wcpp]
+ #warning CHECK FOR THE VALID DDR ADDRESS IN XPARAMETERS.H, \
+  ^~~~~~~
+../src/main.c:257:17: warning: type defaults to 'int' in declaration of 'TxFifoData' [-Wimplicit-int]
+ static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+                 ^~~~~~~~~~
+../src/main.c: In function 'fillTxPacketBufferSineWave':
+../src/main.c:1031:5: warning: unused variable 'Value' [-Wunused-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c:1030:12: warning: unused variable 'Value2' [-Wunused-variable]
+  u8 Value1,Value2;
+            ^~~~~~
+../src/main.c:1030:5: warning: unused variable 'Value1' [-Wunused-variable]
+  u8 Value1,Value2;
+     ^~~~~~
+../src/main.c:1029:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1054:26: warning: unused variable 'w' [-Wunused-variable]
+   signed short int i, v, w;
+                          ^
+../src/main.c:1054:23: warning: unused variable 'v' [-Wunused-variable]
+   signed short int i, v, w;
+                       ^
+../src/main.c:1053:25: warning: variable 'mult' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+                         ^~~~
+../src/main.c:1053:16: warning: unused variable 'y' [-Wunused-variable]
+   double f, x, y, base, mult;
+                ^
+../src/main.c:1053:10: warning: variable 'f' set but not used [-Wunused-but-set-variable]
+   double f, x, y, base, mult;
+          ^
+../src/main.c: In function 'sendDMApacket':
+../src/main.c:9398:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+../src/main.c: In function 'SaveData':
+../src/main.c:9483:5: warning: variable 'Value' set but not used [-Wunused-but-set-variable]
+  u8 Value;
+     ^~~~~
+../src/main.c: In function 'read_test_ADC_result':
+../src/main.c:10745:15: warning: unused variable 'firstCalRegisterAddress' [-Wunused-variable]
+  unsigned int firstCalRegisterAddress = 32;
+               ^~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'fill_testADC_results_array':
+../src/main.c:10771:5: warning: unused variable 'firstSetup' [-Wunused-variable]
+  u8 firstSetup = 1;
+     ^~~~~~~~~~
+At top level:
+../src/main.c:1027:13: warning: 'fillTxPacketBufferSineWave' defined but not used [-Wunused-function]
+ static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:806:12: warning: 'closeDMADevice' defined but not used [-Wunused-function]
+ static int closeDMADevice(){
+            ^~~~~~~~~~~~~~
+../src/main.c:521:6: warning: 'setSPIControl' defined but not used [-Wunused-function]
+ void setSPIControl(Xuint32 v){
+      ^~~~~~~~~~~~~
+../src/main.c:496:5: warning: 'setGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int setGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:491:5: warning: 'resetGyroTxFIFOLooping' defined but not used [-Wunused-function]
+ int resetGyroTxFIFOLooping(){
+     ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'generateSineWave':
+../src/main.c:1064:26: warning: 'x' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
+                         ~^~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: axi4_gyro_test_0.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/ps7_cortexa9_0/lib -o "axi4_gyro_test_0.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: axi4_gyro_test_0.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size axi4_gyro_test_0.elf  |tee "axi4_gyro_test_0.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 322032	   4352	  35728	 362112	  58680	axi4_gyro_test_0.elf
+'Finished building: axi4_gyro_test_0.elf.size'
+' '
+01:52:59 **** Incremental Build of configuration Debug for project axi4_gyro_test_0 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
