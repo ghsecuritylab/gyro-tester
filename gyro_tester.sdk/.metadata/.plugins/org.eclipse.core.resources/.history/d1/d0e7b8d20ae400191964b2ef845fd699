@@ -9828,17 +9828,10 @@ int captureADC0calibrationData(void){
 
  // -------------------------------------------------------------------
 int receivePacketButton(void){
-	unsigned int num_nops;
-	u32 num_shifts = 0;
 
 	resetGyroRxFIFO();
 	setGyroChannelControl(0x00000010);	//start acquisition
-
-	// delay for the acquisition to take place in the fpga
-	num_shifts = MCK_div_setting>>16;
-	num_nops = (unsigned int)( 10000000 << num_shifts );
-	nops(num_nops);
-
+	nops(10000000); 					//delay value for DIV 1 of MCLK
 	setGyroChannelControl(0x00000000);	//reset acquisition
 	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
 
@@ -9849,8 +9842,6 @@ int receivePacketButton(void){
 int receivePacketButtonLoop(void){
 
 	int i;
-	unsigned int num_nops;
-	u32 num_shifts = 0;
 
 	//Status = RxSetup(&AxiDma); // ####
 
@@ -9860,13 +9851,10 @@ int receivePacketButtonLoop(void){
 	{
 		setGyroChannelControl(0x00000010);
 
-		// waiting for the acquisition to complete in the fpga
-		// 10,000,000 is the value for DIV 1
-		// Don't know what the actual interval should be
-		// but this needs to track the MCLK speed
-		num_shifts = MCK_div_setting>>16;
-		num_nops = (unsigned int)( 10000000 << num_shifts );
-		nops(num_nops);
+//		nops(10000000); // waiting for the acquisition to complete
+						// 10,000,000 is the value for DIV 1
+
+		nops( 10000000 << (MCK_div_setting>>4) );
 
 		setGyroChannelControl(0x00000000);
 		receiveDMApacket(&AxiDma,0);

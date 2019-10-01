@@ -9828,8 +9828,6 @@ int captureADC0calibrationData(void){
 
  // -------------------------------------------------------------------
 int receivePacketButton(void){
-	unsigned int num_nops;
-	u32 num_shifts = 0;
 
 	resetGyroRxFIFO();
 	setGyroChannelControl(0x00000010);	//start acquisition
