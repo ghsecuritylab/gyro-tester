@@ -55,6 +55,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
 #define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
 #define CMD_PROG_OTP_VBG_TRIM		0x82	// program the bandgap trim value into OTP memory
+#define CMD_READ_OTP_DATA			0x83	// read the 32-bit data stored in 2 16-bit OTP registers
 #define CMD_READ_PACKETS			0x45	// read packet data
 #define CMD_CAL_ADC0 				0x90	// perform calibration on ADC0
 #define CMD_CAL_ADC1  				0x91	// perform calibration on ADC1
@@ -10146,6 +10147,7 @@ void read_uart_bytes(void)
 	u8 numBytesReceived = 0;
 	u16 numPoints;
 	u16 TxData;
+	u32 otpBytes;
 	unsigned int commandByte,regAddr,regData;
 
 	// loop through Uart Rx buffer and store received data
@@ -10201,14 +10203,21 @@ void read_uart_bytes(void)
 			writeSPI_non_blocking(regAddr,regData);
 			break;
 
+		case (CMD_READ_OTP_DATA):
+			otpBytes = readOTP32bits();
+
+			//4 8-bit values to send back over UART
+			send_data_over_UART(4,(u8*)&otpBytes);
+			break;
+
 		case (CMD_PROG_OTP_CHIP_ADDR):
 			//verify 3 bytes for chipID received after command byte
 			if (numBytesReceived<4)
 			{
 				return;
 			}
-		send_byte_over_UART(ProgramOTP_chipID( (UartRxData[1]<<16) |
-				(UartRxData[2]<<8) | UartRxData[3]));
+			send_byte_over_UART(ProgramOTP_chipID( (UartRxData[1]<<16) |
+						(UartRxData[2]<<8) | UartRxData[3]));
 			break;
 
 		case (CMD_PROG_OTP_VBG_TRIM):
@@ -10217,7 +10226,7 @@ void read_uart_bytes(void)
 			{
 				return;
 			}
-		send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
+			send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
 			break;
 
 		case (CMD_CAL_ADC0):
