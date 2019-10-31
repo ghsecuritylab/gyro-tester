@@ -75,6 +75,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
 #define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
 #define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
+#define CMD_PULSE_HSI_CAPTURE_INTERVAL 0xAF // pulse IO pin from HSI data capture begin to buffer full
 #define CMD_SET_MCLK_DIV			0xB0	// set the MCLK division setting
 #define CMD_GET_MCLK_DIV			0xB1	// send MCLK division setting over uart
 #define	CMD_SET_SPICLK_DIV			0xB2	// set the SPI clock division setting
@@ -362,6 +363,8 @@ static int captureADC1calibrationData(void);
 static void fastCalibrationADC0(void);
 static void fastCalibrationADC1(void);
 static int receivePacketButton(void);
+static int receivePacketButtonLoop(void);
+static int pulseForADCcaptureTime(void);
 static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
 static void changeSPIclockDivision(u8 divSetting);
 static void changeMCLKdivision(u8 divSetting);
@@ -9847,6 +9850,11 @@ int receivePacketButton(void){
 }
 
 // -------------------------------------------------------------------
+int pulseForADCcaptureTime(void){
+
+}
+
+// -------------------------------------------------------------------
 int receivePacketButtonLoop(void){
 
 	int i;
@@ -10265,6 +10273,11 @@ void read_uart_bytes(void)
 
 		case (CMD_LOOP_ADC_ACQUISITIONS):
 			receivePacketButtonLoop();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_PULSE_HSI_CAPTURE_INTERVAL):
+			pulseForADCcaptureTime();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
@@ -11214,6 +11227,20 @@ void enable_Vfuse(void){
 
 //------------------------------------------------------------
 void disable_Vfuse(void){
+	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 0);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void enable_HSI_capture_done_pulse(void){
+	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 1);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void disable_HSI_capture_done_pulse(void){
 	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 0);
 }
 //------------------------------------------------------------
