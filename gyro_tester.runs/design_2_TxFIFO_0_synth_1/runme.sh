@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Docs/gyro_tester/gyro_tester.runs/design_2_TxFIFO_0_synth_1'
+HD_PWD='C:/Docs/gyro_tester_zedboard_code/gyro_tester.runs/design_2_TxFIFO_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

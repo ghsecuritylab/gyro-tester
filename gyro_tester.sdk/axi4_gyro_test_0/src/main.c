@@ -9861,7 +9861,7 @@ int receivePacketButtonLoop(void){
 	{
 		setGyroChannelControl(0x00000010);
 
-		// waiting for the acquisition to complete in the fpga
+		// waiting for the acquisition to complete in the fpga,
 		// 10,000,000 is the value for DIV 1
 		// Don't know what the actual interval should be
 		// but this needs to track the MCLK speed
@@ -10529,50 +10529,20 @@ void changeMCLKdivision(u8 divSetting)
 //------------------------------------------------------------
 void run_ADC0_calibration(void)
 {
-	unsigned int reg0,reg4,reg5,reg6,reg7,reg0_RO;
-	unsigned int newReg4val = 0;
+	unsigned int reg0,reg6,reg0_RO;
 	unsigned int newReg6val = 0;
-	u8	reg4changed = 0;
-	u8  reg5changed = 0;
-	u8  reg7changed = 0;
 	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
 							// calibration flag needed until done
 
 	//read all necessary registers here
-	readSPI(&reg4,4);
-	readSPI(&reg5,5);
+	readSPI(&reg0,0);
 	readSPI(&reg6,6);
-	readSPI(&reg7,7);
 
-	//ensure ADC0_TEST_SEL is set to normal operation
-	if (reg7 & 0xC000)
+	//turn on MCLK enable bit if not on already
+	if (!(reg0 & 0x100))
 	{
-		reg7changed = 1;
-		writeSPI_non_blocking(7,0x00);
-	}
-
-	//ensure a TIIA_VGSW bit is set, in reg4[7:4]
-	if (!(reg4 & 0x00F0))
-	{
-		reg4changed = 1;
-		newReg4val = reg4 | 0xF0;
-	}
-
-	//ensure TIIA is enabled, reg4 bit0
-	if (!(reg4 & 0x0001))
-	{
-		reg4changed = 1;
-		newReg4val = newReg4val | 0x1;
-	}
-
-	//change reg 4 if needed
-	if (reg4changed) writeSPI_non_blocking(4,newReg4val);
-
-	//ensure VGA is enabled, reg5 bit0
-	if (!(reg5 & 0x1))
-	{
-		reg5changed = 1;
-		writeSPI_non_blocking(5,reg5|0x1);
+		reg0 |= 0x100;
+		writeSPI_non_blocking(0,reg0);
 	}
 
 	//ensure ADC0 is enabled, reg6 bit1
@@ -10590,7 +10560,6 @@ void run_ADC0_calibration(void)
 	}
 
 	//set reg0 readback mode to read-only to see when cal is done
-	readSPI(&reg0,0);
 	writeSPI_non_blocking(0,reg0|0x200);
 
 	//to run cal turn on reg6 bit2
@@ -10609,11 +10578,6 @@ void run_ADC0_calibration(void)
 	//restore register 6 with calibration bit off
 	writeSPI_non_blocking(6,reg6&0xFFFB);
 
-	//restore registers 4,5,7
-	if (reg4changed) writeSPI_non_blocking(4,reg4);
-	if (reg5changed) writeSPI_non_blocking(5,reg5);
-	if (reg7changed) writeSPI_non_blocking(7,reg7);
-
 	//register 0 back into normal readback mode
 	writeSPI_non_blocking(0,reg0&0xFDFF);
 }
@@ -10623,51 +10587,14 @@ void run_ADC0_calibration(void)
 //------------------------------------------------------------
 void run_ADC1_calibration(void)
 {
-	unsigned int reg0,reg8,reg9,reg10,reg11,reg0_RO;
-	unsigned int newreg8val = 0;
+	unsigned int reg0,reg10,reg0_RO;
 	unsigned int newreg10val = 0;
 	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
 							// calibration flag needed until done
-	u8	reg8changed = 0;
-	u8  reg9changed = 0;
-	u8  reg11changed = 0;
 
 	//read all necessary registers here
-	readSPI(&reg8,8);
-	readSPI(&reg9,9);
+	readSPI(&reg0,0);
 	readSPI(&reg10,10);
-	readSPI(&reg11,11);
-
-	//ensure ADC1_TEST_SEL is set to normal operation
-	if (reg11 & 0xC000)
-	{
-		reg11changed = 1;
-		writeSPI_non_blocking(11,0x00);
-	}
-
-	//ensure a TIIA_VGSW bit is set, in reg8[7:4]
-	if (!(reg8 & 0x00F0))
-	{
-		reg8changed = 1;
-		newreg8val = reg8 | 0xF0;
-	}
-
-	//ensure TIIA is enabled, reg8 bit0
-	if (!(reg8 & 0x0001))
-	{
-		reg8changed = 1;
-		newreg8val = newreg8val | 0x1;
-	}
-
-	//change reg8 if needed
-	if (reg8changed) writeSPI_non_blocking(8,newreg8val);
-
-	//ensure VGA is enabled, reg9 bit0
-	if (!(reg9 & 0x1))
-	{
-		reg9changed = 1;
-		writeSPI_non_blocking(9,reg9|0x1);
-	}
 
 	//ensure ADC1 is enabled, reg10 bit1
 	if (!(reg10 & 0x2))
@@ -10705,11 +10632,6 @@ void run_ADC1_calibration(void)
 
 	//restore register 10 with calibration bit off
 	writeSPI_non_blocking(10,reg10&0xFFFB);
-
-	//restore registers 8,9,11
-	if (reg8changed) writeSPI_non_blocking(8,reg8);
-	if (reg9changed) writeSPI_non_blocking(9,reg9);
-	if (reg11changed) writeSPI_non_blocking(11,reg11);
 }
 //------------------------------------------------------------
 

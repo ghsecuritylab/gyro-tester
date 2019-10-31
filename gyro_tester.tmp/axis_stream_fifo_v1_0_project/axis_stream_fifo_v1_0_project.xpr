@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="c:/docs/gyro_tester/gyro_tester.tmp/axis_stream_fifo_v1_0_project/axis_stream_fifo_v1_0_project.xpr">
+<Project Version="7" Minor="38" Path="c:/docs/gyro_tester_zedboard_code/gyro_tester.tmp/axis_stream_fifo_v1_0_project/axis_stream_fifo_v1_0_project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="551f69aca8374960a8c0d5f940b2f243"/>
+    <Option Name="Id" Val="fa0e4d1245954ae1bf6729404c35411f"/>
     <Option Name="Part" Val="xc7z020clg484-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
