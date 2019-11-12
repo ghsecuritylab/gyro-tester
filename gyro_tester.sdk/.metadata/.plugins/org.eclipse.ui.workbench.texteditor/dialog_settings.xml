@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setGyroChannelConfiguration" key="selection"/>
+		<item value="receivePacketButton" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setGyroChannelConfiguration"/>
-			<item value="acquireSamples"/>
-			<item value="receiveDMApacket"/>
-			<item value="Flush"/>
-			<item value="Invalidate"/>
-			<item value="Configura"/>
-			<item value="receiveDMA"/>
-			<item value="SaveData"/>
+			<item value="receivePacketButton"/>
+			<item value="fillTxPacketBuffer"/>
+			<item value="start_HSI_capture_duration_pulse"/>
+			<item value="enable_HSI_capture_done_pulse"/>
+			<item value="VFUSE_MIO_OUTPUT_PIN"/>
+			<item value="CMD_PULSE_HSI_CAPTURE_DURATION"/>
+			<item value="CMD_PULSE_HSI_CAPTURE_INTERVAL"/>
+			<item value="ProgramOTP"/>
 		</list>
 		<list key="replacehistory">
+			<item value="CMD_PULSE_HSI_CAPTURE_DURATION"/>
 			<item value="SaveData"/>
 			<item value="reg11"/>
 			<item value="reg10"/>

@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Wed Oct  9 19:00:47 2019">
+<application name="pa" timeStamp="Sat Nov  2 01:21:07 2019">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="e3d48c4a0f084cbcb4b53862c2d6127e" type="ProjectID"/>
 <property name="ProjectIteration" value="336" type="ProjectIteration"/>
@@ -29,7 +29,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="EditConstraintSets" value="2" type="JavaHandler"/>
 <property name="EditDelete" value="42" type="JavaHandler"/>
 <property name="EditInIPPackagerHandler" value="18" type="JavaHandler"/>
-<property name="EditProperties" value="19" type="JavaHandler"/>
+<property name="EditProperties" value="20" type="JavaHandler"/>
 <property name="EditUndo" value="3" type="JavaHandler"/>
 <property name="ExportSimulationFile" value="1" type="JavaHandler"/>
 <property name="FileExit" value="43" type="JavaHandler"/>
@@ -121,7 +121,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ExploreAheadView_LAUNCH_SELECTED_RUNS" value="3" type="GuiHandlerData"/>
 <property name="ExploreAheadView_SHOW_PERCENTAGE" value="24" type="GuiHandlerData"/>
 <property name="ExportSimulationDialog_TARGET_SIMULATOR" value="1" type="GuiHandlerData"/>
-<property name="FileSetPanel_FILE_SET_PANEL_TREE" value="565" type="GuiHandlerData"/>
+<property name="FileSetPanel_FILE_SET_PANEL_TREE" value="568" type="GuiHandlerData"/>
 <property name="FilterToolBar_HIDE_ALL" value="1" type="GuiHandlerData"/>
 <property name="FilterToolBar_SHOW_ALL" value="7" type="GuiHandlerData"/>
 <property name="FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE" value="422" type="GuiHandlerData"/>
@@ -262,7 +262,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="RDICommands_CUT" value="6" type="GuiHandlerData"/>
 <property name="RDICommands_DELETE" value="26" type="GuiHandlerData"/>
 <property name="RDICommands_PASTE" value="39" type="GuiHandlerData"/>
-<property name="RDICommands_PROPERTIES" value="18" type="GuiHandlerData"/>
+<property name="RDICommands_PROPERTIES" value="19" type="GuiHandlerData"/>
 <property name="RDICommands_SAVE_FILE" value="50" type="GuiHandlerData"/>
 <property name="RDICommands_SETTINGS" value="6" type="GuiHandlerData"/>
 <property name="RDICommands_TOGGLE_DESCRIPTION_AREA_DISPLAY" value="1" type="GuiHandlerData"/>
@@ -324,15 +324,15 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="SystemTreeView_SYSTEM_TREE" value="66" type="GuiHandlerData"/>
 <property name="TaskBanner_CLOSE" value="4" type="GuiHandlerData"/>
 <property name="TclConsoleView_TCL_CONSOLE_CODE_EDITOR" value="6" type="GuiHandlerData"/>
-<property name="TclObjectTreeTable_TREETABLE" value="58" type="GuiHandlerData"/>
+<property name="TclObjectTreeTable_TREETABLE" value="59" type="GuiHandlerData"/>
 <property name="TclObjectView_RESET_PROPERTIES" value="1" type="GuiHandlerData"/>
 <property name="TouchpointSurveyDialog_NO" value="1" type="GuiHandlerData"/>
 <property name="TouchpointSurveyDialog_REMIND_ME_LATER" value="1" type="GuiHandlerData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="61" type="GuiMode"/>
+<property name="GuiMode" value="64" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="51" type="TclMode"/>
+<property name="TclMode" value="54" type="TclMode"/>
 </item>
 </section>
 </application>
