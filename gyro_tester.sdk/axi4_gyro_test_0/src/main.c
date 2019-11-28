@@ -41,7 +41,7 @@ extern void xil_printf(const char *format, ...);
 #define UART_BASEADDR		XPAR_XUARTPS_0_BASEADDR
 #define RX_BUFFER_SIZE		30
 #define TX_BUFFER_SIZE		1000
-#define NUM_RXFIFO_DUMMY_READS_REQUIRED	31
+#define NUM_EFFING_RXFIFO_READS_REQUIRED	31
 
 // possible states for main while loop used to drive actions
 #define SERVICE_UART		0x04
@@ -68,6 +68,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_FILL_DAC_TXFIFO			0xA2	// fill the TxFIFO with values and send via HSI bus
 #define CMD_CAPTURE_ADC0_CAL_DATA	0xA3	// run calibration while capturing ADC0 data
 #define CMD_CAPTURE_ADC1_CAL_DATA	0xA4	// run calibration while capturing ADC1 data
+#define CMD_CAPTURE_DATA_UNTIL_NEW	0xA5	// run ADC captures and test data until != old data
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
@@ -91,6 +92,7 @@ extern void xil_printf(const char *format, ...);
 #define CMD_DISABLE_VFUSE			0xBF	// set Vfuse control bit low to disable Vfuse
 #define CMD_CLR_HSCK_ERR_FLAG		0xC0	// clear the HSCK error flag in CORE STATUS register
 #define CMD_READ_CORE_STATUS_REG	0xC1	// read the CORE STATUS register and return register setting
+#define CMD_DEBUG1					0xD0	// used for whatever debugging necessary
 
 
 
@@ -211,6 +213,7 @@ static void load_sawtooth_down_data(void);
 
 int numberDataSamples;
 Xuint32 outputDataBuffer[MAX_PKT_LEN/4];
+Xuint32 previousADCdataBuffer[MAX_PKT_LEN/4];
 
 typedef struct {
 	u32 OutputHz;	/* Output frequency */
@@ -234,6 +237,22 @@ Xuint32* baseaddr_spi         = (Xuint32*) 0x43C10000;
 Xuint32* baseaddr_channel     = (Xuint32*) 0x43C20000;
 Xuint32* baseaddr_rx_fifo     = (Xuint32*) 0x43C30000;
 Xuint32* baseaddr_tx_fifo     = (Xuint32*) 0x43C40000;
+
+
+unsigned char debugType = 1;
+
+u32 u32debugWords[10] = {0,0,0,0,0,0,0,0,0,0};
+
+u32 debugWord32_0 = 0;
+u32 debugWord32_1 = 0;
+u32 debugWord32_2 = 0;
+u32 debugWord32_3 = 0;
+u32 debugWord32_4 = 0;
+u32 debugWord32_5 = 0;
+u32 debugWord32_6 = 0;
+u32 debugWord32_7 = 0;
+u32 debugWord32_8 = 0;
+u32 debugWord32_9 = 0;
 
 int flag;
 int setup_interrupt_system();
@@ -325,6 +344,11 @@ static int resetGyroRxFIFO();
 static int resetGyroTxFIFOLooping();
 static int   setGyroTxFIFOLooping();
 
+static unsigned char checkForNewAdcData(void);
+static void initADCdataBuffers(void);
+static unsigned char captureAdcDataUntilNew(void);
+static void saveNewAdcData(void);
+
 static int  initGyroChannel();
 static void disableGyroChannel();
 static void enableGyroChannel();
@@ -345,7 +369,7 @@ static int 	SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 					XUartPs *UartInstancePtr,
 					u16 UartIntrId);
 static void read_uart_bytes(void);
-static unsigned int get_num_data_points(u8 *RxData);
+static unsigned int getNumBytesToSend(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
 static void send_data_over_UART(unsigned int num_points_to_send, u8 *dataArray);
 static void send_byte_over_UART(Xuint8 byteToSend);
@@ -471,10 +495,62 @@ int readGyroChannelDebugData(){
 // -------------------------------------------------------------------
 int readGyroRxFIFODebugData(){
   // ---
+	/*
   xil_printf("Gyro RxFIFO Debug Word 0: 0x%08x\n\r", *(baseaddr_rx_fifo+0));
   xil_printf("Gyro RxFIFO Debug Word 1: 0x%08x\n\r", *(baseaddr_rx_fifo+1));
   xil_printf("Gyro RxFIFO Debug Word 2: 0x%08x\n\r", *(baseaddr_rx_fifo+2));
   xil_printf("Gyro RxFIFO Debug Word 3: 0x%08x\n\r", *(baseaddr_rx_fifo+3));
+   */
+/*
+	debugWord32_1 = *(baseaddr_rx_fifo+0);
+	debugWord32_2 = *(baseaddr_rx_fifo+1);
+	debugWord32_3 = *(baseaddr_rx_fifo+2);
+	debugWord32_4 = *(baseaddr_rx_fifo+3);
+	debugWord32_5 = *(baseaddr_rx_fifo+4);
+	debugWord32_6 = *(baseaddr_rx_fifo+5);
+	debugWord32_7 = *(baseaddr_rx_fifo+1000);
+	debugWord32_8 = *(baseaddr_rx_fifo+1001);
+	debugWord32_9 = *(baseaddr_rx_fifo+1002);
+	debugWord32_10 = *(baseaddr_rx_fifo+1003);
+*/
+
+	debugWord32_0 = *((Xuint32*)(RX_BUFFER_BASE+0));
+	debugWord32_1 = *((Xuint32*)(RX_BUFFER_BASE+1));
+	debugWord32_2 = *((Xuint32*)(RX_BUFFER_BASE+2));
+	debugWord32_3 = *((Xuint32*)(RX_BUFFER_BASE+3));
+	debugWord32_4 = *((Xuint32*)(RX_BUFFER_BASE+4));
+	debugWord32_5 = *((Xuint32*)(RX_BUFFER_BASE+5));
+	debugWord32_6 = *((Xuint32*)(RX_BUFFER_BASE+6));
+	debugWord32_7 = *((Xuint32*)(RX_BUFFER_BASE+7));
+	debugWord32_8 = *((Xuint32*)(RX_BUFFER_BASE+8));
+	debugWord32_9 = *((Xuint32*)(RX_BUFFER_BASE+9));
+
+	u16 wordNumber;
+	u8 *RxBytePtr = (u8 *) RX_BUFFER_BASE;
+
+	for (wordNumber=0; wordNumber<10; wordNumber++)
+	{
+		u32debugWords[wordNumber] =
+				(u32)RxBytePtr[wordNumber*4] >> 2		|
+				(u32)RxBytePtr[wordNumber*4 + 1] << 6 	|
+				(u32)RxBytePtr[wordNumber*4 + 2] << 14 	|
+				(u32)RxBytePtr[wordNumber*4 + 3] << 22 	;
+	}
+
+	/*
+	idx = 0;
+		for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
+			m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
+			m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
+			v0 = m0 >> 2;
+			v1 = m1 >> 2;
+			//xil_printf("Sample: %d: %x%x\r\n",idx,v0,v1);
+			outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
+			//xil_printf("Index: %d: %x\r\n",idx,outputDataBuffer[idx]);
+			idx++;
+		}
+		numberDataSamples = idx*2;
+*/
   return 0;
 }
 // -------------------------------------------------------------------
@@ -1358,7 +1434,8 @@ static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 	/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
 	 * is enabled
 	 */
-	Xil_DCacheFlushRange((UINTPTR)TX_BUFFER_BASE, MAX_PKT_LEN);
+	Xil_DCacheFlushRange((UINTPTR)RX_BUFFER_BASE, MAX_PKT_LEN);
+//	Xil_DCacheFlushRange((UINTPTR)TX_BUFFER_BASE, MAX_PKT_LEN);
 
 #ifdef __aarch64__
 	Xil_DCacheFlushRange((UINTPTR)RX_BUFFER_BASE, MAX_PKT_LEN);
@@ -1705,9 +1782,14 @@ void delayForADCcaptureTime(void){
 int receivePacketButton(void){
 	unsigned int num_nops;
 	u32 num_shifts = 0;
+	u32 gyroChannelStatus = 0;
 
 	resetGyroRxFIFO();
+
+	gyroChannelStatus = *(baseaddr_channel+1);
 	setGyroChannelControl(0x00000010);	//start acquisition
+	gyroChannelStatus = *(baseaddr_channel+1);
+
 
 
 	// only one of the delay types(type1 or type2) below should be used.
@@ -1749,12 +1831,76 @@ int receivePacketButton(void){
 int receivePacketButtonLoop(void){
 	int i;
 
-	for (i=0; i<NUM_RXFIFO_DUMMY_READS_REQUIRED;i++)
+	for (i=0; i<NUM_EFFING_RXFIFO_READS_REQUIRED;i++)
 	{
 		receivePacketButton();
 	}
 
 	return 1;
+}
+
+
+// -------------------------------------------------------------------
+unsigned char captureAdcDataUntilNew(void){
+		unsigned char maxNumCaptureAttempts = 200;
+		unsigned char ADCcaptureNumber;
+
+	for (ADCcaptureNumber=1; ADCcaptureNumber<=maxNumCaptureAttempts; ADCcaptureNumber++)
+	{
+		receivePacketButton(); //populates u32 array outputDataBuffer with FPGA data
+
+		if ( checkForNewAdcData() )	// returns 1 if data changed, 0 if same
+		{
+			saveNewAdcData();		// save the fresh data for future comparisons
+			break;
+		}
+	}
+
+	return ADCcaptureNumber;
+}
+
+
+// -------------------------------------------------------------------
+unsigned char checkForNewAdcData(void)
+{
+	// returns 1 if new ADC data is detected, 0 if data is same as before
+	unsigned int i;
+	unsigned char ret = 0;
+
+	for (i=0; i<4096; i++)
+	{
+		if (outputDataBuffer[i] != previousADCdataBuffer[i])
+		{
+			ret = 1;
+			break;
+		}
+	}
+
+	return ret;
+}
+
+
+// -------------------------------------------------------------------
+void saveNewAdcData(void)
+{
+	int i;
+
+	for (i=0; i<4096; i++)
+	{
+		previousADCdataBuffer[i] = outputDataBuffer[i];
+	}
+}
+
+// -------------------------------------------------------------------
+void initADCdataBuffers(void)
+{
+	int i;
+
+	for (i=0; i<4096; i++)
+	{
+		outputDataBuffer[i] = 0;
+		previousADCdataBuffer[i] = 0;
+	}
 }
 
 
@@ -2045,22 +2191,6 @@ void read_uart_bytes(void)
 	// check received byte for valid command
 	switch (commandByte){
 
-		case (CMD_READ_DATA):
-			send_Tx_data_over_UART(get_num_data_points(UartRxData));
-			break;
-
-		case (CMD_READ_PACKETS):
-			send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
-			//send_data_over_UART(get_num_data_points(UartRxData),(u8*)RX_BUFFER_BASE);
-			break;
-
-		case (CMD_LOAD_SAWTOOTH_UP_DATA):
-			load_sawtooth_up_data();
-			break;
-
-		case (CMD_LOAD_SAWTOOTH_DOWN_DATA):
-			load_sawtooth_down_data();
-			break;
 
 		case (CMD_READ_REGISTER):
 			//verify address byte was received after command byte
@@ -2145,9 +2275,19 @@ void read_uart_bytes(void)
 			sendPacketButton();
 			break;
 
+		case (CMD_READ_PACKETS):
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)outputDataBuffer);
+			break;
+
 		case (CMD_PULSE_HSI_CAPTURE_DURATION):
 			pulseForADCcaptureTime();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_CAPTURE_DATA_UNTIL_NEW):
+			byteToSend = captureAdcDataUntilNew();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			send_byte_over_UART(byteToSend);
 			break;
 
 		case (CMD_START_ADC_ACQUISITIONS):
@@ -2331,6 +2471,13 @@ void read_uart_bytes(void)
 		case (CMD_READ_CORE_STATUS_REG):
 			byteToSend = readHSCKerrorFlag();
 			send_byte_over_UART(byteToSend);
+			break;
+
+		case (CMD_DEBUG1):
+			if (debugType == 1)
+			{
+				readGyroRxFIFODebugData();
+			}
 			break;
 
 	}
@@ -2738,7 +2885,7 @@ void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
 
 
 //------------------------------------------------------------
-unsigned int get_num_data_points(u8 *RxData)
+unsigned int getNumBytesToSend(u8 *RxData)
 {
 	unsigned int num_points = 0;
 
@@ -3305,6 +3452,7 @@ int main() {
 
     //readGyroTxFIFODebugData();
     //readGyroRxFIFODebugData();
+    initADCdataBuffers();
     resetGyroTxFIFO();
     resetGyroRxFIFO();
     initGyroChannel();
@@ -3349,10 +3497,10 @@ int main() {
 
     xil_printf(" - after initialization ==\n\r");
 
-    readGyroChannelStatus();
-    readGyroChannelDebugData();
-    readGyroTxFIFODebugData();
-    readGyroRxFIFODebugData();
+    //readGyroChannelStatus();
+    //readGyroChannelDebugData();
+    //readGyroTxFIFODebugData();
+    //readGyroRxFIFODebugData();
 
     xil_printf("== Starting FIFO / DMA test ++\n\r");
 
