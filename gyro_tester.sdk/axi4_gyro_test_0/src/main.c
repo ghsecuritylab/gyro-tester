@@ -93,6 +93,8 @@ extern void xil_printf(const char *format, ...);
 #define CMD_CLR_HSCK_ERR_FLAG		0xC0	// clear the HSCK error flag in CORE STATUS register
 #define CMD_READ_CORE_STATUS_REG	0xC1	// read the CORE STATUS register and return register setting
 #define CMD_DEBUG1					0xD0	// used for whatever debugging necessary
+#define CMD_STORE_FIFO_DATA 		0xD1	// stores data in RX FIFO in array in ARM
+#define CMD_READ_STORED_FIFO_DATA 	0xD2	// read data stored in ARM array for RX FIFO data
 
 
 
@@ -239,9 +241,14 @@ Xuint32* baseaddr_rx_fifo     = (Xuint32*) 0x43C30000;
 Xuint32* baseaddr_tx_fifo     = (Xuint32*) 0x43C40000;
 
 
-unsigned char debugType = 1;
+volatile unsigned char debugType = 1;
 
-u32 u32debugWords[10] = {0,0,0,0,0,0,0,0,0,0};
+Xuint32 u32debugWords[MAX_PKT_LEN/4];
+u8 *u8Ptr;
+u8 byte1 = 0x04;
+u8 byte2 = 0x04;
+u8 byte3 = 0x04;
+u8 byte4 = 0x04;
 
 u32 debugWord32_0 = 0;
 u32 debugWord32_1 = 0;
@@ -330,6 +337,7 @@ static int sendDMApackets(int npackets);
 static int receiveDMApackets(int npackets);
 
 static int SaveData(int debug_mode);
+static void SaveAdcCaptureData(void);
 static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip);
 
 static int openDMADevice();
@@ -347,7 +355,7 @@ static int   setGyroTxFIFOLooping();
 static unsigned char checkForNewAdcData(void);
 static void initADCdataBuffers(void);
 static unsigned char captureAdcDataUntilNew(void);
-static void saveNewAdcData(void);
+static void copyAdcDataIntoComparisonBuffer(void);
 
 static int  initGyroChannel();
 static void disableGyroChannel();
@@ -1387,11 +1395,11 @@ static int SaveData(int debug_mode)
 	u8 *RxPacket;
 	int Index = 0;
 	int idx = 0;
-	u8 Value;
 	Xuint32 m0, m1, v0, v1;
 
 	RxPacket = (u8 *) RX_BUFFER_BASE;
-	Value = TEST_START_VALUE;
+
+
 
 	/* Invalidate the DestBuffer before receiving the data, in case the
 	 * Data Cache is enabled
@@ -1401,6 +1409,8 @@ static int SaveData(int debug_mode)
 	Xil_DCacheInvalidateRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 #endif
+
+
 
    idx = 0;
 	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
@@ -1418,6 +1428,31 @@ static int SaveData(int debug_mode)
 	return XST_SUCCESS;
 }
 
+
+// -------------------------------------------------------------
+void SaveAdcCaptureData(void)
+{
+	u8 *RxPacket;
+	int Index = 0;
+	int idx = 0;
+	Xuint32 m0, m1, v0, v1;
+
+	RxPacket = (u8 *) RX_BUFFER_BASE;
+
+
+	idx = 0;
+
+	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
+		m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
+		m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
+		v0 = m0 >> 2;
+		v1 = m1 >> 2;
+		outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
+		idx++;
+	}
+
+	numberDataSamples = idx*2;
+}
 
 static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 {
@@ -1791,13 +1826,45 @@ int receivePacketButton(void){
 	gyroChannelStatus = *(baseaddr_channel+1);
 
 
-
 	// only one of the delay types(type1 or type2) below should be used.
 	// The unused delay type should have all lines of code commented out.
 	// There are two types because when dumb type1 was replaced by the more
 	// intelligent type2 it takes too many ADC capture attempts before new
 	// data is acquired. This should be changed to a more accurate method
 	// when all the fpga confusion bs is understood.
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
 
 
 	//============= DELAY TYPE 1 ===========================
@@ -1822,6 +1889,7 @@ int receivePacketButton(void){
 */
 
 	setGyroChannelControl(0x00000000);	//reset acquisition
+	delayForADCcaptureTime();
 	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
 
 	return 1;
@@ -1839,19 +1907,51 @@ int receivePacketButtonLoop(void){
 	return 1;
 }
 
+// -------------------------------------------------------------------
+void storeRxFifoData(void)
+{
+	u16 wordNumber;
+	u8 *RxBytePtr = (u8 *) RX_BUFFER_BASE;
+
+	for (wordNumber=0; wordNumber<MAX_PKT_LEN/4; wordNumber++)
+	{
+		u32debugWords[wordNumber] =
+				(u32)RxBytePtr[wordNumber*4 +2] >> 2	|
+				(u32)RxBytePtr[wordNumber*4 + 3] << 6 	|
+				(u32)RxBytePtr[wordNumber*4] << 14 		|
+				(u32)RxBytePtr[wordNumber*4 + 1] << 22 	;
+	}
+}
+
 
 // -------------------------------------------------------------------
 unsigned char captureAdcDataUntilNew(void){
 		unsigned char maxNumCaptureAttempts = 200;
 		unsigned char ADCcaptureNumber;
+		u32 num_shifts = 0;
+		unsigned int num_nops;
 
 	for (ADCcaptureNumber=1; ADCcaptureNumber<=maxNumCaptureAttempts; ADCcaptureNumber++)
 	{
 		receivePacketButton(); //populates u32 array outputDataBuffer with FPGA data
+		// above line replaced with direct capture functions below
+
+		//==================================================
+/*		resetGyroRxFIFO();
+		setGyroChannelControl(0x00000010);	//start acquisition
+
+		num_shifts = MCK_div_setting >> 16;
+		num_nops = (unsigned int)( 10000000 << num_shifts );
+		nops(num_nops);
+
+		setGyroChannelControl(0x00000000);	//reset acquisition
+		SaveAdcCaptureData();
+*/		//==================================================
+
 
 		if ( checkForNewAdcData() )	// returns 1 if data changed, 0 if same
 		{
-			saveNewAdcData();		// save the fresh data for future comparisons
+			copyAdcDataIntoComparisonBuffer();		// save the fresh data for future comparisons
 			break;
 		}
 	}
@@ -1881,7 +1981,7 @@ unsigned char checkForNewAdcData(void)
 
 
 // -------------------------------------------------------------------
-void saveNewAdcData(void)
+void copyAdcDataIntoComparisonBuffer(void)
 {
 	int i;
 
@@ -1900,6 +2000,7 @@ void initADCdataBuffers(void)
 	{
 		outputDataBuffer[i] = 0;
 		previousADCdataBuffer[i] = 0;
+		u32debugWords[i] = 0;
 	}
 }
 
@@ -2300,6 +2401,15 @@ void read_uart_bytes(void)
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
+		case (CMD_STORE_FIFO_DATA):
+			storeRxFifoData();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_READ_STORED_FIFO_DATA):
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)u32debugWords);
+			break;
+
 		case (CMD_CAPTURE_ADC0_CAL_DATA):
 			captureADC0calibrationData();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
@@ -2477,6 +2587,15 @@ void read_uart_bytes(void)
 			if (debugType == 1)
 			{
 				readGyroRxFIFODebugData();
+			}
+			if (debugType == 2)
+			{
+				// try writing to RX buffer space in fpga
+				u8Ptr = RX_BUFFER_BASE;
+				u8Ptr[0] = byte4;
+				u8Ptr[1] = byte3;
+				u8Ptr[2] = byte2;
+				u8Ptr[3] = byte1;
 			}
 			break;
 
