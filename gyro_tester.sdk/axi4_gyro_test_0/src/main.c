@@ -95,10 +95,15 @@ extern void xil_printf(const char *format, ...);
 #define CMD_DEBUG1					0xD0	// used for whatever debugging necessary
 #define CMD_STORE_FIFO_DATA 		0xD1	// stores data in RX FIFO in array in ARM
 #define CMD_READ_STORED_FIFO_DATA 	0xD2	// read data stored in ARM array for RX FIFO data
+#define CMD_SET_RX_FIFO_RESET_BIT  	0xD3	// set fpga control register bit to reset Rx fifo
+#define CMD_CLEAR_RX_FIFO_RESET_BIT 0xD4	// clear fpga control register bit to reset Rx fifo
+#define CMD_SET_RX_FIFO_ACQUIRE_BIT 0xD5	// set fpga control register bit to start Rx fifo acquire
+#define CMD_CLEAR_RX_FIFO_ACQUIRE_BIT 0xD6	// clear fpga control register bit to start Rx fifo acquire
 
 
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
+#define RESPONSE_CMD_DONE			0x54	// indicates command received and action has been taken
 
 // test ADC mux settings
 #define TADC_MUX_TEMPERATURE_SENSOR		0x000
@@ -1813,6 +1818,31 @@ void delayForADCcaptureTime(void){
 	while(timerRunning);// wait here until flag is cleared in interrupt handler
 }
 
+
+// -------------------------------------------------------------------
+void setRxFifoResetBit(void){
+	// sets the bit in the fpga space for controlling the RX fifo
+	*(baseaddr_rx_fifo+0) = 0x00000001;
+}
+
+// -------------------------------------------------------------------
+void clearRxFifoResetBit(void){
+	// clears the bit in the fpga space for controlling the RX fifo
+	*(baseaddr_rx_fifo+0) = 0x00000000;
+}
+
+// -------------------------------------------------------------------
+void setRxFifoAcquireBit(void){
+	// sets the acquire bit in the fpga space for controlling the gyro channel
+	setGyroChannelControl(0x00000010);
+}
+
+// -------------------------------------------------------------------
+void clearRxFifoAcquireBit(void){
+	// clears the acquire bit in the fpga space for controlling the gyro channel
+	setGyroChannelControl(0x00000000);
+}
+
 // -------------------------------------------------------------------
 int receivePacketButton(void){
 	unsigned int num_nops;
@@ -2378,6 +2408,26 @@ void read_uart_bytes(void)
 
 		case (CMD_READ_PACKETS):
 			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)outputDataBuffer);
+			break;
+
+		case (CMD_SET_RX_FIFO_RESET_BIT):
+			setRxFifoResetBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_CLEAR_RX_FIFO_RESET_BIT):
+			clearRxFifoResetBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_SET_RX_FIFO_ACQUIRE_BIT):
+			setRxFifoAcquireBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_CLEAR_RX_FIFO_ACQUIRE_BIT):
+			clearRxFifoAcquireBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
 			break;
 
 		case (CMD_PULSE_HSI_CAPTURE_DURATION):
