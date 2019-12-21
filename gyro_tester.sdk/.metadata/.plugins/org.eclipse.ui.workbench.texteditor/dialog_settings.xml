@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="fillTxPacketBuffer(" key="selection"/>
+		<item value="storeTxBufferDataInArray" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="fillTxPacketBuffer("/>
-			<item value="emitDataToBuffer"/>
-			<item value="TxPacket"/>
-			<item value="TX_BUFFER_BASE"/>
-			<item value="dma"/>
-			<item value="CMD_LOOP_ADC_ACQUISITIONS"/>
-			<item value="CMD_CAPTURE_ADC0_CAL_DATA"/>
-			<item value="CMD_START_ADC_ACQUISITIONS"/>
+			<item value="storeTxBufferDataInArray"/>
+			<item value="typeOfTxDataToLoad"/>
+			<item value="Status"/>
+			<item value="load_sawtooth_down_data"/>
+			<item value="SAWTOOTH_MAX_VALUE"/>
+			<item value="CMD_READ_TX_BUFFER"/>
+			<item value="enableFpgaTxBufferOutputs"/>
+			<item value="u32debugWords"/>
 		</list>
 		<list key="replacehistory">
+			<item value="storeTxBufferDataInArray"/>
 			<item value="pattern3["/>
 			<item value="pattern2["/>
 			<item value="pattern1["/>
@@ -25,7 +26,6 @@
 			<item value="sine"/>
 			<item value="reg6"/>
 			<item value="CMD_GET_SPICLK_DIV"/>
-			<item value="changeMCLKdivision"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

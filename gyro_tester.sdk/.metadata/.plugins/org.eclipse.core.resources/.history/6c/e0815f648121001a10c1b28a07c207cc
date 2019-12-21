@@ -11,6 +11,7 @@
 #include "xuartps_hw.h"
 #include "xil_exception.h"
 #include "xttcps.h"
+#include "xgpiops.h"
 
 
 //#define FAKE_IC		//used to send data back when no IC present
@@ -40,20 +41,21 @@ extern void xil_printf(const char *format, ...);
 #define UART_BASEADDR		XPAR_XUARTPS_0_BASEADDR
 #define RX_BUFFER_SIZE		30
 #define TX_BUFFER_SIZE		1000
-#define NUM_RXFIFO_DUMMY_READS_REQUIRED	31
+#define NUM_EFFING_RXFIFO_READS_REQUIRED	31
 
 // possible states for main while loop used to drive actions
 #define SERVICE_UART		0x04
 
+#define CMD_READ_REGISTER			0x41	// read 16-bit contents of gyro ic register
+#define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
 #define CMD_READ_DATA				0x61	// read data from tester - should be followed by
 											// 4 bytes(unsigned int) for num words to be
 											// sent (msbyte first)
 #define CMD_LOAD_SAWTOOTH_UP_DATA	0x62	// load test data1(sawtooth up) into TxData array
 #define CMD_LOAD_SAWTOOTH_DOWN_DATA	0x63	// load test data1(sawtooth down) into TxData array
-#define CMD_READ_REGISTER			0x41	// read 16-bit contents of gyro ic register
-#define CMD_WRITE_REGISTER			0x42	// write 16-bit value to gyro ic register
 #define CMD_PROG_OTP_CHIP_ADDR		0x81	// program the chip address into OTP memory
 #define CMD_PROG_OTP_VBG_TRIM		0x82	// program the bandgap trim value into OTP memory
+#define CMD_READ_OTP_DATA			0x83	// read the 32-bit data stored in 2 16-bit OTP registers
 #define CMD_READ_PACKETS			0x45	// read packet data
 #define CMD_CAL_ADC0 				0x90	// perform calibration on ADC0
 #define CMD_CAL_ADC1  				0x91	// perform calibration on ADC1
@@ -66,12 +68,15 @@ extern void xil_printf(const char *format, ...);
 #define CMD_FILL_DAC_TXFIFO			0xA2	// fill the TxFIFO with values and send via HSI bus
 #define CMD_CAPTURE_ADC0_CAL_DATA	0xA3	// run calibration while capturing ADC0 data
 #define CMD_CAPTURE_ADC1_CAL_DATA	0xA4	// run calibration while capturing ADC1 data
+#define CMD_CAPTURE_DATA_UNTIL_NEW	0xA5	// run ADC captures and test data until != old data
 #define CMD_FPGA_ALL_OUTPUTS_LOW	0xA7	// set all FPGA outputs low for safe power down
 #define CMD_FPGA_ALL_OUTPUTS_ENABLED 0xA8	// enable all FPGA outputs after power supplies turned on
 #define CMD_FPGA_GET_OUTPUTS_STATE  0xA9	// read the enabled/disabled state of FPGA outputs
+#define CMD_RUN_TADC_CONVERSION		0xAB	// take a single test ADC conversion and return result
 #define CMD_RUN_TADC_CONVERSIONS	0xAC	// take measurements using the test ADC
 #define CMD_ENABLE_HSI_SIGNALS		0xAD	// enable hsi signals on the FPGA
 #define	CMD_DISABLE_HSI_SIGNALS		0xAE	// disable hsi signals on the FPGA
+#define CMD_PULSE_HSI_CAPTURE_DURATION 0xAF // pulse IO pin from HSI data capture begin to buffer full
 #define CMD_SET_MCLK_DIV			0xB0	// set the MCLK division setting
 #define CMD_GET_MCLK_DIV			0xB1	// send MCLK division setting over uart
 #define	CMD_SET_SPICLK_DIV			0xB2	// set the SPI clock division setting
@@ -83,9 +88,29 @@ extern void xil_printf(const char *format, ...);
 #define CMD_GET_ADC_SELECTION		0xB8	// send the current ADC(RX channel) mux selection over UART
 #define CMD_SET_ADC_SELECTION		0xB9	// set the current ADC(RX channel) mux selection
 #define CMD_GET_CONFIG_SETTINGS		0xBA	// send all config settings over uart
+#define CMD_ENABLE_VFUSE			0xBE	// set Vfuse control bit high to enable Vfuse
+#define CMD_DISABLE_VFUSE			0xBF	// set Vfuse control bit low to disable Vfuse
+#define CMD_CLR_HSCK_ERR_FLAG		0xC0	// clear the HSCK error flag in CORE STATUS register
+#define CMD_READ_CORE_STATUS_REG	0xC1	// read the CORE STATUS register and return register setting
+#define CMD_DEBUG1					0xD0	// used for whatever debugging necessary
+#define CMD_STORE_FIFO_DATA 		0xD1	// stores data in RX FIFO in array in ARM
+#define CMD_READ_STORED_FIFO_DATA 	0xD2	// read data stored in ARM array for RX FIFO data
+#define CMD_SET_RX_FIFO_RESET_BIT  	0xD3	// set fpga control register bit to reset Rx fifo
+#define CMD_CLEAR_RX_FIFO_RESET_BIT 0xD4	// clear fpga control register bit to reset Rx fifo
+#define CMD_SET_RX_FIFO_ACQUIRE_BIT 0xD5	// set fpga control register bit to start Rx fifo acquire
+#define CMD_CLEAR_RX_FIFO_ACQUIRE_BIT 0xD6	// clear fpga control register bit to start Rx fifo acquire
+#define CMD_FILL_FPGA_TX_BUFFER 	0xE1	// send data to the fpga buffer for transmit channel output
+#define CMD_FILL_FPGA_TX_BUFFER2 	0xE2	// send data to the fpga buffer for transmit channel output
+#define CMD_FILL_FPGA_TX_BUFFER3 	0xE3	// send data to the fpga buffer for transmit channel output
+#define CMD_READ_TX_BUFFER1_DATA 	0xE4	// read contents of Tx data buffer1 in FPGA
+#define CMD_READ_TX_BUFFER2_DATA 	0xE5	// read contents of Tx data buffer2 in FPGA
+#define CMD_READ_TX_BUFFER3_DATA 	0xE6	// read contents of Tx data buffer3 in FPGA
+#define CMD_ENABLE_FPGA_TX_DATA_OUTPUT 0xE7	// write gyro channel control register: LSB = 1
+#define CMD_DISABLE_FPGA_TX_DATA_OUTPUT 0xE8// write gyro channel control register: LSB = 0
 
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
+#define RESPONSE_CMD_DONE			0x54	// indicates command received and action has been taken
 
 // test ADC mux settings
 #define TADC_MUX_TEMPERATURE_SENSOR		0x000
@@ -202,6 +227,7 @@ static void load_sawtooth_down_data(void);
 
 int numberDataSamples;
 Xuint32 outputDataBuffer[MAX_PKT_LEN/4];
+Xuint32 previousADCdataBuffer[MAX_PKT_LEN/4];
 
 typedef struct {
 	u32 OutputHz;	/* Output frequency */
@@ -226,6 +252,29 @@ Xuint32* baseaddr_channel     = (Xuint32*) 0x43C20000;
 Xuint32* baseaddr_rx_fifo     = (Xuint32*) 0x43C30000;
 Xuint32* baseaddr_tx_fifo     = (Xuint32*) 0x43C40000;
 
+
+volatile unsigned char debugType = 1;
+
+Xuint32 u32debugWords[MAX_PKT_LEN/4];
+Xuint32	TxBufferData[MAX_PKT_LEN/4];
+
+u8 *u8Ptr;
+u8 byte1 = 0x04;
+u8 byte2 = 0x04;
+u8 byte3 = 0x04;
+u8 byte4 = 0x04;
+
+u32 debugWord32_0 = 0;
+u32 debugWord32_1 = 0;
+u32 debugWord32_2 = 0;
+u32 debugWord32_3 = 0;
+u32 debugWord32_4 = 0;
+u32 debugWord32_5 = 0;
+u32 debugWord32_6 = 0;
+u32 debugWord32_7 = 0;
+u32 debugWord32_8 = 0;
+u32 debugWord32_9 = 0;
+
 int flag;
 int setup_interrupt_system();
 int Status;
@@ -242,11 +291,15 @@ u8	FPGA_outputs_state = 2; 	// 1=on, 2=0ff
 u8  FPGA_hsi_state = 1;			// 1=disabled, 2=enabled
 u8  FPGA_channel_state = 1;     //
 
+#define TX_DATA_RAMP_UP		1
+#define TX_DATA_RAMP_DOWN	2
+static u8 typeOfTxDataToLoad = TX_DATA_RAMP_UP;
+
 #define MAX_TADC_RESULTS_SIZE 512
 static u16 testADCresults[MAX_TADC_RESULTS_SIZE];
 
 #define WAVEFORM_DATA_ARRAY_SIZE 10
-static volatile TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
+static volatile u16 TxFifoData[WAVEFORM_DATA_ARRAY_SIZE];
 
 
 void isr0 (void *intc_inst_ptr);
@@ -263,6 +316,13 @@ static volatile u8 timerRunning;
 
 int Status;
 XAxiDma_Config *Config;
+
+XGpioPs MIO_gpio;
+#define MIO_GPIO_BANK 0
+#define VFUSE_MIO_OUTPUT_PIN 13
+#define HSI_RX_CAPTURE_PULSE_OUTPUT_PIN 10
+#define DIRECTION_OUTPUT 1
+#define DIRECTION_INPUT 0
 
 
 /**************************** Type Definitions *******************************/
@@ -291,6 +351,7 @@ static int sendDMApackets(int npackets);
 static int receiveDMApackets(int npackets);
 
 static int SaveData(int debug_mode);
+static void SaveAdcCaptureData(void);
 static int CheckDmaResult(XAxiDma * AxiDmaInstPtr, int debug_mode, int skip);
 
 static int openDMADevice();
@@ -305,6 +366,11 @@ static int resetGyroRxFIFO();
 static int resetGyroTxFIFOLooping();
 static int   setGyroTxFIFOLooping();
 
+static unsigned char checkForNewAdcData(void);
+static void initADCdataBuffers(void);
+static unsigned char captureAdcDataUntilNew(void);
+static void copyAdcDataIntoComparisonBuffer(void);
+
 static int  initGyroChannel();
 static void disableGyroChannel();
 static void enableGyroChannel();
@@ -314,10 +380,13 @@ static void readGyroChannelStatus();
 static int  readGyroChannelDebugData();
 static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
-//static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
-static void fillTxPacketBuffer(int npoints, u32 *TxPacket);
-
-
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket);
+//static void fillTxPacketBuffer(int npoints, u32 *TxPacket);
+static void fillFpgaTxBuffer(void);
+static void enableFpgaTxBufferOutputs(void);
+static void disableFpgaTxBufferOutputs(void);
+static void storeRxFifoData(void);
+//static void storeTxBufferDataInArray(u8 channelNumber);
 static int 	SetupUartPs(XScuGic *IntcInstPtr, XUartPs *UartInstPtr,
 					u16 DeviceId, u16 UartIntrId);
 static void UartPsISR(void *CallBackRef, u32 Event, unsigned int EventData);
@@ -325,7 +394,7 @@ static int 	SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 					XUartPs *UartInstancePtr,
 					u16 UartIntrId);
 static void read_uart_bytes(void);
-static unsigned int get_num_data_points(u8 *RxData);
+static unsigned int getNumBytesToSend(u8 *RxData);
 static void send_Tx_data_over_UART(unsigned int num_points_to_send);
 static void send_data_over_UART(unsigned int num_points_to_send, u8 *dataArray);
 static void send_byte_over_UART(Xuint8 byteToSend);
@@ -347,11 +416,22 @@ static int captureADC1calibrationData(void);
 static void fastCalibrationADC0(void);
 static void fastCalibrationADC1(void);
 static int receivePacketButton(void);
+static int receivePacketButtonLoop(void);
+static void pulseForADCcaptureTime(void);
+static void delayForADCcaptureTime(void);
+static void start_HSI_capture_duration_pulse(void);
+static void end_HSI_capture_duration_pulse(void);
 static void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings);
 static void changeSPIclockDivision(u8 divSetting);
 static void changeMCLKdivision(u8 divSetting);
 static void changeHSI_ADC_selection(u8 selection);
 static void sendConfigBytesOverUart(void);
+static unsigned int read_test_ADC_result(void);
+static void init_MIO_gpio(void);
+static void enable_Vfuse(void);
+static void disable_Vfuse(void);
+static void clearHSCKerrorFlag(void);
+static u8 readHSCKerrorFlag(void);
 /************************** Variable Definitions *****************************/
 /*
  * Device instance definitions
@@ -440,10 +520,62 @@ int readGyroChannelDebugData(){
 // -------------------------------------------------------------------
 int readGyroRxFIFODebugData(){
   // ---
+	/*
   xil_printf("Gyro RxFIFO Debug Word 0: 0x%08x\n\r", *(baseaddr_rx_fifo+0));
   xil_printf("Gyro RxFIFO Debug Word 1: 0x%08x\n\r", *(baseaddr_rx_fifo+1));
   xil_printf("Gyro RxFIFO Debug Word 2: 0x%08x\n\r", *(baseaddr_rx_fifo+2));
   xil_printf("Gyro RxFIFO Debug Word 3: 0x%08x\n\r", *(baseaddr_rx_fifo+3));
+   */
+/*
+	debugWord32_1 = *(baseaddr_rx_fifo+0);
+	debugWord32_2 = *(baseaddr_rx_fifo+1);
+	debugWord32_3 = *(baseaddr_rx_fifo+2);
+	debugWord32_4 = *(baseaddr_rx_fifo+3);
+	debugWord32_5 = *(baseaddr_rx_fifo+4);
+	debugWord32_6 = *(baseaddr_rx_fifo+5);
+	debugWord32_7 = *(baseaddr_rx_fifo+1000);
+	debugWord32_8 = *(baseaddr_rx_fifo+1001);
+	debugWord32_9 = *(baseaddr_rx_fifo+1002);
+	debugWord32_10 = *(baseaddr_rx_fifo+1003);
+*/
+
+	debugWord32_0 = *((Xuint32*)(RX_BUFFER_BASE+0));
+	debugWord32_1 = *((Xuint32*)(RX_BUFFER_BASE+1));
+	debugWord32_2 = *((Xuint32*)(RX_BUFFER_BASE+2));
+	debugWord32_3 = *((Xuint32*)(RX_BUFFER_BASE+3));
+	debugWord32_4 = *((Xuint32*)(RX_BUFFER_BASE+4));
+	debugWord32_5 = *((Xuint32*)(RX_BUFFER_BASE+5));
+	debugWord32_6 = *((Xuint32*)(RX_BUFFER_BASE+6));
+	debugWord32_7 = *((Xuint32*)(RX_BUFFER_BASE+7));
+	debugWord32_8 = *((Xuint32*)(RX_BUFFER_BASE+8));
+	debugWord32_9 = *((Xuint32*)(RX_BUFFER_BASE+9));
+
+	u16 wordNumber;
+	u8 *RxBytePtr = (u8 *) RX_BUFFER_BASE;
+
+	for (wordNumber=0; wordNumber<10; wordNumber++)
+	{
+		u32debugWords[wordNumber] =
+				(u32)RxBytePtr[wordNumber*4] >> 2		|
+				(u32)RxBytePtr[wordNumber*4 + 1] << 6 	|
+				(u32)RxBytePtr[wordNumber*4 + 2] << 14 	|
+				(u32)RxBytePtr[wordNumber*4 + 3] << 22 	;
+	}
+
+	/*
+	idx = 0;
+		for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
+			m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
+			m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
+			v0 = m0 >> 2;
+			v1 = m1 >> 2;
+			//xil_printf("Sample: %d: %x%x\r\n",idx,v0,v1);
+			outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
+			//xil_printf("Index: %d: %x\r\n",idx,outputDataBuffer[idx]);
+			idx++;
+		}
+		numberDataSamples = idx*2;
+*/
   return 0;
 }
 // -------------------------------------------------------------------
@@ -1004,78 +1136,127 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 	return XST_SUCCESS;
 }
 
+static void fillFpgaTxBuffer(void)
+{
+	int Index;
+	u32 *TxBuffPtr = (u32 *) TX_BUFFER_BASE;
+	u8  *TxBytePtr = (u8 *)  TX_BUFFER_BASE;
+
+#define BUF_SIZE 4096
+		u16 pattern1[BUF_SIZE];
+		u16 pattern2[BUF_SIZE];
+		u16 pattern3[BUF_SIZE];
+//		u16 pattern4[BUF_SIZE];
+
+		// choose one of the data types below to use and
+		// comment out the other
+		//
+		//==================================================
+		// Data type 1: repeating ramp data
+		//==================================================
+		// pattern1 is a ramp up
+/*		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern1[Index]=Index;
+		}
+
+		// pattern2 is a ramp down
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern2[Index]= (BUF_SIZE-1) - Index;
+		}
+
+		// pattern3 ramps up for 2k, back down for 2k
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			if (Index < 2048)
+			{
+				pattern3[Index]= (BUF_SIZE-1) - Index;
+			}
+			else
+			{
+				pattern3[Index] = 2048 - (Index-2048);
+			}
+		}
+		//==================================================
+*/
+
+
+
+
+		//==================================================
+		// Data type 2: single static value data
+		//==================================================
+		//
+		// populate pattern1 with single value
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern1[Index] = 0x0103;
+		}
+
+		// pattern2 array loaded here
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern2[Index] = 0x0267;
+		}
+
+		// pattern3 array loaded here
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern3[Index] = 0x034F;
+		}
+		//==================================================
+
+
+/*
+		// load the pattern data into fpga Tx buffer
+		// this method uses a pointer to a 32-bit value
+		// .... did not work when tried last, incorrect data loaded, no wiggle on Tx outputs
+		for(Index = 0; Index < 2048; Index++){
+			TxBuffPtr[Index+2048] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxBuffPtr[Index+4096] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxBuffPtr[Index+6144] = (pattern3[Index*2]<<20) + (pattern3[Index*2+1]<<4);
+		}
+*/
+
+		// new method using byte pointer
+		for(Index = 0; Index < 2048; Index++){
+			// load each individual byte into 32-bit fpga buffer location
+			// this should be data for HSI P channel
+			TxBytePtr[Index*4 + 2] = (pattern1[Index*2] & 0xFF) << 4;
+			TxBytePtr[Index*4 + 3] = (pattern1[Index*2] & 0xFF00) >> 4;
+			TxBytePtr[Index*4]     = (pattern1[Index*2 + 1] & 0xFF) << 4;
+			TxBytePtr[Index*4 + 1] = (pattern1[Index*2 + 1] & 0xFF00) >> 4;
+		}
+		for(Index = 0; Index < 2048; Index++){
+			// load each individual byte into 32-bit fpga buffer location
+			// this should be data for HSI M channel
+			TxBytePtr[(Index+2048)*4 + 2] = (pattern2[Index*2] & 0xFF) << 4;
+			TxBytePtr[(Index+2048)*4 + 3] = (pattern2[Index*2] & 0xFF00) >> 4;
+			TxBytePtr[(Index+2048)*4]     = (pattern2[Index*2 + 1] & 0xFF) << 4;
+			TxBytePtr[(Index+2048)*4 + 1] = (pattern2[Index*2 + 1] & 0xFF00) >> 4;
+		}
+		for(Index = 0; Index < 2048; Index++){
+			// load each individual byte into 32-bit fpga buffer location
+			// this should be data for HSI Carrier channel
+			TxBytePtr[(Index+4096)*4 + 2] = (pattern3[Index*2] & 0xFF) << 4;
+			TxBytePtr[(Index+4096)*4 + 3] = (pattern3[Index*2] & 0xFF00) >> 4;
+			TxBytePtr[(Index+4096)*4]     = (pattern3[Index*2 + 1] & 0xFF) << 4;
+			TxBytePtr[(Index+4096)*4 + 1] = (pattern3[Index*2 + 1] & 0xFF00) >> 4;
+		}
+}
+
+
 
 /*****************************************************************************/
-static void fillTxPacketBufferSineWave(int npoints, u8 *TxPacket){
-
-	int Index;
-	u8 Value1,Value2;
-	u8 Value;
-
-
-}
-
-// -------------------------------------------------------------
-//
-// -------------------------------------------------------------
-// N is the number of samples and each sample is 1 micro secs
-// Example:  generateSineWave(50.0*1E3, N);
-// --------------------------------------------------------
-void emitDataToBuffer(int idx, double value) {
-  signed short int v;
-
-  v = (signed short int)(value);
-  v = v & 0x0FFF;
-  v = v << 4;
-  printf("TxPacket[%d] = 0x%02x;\n",((idx*2)^2),v&0x00FF);
-  printf("TxPacket[%d] = 0x%02x;\n",((idx*2+1)^2),((v&0xFF00) >> 8) & 0xFF);
-}
-
-void generateSineWave(double freq, int num_samples, int AMP) {
-  double f, x, y, base, mult;
-  signed short int i, v, w;
-
-  // printf(" size: %d\n",sizeof(v));
-  // for N = 128 we get base = 7.8 KHz : 1.0/(128 * 1 micro secs)
-  base = 1.0/(num_samples*1.0E-6);
-  f = (3.151526/180.0);
-  mult = freq / base;
-
-  for(i = 0; i < num_samples; i++){
-    //x = sin(mult*f*i*(360.0/(num_samples * 1.0)));
-    emitDataToBuffer(i, x*((AMP)*1.0)+ (AMP*1.0));
-  }
-}
-
-
-
-static void readWaveformData(void){
-
-	FILE *fp;
-	char * line = NULL;
-	size_t len = 0;
-	u16 index = 0;
-
-	fp = fopen("C:\\Users\\protoroom\\Documents\\rampUp_4096.txt","r");
-	//fp = fopen("../wfm/rampUp_4096.txt","r");
-	if (fp == NULL)
-		exit(0);
-	while ((__getline(&line, &len, fp)) != -1){
-		TxFifoData[index++] = atoi(line);
-	}
-
-	fclose(fp);
-
-
-}
-
-
-/*****************************************************************************/
-//static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
-	static void fillTxPacketBuffer(int npoints, u32 *TxPacket){
+static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
+//	static void fillTxPacketBuffer(int npoints, u32 *TxPacket){
 	int Index;
 
-	readWaveformData();
 /*
 	  for(Index = 0; Index < (npoints/4); Index = Index+2) {
 		TxPacket[Index] = Value1;
@@ -1123,38 +1304,72 @@ static void readWaveformData(void){
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
 */		//===============================================
-		u16 pattern1[4096];
-		u16 pattern2[4096];
-		u16 pattern3[4096];
-		u16 pattern4[4096];
+#define BUF_SIZE 4096
+		u16 pattern1[BUF_SIZE];
+		u16 pattern2[BUF_SIZE];
+		u16 pattern3[BUF_SIZE];
+//		u16 pattern4[BUF_SIZE];
 
-		u32 * TXbufPtr = TX_BUFFER_BASE;
+		// pattern1 is a ramp up
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern1[Index]=Index;
+		}
+
+		// pattern2 is a ramp down
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern2[Index]= (BUF_SIZE-1) - Index;
+		}
+
+		// pattern3 ramps up for 2k, back down for 2k
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			if (Index < 2048)
+			{
+				pattern3[Index]= (BUF_SIZE-1) - Index;
+			}
+			else
+			{
+				pattern3[Index] = 2048 - (Index-2048);
+			}
+		}
+
 		//=========== load DMA ==========================
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
-
+/*
+		if (typeOfTxDataToLoad == TX_DATA_RAMP_UP){
+			for(Index = 0; Index < 2048; Index++){
+				TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_DOWN; //change for nex time data loaded
 		}
-
-
-	/*
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+2048] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
-		}
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+4096] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
-		}
-		for(Index = 0; Index < 2048; Index++){
-			TxPacket[Index+6144] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		else{
+			for(Index = 2048; Index < 4096; Index++){
+				TxPacket[Index] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_UP; //change for next time data loaded
 		}
 */
+
 /*
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+2048] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+4096] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+6144] = (pattern3[Index*2]<<20) + (pattern3[Index*2+1]<<4);
+		}
+
+*/
 		u16 dataShifted;
-		for(Index = 0; Index < npoints; Index++){
+		for(Index = 0; Index < npoints/2; Index++){
 			dataShifted = pattern1[Index]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-		for(Index = 4096; Index < npoints*2; Index++){
+		/*		for(Index = 4096; Index < npoints*2; Index++){
 			dataShifted = pattern2[Index-4096]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
@@ -1278,11 +1493,11 @@ static int SaveData(int debug_mode)
 	u8 *RxPacket;
 	int Index = 0;
 	int idx = 0;
-	u8 Value;
 	Xuint32 m0, m1, v0, v1;
 
 	RxPacket = (u8 *) RX_BUFFER_BASE;
-	Value = TEST_START_VALUE;
+
+
 
 	/* Invalidate the DestBuffer before receiving the data, in case the
 	 * Data Cache is enabled
@@ -1292,6 +1507,8 @@ static int SaveData(int debug_mode)
 	Xil_DCacheInvalidateRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 	Xil_DCacheFlushRange((Xuint32)outputDataBuffer, MAX_PKT_LEN);
 #endif
+
+
 
    idx = 0;
 	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
@@ -1310,6 +1527,30 @@ static int SaveData(int debug_mode)
 }
 
 
+// -------------------------------------------------------------
+void SaveAdcCaptureData(void)
+{
+	u8 *RxPacket;
+	int Index = 0;
+	int idx = 0;
+	Xuint32 m0, m1, v0, v1;
+
+	RxPacket = (u8 *) RX_BUFFER_BASE;
+
+	idx = 0;
+
+	for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
+		m0 = ((unsigned int)RxPacket[Index+1]<<8) | (0x00FF & (unsigned int)RxPacket[Index]);
+		m1 = ((unsigned int)RxPacket[Index+3]<<8) | (0x00FF & (unsigned int)RxPacket[Index+2]);
+		v0 = m0 >> 2;
+		v1 = m1 >> 2;
+		outputDataBuffer[idx] = (v0 << 16) | (0x0000FFFF & v1);
+		idx++;
+	}
+
+	numberDataSamples = idx*2;
+}
+
 static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 {
 	XAxiDma_BdRing *RxRingPtr;
@@ -1325,7 +1566,8 @@ static int receiveDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode)
 	/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
 	 * is enabled
 	 */
-	Xil_DCacheFlushRange((UINTPTR)TX_BUFFER_BASE, MAX_PKT_LEN);
+	Xil_DCacheFlushRange((UINTPTR)RX_BUFFER_BASE, MAX_PKT_LEN);
+//	Xil_DCacheFlushRange((UINTPTR)TX_BUFFER_BASE, MAX_PKT_LEN);
 
 #ifdef __aarch64__
 	Xil_DCacheFlushRange((UINTPTR)RX_BUFFER_BASE, MAX_PKT_LEN);
@@ -1540,6 +1782,20 @@ int sendPacketButton(void){
 	return 1;
  }
 
+
+// -------------------------------------------------------------------
+void enableFpgaTxBufferOutputs(void)
+{
+	setGyroChannelControl(0x00000001);
+}
+
+
+// -------------------------------------------------------------------
+void disableFpgaTxBufferOutputs(void)
+{
+	setGyroChannelControl(0x00000000);
+}
+
 // -------------------------------------------------------------------
 void fastCalibrationADC0(void)
 {
@@ -1624,13 +1880,152 @@ int captureADC0calibrationData(void){
 	return 1;
 }
 
- // -------------------------------------------------------------------
+// -------------------------------------------------------------------
+void pulseForADCcaptureTime(void){
+	// base value of 16 for the prescalar is used with timer counts
+	// to give enough time to fill FPGA buffer with samples when MCLK at full speed.
+	// For prescalar of 16 send 3 since (2^3)+1=16
+	u8 timerPrescalar = 3;
+
+	// to give correct interval before FPGA buffer full of HSI data samples
+	// adjust prescalar based on MCLK division
+	timerPrescalar += MCK_div_setting >> 16;
+
+	// set digital output high to indicate start of ADC sample time
+	start_HSI_capture_duration_pulse();
+
+	//setup timer for proper interval
+	SetTimerDuration(34375, timerPrescalar);
+
+	timerRunning = 1;	// set flag for determining when timer finished
+	XTtcPs_Start(&DelayTimer);
+	while(timerRunning);// wait here until flag is cleared in interrupt handler
+
+	// set digital output low to indicate end of ADC sample time
+	end_HSI_capture_duration_pulse();
+}
+
+// -------------------------------------------------------------------
+void delayForADCcaptureTime(void){
+	// base value of 16 for the prescalar is used with timer counts
+	// to give enough time to fill FPGA buffer with samples when MCLK at full speed.
+	// For prescalar of 16 send 3 since (2^3)+1=16
+	u8 timerPrescalar = 3;
+
+	// to give correct interval before FPGA buffer full of HSI data samples
+	// need to adjust prescalar based on MCLK division
+	timerPrescalar += MCK_div_setting >> 16;
+
+	//delay for Vfuse to come up
+	SetTimerDuration(34375, timerPrescalar);
+
+	timerRunning = 1;	// set flag for determining when timer finished
+	XTtcPs_Start(&DelayTimer);
+	while(timerRunning);// wait here until flag is cleared in interrupt handler
+}
+
+
+// -------------------------------------------------------------------
+void setRxFifoResetBit(void){
+	// sets the bit in the fpga space for controlling the RX fifo
+	*(baseaddr_rx_fifo+0) = 0x00000001;
+}
+
+// -------------------------------------------------------------------
+void clearRxFifoResetBit(void){
+	// clears the bit in the fpga space for controlling the RX fifo
+	*(baseaddr_rx_fifo+0) = 0x00000000;
+}
+
+// -------------------------------------------------------------------
+void setRxFifoAcquireBit(void){
+	// sets the acquire bit in the fpga space for controlling the gyro channel
+	setGyroChannelControl(0x00000010);
+}
+
+// -------------------------------------------------------------------
+void clearRxFifoAcquireBit(void){
+	// clears the acquire bit in the fpga space for controlling the gyro channel
+	setGyroChannelControl(0x00000000);
+}
+
+// -------------------------------------------------------------------
 int receivePacketButton(void){
+	unsigned int num_nops;
+	u32 num_shifts = 0;
+	u32 gyroChannelStatus = 0;
 
 	resetGyroRxFIFO();
+
+	gyroChannelStatus = *(baseaddr_channel+1);
 	setGyroChannelControl(0x00000010);	//start acquisition
-	nops(10000000); 					//delay value for DIV 1 of MCLK
+	gyroChannelStatus = *(baseaddr_channel+1);
+
+
+	// only one of the delay types(type1 or type2) below should be used.
+	// The unused delay type should have all lines of code commented out.
+	// There are two types because when dumb type1 was replaced by the more
+	// intelligent type2 it takes too many ADC capture attempts before new
+	// data is acquired. This should be changed to a more accurate method
+	// when all the fpga confusion bs is understood.
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+	//============= DELAY TYPE 1 ===========================
+	// this is just a dumb loop for delay. Not sure how long the delay
+	// is, this depends on number of instructions cycles it takes to
+	// run the for loop the nops() function uses, but it's way longer
+	// than the time required to fill data buffer in fpga
+	num_shifts = MCK_div_setting >> 16;
+	num_nops = (unsigned int)( 10000000 << num_shifts );
+	nops(num_nops);
+	//======================================================
+
+
+/*
+	//============= DELAY TYPE 2 ===========================
+	// delay for the acquisition to take place in the fpga
+	// this function takes into account the MCLK frequency
+	// and delays long enough for the fpga's 4k data point buffer to fill
+	pulseForADCcaptureTime();		// use this for pulse on JE2 during delay
+	//delayForADCcaptureTime();		// use this for no pulse on JE2 during delay
+	//======================================================
+*/
+
 	setGyroChannelControl(0x00000000);	//reset acquisition
+	delayForADCcaptureTime();
 	receiveDMApacket(&AxiDma,0);		//receive data in ARM memory
 
 	return 1;
@@ -1638,42 +2033,145 @@ int receivePacketButton(void){
 
 // -------------------------------------------------------------------
 int receivePacketButtonLoop(void){
-
 	int i;
 
-	//Status = RxSetup(&AxiDma); // ####
-
-	resetGyroRxFIFO();
-
-	for (i=0; i<NUM_RXFIFO_DUMMY_READS_REQUIRED;i++)
+	for (i=0; i<NUM_EFFING_RXFIFO_READS_REQUIRED;i++)
 	{
-		setGyroChannelControl(0x00000010);
-
-		nops(10000000); // this is the value for DIV 1
-
-		setGyroChannelControl(0x00000000);
-		receiveDMApacket(&AxiDma,0);
+		receivePacketButton();
 	}
 
-	setGyroChannelControl(0x00000010);
-
-	//======================================================
-	// remove this later ---only added for calibration testing
-	nops(80000);
-	writeSPI_non_blocking(6,0x0e); // set calibration bit
-	//======================================================
-
-	nops(1000000); // this is the value for DIV 1
-
-	//======================================================
-	// remove this later ---only added for calibration testing
-	writeSPI_non_blocking(6,0x02); // clear calibration bit
-	//======================================================
-
-	setGyroChannelControl(0x00000000);
-	receiveDMApacket(&AxiDma,0);
-
 	return 1;
+}
+
+// -------------------------------------------------------------------
+void storeRxFifoData(void)
+{
+	u16 wordNumber;
+	u8 *RxBytePtr = (u8 *) RX_BUFFER_BASE;
+
+	for (wordNumber=0; wordNumber<MAX_PKT_LEN/4; wordNumber++)
+	{
+		u32debugWords[wordNumber] =
+				(u32)RxBytePtr[wordNumber*4 +2] >> 2	|
+				(u32)RxBytePtr[wordNumber*4 + 3] << 6 	|
+				(u32)RxBytePtr[wordNumber*4] << 14 		|
+				(u32)RxBytePtr[wordNumber*4 + 1] << 22 	;
+	}
+}
+
+// -------------------------------------------------------------------
+void storeTxBufferDataInArray(u8 channelNumber)
+{
+	u16 wordNumber,bufferOffset;
+	u8 *BytePtr;
+
+	// check which section of buffer to read
+	switch (channelNumber){
+
+		case (1):
+			bufferOffset = 0;
+			break;
+
+		case (2):
+			bufferOffset = 2048;
+			break;
+
+		case (3):
+			bufferOffset = 4096;
+			break;
+
+
+	BytePtr = (u8 *) (TX_BUFFER_BASE + bufferOffset);
+
+	for (wordNumber=0; wordNumber<MAX_PKT_LEN/4; wordNumber++)
+	{
+		TxBufferData[wordNumber] =
+				(u32)BytePtr[wordNumber*4 + 2] >> 4	|	//shift right 4
+				(u32)BytePtr[wordNumber*4 + 3] << 4	|	// shift left 8, right 4
+				(u32)BytePtr[wordNumber*4]     << 12 |	// shift left 16, right 4
+				(u32)BytePtr[wordNumber*4 + 1] << 20;	// shift left 24, right 4
+	}
+}
+
+
+// -------------------------------------------------------------------
+unsigned char captureAdcDataUntilNew(void){
+		unsigned char maxNumCaptureAttempts = 200;
+		unsigned char ADCcaptureNumber;
+		u32 num_shifts = 0;
+		unsigned int num_nops;
+
+	for (ADCcaptureNumber=1; ADCcaptureNumber<=maxNumCaptureAttempts; ADCcaptureNumber++)
+	{
+		receivePacketButton(); //populates u32 array outputDataBuffer with FPGA data
+		// above line replaced with direct capture functions below
+
+		//==================================================
+/*		resetGyroRxFIFO();
+		setGyroChannelControl(0x00000010);	//start acquisition
+
+		num_shifts = MCK_div_setting >> 16;
+		num_nops = (unsigned int)( 10000000 << num_shifts );
+		nops(num_nops);
+
+		setGyroChannelControl(0x00000000);	//reset acquisition
+		SaveAdcCaptureData();
+*/		//==================================================
+
+
+		if ( checkForNewAdcData() )	// returns 1 if data changed, 0 if same
+		{
+			copyAdcDataIntoComparisonBuffer();		// save the fresh data for future comparisons
+			break;
+		}
+	}
+
+	return ADCcaptureNumber;
+}
+
+
+// -------------------------------------------------------------------
+unsigned char checkForNewAdcData(void)
+{
+	// returns 1 if new ADC data is detected, 0 if data is same as before
+	unsigned int i;
+	unsigned char ret = 0;
+
+	for (i=0; i<4096; i++)
+	{
+		if (outputDataBuffer[i] != previousADCdataBuffer[i])
+		{
+			ret = 1;
+			break;
+		}
+	}
+
+	return ret;
+}
+
+
+// -------------------------------------------------------------------
+void copyAdcDataIntoComparisonBuffer(void)
+{
+	int i;
+
+	for (i=0; i<4096; i++)
+	{
+		previousADCdataBuffer[i] = outputDataBuffer[i];
+	}
+}
+
+// -------------------------------------------------------------------
+void initADCdataBuffers(void)
+{
+	int i;
+
+	for (i=0; i<4096; i++)
+	{
+		outputDataBuffer[i] = 0;
+		previousADCdataBuffer[i] = 0;
+		u32debugWords[i] = 0;
+	}
 }
 
 
@@ -1945,7 +2443,10 @@ static int SetupUartInterruptSystem(XScuGic *IntcInstancePtr,
 void read_uart_bytes(void)
 {
 	u8 numBytesReceived = 0;
+	u8 byteToSend;
 	u16 numPoints;
+	u16 TxData;
+	u32 otpBytes;
 	unsigned int commandByte,regAddr,regData;
 
 	// loop through Uart Rx buffer and store received data
@@ -1961,22 +2462,6 @@ void read_uart_bytes(void)
 	// check received byte for valid command
 	switch (commandByte){
 
-		case (CMD_READ_DATA):
-			send_Tx_data_over_UART(get_num_data_points(UartRxData));
-			break;
-
-		case (CMD_READ_PACKETS):
-			send_data_over_UART(get_num_data_points(UartRxData),(u8*)outputDataBuffer);
-			//send_data_over_UART(get_num_data_points(UartRxData),(u8*)RX_BUFFER_BASE);
-			break;
-
-		case (CMD_LOAD_SAWTOOTH_UP_DATA):
-			load_sawtooth_up_data();
-			break;
-
-		case (CMD_LOAD_SAWTOOTH_DOWN_DATA):
-			load_sawtooth_down_data();
-			break;
 
 		case (CMD_READ_REGISTER):
 			//verify address byte was received after command byte
@@ -2001,14 +2486,21 @@ void read_uart_bytes(void)
 			writeSPI_non_blocking(regAddr,regData);
 			break;
 
+		case (CMD_READ_OTP_DATA):
+			otpBytes = readOTP32bits();
+
+			//4 8-bit values to send back over UART
+			send_data_over_UART(4,(u8*)&otpBytes);
+			break;
+
 		case (CMD_PROG_OTP_CHIP_ADDR):
 			//verify 3 bytes for chipID received after command byte
 			if (numBytesReceived<4)
 			{
 				return;
 			}
-		send_byte_over_UART(ProgramOTP_chipID( (UartRxData[1]<<16) |
-				(UartRxData[2]<<8) | UartRxData[3]));
+			send_byte_over_UART(ProgramOTP_chipID( (UartRxData[1]<<16) |
+						(UartRxData[2]<<8) | UartRxData[3]));
 			break;
 
 		case (CMD_PROG_OTP_VBG_TRIM):
@@ -2017,7 +2509,7 @@ void read_uart_bytes(void)
 			{
 				return;
 			}
-		send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
+			send_byte_over_UART(ProgramOTP_VbgTrim(UartRxData[1]));
 			break;
 
 		case (CMD_CAL_ADC0):
@@ -2051,7 +2543,80 @@ void read_uart_bytes(void)
 			break;
 
 		case (CMD_FILL_DAC_TXFIFO):
+			// this was the old command used with use of DMA
 			sendPacketButton();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_FILL_FPGA_TX_BUFFER):
+			// new non-DMA version
+			fillFpgaTxBuffer();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_READ_TX_BUFFER1_DATA):
+			storeTxBufferDataInArray(1);
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)TxBufferData);
+			break;
+
+		case (CMD_READ_TX_BUFFER2_DATA):
+			storeTxBufferDataInArray(1);
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)TxBufferData);
+			break;
+
+		case (CMD_READ_TX_BUFFER3_DATA):
+			storeTxBufferDataInArray(1);
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)TxBufferData);
+			break;
+
+		case (CMD_ENABLE_FPGA_TX_DATA_OUTPUT):
+			enableFpgaTxBufferOutputs();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_DISABLE_FPGA_TX_DATA_OUTPUT):
+			disableFpgaTxBufferOutputs();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_READ_PACKETS):
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)outputDataBuffer);
+			break;
+
+		case (CMD_SET_RX_FIFO_RESET_BIT):
+			setRxFifoResetBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_CLEAR_RX_FIFO_RESET_BIT):
+			clearRxFifoResetBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_SET_RX_FIFO_ACQUIRE_BIT):
+			setRxFifoAcquireBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_CLEAR_RX_FIFO_ACQUIRE_BIT):
+			clearRxFifoAcquireBit();
+			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_PULSE_HSI_CAPTURE_DURATION):
+			pulseForADCcaptureTime();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_CAPTURE_DATA_UNTIL_NEW):
+			byteToSend = captureAdcDataUntilNew();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			send_byte_over_UART(byteToSend);
+			break;
+
+		case (CMD_START_ADC_ACQUISITIONS):
+			receivePacketButton();
+			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
 		case (CMD_LOOP_ADC_ACQUISITIONS):
@@ -2059,9 +2624,13 @@ void read_uart_bytes(void)
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
 			break;
 
-		case (CMD_START_ADC_ACQUISITIONS):
-			receivePacketButton();
+		case (CMD_STORE_FIFO_DATA):
+			storeRxFifoData();
 			send_byte_over_UART(RESPONSE_ADC_ACQUIRE_DONE);
+			break;
+
+		case (CMD_READ_STORED_FIFO_DATA):
+			send_data_over_UART(getNumBytesToSend(UartRxData),(u8*)u32debugWords);
 			break;
 
 		case (CMD_CAPTURE_ADC0_CAL_DATA):
@@ -2088,6 +2657,11 @@ void read_uart_bytes(void)
 
 		case (CMD_FPGA_GET_OUTPUTS_STATE):
 			send_byte_over_UART(FPGA_outputs_state);
+			break;
+
+		case (CMD_RUN_TADC_CONVERSION):
+			TxData = read_test_ADC_result();
+			send_data_over_UART(2,(u8*)&TxData);
 			break;
 
 		case (CMD_RUN_TADC_CONVERSIONS):
@@ -2215,8 +2789,94 @@ void read_uart_bytes(void)
 			sendConfigBytesOverUart();
 			break;
 
+		case (CMD_ENABLE_VFUSE):
+			enable_Vfuse();
+			break;
+
+		case (CMD_DISABLE_VFUSE):
+			disable_Vfuse();
+			break;
+
+		case (CMD_CLR_HSCK_ERR_FLAG):
+			clearHSCKerrorFlag();
+			break;
+
+		case (CMD_READ_CORE_STATUS_REG):
+			byteToSend = readHSCKerrorFlag();
+			send_byte_over_UART(byteToSend);
+			break;
+
+		case (CMD_DEBUG1):
+			if (debugType == 1)
+			{
+				readGyroRxFIFODebugData();
+			}
+			if (debugType == 2)
+			{
+				// try writing to RX buffer space in fpga
+				u8Ptr = (u8 *)RX_BUFFER_BASE;
+				u8Ptr[0] = byte4;
+				u8Ptr[1] = byte3;
+				u8Ptr[2] = byte2;
+				u8Ptr[3] = byte1;
+			}
+			break;
 
 	}
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void clearHSCKerrorFlag(void)
+{
+	unsigned int reg0;
+
+	// store original register0 setting
+	readSPI(&reg0,0);
+
+	// turn on RST_HSCK_ERR bit to clear flag
+	writeSPI_non_blocking(0, reg0|0x80);
+
+	// turn off RST_HSCK_ERR bit to enable flag again
+	writeSPI_non_blocking(0, reg0&0xFF7F);
+
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+u8 readHSCKerrorFlag(void)
+{
+	unsigned int reg0;
+	unsigned int coreStatusReg;
+	u8 HSCKerrFlagStatus;
+
+	// store original register0 setting
+	readSPI(&reg0,0);
+
+	// turn on RBKSEL0 bit
+	writeSPI_non_blocking(0, reg0|0x200);
+
+	// read core status register
+	readSPI(&coreStatusReg,0);
+
+	// restore register0 original setting
+	writeSPI_non_blocking(0, reg0);
+
+	// flag status: 1=set, 2=cleared, zero invalid since
+	// not a good value to send over UART
+	if (coreStatusReg & 4)
+	{
+		HSCKerrFlagStatus = 1;
+	}
+	else
+	{
+		HSCKerrFlagStatus = 2;
+	}
+
+	return HSCKerrFlagStatus;
+
 }
 //------------------------------------------------------------
 
@@ -2307,50 +2967,20 @@ void changeMCLKdivision(u8 divSetting)
 //------------------------------------------------------------
 void run_ADC0_calibration(void)
 {
-	unsigned int reg0,reg4,reg5,reg6,reg7,reg0_RO;
-	unsigned int newReg4val = 0;
+	unsigned int reg0,reg6,reg0_RO;
 	unsigned int newReg6val = 0;
-	u8	reg4changed = 0;
-	u8  reg5changed = 0;
-	u8  reg7changed = 0;
 	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
 							// calibration flag needed until done
 
 	//read all necessary registers here
-	readSPI(&reg4,4);
-	readSPI(&reg5,5);
+	readSPI(&reg0,0);
 	readSPI(&reg6,6);
-	readSPI(&reg7,7);
 
-	//ensure ADC0_TEST_SEL is set to normal operation
-	if (reg7 & 0xC000)
+	//turn on MCLK enable bit if not on already
+	if (!(reg0 & 0x100))
 	{
-		reg7changed = 1;
-		writeSPI_non_blocking(7,0x00);
-	}
-
-	//ensure a TIIA_VGSW bit is set, in reg4[7:4]
-	if (!(reg4 & 0x00F0))
-	{
-		reg4changed = 1;
-		newReg4val = reg4 | 0xF0;
-	}
-
-	//ensure TIIA is enabled, reg4 bit0
-	if (!(reg4 & 0x0001))
-	{
-		reg4changed = 1;
-		newReg4val = newReg4val | 0x1;
-	}
-
-	//change reg 4 if needed
-	if (reg4changed) writeSPI_non_blocking(4,newReg4val);
-
-	//ensure VGA is enabled, reg5 bit0
-	if (!(reg5 & 0x1))
-	{
-		reg5changed = 1;
-		writeSPI_non_blocking(5,reg5|0x1);
+		reg0 |= 0x100;
+		writeSPI_non_blocking(0,reg0);
 	}
 
 	//ensure ADC0 is enabled, reg6 bit1
@@ -2368,7 +2998,6 @@ void run_ADC0_calibration(void)
 	}
 
 	//set reg0 readback mode to read-only to see when cal is done
-	readSPI(&reg0,0);
 	writeSPI_non_blocking(0,reg0|0x200);
 
 	//to run cal turn on reg6 bit2
@@ -2387,11 +3016,6 @@ void run_ADC0_calibration(void)
 	//restore register 6 with calibration bit off
 	writeSPI_non_blocking(6,reg6&0xFFFB);
 
-	//restore registers 4,5,7
-	if (reg4changed) writeSPI_non_blocking(4,reg4);
-	if (reg5changed) writeSPI_non_blocking(5,reg5);
-	if (reg7changed) writeSPI_non_blocking(7,reg7);
-
 	//register 0 back into normal readback mode
 	writeSPI_non_blocking(0,reg0&0xFDFF);
 }
@@ -2401,51 +3025,14 @@ void run_ADC0_calibration(void)
 //------------------------------------------------------------
 void run_ADC1_calibration(void)
 {
-	unsigned int reg0,reg8,reg9,reg10,reg11,reg0_RO;
-	unsigned int newreg8val = 0;
+	unsigned int reg0,reg10,reg0_RO;
 	unsigned int newreg10val = 0;
 	u16 numDoneChecks = 0; 	// use this counter to see how many reads of the
 							// calibration flag needed until done
-	u8	reg8changed = 0;
-	u8  reg9changed = 0;
-	u8  reg11changed = 0;
 
 	//read all necessary registers here
-	readSPI(&reg8,8);
-	readSPI(&reg9,9);
+	readSPI(&reg0,0);
 	readSPI(&reg10,10);
-	readSPI(&reg11,11);
-
-	//ensure ADC1_TEST_SEL is set to normal operation
-	if (reg11 & 0xC000)
-	{
-		reg11changed = 1;
-		writeSPI_non_blocking(11,0x00);
-	}
-
-	//ensure a TIIA_VGSW bit is set, in reg8[7:4]
-	if (!(reg8 & 0x00F0))
-	{
-		reg8changed = 1;
-		newreg8val = reg8 | 0xF0;
-	}
-
-	//ensure TIIA is enabled, reg8 bit0
-	if (!(reg8 & 0x0001))
-	{
-		reg8changed = 1;
-		newreg8val = newreg8val | 0x1;
-	}
-
-	//change reg8 if needed
-	if (reg8changed) writeSPI_non_blocking(8,newreg8val);
-
-	//ensure VGA is enabled, reg9 bit0
-	if (!(reg9 & 0x1))
-	{
-		reg9changed = 1;
-		writeSPI_non_blocking(9,reg9|0x1);
-	}
 
 	//ensure ADC1 is enabled, reg10 bit1
 	if (!(reg10 & 0x2))
@@ -2483,11 +3070,6 @@ void run_ADC1_calibration(void)
 
 	//restore register 10 with calibration bit off
 	writeSPI_non_blocking(10,reg10&0xFFFB);
-
-	//restore registers 8,9,11
-	if (reg8changed) writeSPI_non_blocking(8,reg8);
-	if (reg9changed) writeSPI_non_blocking(9,reg9);
-	if (reg11changed) writeSPI_non_blocking(11,reg11);
 }
 //------------------------------------------------------------
 
@@ -2539,6 +3121,31 @@ void read_ADC1_cal_data(void)
 }
 //------------------------------------------------------------
 
+
+//------------------------------------------------------------
+unsigned int read_test_ADC_result(void)
+{
+	unsigned int reg0,reg1readBack;
+	unsigned int firstCalRegisterAddress = 32;
+
+	//store original register 0 setting
+	readSPI(&reg0,0);
+
+	//set register 1 readback mode to read-only, this is
+	//controlled by register 0 bit 10
+	writeSPI_non_blocking(0,reg0|0x0400);
+
+	//read the state of TESTADC readback register
+	readSPI(&reg1readBack,1);
+
+	//fist 12 bits are ADC value, mask others
+	reg1readBack &= 0xFFF;
+
+	//turn register1 readback mode off
+	writeSPI_non_blocking(0,reg0);
+
+	return reg1readBack;
+}
 
 //------------------------------------------------------------
 void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
@@ -2620,7 +3227,7 @@ void fill_testADC_results_array(u16 signalToMeasure, u16 numReadings)
 
 
 //------------------------------------------------------------
-unsigned int get_num_data_points(u8 *RxData)
+unsigned int getNumBytesToSend(u8 *RxData)
 {
 	unsigned int num_points = 0;
 
@@ -2871,8 +3478,17 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 
 	otp32TestValue = readOTP32bits() | otp32ProgramValue;
 
+	//turn Vfuse on (NVM programming voltage)
+	enable_Vfuse();
+
+	//delay for Vfuse to come up
+	SetTimerDuration(65000, 10);
+	timerRunning = 1;
+	XTtcPs_Start(&DelayTimer);
+	while(timerRunning);
+
 	// setup the timer for 25usec delay to use later
-	SetTimerDuration(2500, 1);
+//	SetTimerDuration(2500, 1);
 
 	// loop through all 32 bits in otp register to clear out any 1s
 	for(i=0;i<32;i++)
@@ -2910,6 +3526,7 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 			/*timerRunning = 1;
 			XTtcPs_Start(&DelayTimer);
 			while(timerRunning);*/
+
 			// delay above was not needed because delay
 			// between spi register write completions is ~25usec
 
@@ -2925,6 +3542,8 @@ Xuint8 ProgramOTP(u32 otp32ProgramValue)
 		writeSPI_non_blocking_orig(2,0x0020);		//DIN=0,CLKM=0,CLKS=1
 		writeSPI_non_blocking_orig(2,0x0000);		//DIN=0,CLKM=0,CLKS=0
 	}
+
+	disable_Vfuse();		// programming done so disable voltage
 
 	//enable read operations
 	writeSPI_non_blocking_orig(2,0x0001);		//RSWEN=1
@@ -3002,6 +3621,60 @@ void test_DMA_receive_packets(int num_packets){
 
 }
 
+
+//------------------------------------------------------------
+void init_MIO_gpio(void)
+{
+	XGpioPs_Config *GPIO_Config;
+	GPIO_Config = XGpioPs_LookupConfig(XPAR_PS7_GPIO_0_DEVICE_ID);
+
+    Status = XGpioPs_CfgInitialize(&MIO_gpio, GPIO_Config, GPIO_Config->BaseAddr);
+    if (Status != XST_SUCCESS){
+    	xil_printf("error initializing gpio from MIO\n");
+    }
+    else{
+    	xil_printf("success initializing gpio from MIO\n");
+    }
+
+    // MIO used for Vfuse control circuit
+    XGpioPs_SetDirectionPin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
+    XGpioPs_SetOutputEnablePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, DIRECTION_OUTPUT);
+
+    // MIO used for output pulse indicating time needed to fill HSI Rx data buffer
+    XGpioPs_SetDirectionPin(&MIO_gpio, HSI_RX_CAPTURE_PULSE_OUTPUT_PIN, DIRECTION_OUTPUT);
+    XGpioPs_SetOutputEnablePin(&MIO_gpio, HSI_RX_CAPTURE_PULSE_OUTPUT_PIN, DIRECTION_OUTPUT);
+
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void enable_Vfuse(void){
+	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 1);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void disable_Vfuse(void){
+	XGpioPs_WritePin(&MIO_gpio, VFUSE_MIO_OUTPUT_PIN, 0);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void start_HSI_capture_duration_pulse(void){
+	XGpioPs_WritePin(&MIO_gpio, HSI_RX_CAPTURE_PULSE_OUTPUT_PIN, 1);
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+void end_HSI_capture_duration_pulse(void){
+	XGpioPs_WritePin(&MIO_gpio, HSI_RX_CAPTURE_PULSE_OUTPUT_PIN, 0);
+}
+//------------------------------------------------------------
+
 // -------------------------------------------------------------------
 int main() {
     init_platform();
@@ -3032,6 +3705,7 @@ int main() {
     xil_printf("slv_reg2: 0x%08x\n\r", *(baseaddr_p+2));
     xil_printf("slv_reg3: 0x%08x\n\r", *(baseaddr_p+3));
 
+    init_MIO_gpio();
 
     // clear SPI registers
     initSPI();
@@ -3120,6 +3794,7 @@ int main() {
 
     //readGyroTxFIFODebugData();
     //readGyroRxFIFODebugData();
+    initADCdataBuffers();
     resetGyroTxFIFO();
     resetGyroRxFIFO();
     initGyroChannel();
@@ -3164,14 +3839,14 @@ int main() {
 
     xil_printf(" - after initialization ==\n\r");
 
-    readGyroChannelStatus();
-    readGyroChannelDebugData();
-    readGyroTxFIFODebugData();
-    readGyroRxFIFODebugData();
+    //readGyroChannelStatus();
+    //readGyroChannelDebugData();
+    //readGyroTxFIFODebugData();
+    //readGyroRxFIFODebugData();
 
     xil_printf("== Starting FIFO / DMA test ++\n\r");
 
-    initDMADevice();
+ //   initDMADevice();
 
     //setGyroChannelControl(0x00000011); // moved inside loopback
     //test_DMA_receive_packets(1);
@@ -3218,7 +3893,7 @@ xil_printf("== STOP 2  ==\n\r");
 	xil_printf("  waiting for received UART data...\n");
 
 	InitializeDelayTimer();
-	readWaveformData();
+	//readWaveformData();
 
 	while(looping){// loop here and let interrupts drive further actions
 
