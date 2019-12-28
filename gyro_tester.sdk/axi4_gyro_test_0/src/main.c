@@ -110,7 +110,9 @@ extern void xil_printf(const char *format, ...);
 #define CMD_RESET_TX_FIFO 			0xE9	// set, then clear the reset bit in baseaddr_tx_fifo+0 register
 #define CMD_ENABLE_TX_FIFO_LOOPING 	0xEA	// set bit for Tx fifo looping.. maybe for Pedro's failed looping attempt
 #define CMD_DISABLE_TX_FIFO_LOOPING	0xEB	// clear bit for Tx fifo looping.. maybe for Pedro's failed looping attempt
-
+#define CMD_READ_FPGA_TX_CTRL_WORDS 0xEC	// read the 32-bit control words in fpga Tx section
+#define CMD_READ_FPGA_RX_CTRL_WORDS 0xED	// read the 32-bit control words in fpga Rx section
+#define CMD_READ_FPGA_CONTROL_WORDS	0xEE	// read the 32-bit control words in fpga logic section
 
 #define RESPONSE_ADC_ACQUIRE_DONE	0x55	// indicates finished with ADC data acquisition
 #define RESPONSE_CMD_DONE			0x54	// indicates command received and action has been taken
@@ -250,11 +252,15 @@ static XScuGic intc;
 
 // address of AXI PL interrupt generator
 Xuint32* baseaddr_p           = (Xuint32*) XPAR_AXI4_PL_INTERRUPT_GE_0_S00_AXI_BASEADDR;
+
 Xuint32* baseaddr_spi         = (Xuint32*) 0x43C10000;
 Xuint32* baseaddr_channel     = (Xuint32*) 0x43C20000;
 Xuint32* baseaddr_rx_fifo     = (Xuint32*) 0x43C30000;
 Xuint32* baseaddr_tx_fifo     = (Xuint32*) 0x43C40000;
 
+Xuint32  fpgaControlWords[4]   = {0,0,0,0};
+Xuint32  fpgaRxControlWords[4] = {0,0,0,0};
+Xuint32  fpgaTxControlWords[4] = {0,0,0,0};
 
 volatile unsigned char debugType = 1;
 
@@ -370,6 +376,10 @@ static int resetGyroRxFIFO();
 
 static int resetGyroTxFIFOLooping();
 static int setGyroTxFIFOLooping();
+
+static void storeFpgaTxControlWords(void);
+static void storeFpgaRxControlWords(void);
+static void storeFpgaControlWords(void);
 
 static unsigned char checkForNewAdcData(void);
 static void initADCdataBuffers(void);
@@ -606,15 +616,46 @@ int resetGyroRxFIFO(){
 	  return 0;
 }
 
+// -------------------------------------------------------------------
 int resetGyroTxFIFOLooping(){
 	*(baseaddr_tx_fifo+1) = 0x00000000;
 	  return 0;
 }
 
+// -------------------------------------------------------------------
 int setGyroTxFIFOLooping(){
 	*(baseaddr_tx_fifo+1) = 0x00000001;
 	  return 0;
 }
+
+// -------------------------------------------------------------------
+void storeFpgaTxControlWords(void){
+
+	fpgaTxControlWords[0] = *(baseaddr_tx_fifo+0);
+	fpgaTxControlWords[1] = *(baseaddr_tx_fifo+1);
+	fpgaTxControlWords[2] = *(baseaddr_tx_fifo+2);
+	fpgaTxControlWords[3] = *(baseaddr_tx_fifo+3);
+}
+
+// -------------------------------------------------------------------
+void storeFpgaRxControlWords(void){
+
+	fpgaRxControlWords[0] = *(baseaddr_rx_fifo+0);
+	fpgaRxControlWords[1] = *(baseaddr_rx_fifo+1);
+	fpgaRxControlWords[2] = *(baseaddr_rx_fifo+2);
+	fpgaRxControlWords[3] = *(baseaddr_rx_fifo+3);
+}
+
+// -------------------------------------------------------------------
+void storeFpgaControlWords(void){
+
+	fpgaControlWords[0] = *(baseaddr_channel+0);
+	fpgaControlWords[1] = *(baseaddr_channel+1);
+	fpgaControlWords[2] = *(baseaddr_channel+2);
+	fpgaControlWords[3] = *(baseaddr_channel+3);
+}
+
+
 // -------------------------------------------------------------------
 //   SPI FUNCTIONS
 // -------------------------------------------------------------------
@@ -1143,15 +1184,12 @@ static int TxSetup(XAxiDma * AxiDmaInstPtr){
 static void fillFpgaTxBuffer(void)
 {
 	int Index;
-//	u32 *TxBuffPtr = (u32 *) TX_BUFFER_BASE;
-	//u8  *TxBytePtr = (u8 *)  TxBufferData; //using this array to debug buffer loading
 	u8  *TxBytePtr = (u8 *)  TX_BUFFER_BASE;
 
 #define BUF_SIZE 4096
 		u16 pattern1[BUF_SIZE];
 		u16 pattern2[BUF_SIZE];
 		u16 pattern3[BUF_SIZE];
-//		u16 pattern4[BUF_SIZE];
 
 		// choose one of the data types below to use and
 		// comment out the other
@@ -1160,7 +1198,7 @@ static void fillFpgaTxBuffer(void)
 		// Data type 1: repeating ramp data
 		//==================================================
 		// pattern1 is a ramp up
-		for(Index = 0; Index < BUF_SIZE; Index++)
+/*		for(Index = 0; Index < BUF_SIZE; Index++)
 		{
 			pattern1[Index]=Index;
 		}
@@ -1184,7 +1222,7 @@ static void fillFpgaTxBuffer(void)
 			}
 		}
 		//==================================================
-
+*/
 
 
 
@@ -1194,9 +1232,9 @@ static void fillFpgaTxBuffer(void)
 		//==================================================
 		//
 		// populate pattern1 with single value
-/*		for(Index = 0; Index < BUF_SIZE; Index++)
+		for(Index = 0; Index < BUF_SIZE; Index++)
 		{
-			pattern1[Index] = 0x0103;
+			pattern1[Index] = 0x08E3;
 		}
 
 		// pattern2 array loaded here
@@ -1211,7 +1249,7 @@ static void fillFpgaTxBuffer(void)
 			pattern3[Index] = 0x034F;
 		}
 		//==================================================
-*/
+
 
 /*
 		// load the pattern data into fpga Tx buffer
@@ -1304,13 +1342,13 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 
 */
 
-/*     	//=========== static DC value ===================
-		u16 dataShifted = 0xAA5 << 4;
+     	//=========== static DC value ===================
+		u16 dataShifted = 0xAF5 << 4;
 		for(Index = 0; Index < npoints; Index++){
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-*/		//===============================================
+		//===============================================
 #define BUF_SIZE 4096
 		u16 pattern1[BUF_SIZE];
 		u16 pattern2[BUF_SIZE];
@@ -1370,12 +1408,13 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 		}
 
 */
+		/*
 		u16 dataShifted;
 		for(Index = 0; Index < npoints/2; Index++){
 			dataShifted = pattern1[Index]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
-		}
+		}*/
 		/*		for(Index = 4096; Index < npoints*2; Index++){
 			dataShifted = pattern2[Index-4096]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
@@ -1411,17 +1450,16 @@ static void fillTxPacketBuffer(int npoints, u8 *TxPacket){
 ******************************************************************************/
 static int sendDMApacket(XAxiDma * AxiDmaInstPtr, int debug_mode){
 	XAxiDma_BdRing *TxRingPtr;
-	u32 *TxPacket;
+	u8 *TxPacket;
 	//u8 Value;
 	XAxiDma_Bd *BdPtr;
 	int Status;
-	int Index;
 
 	TxRingPtr = XAxiDma_GetTxRing(AxiDmaInstPtr);
 
 	/* Create pattern in the packet to transmit */
-	TxPacket = (u32 *) Packet;
-	//TxPacket = (u8 *) Packet;
+	//TxPacket = (u32 *) Packet;
+	TxPacket = (u8 *) Packet;
 	//Value = TEST_START_VALUE;
 //	Value = 0x01;
 
@@ -2552,6 +2590,12 @@ void read_uart_bytes(void)
 		case (CMD_FILL_DAC_TXFIFO):
 			// this was the old command used with use of DMA
 			sendPacketButton();
+
+			// these 3 functions just for debugging fpga functions
+			storeFpgaTxControlWords();
+			storeFpgaRxControlWords();
+			storeFpgaControlWords();
+
 			send_byte_over_UART(RESPONSE_CMD_DONE);
 			break;
 
@@ -2600,6 +2644,24 @@ void read_uart_bytes(void)
 		case (CMD_DISABLE_TX_FIFO_LOOPING):
 			resetGyroTxFIFOLooping();
 			send_byte_over_UART(RESPONSE_CMD_DONE);
+			break;
+
+		case (CMD_READ_FPGA_TX_CTRL_WORDS):
+			storeFpgaTxControlWords();
+			// send 16 bytes (the four 32-bit words read from fpga space)
+			send_data_over_UART(16,(u8*)&fpgaTxControlWords[0]);
+			break;
+
+		case (CMD_READ_FPGA_RX_CTRL_WORDS):
+			storeFpgaRxControlWords();
+			// send 16 bytes (the four 32-bit words read from fpga space)
+			send_data_over_UART(16,(u8*)&fpgaRxControlWords[0]);
+			break;
+
+		case (CMD_READ_FPGA_CONTROL_WORDS):
+			storeFpgaControlWords();
+			// send 16 bytes (the four 32-bit words read from fpga space)
+			send_data_over_UART(16,(u8*)&fpgaControlWords[0]);
 			break;
 
 		case (CMD_READ_PACKETS):
@@ -2800,7 +2862,7 @@ void read_uart_bytes(void)
 				return;
 			}
 
-			// second byte received has the DAC selection
+			// second byte received has the ADC selection
 			changeHSI_ADC_selection(UartRxData[1]);
 
 			// use new variable in call to configuration function
@@ -3743,6 +3805,8 @@ int main() {
     *(baseaddr_p+1) = 0x00000000;
     *(baseaddr_p+2) = 0x00000000;
 
+
+
    // xil_printf("Checkpoint 3\n\r");
     // read interrupt_0/1 of AXI PL interrupt generator
 
@@ -3815,13 +3879,10 @@ int main() {
 
     xil_printf("== GYRO Channel test ==\n\r");
 
-    //readGyroTxFIFODebugData();
-    //readGyroRxFIFODebugData();
     initADCdataBuffers();
     resetGyroTxFIFO();
     resetGyroRxFIFO();
     initGyroChannel();
-    enableGyroChannel();
 
     //configure ADC0, ADC1 here via spi
 
@@ -3832,7 +3893,8 @@ int main() {
     // setGyroChannelConfiguration() description:
     //
     // bit 18:16 is to divide clock by 1/2/4/8/16/32/64/128
-    // with 128 (7 Hex) we get 50 MHz divided by 128 = 390 KHz.
+    // with div128 (7 Hex) we get 50 MHz divided by 128 = 390 KHz.
+    //
     // bits 14:12 are to select the packet size.
     //  000 is 64 samples  (32 words)
     //  001 is 128 samples  (64 words)
@@ -3869,7 +3931,7 @@ int main() {
 
     xil_printf("== Starting FIFO / DMA test ++\n\r");
 
- //   initDMADevice();
+    initDMADevice();
 
     //setGyroChannelControl(0x00000011); // moved inside loopback
     //test_DMA_receive_packets(1);
@@ -3897,6 +3959,29 @@ xil_printf("== STOP 2  ==\n\r");
 
 */
 
+/*
+    // just for debugging... delete later
+    fpgaTxControlWords[0] = 0xC2345670;
+    fpgaTxControlWords[1] = 0xC2345671;
+    fpgaTxControlWords[2] = 0xC2345672;
+    fpgaTxControlWords[3] = 0xC2345673;
+
+    fpgaRxControlWords[0] = 0xA2345670;
+    fpgaRxControlWords[1] = 0xA2345671;
+    fpgaRxControlWords[2] = 0xA2345672;
+    fpgaRxControlWords[3] = 0xA2345673;
+
+    fpgaControlWords[0] = 0xB2345670;
+    fpgaControlWords[1] = 0xB2345671;
+    fpgaControlWords[2] = 0xB2345672;
+    fpgaControlWords[3] = 0xB2345673;
+*/
+
+    // initial state is disabled so that if power supply is not
+    // turned on fpga is not driving unpowered IC pins
+    disableSPI();
+	disableGyroChannel();
+	FPGA_outputs_state = 2;		// 1=on, 2=off
 
 
     //#################################################################
