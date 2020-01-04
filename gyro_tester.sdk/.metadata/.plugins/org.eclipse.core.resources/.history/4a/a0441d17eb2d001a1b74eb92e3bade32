@@ -1309,7 +1309,7 @@ static void fillFpgaTxBuffer(void)
 
 
 
-// -------------------------------------------------------------------
+/*****************************************************************************/
 static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket){
 //	static void fillTxPacketBuffer_OLD(int npoints, u32 *TxPacket){
 	u16 Index;
@@ -1363,11 +1363,12 @@ static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket){
 	}
 	else if (TxDataType == RAMP_DOWN)
 	{
-		for(Index = 0; Index < npoints; Index++){
-			u16 dataShifted = (4095-Index) << 4;
+		for(Index = npoints; Index > 0; Index--){
+			u16 dataShifted = Index << 4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
+
 	}
 	else
 	{
@@ -1378,11 +1379,63 @@ static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket){
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
+
 	}
+
+		//=========== load DMA ==========================
+/*
+		if (typeOfTxDataToLoad == TX_DATA_RAMP_UP){
+			for(Index = 0; Index < 2048; Index++){
+				TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_DOWN; //change for nex time data loaded
+		}
+		else{
+			for(Index = 2048; Index < 4096; Index++){
+				TxPacket[Index] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_UP; //change for next time data loaded
+		}
+*/
+
+/*
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+2048] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+4096] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+6144] = (pattern3[Index*2]<<20) + (pattern3[Index*2+1]<<4);
+		}
+
+*/
+		/*
+		u16 dataShifted;
+		for(Index = 0; Index < npoints/2; Index++){
+			dataShifted = pattern1[Index]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}*/
+		/*		for(Index = 4096; Index < npoints*2; Index++){
+			dataShifted = pattern2[Index-4096]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+		for(Index = 8192; Index < npoints*3; Index++){
+			dataShifted = pattern3[Index-8192]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+		for(Index = 12288; Index < npoints*4; Index++){
+			dataShifted = pattern2[Index-12288]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+	*/	//===============================================
 
 }
 
-// -------------------------------------------------------------------
 void changeTxBuffer(void){
 
 	u16 Index;

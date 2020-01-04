@@ -267,10 +267,6 @@ Xuint32  fpgaControlWords[4]   = {0,0,0,0};
 Xuint32  fpgaRxControlWords[4] = {0,0,0,0};
 Xuint32  fpgaTxControlWords[4] = {0,0,0,0};
 
-int TxDataType = 1;
-#define RAMP_UP 1
-#define RAMP_DOWN 2
-
 volatile unsigned char debugType = 1;
 
 Xuint32 u32debugWords[MAX_PKT_LEN/4];
@@ -386,8 +382,6 @@ static int resetGyroRxFIFO();
 static int resetGyroTxFIFOLooping();
 static int setGyroTxFIFOLooping();
 
-static void changeTxBuffer(void);
-
 static void storeFpgaTxControlWords(void);
 static void storeFpgaRxControlWords(void);
 static void storeFpgaControlWords(void);
@@ -408,8 +402,6 @@ static int  setGyroChannelConfiguration(unsigned int v);
 static int  setGyroChannelControl(unsigned int v);
 static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket);
 static void storeTxBufferDataInArray(u8 channelNumber);
-static void writeToTxFpgaSpace(void);
-static void storeTxFpgaSpaceInArray(void);
 static void fillFpgaTxBuffer(void);
 static void enableFpgaTxBufferOutputs(void);
 static void disableFpgaTxBufferOutputs(void);
@@ -1309,7 +1301,7 @@ static void fillFpgaTxBuffer(void)
 
 
 
-// -------------------------------------------------------------------
+/*****************************************************************************/
 static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket){
 //	static void fillTxPacketBuffer_OLD(int npoints, u32 *TxPacket){
 	u16 Index;
@@ -1353,46 +1345,99 @@ static void fillTxPacketBuffer_OLD(int npoints, u8 *TxPacket){
 		//===============================================
 
 */
-	if (TxDataType == RAMP_UP)
-	{
+
+     	//=========== static DC value ===================
+		//u16 dataShifted = 0xAF5 << 4;
+		//for(Index = 0; Index < 10; Index++){
 		for(Index = 0; Index < npoints; Index++){
 			u16 dataShifted = Index << 4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-	}
-	else if (TxDataType == RAMP_DOWN)
-	{
-		for(Index = 0; Index < npoints; Index++){
-			u16 dataShifted = (4095-Index) << 4;
+		//===============================================
+#define BUF_SIZE 4096
+		u16 pattern1[BUF_SIZE];
+		u16 pattern2[BUF_SIZE];
+		u16 pattern3[BUF_SIZE];
+//		u16 pattern4[BUF_SIZE];
+
+		// pattern1 is a ramp up
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern1[Index]=Index;
+		}
+
+		// pattern2 is a ramp down
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			pattern2[Index]= (BUF_SIZE-1) - Index;
+		}
+
+		// pattern3 ramps up for 2k, back down for 2k
+		for(Index = 0; Index < BUF_SIZE; Index++)
+		{
+			if (Index < 2048)
+			{
+				pattern3[Index]= (BUF_SIZE-1) - Index;
+			}
+			else
+			{
+				pattern3[Index] = 2048 - (Index-2048);
+			}
+		}
+
+		//=========== load DMA ==========================
+/*
+		if (typeOfTxDataToLoad == TX_DATA_RAMP_UP){
+			for(Index = 0; Index < 2048; Index++){
+				TxPacket[Index] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_DOWN; //change for nex time data loaded
+		}
+		else{
+			for(Index = 2048; Index < 4096; Index++){
+				TxPacket[Index] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+			}
+			typeOfTxDataToLoad = TX_DATA_RAMP_UP; //change for next time data loaded
+		}
+*/
+
+/*
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+2048] = (pattern1[Index*2]<<20) + (pattern1[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+4096] = (pattern2[Index*2]<<20) + (pattern2[Index*2+1]<<4);
+		}
+		for(Index = 0; Index < 2048; Index++){
+			TxPacket[Index+6144] = (pattern3[Index*2]<<20) + (pattern3[Index*2+1]<<4);
+		}
+
+*/
+		/*
+		u16 dataShifted;
+		for(Index = 0; Index < npoints/2; Index++){
+			dataShifted = pattern1[Index]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}*/
+		/*		for(Index = 4096; Index < npoints*2; Index++){
+			dataShifted = pattern2[Index-4096]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-	}
-	else
-	{
-		//=========== static DC value ===================
-		u16 dataShifted = 0xAF5 << 4;
-		//for(Index = 0; Index < 10; Index++){
-		for(Index = 0; Index < npoints; Index++){
+		for(Index = 8192; Index < npoints*3; Index++){
+			dataShifted = pattern3[Index-8192]<<4;
 			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
 			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
 		}
-	}
+		for(Index = 12288; Index < npoints*4; Index++){
+			dataShifted = pattern2[Index-12288]<<4;
+			TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
+			TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
+		}
+	*/	//===============================================
 
-}
-
-// -------------------------------------------------------------------
-void changeTxBuffer(void){
-
-	u16 Index;
-	u16 dataShifted = 1000 << 4;
-	u8 *TxPacket = (u8 *) TX_BUFFER_BASE;
-
-	for(Index = 0; Index < 1000; Index++){
-		TxPacket[Index*2] = (u8)(dataShifted & 0xFF);
-		TxPacket[Index*2+1] = (u8)(dataShifted >> 8);
-	}
 }
 
 
@@ -2088,40 +2133,6 @@ void storeTxBufferDataInArray(u8 channelNumber)
 	for (wordNumber=0; wordNumber<MAX_PKT_LEN/4; wordNumber++)
 	{
 		TxBufferData[wordNumber] =
-				// shifts right of 4 below are because data is shifted left for to MSB align
-				(u32)BytePtr[wordNumber*4 + 2] >> 4	|	//shift right 4
-				(u32)BytePtr[wordNumber*4 + 3] << 4	|	// shift left 8, right 4
-				(u32)BytePtr[wordNumber*4]     << 12 |	// shift left 16, right 4
-				(u32)BytePtr[wordNumber*4 + 1] << 20;	// shift left 24, right 4
-	}
-}
-
-// -------------------------------------------------------------------
-void writeToTxFpgaSpace(void){
-
-	*(baseaddr_tx_fifo+0) = 0x00000001;
-	*(baseaddr_tx_fifo+1) = 0x12345670;
-	*(baseaddr_tx_fifo+2) = 0x12345671;
-	*(baseaddr_tx_fifo+3) = 0x12345672;
-	*(baseaddr_tx_fifo+4) = 0x12345673;
-	*(baseaddr_tx_fifo+5) = 0x12345674;
-	*(baseaddr_tx_fifo+6) = 0x12345675;
-	*(baseaddr_tx_fifo+7) = 0x12345676;
-}
-
-// -------------------------------------------------------------------
-void storeTxFpgaSpaceInArray(void)
-{
-	u16 wordNumber;
-	u8 *BytePtr;
-
-	BytePtr = (u8 *) baseaddr_tx_fifo;
-
-	for (wordNumber=0; wordNumber<MAX_PKT_LEN/4; wordNumber++)
-	{
-		TxBufferData[wordNumber] =
-
-				// shifts right of 4 below are because data is shifted left for to MSB align
 				(u32)BytePtr[wordNumber*4 + 2] >> 4	|	//shift right 4
 				(u32)BytePtr[wordNumber*4 + 3] << 4	|	// shift left 8, right 4
 				(u32)BytePtr[wordNumber*4]     << 12 |	// shift left 16, right 4
@@ -2580,27 +2591,13 @@ void read_uart_bytes(void)
 
 		case (CMD_FILL_DAC_TXFIFO):
 			// this was the old command used with use of DMA
-
-
-			storeTxBufferDataInArray(1); //save buffer data for view in debugger
 			sendPacketButton();
-			storeTxBufferDataInArray(1); //save again to see if changed
 
-			sendPacketButton();
-			storeTxBufferDataInArray(1); //save again to see if changed
-
-			writeToTxFpgaSpace(); 		// write something into registers for readback
-			storeTxFpgaSpaceInArray(); //take a look at fpga section data
-
-			changeTxBuffer(); //change first 1k points to value 1k
-			storeTxBufferDataInArray(1); //save again to see if changed
-
-			// these 3 functions used for debugging fpga functions
+			// these 3 functions just for debugging fpga functions
 			storeFpgaTxControlWords();
 			storeFpgaRxControlWords();
 			storeFpgaControlWords();
 
-			// indicate finished
 			send_byte_over_UART(RESPONSE_CMD_DONE);
 			break;
 
