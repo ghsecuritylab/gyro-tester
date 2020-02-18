@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="storeTxBufferDataInArray" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
-		<item value="false" key="wholeword"/>
+		<item value="true" key="wholeword"/>
 		<list key="findhistory">
+			<item value="writeToTxFpgaSpace"/>
 			<item value="storeTxBufferDataInArray"/>
-			<item value="typeOfTxDataToLoad"/>
-			<item value="Status"/>
-			<item value="load_sawtooth_down_data"/>
-			<item value="SAWTOOTH_MAX_VALUE"/>
-			<item value="CMD_READ_TX_BUFFER"/>
-			<item value="enableFpgaTxBufferOutputs"/>
-			<item value="u32debugWords"/>
+			<item value="CMD_FILL_TX_BUFFER_CARRIER_CHAN"/>
+			<item value="fillFpgaTxBuffer"/>
+			<item value="sendTxDmaPacket"/>
+			<item value="sendDMApacket"/>
+			<item value="CMD_CLEAR_RX_FIFO_ACQUIRE_BIT"/>
+			<item value="CMD_FILL_FPGA_TX_BUFFER"/>
 		</list>
 		<list key="replacehistory">
+			<item value="TxBuffer"/>
+			<item value="TxBufferAddress"/>
+			<item value="bufIndex"/>
+			<item value="i"/>
+			<item value="numBytes"/>
+			<item value="MAX_PKT_LEN_BYTES"/>
 			<item value="storeTxBufferDataInArray"/>
 			<item value="pattern3["/>
-			<item value="pattern2["/>
-			<item value="pattern1["/>
-			<item value="pattern1"/>
-			<item value="sine"/>
-			<item value="reg6"/>
-			<item value="CMD_GET_SPICLK_DIV"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
